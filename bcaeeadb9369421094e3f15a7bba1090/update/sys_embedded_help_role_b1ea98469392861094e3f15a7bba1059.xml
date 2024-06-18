@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="INSERT_OR_UPDATE">
+        <order>10</order>
+        <role display_value="x_1383184_charityb.admin" name="x_1383184_charityb.admin">00ba18469392861094e3f15a7bba100b</role>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-05-22 07:54:20</sys_created_on>
+        <sys_id>b1ea98469392861094e3f15a7bba1059</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>00ba18469392861094e3f15a7bba100b</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_embedded_help_role_b1ea98469392861094e3f15a7bba1059</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-05-22 07:54:20</sys_updated_on>
+    </sys_embedded_help_role>
+</record_update>
