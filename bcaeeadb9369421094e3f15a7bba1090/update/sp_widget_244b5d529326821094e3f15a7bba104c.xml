@@ -15,8 +15,19 @@
 
     // Function to show item details
     c.showDetails = function(item) {
-        c.selectedItem = item;
-    };
+      // c.selectedItem = item;
+		var itemDetailUrl = "?id=item_details&sys_id=" + item.sys_id;
+		window.location.href = itemDetailUrl;
+	};
+	
+	//c.showDetails = function(sysID) {
+    //$location.url('/book_details_page_v1').search({sys_id: sysID});
+		//c.selectedItem = item;
+		//var portalURL = $location.absUrl().split('?')[0];
+   // var pageID = 'book_details_page_v1'; // Update with actual page ID
+    //var url = 'cb?id=item_details' + '&sys_id=' + sysID;
+    //window.location.href = url;
+  //};
 }
 ]]></client_script>
         <controller_as>c</controller_as>
@@ -278,9 +289,9 @@ h1 {
         <docs/>
         <field_list>color</field_list>
         <has_preview>true</has_preview>
-        <id>item_list</id>
+        <id>cb_item_list</id>
         <internal>false</internal>
-        <link><![CDATA[function($scope) {
+        <link><![CDATA[function link($scope) {
     // Link function to handle additional setup
     $scope.placeBid = function(item) {
         alert('Placing bid for: ' + item.name);
@@ -288,13 +299,13 @@ h1 {
     };
 }
 ]]></link>
-        <name>Item list</name>
+        <name>cb_Item list</name>
         <option_schema>[{"name":"show_star_rating","default_value":"Use system properties","section":"Presentation","label":"Show star rating","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]},{"hint":"Number of articles to display per page","name":"limit_article","section":"other","default_value":"10","label":"Number of articles to display per page","type":"integer"}]</option_schema>
         <public>true</public>
         <roles/>
         <script><![CDATA[(function() {
-    // Initialize an array to hold the items
-    data.items = [];
+    // Initialize an array to hold the items 
+	data.items = [];
 
     // Define the table name
     var tableName = 'x_1383184_charityb_item';  // Replace with your actual table name
@@ -326,6 +337,7 @@ h1 {
             var displayStatus = statusMapping[auctionStatus] || auctionStatus;
 
             data.items.push({
+							  sys_id: gr.getUniqueValue(),
                 item_name: gr.getValue('item_name'),
                 donator: donatorName,
                 start_date: gr.getValue('start_date'),
@@ -349,34 +361,25 @@ h1 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-04 17:29:41</sys_created_on>
         <sys_id>244b5d529326821094e3f15a7bba104c</sys_id>
-        <sys_mod_count>100</sys_mod_count>
-        <sys_name>Item list</sys_name>
+        <sys_mod_count>137</sys_mod_count>
+        <sys_name>cb_Item list</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_244b5d529326821094e3f15a7bba104c</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-18 08:38:42</sys_updated_on>
+        <sys_updated_on>2024-06-19 11:13:14</sys_updated_on>
         <template><![CDATA[<div class="container">
   <h1>Items List</h1>
   <div id="items-grid" class="items-grid">
-    <div ng-repeat="item in c.data.items" class="item-card" ng-click="c.showDetails(item)" ng-if="item.auction_status === 'Auction In Progress'">
+    <div ng-repeat="item in c.data.items" class="item-card" ng-click="c.showDetails(item)">
       <img ng-src="{{item.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{item.item_name}}">
       <div class="item-details">
         <div class="item-title">{{item.item_name}}</div>
-        <!--<div class="item-donator">Donator: {{item.donator}}</div>
-                <div class="item-dates">
-                    <div>Start Date: {{item.start_date}}</div>
-                    <div>End Date: {{item.end_date}}</div>
-                </div>-->
         <div class="item-value">Value: {{item.value}}</div>
         <div ng-if="item.auction_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
         <div ng-if="item.auction_status === 'Auction In Progress' || item.auction_status === 'Auction Completed'" class="item-highest-bid">Highest Bid: {{item.highest_bid_amount}}</div>
-        <!--<div class="item-status" ng-class="{'item-submitted': item.auction_status === 'Item Submitted', 'auction-scheduled': item.auction_status === 'Auction Scheduled', 'auction-in-progress': item.auction_status === 'Auction In Progress', 'auction-completed': item.auction_status === 'Auction Completed'}">
-          Status: {{item.auction_status}}-->
-        </div>
-        <!--<button class="btn btn-primary" ng-click="c.showDetails(item)" data-toggle="modal" data-target="#itemDetailsModal">Details</button>-->
-      <a href="cb?id=item_details" target="_blank" class="btn btn-primary" ng-click="c.showDetails(item)" >Details</a>
+        <a href="?id=item_details&sys_id={{item.sys_id}}" target="_blank" class="btn btn-primary">Details</a>
       </div>
     </div>
   </div>
@@ -384,36 +387,6 @@ h1 {
 
 
 
-<!-- The Modal -->
-  <div id="itemDetailsModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-name">{{c.selectedItem.item_name}}</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="imgC">
-				 <img ng-src="{{c.selectedItem.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{c.selectedItem.item_name}}" class="imgFix">
-        </div>
-        <div class="modal-body">
-
-          <!--<p><strong>Donator:</strong> {{c.selectedItem.donator}}</p>-->
-           <p><strong>Description:</strong> {{c.selectedItem.description}}</p>
-          <p><strong>Start Date:</strong> {{c.selectedItem.start_date}}</p>
-          <p><strong>End Date:</strong> {{c.selectedItem.end_date}}</p>
-          <p><strong>Value:</strong> {{c.selectedItem.value}}</p>
-          <p><strong>Start Bid:</strong> {{c.selectedItem.start_bid_amount}}</p>
-          <p><strong>Highest Bid:</strong> {{c.selectedItem.highest_bid_amount}}</p>
-          <p><strong>Status:</strong> {{c.selectedItem.auction_status}}</p>
-          <div class="add-to-options">
-            <button class="btn btn-secondary" ng-click="c.addTo('Bid For Item')">Bid</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 ]]></template>
     </sp_widget>

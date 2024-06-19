@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
+	// Function to handle image upload
+	$scope.uploadImage = function(element) {
+		var formData = new FormData();
+		formData.append("sys_id", $scope.data.sysUserID);
+		formData.append("table", "x_1383184_charityb_user_profile");
+		formData.append("fieldName", "profile_image");
+		formData.append("attachment", element.files[0]);
+
+		$http.post("/api/now/attachment/upload", formData, {
+			transformRequest: angular.identity,
+			headers: { 'Content-Type': undefined }
+		}).then(function(response) {
+			// Success - update profile image URL
+			$scope.data.profileImage = response.data.result.sys_id;
+			// Optionally reload the page or update UI as needed
+		}, function(error) {
+			// Error handling
+			console.error("Error uploading image", error);
+		});
+	};
+
+	// Function to open image upload dialog
+	$scope.openImageUpload = function() {
+		document.getElementById('imageUpload').click();
+	};
+	var fieldExcludes = {
+		x_1383184_charityb_user_profile: ['name', 'location','bio','image']
+	}
+
+	$scope.$watch('data.dateTimeFormat', function() {
+		if ($scope.data.dateTimeFormat != g_user_date_time_format)
+			$scope.data.dateTimeFormatChanged = true;
+	});
+
+	$scope.getSysUserModelFields = function() {
+		if ($scope.data.userExists) {
+			return $scope.data.sysUserModelList
+				.filter(function(field) {
+				return $scope.displayField("x_1383184_charityb_user_profile", field.name);
+			});
+		}
+		return [];
+	}
+	$scope.reloadPage = function() {
+		$window.location.reload(true);
+	};
+
+	var models = {
+		x_1383184_charityb_user_profile: $scope.data.sysUserModel
+	}
+
+	$scope.displayField = function(tableName, field, isHeader) {
+		if (!isHeader && fieldExcludes[tableName].indexOf(field) > -1) return false;
+
+		if (models[tableName][field] && models[tableName][field].type === "boolean") return false;
+
+		if ($scope.data.isLoggedInUsersProfile) {
+			if (models[tableName][field] && models[tableName][field].readonly)
+				return models[tableName][field].displayValue;
+			else
+				return models[tableName][field];
+		} else {
+			return models[tableName][field] && models[tableName][field].displayValue;
+		}
+	}
+
+	$timeout(function(){
+		$rootScope.$broadcast('finishedChanged', {profile: $scope.data.teamData});
+	});
+
+	$scope.sysUserModelFields = $scope.getSysUserModelFields();
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.det-space {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 17px;
+}
+span#field-x_1383184_charityb_user_profile-location-39a8eb2a9336021094e3f15a7bba10e1 {
+    padding-left: 20px;
+}
+
+
+img {
+    border: 0;
+    padding-left: 20px;
+}
+
+span#field-x_1383184_charityb_user_profile-bio-39a8eb2a9336021094e3f15a7bba10e1 {
+    padding-left: 20px;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_edit_user_profile</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb edit user profile</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    // Get the current logged-in user's ID
+    var currentUserID = gs.getUserID();
+ 
+    // Query the custom profile table for the current user's profile
+    var profileGR = new GlideRecord("x_1383184_charityb_user_profile");
+    if (profileGR.get('name', currentUserID) && profileGR.canRead()) {
+        // Check if the profile record exists and can be read
+        data.userExists = true;
+        data.sysUserID = profileGR.getUniqueValue();
+        data.table = profileGR.getRecordClassName();
+        data.name = profileGR.getDisplayValue("name");
+        data.location = profileGR.getDisplayValue("location");
+        data.bio = profileGR.getValue("bio");
+        data.profileImage = profileGR.getDisplayValue("profile_image"); // Fetch profile image URL
+        data.isLoggedInUsersProfile = true; // Assuming the current user is editing their own profile
+ 
+        var profileForm = $sp.getForm(data.table, data.sysUserID);
+        data.sysUserView = profileForm._view;
+        data.sysUserModel = profileForm._fields;
+        data.sysUserModelList = [];
+ 
+        for (var i = 0; i < data.sysUserView.length; i++) {
+            data.sysUserModelList.push(data.sysUserModel[data.sysUserView[i].name]);
+        }
+ 
+        data.teamWidget = $sp.getWidget('sp-my-team', {glyph: 'user', color: 'primary'});
+        if (!input) {
+            data.userPreferencesWidget = $sp.getWidget('user-preferences', {glyph: 'user', color: 'primary'});
+        }
+    } else {
+        data.userExists = false;
+    }
+
+    // Function to handle file upload and update profile record
+    function handleFileUpload(attachmentSysId) {
+        if (attachmentSysId) {
+            var attachmentGR = new GlideRecord("sys_attachment");
+            if (attachmentGR.get(attachmentSysId)) {
+                // Update profile record with the attachment details
+                profileGR.setValue("profile_image", attachmentGR.getValue("file_path"));
+                profileGR.update(); // Save the profile record
+            }
+        }
+    }
+
+    // Handle file upload if attachment sys_id is provided
+    if (input && input.attachment_sys_id) {
+        handleFileUpload(input.attachment_sys_id);
+    }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 05:39:15</sys_created_on>
+        <sys_id>3f784c83933a421094e3f15a7bba1049</sys_id>
+        <sys_mod_count>38</sys_mod_count>
+        <sys_name>cb edit user profile</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_3f784c83933a421094e3f15a7bba1049</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-19 09:07:16</sys_updated_on>
+        <template><![CDATA[<div class="default-focus-outline user-profile-container">
+
+  <div ng-if="!data.userExists" class="panel panel-default">
+    <div class="panel-body wrapper-lg text-center">
+      <p>${Requested user not found}</p>
+    </div>
+  </div>
+
+  <div ng-if="data.userExists">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+
+          <div class="userDetails">
+            <h2 class="userTitle">{{data.name}}</h2>
+
+            
+
+                <!-- Display Location -->
+                <div class="det-space">
+                  <p class="p-head">Location</p>
+                  <p ng-if="::displayField('x_1383184_charityb_user_profile', 'location', true)">
+                    <sp-editable-field editable-by-user="data.isLoggedInUsersProfile"
+                                       table="x_1383184_charityb_user_profile"
+                                       table-id="data.sysUserID"
+                                       field-model="data.sysUserModel.location"></sp-editable-field>
+                  </p>
+                </div>
+              </div>
+
+              <!-- Display Bio -->
+              <div class="det-1">
+                <div class="det-space">
+                  <p class="p-head">Bio</p>
+                  <p ng-if="::displayField('x_1383184_charityb_user_profile', 'bio', true)">
+                    <sp-editable-field editable-by-user="data.isLoggedInUsersProfile"
+                                       table="x_1383184_charityb_user_profile"
+                                       table-id="data.sysUserID"
+                                       field-model="data.sysUserModel.bio"></sp-editable-field>
+                  </p>
+                </div>
+
+                <!-- Display Profile Image -->
+                <div class="det-space">
+                  <p class="p-head">Image</p>
+                  <div class="profile-image-container">
+                    <img ng-src="{{data.profileImage}}" alt="Profile Image" class="profile-image" />
+                    <div ng-if="data.isLoggedInUsersProfile">
+                      <!-- File Upload Button -->
+                      <label class="btn btn-primary btn-file">
+                        Update Image <input type="file" style="display: none;"
+                                                sp-model="input.file"
+                                                sp-attachment-upload="input.action = 'upload_profile_image';"
+                                                sp-attachment-attachment_sys_id="input.attachment_sys_id" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

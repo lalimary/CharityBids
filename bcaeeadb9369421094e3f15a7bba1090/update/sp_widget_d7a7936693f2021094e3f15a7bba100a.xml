@@ -1,15 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <client_script><![CDATA[api.controller=function($scope, spUtil) {
+    var c = this;
+
+    c.data.eventDetails = {
+        imageUrl: '',
+        name: '',
+        charityCompany: '',
+        eventManager: '',
+        startDate: '',
+        endDate: '',
+        description: '',
+        donateUrl: '',
+        testimonials: ''
+    };
+
+    // Function to load event details
+    c.loadEventDetails = function() {
+        // Check if the event_sys_id is provided
+        if (c.options.event_sys_id) {
+            var params = {
+                sys_id: c.options.sys_id
+            };
+
+            // Use spUtil to get data from the server
+            spUtil.get('your_widget_id', params).then(function(response) {
+                if (response.data && response.data.eventDetails) {
+                    c.data.eventDetails = response.data.eventDetails;
+                }
+            });
+        }
+    };
+
+    // Call the function to load event details when the controller is initialized
+    c.loadEventDetails();
+}
+]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>.event-details-widget {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.event-details-widget .event-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.event-details-widget h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.event-details-widget p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+}
+
+.event-details-widget .btn-primary {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
         <docs/>
         <field_list/>
-        <has_preview>false</has_preview>
+        <has_preview>true</has_preview>
         <id>cb_event_details</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
@@ -17,20 +87,75 @@
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <script><![CDATA[(function() {
+    data.eventDetails = {};
+
+    // sys_id of event
+    var eventSysId = options.sys_id || input.sys_id || $sp.getParameter("sys_id");
+
+    if (eventSysId) {
+        var gr = new GlideRecord('x_1383184_charityb_events');
+        if (gr.get(eventSysId)) {
+            data.eventDetails = {
+                imageUrl: gr.getValue('image'),
+                name: gr.getValue('event_name'),
+                charityCompany: gr.getDisplayValue('charity_company'),  
+                eventManager: gr.getDisplayValue('event_manager'),  
+                startDate: gr.getValue('start_date'),
+                endDate: gr.getValue('end_date'),
+                description: gr.getValue('description'),
+                donateUrl: gr.getValue('just_giving_url'),
+                testimonials: gr.getValue('testimonials')
+            };
+        }
+    }
+})();
+]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-18 07:27:28</sys_created_on>
         <sys_id>d7a7936693f2021094e3f15a7bba100a</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Event details</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_d7a7936693f2021094e3f15a7bba100a</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-18 07:27:28</sys_updated_on>
-        <template><![CDATA[<div><!-- your widget template --></div>]]></template>
+        <sys_updated_on>2024-06-19 04:43:40</sys_updated_on>
+        <template><![CDATA[<div class="event-details-widget">
+    <!-- Event Image -->
+    <div class="event-image" ng-if="c.data.eventDetails.imageUrl">
+        <img ng-src="{{c.data.eventDetails.imageUrl}}" alt="{{c.data.eventDetails.name}}">
+    </div>
+    
+   
+    <h2>{{c.data.eventDetails.name}}</h2>
+    
+   
+    <p><strong>Charity Company:</strong> {{c.data.eventDetails.charityCompany}}</p>
+    
+    
+    <p><strong>Event Manager:</strong> {{c.data.eventDetails.eventManager}}</p>
+    
+  
+    <p><strong>Start Date:</strong> {{c.data.eventDetails.startDate}}</p>
+    
+    
+    <p><strong>End Date:</strong> {{c.data.eventDetails.endDate}}</p>
+    
+   
+    <p><strong>Description:</strong></p>
+    <p>{{c.data.eventDetails.description}}</p>
+    
+  
+    <p><strong>Testimonials:</strong></p>
+    <p>{{c.data.eventDetails.testimonials}}</p>
+    
+   
+    <a ng-href="{{c.data.eventDetails.donateUrl}}" class="btn btn-primary" target="_blank">Donate Here</a>
+</div>
+]]></template>
     </sp_widget>
 </record_update>

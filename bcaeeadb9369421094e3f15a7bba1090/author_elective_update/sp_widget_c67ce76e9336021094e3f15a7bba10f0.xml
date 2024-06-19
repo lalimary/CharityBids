@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($rootScope, $scope, $timeout, $location, $log, $window, spUtil, nowAttachmentHandler, spAriaUtil, spNavStateManager) {
+  // Other initialization code...
+
+  // Function to load form based on table and sys_id
+  function loadForm(table, sys_id) {
+    var f = {};
+    $scope.data.table = f.table = table;
+    $scope.data.sys_id = f.sys_id = sys_id;
+    f.view = $scope.data.view;
+
+    // Use server.update() to fetch form data
+    return $scope.server.update().then(function(response) {
+      setupAttachmentHandler(); // Setup attachment handler after data fetch
+
+      // Ensure form data is valid and initialize g_form
+      if ($scope.data.f && $scope.data.f._fields) {
+        // Example: Fetch item details related to the bid
+        // Replace with your actual logic to fetch related item details
+        if ($scope.data.f.item_name) {
+          var itemGR = new GlideRecord('x_1383184_charityb_item');
+          if (itemGR.get($scope.data.f.item_name)) {
+            // Assign item details to data for UI display
+            $scope.data.item = {
+              itemName: itemGR.getValue('item_name'),
+              itemDescription: itemGR.getValue('description'),
+              // Add more fields as needed
+            };
+          }
+        }
+      } else {
+        // Handle case where form data is not valid
+        $scope.data.isValid = false;
+        // Optionally set error message or handle UI state
+      }
+    }).catch(function(error) {
+      $log.error('Error loading form:', error);
+      // Handle error - update UI with error message or retry logic
+      $scope.data.isValid = false;
+    });
+  }
+
+  // Function to handle save action
+  function _save() {
+    var primaryAction = $scope.getPrimaryAction();
+    if (primaryAction)
+      $scope.triggerUIAction(primaryAction);
+  }
+
+  // Other controller functions...
+
+  // Listen for 'spModel.uiActionComplete' event
+  $scope.$on('spModel.uiActionComplete', function(evt, response, savedFormSysId) {
+    // Check if savedFormSysId matches current form sys_id
+    if (!response.isInsert && ($scope.data.sys_id !== savedFormSysId))
+      return;
+
+    $scope.submitting = false;
+    if (response.isActionAborted)
+      return;
+
+    var sysID = (response.isInsert) ? response.sys_id : $scope.data.sys_id;
+    // Load form after action completion
+    loadForm($scope.data.table, sysID).then(constructResponseHandler(response));
+  });
+
+  // Other event listeners...
+
+  // Initialize form on controller load
+  loadForm($scope.data.table, $scope.data.sys_id);
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.panel {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.panel-body {
+  padding: 15px;
+}
+
+.wrapper-lg {
+  padding: 30px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.panel-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.panel-heading {
+  background-color: #f5f5f5;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.btn {
+  margin-right: 5px;
+}
+
+.btn-form-menu {
+  background-color: transparent;
+  border: none;
+}
+
+.action-btn {
+  margin-right: 10px;
+}
+
+.label-as-badge {
+  margin-left: 5px;
+}
+
+.related-lists-vertical-bar {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #999;
+}
+
+.dropdown-menu {
+  min-width: 150px;
+}
+
+.dropdown-header {
+  font-size: 14px;
+  color: #999;
+  padding: 3px 15px;
+}
+
+.label-primary {
+  background-color: #337ab7;
+}
+
+.asterisk-div {
+  margin-bottom: 10px;
+}
+
+.fa-asterisk {
+  color: #f00;
+}
+
+.asterisk {
+  font-size: 12px;
+}
+
+.mandatory {
+  margin-right: 5px;
+}
+
+.empty-state-wrapper {
+  padding: 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.related-lists {
+  margin-bottom: 20px;
+}
+
+.related-lists a {
+  margin-right: 10px;
+  color: #333;
+}
+
+.panel-default {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_bid_form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Bid form</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+  // Initialize messages and settings
+  data.recordAddedMsg = gs.getMessage("Bid placed successfully.");
+  data.recordErrorMsg = gs.getMessage("Failed to place bid. Please try again.");
+
+  // Initialize variables
+  var isPopup = false;
+
+  // Process input if available
+  if (input) {
+    data.table = 'x_1383184_charityb_bid'; // Change to your bid table name
+    data.sys_id = input.sys_id;
+    data.view = input.view;
+
+    // Save bid record if fields are provided
+    if (input._fields) {
+      // Save bid amount to _fields
+      input._fields.bid_amount = input.bid_amount; // Assuming input.bid_amount is passed from the form
+
+      // Save bidder (logged-in user's sys_id) to _fields
+      input._fields.bidder = input.bidder; // Fetches the sys_id of the logged-in user
+
+      // Save bid record
+      var result = $sp.saveRecord(data.table, input.sys_id, input._fields);
+      if (result && result.sys_id) {
+        data.sys_id = result.sys_id;
+        data.message = data.recordAddedMsg;
+      } else {
+        data.message = data.recordErrorMsg;
+      }
+    }
+
+    // Check if widget is in popup mode
+    if (input.isPopup === true) {
+      isPopup = true;
+    }
+  } else {
+    // If no input, retrieve from options or URL parameters
+    data.table = options.table || $sp.getParameter("t") || 'x_1383184_charityb_bid'; // Change to your bid table name
+    data.sys_id = options.sys_id || $sp.getParameter("sys_id");
+    if (!data.sys_id && options.sys_id_required !== "true") {
+      data.sys_id = "-1";
+    }
+    data.view = options.view || $sp.getParameter("view");
+  }
+
+  // If table is not specified, return
+  if (!data.table) {
+    return;
+  }
+
+  // Prevent handling of sys_attachment table
+  if (data.table == "sys_attachment") {
+    data.tableUnsupported = true;
+    return;
+  }
+
+  // Initialize GlideRecord for bid table
+  var gr = new GlideRecord(data.table);
+
+  // Validate sys_id and record access
+  if (data.sys_id != "-1") {
+    if (!gr.get(data.sys_id)) {
+      data.isValid = false;
+      return;
+    }
+    if (!gr.canRead()) {
+      data.isValid = false;
+      return; // User does not have read access to record
+    }
+  }
+
+  // Check if user can create a new record
+  if (data.sys_id == "-1" && !gr.canCreate()) {
+    data.isValid = false;
+    return; // User does not have create access
+  }
+
+  // Validate record existence
+  data.isValid = data.sys_id == "-1" || gr.isValid();
+  if (!data.isValid) {
+    return;
+  }
+
+  // Retrieve record class name
+  data.table = gr.getRecordClassName();
+  data.canWrite = gr.canWrite();
+
+  // Form instance
+  data.f = $sp.getForm(data.table, data.sys_id, data.query, data.view, isPopup);
+
+  // Fetch item details related to the bid
+  if (data.isValid) {
+    // Assuming 'item_name' is the reference field on the bid table
+    var itemGR = new GlideRecord('x_1383184_charityb_item'); // Change to your item table name
+    if (itemGR.get(gr.getValue('item_name'))) {
+      data.item = {
+        itemName: itemGR.getValue('item_name'),
+        itemDescription: itemGR.getValue('description'),
+        startBidAmount: itemGR.getValue('start_bid_amount'),
+        highestBidAmount: itemGR.getValue('highest_bid_amount'),
+        // Add more fields as needed
+      };
+    }
+  }
+})($sp, input, data, options, gs);
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-18 08:58:19</sys_created_on>
+        <sys_id>c67ce76e9336021094e3f15a7bba10f0</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Bid form</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_c67ce76e9336021094e3f15a7bba10f0</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 05:30:22</sys_updated_on>
+        <template><![CDATA[<div ng-if="!data.isValid && !data.emptyStateTemplate" class="panel panel-default">
+  <div class="panel-body wrapper-lg text-center">
+    <span ng-if="!data.tableUnsupported">Record not found</span>
+    <span ng-if="data.tableUnsupported">Form view not supported for requested table</span>
+  </div>
+</div>
+
+<div ng-if="!data.isValid && data.emptyStateTemplate" class="panel-shift">
+  <div class="empty-state-wrapper panel panel-default" ng-include="data.emptyStateTemplate"></div>
+</div>
+
+<div ng-if="data.isValid" class="panel-shift">
+  <div ng-if="!data.f._view.length && data.hideRelatedLists && data.emptyStateTemplate">
+    <div class="empty-state-wrapper panel panel-default" ng-include="data.emptyStateTemplate"></div>
+  </div>
+
+  <div ng-if="!data.f._view.length && data.hideRelatedLists && !data.emptyStateTemplate">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span class="panel-title">{{data.f.title}}</span>
+        <span ng-if="::options.showFormView == 'true' && data.f.view != ''">[{{data.f.view_title}} view]</span>
+      </div>
+      <div class="panel-body wrapper-lg text-center">
+        No elements to display
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content when data is valid -->
+  <div ng-show="isPageReady" class="panel panel-default" ng-if="data.f._view.length || !data.hideRelatedLists">
+    <div class="panel-heading" ng-if="data.f.title.length">
+      <span class="panel-title">{{data.f.title}}</span>
+      <span ng-if="::options.showFormView == 'true' && data.f.view != ''">[{{data.f.view_title}} view]</span>
+
+      <!-- Form menu dropdown -->
+      <span class="dropdown m-r-xs" ng-if="(data.isAdmin || getUIActions('context').length > 0) && options.omitHeaderOptions != 'true'">
+        <button aria-label="{{data.f.label}} Form menu" title="{{data.f.label}} Form menu" class="btn btn-form-menu dropdown-toggle glyphicon glyphicon-menu-hamburger" style="line-height: 1.4em" id="adminMenu" data-toggle="dropdown" data-placement="bottom" aria-haspopup="true" aria-expanded="false"></button>
+        <ul class="dropdown-menu" aria-labelledby="adminMenu">
+          <li ng-if="::data.isAdmin"><a ng-href="/{{data.f.table}}.do?sys_id={{data.f.sys_id}}&sysparm_view={{data.f.view}}" target="_blank" tabindex="-1">Open in platform</a></li>
+          <li ng-if="::data.isAdmin" class="dropdown-header" tabindex="-1">Configure</li>
+          <li ng-if="::data.isAdmin"><a href="/slushbucket.do?sysparm_referring_url={{adminMenu.encodedPageUrl}}&sysparm_list={{data.f._sections[0].id}}&sysparm_form=section&sysparm_view={{data.f.view}}" target="_blank" tabindex="-1">Form Layout</a></li>
+          <li ng-if="::data.isAdmin"><a href="/slushbucket.do?sysparm_referring_url={{adminMenu.encodedPageUrl}}&sysparm_list={{data.f.table}}&sysparm_form=related_list&sysparm_view={{data.f.view}}" target="_blank" tabindex="-1">Related Lists</a></li>
+          <li ng-if="::data.isAdmin"><a href="?id=lf&table=sys_ui_policy&filter=table%3D{{data.f.table}}%5EORtableIN{{data.tableHierarchy}}%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10" ng-click="openRelatedList($event, {id:'lf', table: 'sys_ui_policy', filter: 'table%3D{{data.f.table}}%5EORtableIN{{data.f.table}},sys_metadata%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10'})" tabindex="-1">UI Policies <span class="badge pull-right" ng-if="f.policy.length">{{f.policy.length}}</span></a></li>
+          <li ng-if="::data.isAdmin"><a href="?id=lf&table=sys_script_client&filter=table%3D{{data.f.table}}%5EORtableIN{{data.tableHierarchy}}%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10" ng-click="openRelatedList($event, {id: 'lf', table: 'sys_script_client', filter: 'table%3D{{data.f.table}}%5EORtableIN{{data.f.table}},sys_metadata%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10'})" tabindex="-1">Client Scripts <span class="badge pull-right" ng-if="adminMenu.getClientScriptCount()">{{adminMenu.getClientScriptCount()}}</span></a></li>
+          <li ng-if="getUIActions('context').length > 0 && data.isAdmin" role="separator" class="divider"></li>
+          <li ng-repeat="action in getUIActions('context')"><a href="" ng-click="triggerUIAction(action)" tabindex="-1">{{action.name}}</a></li>
+          <li ng-if="::data.isAdmin || getUIActions('context').length > 0" role="separator" class="divider"></li>
+          <li><a target="_new" href="/{{data.f.table}}.do?PDF&sys_id={{data.sys_id}}&sysparm_view={{data.f.view}}" tabindex="-1">Export to PDF</a></li>
+          <li><a target="_new" href="/{{data.f.table}}.do?PDF&landscape=true&sys_id={{data.sys_id}}&sysparm_view={{data.f.view}}" tabindex="-1">Export to PDF (landscape)</a></li>
+        </ul>
+      </span>
+    </div>
+    <div class="panel-body">
+      <!-- Attachments -->
+      <sp-attachment-manager table="::data.table" sys-id="data.f._attachmentGUID" omit-edit="::!data.canAttach"></sp-attachment-manager>
+
+      <!-- Asterisk info text -->
+      <div ng-if="mandatory.length > 0" class="asterisk-div">
+        <span class="fa fa-asterisk asterisk mandatory" title="asterisk"></span> Indicates required
+      </div>
+
+      <!-- Form -->
+      <form id="widget-form">
+        <div>
+          <sp-model form_model="data.f" mandatory="mandatory" embedded_in_modal="embeddedInModal"></sp-model>
+        </div>
+      </form>
+
+      <!-- UI Action Links -->
+      <div ng-if="getUIActions('link').length > 0">
+        <label class="h4" role="heading" aria-level="{{embeddedInModal ? '2' : '3'}}" style="margin: 0;">Related Links</label>
+        <nav aria-label="Related Links">
+          <div ng-repeat="action in getUIActions('link')">
+            <a href ng-click="triggerUIAction(action)" gsft_id="{{action.sys_id}}">{{action.name}}</a>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Related Lists -->
+      <div ng-if="!data.hideRelatedLists">
+        <label class="h4" role="heading" aria-level="{{embeddedInModal ? '2' : '3'}}" style="margin: 0">Related Lists</label>
+        <div style="margin-bottom: 7px; padding-bottom: 7px; border-bottom: 1px solid #f5f5f5;">
+          <nav aria-label="Related Lists">
+            <span ng-repeat="rl in data.f._related_lists" ng-if="rl.visible">
+              <a ng-if="rl.type != 'REL'" ng-href="?id=lf&table={{rl.table}}&filter={{rl.field}}%3D{{data.f.sys_id}}{{rl.filter ? '^' + rl.filter : ''}}&view={{data.f.view}}" ng-click="openRelatedList($event, {id: 'lf', table: '{{rl.table}}', filter: '{{rl.field}}%3D{{data.f.sys_id}}'})">{{rl.plural}}
+                <span class="label label-as-badge label-primary" ng-if="rl.count">{{rl.count}}</span>
+              </a>
+              <a ng-if="rl.type == 'REL'" href="?id=lf&table={{rl.table}}&relationship_id={{rl.relationship_id}}&apply_to={{rl.apply_to}}&apply_to_sys_id={{rl.apply_to_sys_id}}&view={{data.f.view}}" ng-click="openRelatedList($event, {id: 'lf', table: '{{rl.table}}', apply_to: '{{rl.apply_to}}', apply_to_sys_id: '{{rl.apply_to_sys_id}}', relationship_id: '{{rl.relationship_id}}'})">{{rl.label}}
+                <span class="label label-as-badge label-primary" ng-if="rl.count">{{rl.count}}</span>
+              </a>
+              <span ng-if="!$last" class="related-lists-vertical
+          -bar" aria-hidden="true"> | </span>
+            </span>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div>
+        <button ng-click="triggerUIAction(action)" ng-disabled="submitting" ng-repeat="action in getUIActions('button') | filter: hideDuplicateSaveAction" class="btn action-btn" ng-class="getButtonClass(action)" gsft_id="{{action.sys_id}}">{{action.name}}</button>
+        <span>{{status}}</span>
+        <button ng-if="getPrimaryAction()" type="submit" ng-click="triggerUIAction(getPrimaryAction())" ng-disabled="submitting" class="btn btn-primary action-btn pull-right" gsft_id="{{getPrimaryAction().sys_id ? getPrimaryAction().sys_id : ''}}">Save <span ng-if="saveButtonSuffix">({{saveButtonSuffix}})</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_widget_c67ce76e9336021094e3f15a7bba10f0</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller = function($rootScope, $scope, $timeout, $location, $log, $window, spUtil, nowAttachmentHandler, spAriaUtil, spNavStateManager) {
+  // Other initialization code...
+
+  // Function to load form based on table and sys_id
+  function loadForm(table, sys_id) {
+    var f = {};
+    $scope.data.table = f.table = table;
+    $scope.data.sys_id = f.sys_id = sys_id;
+    f.view = $scope.data.view;
+
+    // Use server.update() to fetch form data
+    return $scope.server.update().then(function(response) {
+      setupAttachmentHandler(); // Setup attachment handler after data fetch
+
+      // Ensure form data is valid and initialize g_form
+      if ($scope.data.f &amp;&amp; $scope.data.f._fields) {
+        // Example: Fetch item details related to the bid
+        // Replace with your actual logic to fetch related item details
+        if ($scope.data.f.item_name) {
+          var itemGR = new GlideRecord('x_1383184_charityb_item');
+          if (itemGR.get($scope.data.f.item_name)) {
+            // Assign item details to data for UI display
+            $scope.data.item = {
+              itemName: itemGR.getValue('item_name'),
+              itemDescription: itemGR.getValue('description'),
+              // Add more fields as needed
+            };
+          }
+        }
+      } else {
+        // Handle case where form data is not valid
+        $scope.data.isValid = false;
+        // Optionally set error message or handle UI state
+      }
+    }).catch(function(error) {
+      $log.error('Error loading form:', error);
+      // Handle error - update UI with error message or retry logic
+      $scope.data.isValid = false;
+    });
+  }
+
+  // Function to handle save action
+  function _save() {
+    var primaryAction = $scope.getPrimaryAction();
+    if (primaryAction)
+      $scope.triggerUIAction(primaryAction);
+  }
+
+  // Other controller functions...
+
+  // Listen for 'spModel.uiActionComplete' event
+  $scope.$on('spModel.uiActionComplete', function(evt, response, savedFormSysId) {
+    // Check if savedFormSysId matches current form sys_id
+    if (!response.isInsert &amp;&amp; ($scope.data.sys_id !== savedFormSysId))
+      return;
+
+    $scope.submitting = false;
+    if (response.isActionAborted)
+      return;
+
+    var sysID = (response.isInsert) ? response.sys_id : $scope.data.sys_id;
+    // Load form after action completion
+    loadForm($scope.data.table, sysID).then(constructResponseHandler(response));
+  });
+
+  // Other event listeners...
+
+  // Initialize form on controller load
+  loadForm($scope.data.table, $scope.data.sys_id);
+};
+]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.panel {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.panel-body {
+  padding: 15px;
+}
+
+.wrapper-lg {
+  padding: 30px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.panel-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.panel-heading {
+  background-color: #f5f5f5;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.btn {
+  margin-right: 5px;
+}
+
+.btn-form-menu {
+  background-color: transparent;
+  border: none;
+}
+
+.action-btn {
+  margin-right: 10px;
+}
+
+.label-as-badge {
+  margin-left: 5px;
+}
+
+.related-lists-vertical-bar {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: #999;
+}
+
+.dropdown-menu {
+  min-width: 150px;
+}
+
+.dropdown-header {
+  font-size: 14px;
+  color: #999;
+  padding: 3px 15px;
+}
+
+.label-primary {
+  background-color: #337ab7;
+}
+
+.asterisk-div {
+  margin-bottom: 10px;
+}
+
+.fa-asterisk {
+  color: #f00;
+}
+
+.asterisk {
+  font-size: 12px;
+}
+
+.mandatory {
+  margin-right: 5px;
+}
+
+.empty-state-wrapper {
+  padding: 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.related-lists {
+  margin-bottom: 20px;
+}
+
+.related-lists a {
+  margin-right: 10px;
+  color: #333;
+}
+
+.panel-default {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;cb_bid_form&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;Bid form&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function($sp, input, data, options, gs) {
+  // Initialize messages and settings
+  data.recordAddedMsg = gs.getMessage("Bid placed successfully.");
+  data.recordErrorMsg = gs.getMessage("Failed to place bid. Please try again.");
+
+  // Initialize variables
+  var isPopup = false;
+
+  // Process input if available
+  if (input) {
+    data.table = 'x_1383184_charityb_bid'; // Change to your bid table name
+    data.sys_id = input.sys_id;
+    data.view = input.view;
+
+    // Save bid record if fields are provided
+    if (input._fields) {
+      // Save bid amount to _fields
+      input._fields.bid_amount = input.bid_amount; // Assuming input.bid_amount is passed from the form
+
+      // Save bidder (logged-in user's sys_id) to _fields
+      input._fields.bidder = input.bidder; // Fetches the sys_id of the logged-in user
+
+      // Save bid record
+      var result = $sp.saveRecord(data.table, input.sys_id, input._fields);
+      if (result &amp;&amp; result.sys_id) {
+        data.sys_id = result.sys_id;
+        data.message = data.recordAddedMsg;
+      } else {
+        data.message = data.recordErrorMsg;
+      }
+    }
+
+    // Check if widget is in popup mode
+    if (input.isPopup === true) {
+      isPopup = true;
+    }
+  } else {
+    // If no input, retrieve from options or URL parameters
+    data.table = options.table || $sp.getParameter("t") || 'x_1383184_charityb_bid'; // Change to your bid table name
+    data.sys_id = options.sys_id || $sp.getParameter("sys_id");
+    if (!data.sys_id &amp;&amp; options.sys_id_required !== "true") {
+      data.sys_id = "-1";
+    }
+    data.view = options.view || $sp.getParameter("view");
+  }
+
+  // If table is not specified, return
+  if (!data.table) {
+    return;
+  }
+
+  // Prevent handling of sys_attachment table
+  if (data.table == "sys_attachment") {
+    data.tableUnsupported = true;
+    return;
+  }
+
+  // Initialize GlideRecord for bid table
+  var gr = new GlideRecord(data.table);
+
+  // Validate sys_id and record access
+  if (data.sys_id != "-1") {
+    if (!gr.get(data.sys_id)) {
+      data.isValid = false;
+      return;
+    }
+    if (!gr.canRead()) {
+      data.isValid = false;
+      return; // User does not have read access to record
+    }
+  }
+
+  // Check if user can create a new record
+  if (data.sys_id == "-1" &amp;&amp; !gr.canCreate()) {
+    data.isValid = false;
+    return; // User does not have create access
+  }
+
+  // Validate record existence
+  data.isValid = data.sys_id == "-1" || gr.isValid();
+  if (!data.isValid) {
+    return;
+  }
+
+  // Retrieve record class name
+  data.table = gr.getRecordClassName();
+  data.canWrite = gr.canWrite();
+
+  // Form instance
+  data.f = $sp.getForm(data.table, data.sys_id, data.query, data.view, isPopup);
+
+  // Fetch item details related to the bid
+  if (data.isValid) {
+    // Assuming 'item_name' is the reference field on the bid table
+    var itemGR = new GlideRecord('x_1383184_charityb_item'); // Change to your item table name
+    if (itemGR.get(gr.getValue('item_name'))) {
+      data.item = {
+        itemName: itemGR.getValue('item_name'),
+        itemDescription: itemGR.getValue('description'),
+        startBidAmount: itemGR.getValue('start_bid_amount'),
+        highestBidAmount: itemGR.getValue('highest_bid_amount'),
+        // Add more fields as needed
+      };
+    }
+  }
+})($sp, input, data, options, gs);
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;lalitha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-18 08:58:19&lt;/sys_created_on&gt;&lt;sys_id&gt;c67ce76e9336021094e3f15a7bba10f0&lt;/sys_id&gt;&lt;sys_mod_count&gt;7&lt;/sys_mod_count&gt;&lt;sys_name&gt;Bid form&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_c67ce76e9336021094e3f15a7bba10f0&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;lalitha&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-19 05:30:22&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div ng-if="!data.isValid &amp;&amp; !data.emptyStateTemplate" class="panel panel-default"&gt;
+  &lt;div class="panel-body wrapper-lg text-center"&gt;
+    &lt;span ng-if="!data.tableUnsupported"&gt;Record not found&lt;/span&gt;
+    &lt;span ng-if="data.tableUnsupported"&gt;Form view not supported for requested table&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div ng-if="!data.isValid &amp;&amp; data.emptyStateTemplate" class="panel-shift"&gt;
+  &lt;div class="empty-state-wrapper panel panel-default" ng-include="data.emptyStateTemplate"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div ng-if="data.isValid" class="panel-shift"&gt;
+  &lt;div ng-if="!data.f._view.length &amp;&amp; data.hideRelatedLists &amp;&amp; data.emptyStateTemplate"&gt;
+    &lt;div class="empty-state-wrapper panel panel-default" ng-include="data.emptyStateTemplate"&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div ng-if="!data.f._view.length &amp;&amp; data.hideRelatedLists &amp;&amp; !data.emptyStateTemplate"&gt;
+    &lt;div class="panel panel-default"&gt;
+      &lt;div class="panel-heading"&gt;
+        &lt;span class="panel-title"&gt;{{data.f.title}}&lt;/span&gt;
+        &lt;span ng-if="::options.showFormView == 'true' &amp;&amp; data.f.view != ''"&gt;[{{data.f.view_title}} view]&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="panel-body wrapper-lg text-center"&gt;
+        No elements to display
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- Main content when data is valid --&gt;
+  &lt;div ng-show="isPageReady" class="panel panel-default" ng-if="data.f._view.length || !data.hideRelatedLists"&gt;
+    &lt;div class="panel-heading" ng-if="data.f.title.length"&gt;
+      &lt;span class="panel-title"&gt;{{data.f.title}}&lt;/span&gt;
+      &lt;span ng-if="::options.showFormView == 'true' &amp;&amp; data.f.view != ''"&gt;[{{data.f.view_title}} view]&lt;/span&gt;
+
+      &lt;!-- Form menu dropdown --&gt;
+      &lt;span class="dropdown m-r-xs" ng-if="(data.isAdmin || getUIActions('context').length &gt; 0) &amp;&amp; options.omitHeaderOptions != 'true'"&gt;
+        &lt;button aria-label="{{data.f.label}} Form menu" title="{{data.f.label}} Form menu" class="btn btn-form-menu dropdown-toggle glyphicon glyphicon-menu-hamburger" style="line-height: 1.4em" id="adminMenu" data-toggle="dropdown" data-placement="bottom" aria-haspopup="true" aria-expanded="false"&gt;&lt;/button&gt;
+        &lt;ul class="dropdown-menu" aria-labelledby="adminMenu"&gt;
+          &lt;li ng-if="::data.isAdmin"&gt;&lt;a ng-href="/{{data.f.table}}.do?sys_id={{data.f.sys_id}}&amp;sysparm_view={{data.f.view}}" target="_blank" tabindex="-1"&gt;Open in platform&lt;/a&gt;&lt;/li&gt;
+          &lt;li ng-if="::data.isAdmin" class="dropdown-header" tabindex="-1"&gt;Configure&lt;/li&gt;
+          &lt;li ng-if="::data.isAdmin"&gt;&lt;a href="/slushbucket.do?sysparm_referring_url={{adminMenu.encodedPageUrl}}&amp;sysparm_list={{data.f._sections[0].id}}&amp;sysparm_form=section&amp;sysparm_view={{data.f.view}}" target="_blank" tabindex="-1"&gt;Form Layout&lt;/a&gt;&lt;/li&gt;
+          &lt;li ng-if="::data.isAdmin"&gt;&lt;a href="/slushbucket.do?sysparm_referring_url={{adminMenu.encodedPageUrl}}&amp;sysparm_list={{data.f.table}}&amp;sysparm_form=related_list&amp;sysparm_view={{data.f.view}}" target="_blank" tabindex="-1"&gt;Related Lists&lt;/a&gt;&lt;/li&gt;
+          &lt;li ng-if="::data.isAdmin"&gt;&lt;a href="?id=lf&amp;table=sys_ui_policy&amp;filter=table%3D{{data.f.table}}%5EORtableIN{{data.tableHierarchy}}%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10" ng-click="openRelatedList($event, {id:'lf', table: 'sys_ui_policy', filter: 'table%3D{{data.f.table}}%5EORtableIN{{data.f.table}},sys_metadata%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10'})" tabindex="-1"&gt;UI Policies &lt;span class="badge pull-right" ng-if="f.policy.length"&gt;{{f.policy.length}}&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li ng-if="::data.isAdmin"&gt;&lt;a href="?id=lf&amp;table=sys_script_client&amp;filter=table%3D{{data.f.table}}%5EORtableIN{{data.tableHierarchy}}%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10" ng-click="openRelatedList($event, {id: 'lf', table: 'sys_script_client', filter: 'table%3D{{data.f.table}}%5EORtableIN{{data.f.table}},sys_metadata%5Eactive%3Dtrue%5Eui_type%3D1%5EORui_type%3D10'})" tabindex="-1"&gt;Client Scripts &lt;span class="badge pull-right" ng-if="adminMenu.getClientScriptCount()"&gt;{{adminMenu.getClientScriptCount()}}&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li ng-if="getUIActions('context').length &gt; 0 &amp;&amp; data.isAdmin" role="separator" class="divider"&gt;&lt;/li&gt;
+          &lt;li ng-repeat="action in getUIActions('context')"&gt;&lt;a href="" ng-click="triggerUIAction(action)" tabindex="-1"&gt;{{action.name}}&lt;/a&gt;&lt;/li&gt;
+          &lt;li ng-if="::data.isAdmin || getUIActions('context').length &gt; 0" role="separator" class="divider"&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a target="_new" href="/{{data.f.table}}.do?PDF&amp;sys_id={{data.sys_id}}&amp;sysparm_view={{data.f.view}}" tabindex="-1"&gt;Export to PDF&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a target="_new" href="/{{data.f.table}}.do?PDF&amp;landscape=true&amp;sys_id={{data.sys_id}}&amp;sysparm_view={{data.f.view}}" tabindex="-1"&gt;Export to PDF (landscape)&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="panel-body"&gt;
+      &lt;!-- Attachments --&gt;
+      &lt;sp-attachment-manager table="::data.table" sys-id="data.f._attachmentGUID" omit-edit="::!data.canAttach"&gt;&lt;/sp-attachment-manager&gt;
+
+      &lt;!-- Asterisk info text --&gt;
+      &lt;div ng-if="mandatory.length &gt; 0" class="asterisk-div"&gt;
+        &lt;span class="fa fa-asterisk asterisk mandatory" title="asterisk"&gt;&lt;/span&gt; Indicates required
+      &lt;/div&gt;
+
+      &lt;!-- Form --&gt;
+      &lt;form id="widget-form"&gt;
+        &lt;div&gt;
+          &lt;sp-model form_model="data.f" mandatory="mandatory" embedded_in_modal="embeddedInModal"&gt;&lt;/sp-model&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+
+      &lt;!-- UI Action Links --&gt;
+      &lt;div ng-if="getUIActions('link').length &gt; 0"&gt;
+        &lt;label class="h4" role="heading" aria-level="{{embeddedInModal ? '2' : '3'}}" style="margin: 0;"&gt;Related Links&lt;/label&gt;
+        &lt;nav aria-label="Related Links"&gt;
+          &lt;div ng-repeat="action in getUIActions('link')"&gt;
+            &lt;a href ng-click="triggerUIAction(action)" gsft_id="{{action.sys_id}}"&gt;{{action.name}}&lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/nav&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Related Lists --&gt;
+      &lt;div ng-if="!data.hideRelatedLists"&gt;
+        &lt;label class="h4" role="heading" aria-level="{{embeddedInModal ? '2' : '3'}}" style="margin: 0"&gt;Related Lists&lt;/label&gt;
+        &lt;div style="margin-bottom: 7px; padding-bottom: 7px; border-bottom: 1px solid #f5f5f5;"&gt;
+          &lt;nav aria-label="Related Lists"&gt;
+            &lt;span ng-repeat="rl in data.f._related_lists" ng-if="rl.visible"&gt;
+              &lt;a ng-if="rl.type != 'REL'" ng-href="?id=lf&amp;table={{rl.table}}&amp;filter={{rl.field}}%3D{{data.f.sys_id}}{{rl.filter ? '^' + rl.filter : ''}}&amp;view={{data.f.view}}" ng-click="openRelatedList($event, {id: 'lf', table: '{{rl.table}}', filter: '{{rl.field}}%3D{{data.f.sys_id}}'})"&gt;{{rl.plural}}
+                &lt;span class="label label-as-badge label-primary" ng-if="rl.count"&gt;{{rl.count}}&lt;/span&gt;
+              &lt;/a&gt;
+              &lt;a ng-if="rl.type == 'REL'" href="?id=lf&amp;table={{rl.table}}&amp;relationship_id={{rl.relationship_id}}&amp;apply_to={{rl.apply_to}}&amp;apply_to_sys_id={{rl.apply_to_sys_id}}&amp;view={{data.f.view}}" ng-click="openRelatedList($event, {id: 'lf', table: '{{rl.table}}', apply_to: '{{rl.apply_to}}', apply_to_sys_id: '{{rl.apply_to_sys_id}}', relationship_id: '{{rl.relationship_id}}'})"&gt;{{rl.label}}
+                &lt;span class="label label-as-badge label-primary" ng-if="rl.count"&gt;{{rl.count}}&lt;/span&gt;
+              &lt;/a&gt;
+              &lt;span ng-if="!$last" class="related-lists-vertical
+          -bar" aria-hidden="true"&gt; | &lt;/span&gt;
+            &lt;/span&gt;
+          &lt;/nav&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Action Buttons --&gt;
+      &lt;div&gt;
+        &lt;button ng-click="triggerUIAction(action)" ng-disabled="submitting" ng-repeat="action in getUIActions('button') | filter: hideDuplicateSaveAction" class="btn action-btn" ng-class="getButtonClass(action)" gsft_id="{{action.sys_id}}"&gt;{{action.name}}&lt;/button&gt;
+        &lt;span&gt;{{status}}&lt;/span&gt;
+        &lt;button ng-if="getPrimaryAction()" type="submit" ng-click="triggerUIAction(getPrimaryAction())" ng-disabled="submitting" class="btn btn-primary action-btn pull-right" gsft_id="{{getPrimaryAction().sys_id ? getPrimaryAction().sys_id : ''}}"&gt;Save &lt;span ng-if="saveButtonSuffix"&gt;({{saveButtonSuffix}})&lt;/span&gt;&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1439180523</payload_hash>
+        <record_name>Bid form</record_name>
+        <reverted_from/>
+        <source>c0eb6f489326c61094e3f15a7bba1011</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 05:30:22</sys_created_on>
+        <sys_id>3d764c03933a421094e3f15a7bba1075</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1902ef983610000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 05:30:22</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>f1764c03ef3a421013679b35c4a77775</update_guid>
+        <update_guid_history>f1764c03ef3a421013679b35c4a77775:1439180523,78a54ccf26f64210cba0faf2ca084ff1:-1949712577,44bf6322607602107c82d040da1390bb:-1201757357,185f6722fd760210ac1c10402171bcc0:882204536,340fa7eed936021043590db57c1421b1:1550242571,a8bde3eeca3602108039d52976e43fb7:-965067115,5d8c2f6eea360210740478f1a2f987d4:1853900337,027ce76e063602107ac10e254c463ff2:-1579344806</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Bid form">02ed408b933a421094e3f15a7bba10db</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-19 06:02:53</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>aaf682caa596402192e292032a7c6e89</sys_id>
+        <sys_metadata>c67ce76e9336021094e3f15a7bba10f0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Bid form</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_widget_c67ce76e9336021094e3f15a7bba10f0</sys_update_name>
+        <sys_update_version display_value="sp_widget_c67ce76e9336021094e3f15a7bba10f0">3d764c03933a421094e3f15a7bba1075</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-19 06:02:53</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -443,7 +443,7 @@ a.ng-binding.ng-scope {
         <id>charity_profile</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>Charity Profile</name>
+        <name>cb charity profile</name>
         <option_schema>[{"name":"","section":"other","label":"","type":"string"}]</option_schema>
         <public>true</public>
         <roles/>
@@ -555,14 +555,14 @@ a.ng-binding.ng-scope {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-03 06:06:01</sys_created_on>
         <sys_id>8435353593a2021094e3f15a7bba10fb</sys_id>
-        <sys_mod_count>21</sys_mod_count>
-        <sys_name>Charity Profile</sys_name>
+        <sys_mod_count>22</sys_mod_count>
+        <sys_name>cb charity profile</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_8435353593a2021094e3f15a7bba10fb</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-04 07:07:27</sys_updated_on>
+        <sys_updated_on>2024-06-19 09:08:00</sys_updated_on>
         <template><![CDATA[<div ng-if="::!data.isValid && !data.emptyStateTemplate" class="panel panel-default">
   <div class="panel-body wrapper-lg text-center">
     <span ng-if="!data.tableUnsupported">${Record not found}</span>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>package_private</access>
+        <active>false</active>
+        <api_name>x_1383184_charityb.BidFormScriptInclude</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>BidFormScriptInclude</name>
+        <script><![CDATA[var BidFormScriptInclude = Class.create();
+BidFormScriptInclude.prototype = {
+    initialize: function() {
+    },
+
+    validateBidAmount: function(itemSysId, bidAmount) {
+        var itemGr = new GlideRecord('item_table'); // Replace 'item_table' with your actual table name
+        if (itemGr.get(itemSysId)) {
+            var highestBidAmount = itemGr.getValue('highest_bid_amount');
+            var startBidAmount = itemGr.getValue('start_bid_amount');
+
+            if (parseFloat(bidAmount) <= parseFloat(highestBidAmount) || parseFloat(bidAmount) <= parseFloat(startBidAmount)) {
+                return false;
+            }
+        }
+        return true;
+    },
+
+    type: 'BidFormScriptInclude'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 09:12:21</sys_created_on>
+        <sys_id>6d19b003933e421094e3f15a7bba1084</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>BidFormScriptInclude</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_script_include_6d19b003933e421094e3f15a7bba1084</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 09:15:10</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_script_include_6d19b003933e421094e3f15a7bba1084</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;false&lt;/active&gt;&lt;api_name&gt;x_1383184_charityb.BidFormScriptInclude&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;BidFormScriptInclude&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var BidFormScriptInclude = Class.create();
+BidFormScriptInclude.prototype = {
+    initialize: function() {
+    },
+
+    validateBidAmount: function(itemSysId, bidAmount) {
+        var itemGr = new GlideRecord('item_table'); // Replace 'item_table' with your actual table name
+        if (itemGr.get(itemSysId)) {
+            var highestBidAmount = itemGr.getValue('highest_bid_amount');
+            var startBidAmount = itemGr.getValue('start_bid_amount');
+
+            if (parseFloat(bidAmount) &lt;= parseFloat(highestBidAmount) || parseFloat(bidAmount) &lt;= parseFloat(startBidAmount)) {
+                return false;
+            }
+        }
+        return true;
+    },
+
+    type: 'BidFormScriptInclude'
+};
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;lalitha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-19 09:12:21&lt;/sys_created_on&gt;&lt;sys_id&gt;6d19b003933e421094e3f15a7bba1084&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;BidFormScriptInclude&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_6d19b003933e421094e3f15a7bba1084&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;lalitha&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-19 09:15:10&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1642715564</payload_hash>
+        <record_name>BidFormScriptInclude</record_name>
+        <reverted_from/>
+        <source>c0eb6f489326c61094e3f15a7bba1011</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 09:15:10</sys_created_on>
+        <sys_id>fae93443933e421094e3f15a7bba10c7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1902fc753b50000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 09:15:10</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>b2e934439b3e421080e2c49de41722c7</update_guid>
+        <update_guid_history>b2e934439b3e421080e2c49de41722c7:1642715564,9549f403113e42101df0673ca2986b48:177585179</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 11:06:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>251f26555fef4aff9f3a5d09cf9a5ea1</sys_id>
+        <sys_metadata>6d19b003933e421094e3f15a7bba1084</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>BidFormScriptInclude</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_script_include_6d19b003933e421094e3f15a7bba1084</sys_update_name>
+        <sys_update_version display_value="sys_script_include_6d19b003933e421094e3f15a7bba1084">fae93443933e421094e3f15a7bba10c7</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 11:06:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -4,7 +4,7 @@
         <element default="javascript:gs.getUserID();" dynamic_default_value="2fd8e97bef3221002841f7f775c0fbc1" label="Caller" max_length="32" name="caller" read_only="true" reference="sys_user" type="reference" use_dynamic_default="true"/>
         <element label="Comments" max_length="400" name="comments" type="string"/>
         <element label="Event name" max_length="32" name="event_type" reference="x_1383184_charityb_events" type="reference"/>
-        <element choice="3" default="event" label="Issue type" max_length="40" name="issue_type" type="choice">
+        <element choice="3" default="event" label="Issue type" mandatory="true" max_length="40" name="issue_type" type="choice">
             <choice>
                 <element inactive_on_update="false" label="Event" sequence="0" value="event"/>
                 <element inactive_on_update="false" label="Item" sequence="1" value="item"/>
