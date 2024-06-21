@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_table">
+    <sp_instance_table action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>primary</color>
+        <css/>
+        <display_field/>
+        <field_list>number,comments,issue_type,reason</field_list>
+        <filter table="x_1383184_charityb_issues">status=new<item display_value="New" endquery="false" field="status" goto="false" newquery="false" operator="=" or="false" value="new"/>
+        </filter>
+        <glyph>exclamation-triangle</glyph>
+        <id/>
+        <maximum_entries>5</maximum_entries>
+        <order>1</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">764f540393ba421094e3f15a7bba103e</sp_column>
+        <sp_page/>
+        <sp_widget display_value="cb issue">c19a42279332021094e3f15a7bba1097</sp_widget>
+        <sys_class_name>sp_instance_table</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-21 04:26:29</sys_created_on>
+        <sys_id>e10b8a279332021094e3f15a7bba1094</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_instance_table_e10b8a279332021094e3f15a7bba1094</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 05:46:14</sys_updated_on>
+        <table>x_1383184_charityb_issues</table>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance_table>
+    <sys_translated_text action="delete_multiple" query="documentkey=e10b8a279332021094e3f15a7bba1094"/>
+</record_update>

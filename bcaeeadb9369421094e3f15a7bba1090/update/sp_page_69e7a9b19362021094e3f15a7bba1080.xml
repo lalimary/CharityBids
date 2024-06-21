@@ -25,15 +25,15 @@ body{&#13;
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-03 05:07:57</sys_created_on>
         <sys_id>69e7a9b19362021094e3f15a7bba1080</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>cb_profile</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_page_69e7a9b19362021094e3f15a7bba1080</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-12 08:19:31</sys_updated_on>
-        <title>Charity Bids Profile</title>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 07:34:33</sys_updated_on>
+        <title>cb create profile </title>
         <use_seo_script>false</use_seo_script>
     </sp_page>
     <sys_translated_text action="delete_multiple" query="documentkey=69e7a9b19362021094e3f15a7bba1080"/>

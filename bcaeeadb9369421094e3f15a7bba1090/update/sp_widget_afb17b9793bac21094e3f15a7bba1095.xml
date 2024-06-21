@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
+
+    var fieldExcludes = {
+        user_profile: ['name', 'location', 'bio', 'profile_image']
+    };
+
+    $scope.openConnectConversation = function() {
+        $window.open('/$c.do#?user=' + $scope.data.sysUserID, '_blank');
+    };
+
+    $scope.$watch('data.dateTimeFormat', function() {
+        if ($scope.data.dateTimeFormat != g_user_date_time_format) {
+            $scope.data.dateTimeFormatChanged = true;
+        }
+    });
+
+    $scope.uploadNewProfilePicture = function($event) {
+        $event.stopPropagation();
+        var $el = $element.find('input[type=file]');
+        $el.click();
+    };
+
+    $scope.attachFiles = function(files) {
+        if (!files.files.length) {
+            return;
+        }
+
+        var file = files.files[0];
+
+        var validImage = false;
+
+        switch(file.type) {
+            case 'image/jpeg':
+            case 'image/png':
+            case 'image/bmp':
+            case 'image/x-windows-bmp':
+            case 'image/gif':
+            case 'image/x-icon':
+            case 'image/svg+xml':
+                validImage = true;
+                break;
+            default:
+                break;
+        }
+
+        if(!validImage) {
+            alert(file.name + " " + i18n.getMessage("isn't a recognized image file format"));
+            return;
+        }
+
+        snAttachmentHandler.create("user_profile", $scope.data.sysUserID).uploadAttachment(file, {
+            sysparm_fieldname: "profile_image"
+        }).then(function(response) {
+            var obj = {};
+            obj.newAvatarId = response.sys_id;
+            $scope.avatarPicture = {
+                'background-image': "url('" + response.sys_id + ".iix')",
+                'color': 'transparent'
+            };
+            $rootScope.$broadcast("sp.avatar_changed", obj);
+            $timeout(function() {
+                spAriaUtil.sendLiveMessage(i18n.getMessage('Profile picture updated successfully'));
+            }, 500);
+        });
+    };
+
+    $scope.avatarPicture = "";
+
+    $http.get('/api/now/live/profiles/user_profile.' + $scope.data.sysUserID).then(function (response) {
+        if (response.data.result && response.data.result.avatar){
+            var avatarPicture = response.data.result.avatar.replace("?t=small", "");
+            $scope.avatarPicture = {
+                'background-image': "url('" + avatarPicture + "')",
+                'color': 'transparent'
+            };
+        }
+    });
+
+    spUtil.recordWatch($scope, "user_profile", "sys_id=" + $scope.data.sysUserID);
+
+    $scope.connectEnabled = function() {
+        return $scope.data.connectEnabled && !$scope.data.isLoggedInUsersProfile;
+    };
+
+    $scope.openUserProfile = function($event, userID) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        $location.search("id=user_profile&sys_id=" + userID);
+    };
+
+    $scope.getSysUserModelFields = function() {
+        if ($scope.data.userExists) {
+            return $scope.data.sysUserModelList
+                            .filter(function(field) {
+                                return $scope.displayField("x_1383184_charityb_user_profile", field.name);
+                            });
+        }
+        return [];
+    };
+
+    $scope.reloadPage = function() {
+        $window.location.reload(true);
+    };
+
+    var models = {
+        user_profile: $scope.data.sysUserModel
+    };
+
+    $scope.displayField = function(tableName, field, isHeader) {
+        if (!isHeader && fieldExcludes[tableName].indexOf(field) > -1) return false;
+
+        if (models[tableName][field] && models[tableName][field].type === "boolean") return false;
+
+        if ($scope.data.isLoggedInUsersProfile) {
+            if (models[tableName][field] && models[tableName][field].readonly)
+                return models[tableName][field].displayValue;
+            else
+                return models[tableName][field];
+        } else {
+            return models[tableName][field] && models[tableName][field].displayValue;
+        }
+    };
+
+    $timeout(function(){
+        $rootScope.$broadcast('finishedChanged', {profile: $scope.data.teamData});
+    });
+
+    $scope.sysUserModelFields = $scope.getSysUserModelFields();
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.list-group-item {
+  border: none;
+  padding: 5px 15px;
+
+  .btn-link {
+  	padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.user-details {
+  word-wrap: break-word; // ie support
+  overflow-wrap: break-word;
+}
+
+.select2-container.select2-allowclear .select2-choice .select2-chosen {
+  margin-right: 60px;
+}
+
+.mia i {
+  font-size: 6rem;
+}
+
+.mia {
+  color: #808080;
+}
+
+.popover {
+  z-index: 1049;
+}
+
+.user-profile-container {
+  width: 100%;
+  max-width: 755px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+.input-switch input[type=checkbox]:checked ~ .switch {
+	background-color: $brand-primary;
+}
+
+// accessible accessibility toggle
+@media screen and (-ms-high-contrast: active) {
+  .input-switch input.ng-not-empty+label.switch[for="accessibility-enabled"] {
+    background-color: highlight;
+    border: none;
+
+    &amp;:before {
+      background-color: highlightText;
+    }
+  }
+
+  .input-switch input.ng-empty+label[for="accessibility-enabled"] {
+    background-color: window;
+    border: 1px solid windowText;
+
+    &amp;:before {
+      background-color: windowText;
+    }
+  }
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_my_profile_2</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb my profile 2</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    if (input && input.action === "update_session_tracking_info") {
+        gs.getSession().putProperty("usage_tracking_allowed_for_session", input.user_tracking);
+        return;
+    }
+
+    data.sysUserID = $sp.getParameter("sys_id");
+    if (!data.sysUserID) {
+        data.sysUserID = gs.getUser().getID();
+    }
+
+    var userProfileGR = new GlideRecord("x_1383184_charityb_user_profile");
+    data.userExists = userProfileGR.get(data.sysUserID) && userProfileGR.canRead();
+
+    if (data.userExists) {
+        data.name = userProfileGR.getValue("name");
+        data.location = userProfileGR.getValue("location");
+        data.bio = userProfileGR.getValue("bio");
+        data.profile_image = userProfileGR.getValue("profile_image");
+
+        data.isLoggedInUsersProfile = gs.getUser().getID() == data.sysUserID;
+
+        var userProfileForm = $sp.getForm("x_1383184_charityb_user_profile", data.sysUserID);
+        data.sysUserView = userProfileForm._view;
+        data.sysUserModel = userProfileForm._fields;
+        data.sysUserModelList = [];
+
+        for (var i = 0; i < data.sysUserView.length; i++) {
+            data.sysUserModelList.push(data.sysUserModel[data.sysUserView[i].name]);
+        }
+    }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-20 17:16:48</sys_created_on>
+        <sys_id>afb17b9793bac21094e3f15a7bba1095</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>cb my profile 2</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_afb17b9793bac21094e3f15a7bba1095</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 06:20:31</sys_updated_on>
+        <template><![CDATA[<div class="default-focus-outline user-profile-container">
+  <div ng-if="!data.userExists" class="panel panel-default">
+      <div class="panel-body wrapper-lg text-center">
+        <p>${Requested user not found}</p>
+      </div>
+  </div>
+  <div ng-if="data.userExists">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 text-center">
+            <div class="row">
+              <div class="avatar-extra-large avatar-container" style="cursor:default;" aria-hidden="true">
+                <div class="avatar soloAvatar bottom">
+                  <div class="sub-avatar mia" ng-style="avatarPicture"><i class="fa fa-user"></i></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <!-- file upload -->
+              <span ng-if="::data.isLoggedInUsersProfile">
+                <input ng-show="false" type="file" accept="image/jpeg,image/png,image/bmp,image/x-windows-bmp,image/gif,image/x-icon,image/svg+xml" ng-file-select="attachFiles({files: $files})" />
+                <button ng-click="uploadNewProfilePicture($event)"
+                        type="button"
+                        class="btn btn-default send-message">${Upload Picture}</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-8 user-details">
+            <h2>{{data.name}}</h2>
+            <p ng-if="::displayField('user_profile', 'location', true)"><strong class="pad-right">${Location}</strong><sp-editable-field editable-by-user="data.isLoggedInUsersProfile" table="user_profile" table-id="data.sysUserID" field-model="data.sysUserModel.location"></sp-editable-field></p>
+            <p ng-if="::displayField('user_profile', 'bio', true)"><strong class="pad-right">${Bio}</strong><sp-editable-field editable-by-user="data.isLoggedInUsersProfile" table="user_profile" table-id="data.sysUserID" field-model="data.sysUserModel.bio"></sp-editable-field></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <div class="panel panel-default b" ng-if="getSysUserModelFields().length > 0">
+          <div class="panel-heading">
+            <h2 class="panel-title">
+              <i class="fa fa-info-circle m-r-sm"></i>${About}
+            </h2>
+          </div>
+          <div class="body padder-xs">
+            <div class="list-group">
+              <div ng-repeat="fieldModel in sysUserModelFields">
+                <div class="list-group-item">
+                  <div>
+                    <sp-editable-field block="true" table="user_profile" editable-by-user="data.isLoggedInUsersProfile" table-id="data.sysUserID" field-model="fieldModel"></sp-editable-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-footer clearfix" ng-if="data.dateTimeFormatChanged">
+            <a id="refresh-to-complete-date-format-change" href="javascript:void(0)"
+               ng-click="reloadPage()"
+]]></template>
+    </sp_widget>
+</record_update>

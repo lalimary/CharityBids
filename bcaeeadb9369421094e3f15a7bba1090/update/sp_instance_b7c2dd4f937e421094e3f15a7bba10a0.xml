@@ -10,20 +10,20 @@
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">8ac2dd4f937e421094e3f15a7bba1094</sp_column>
+        <sp_column display_value="2">c6aac61793f2c21094e3f15a7bba10e2</sp_column>
         <sp_widget display_value="cb item details">343357ee93b2021094e3f15a7bba10e3</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-19 11:03:56</sys_created_on>
         <sys_id>b7c2dd4f937e421094e3f15a7bba10a0</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_instance_b7c2dd4f937e421094e3f15a7bba10a0</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-19 11:03:56</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-21 05:43:26</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters/>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
+    <sp_page action="DELETE">
+        <category>custom</category>
+        <css>body{&#13;
+	background: radial-gradient(circle, rgba(253,234,227,1) 0%, rgba(233,182,163,1) 100%);&#13;
+&#13;
+.bgHeight{&#13;
+	min-height: 50vh;&#13;
+}&#13;
+&#13;
+body {&#13;
+	font-family:"Playfair Display";&#13;
+}&#13;
+&#13;
+&#13;
+.ng-scope.cbbb77b9a93ae821094e3f15a7bba10fd {&#13;
+    height: 63vh;&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+</css>
+        <draft>false</draft>
+        <dynamic_title_structure/>
+        <human_readable_url_structure/>
+        <id>cb_index</id>
+        <internal>false</internal>
+        <omit_watcher>false</omit_watcher>
+        <public>false</public>
+        <roles/>
+        <seo_script/>
+        <short_description/>
+        <sys_class_name>sp_page</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-05-30 07:35:23</sys_created_on>
+        <sys_id>ca43696c93e6021094e3f15a7bba10ac</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>cb_index</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_page_ca43696c93e6021094e3f15a7bba10ac</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-05 11:45:24</sys_updated_on>
+        <title>Charity Bids Homepage</title>
+        <use_seo_script>false</use_seo_script>
+    </sp_page>
+    <sys_translated_text action="DELETE" query="documentkey=ca43696c93e6021094e3f15a7bba10ac"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_page_ca43696c93e6021094e3f15a7bba10ac</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page"><sp_page action="INSERT_OR_UPDATE"><category>custom</category><css>body{&#13;
+	background: radial-gradient(circle, rgba(253,234,227,1) 0%, rgba(233,182,163,1) 100%);&#13;
+&#13;
+.bgHeight{&#13;
+	min-height: 50vh;&#13;
+}&#13;
+&#13;
+body {&#13;
+	font-family:"Playfair Display";&#13;
+}&#13;
+&#13;
+&#13;
+.ng-scope.cbbb77b9a93ae821094e3f15a7bba10fd {&#13;
+    height: 63vh;&#13;
+}&#13;
+&#13;
+&#13;
+&#13;
+</css><draft>false</draft><dynamic_title_structure/><human_readable_url_structure/><id>cb_index</id><internal>false</internal><omit_watcher>false</omit_watcher><public>false</public><roles/><seo_script/><short_description/><sys_class_name>sp_page</sys_class_name><sys_created_by>christy</sys_created_by><sys_created_on>2024-05-30 07:35:23</sys_created_on><sys_id>ca43696c93e6021094e3f15a7bba10ac</sys_id><sys_mod_count>12</sys_mod_count><sys_name>cb_index</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sp_page_ca43696c93e6021094e3f15a7bba10ac</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-06-05 11:45:24</sys_updated_on><title>Charity Bids Homepage</title><use_seo_script>false</use_seo_script></sp_page><sys_translated_text action="delete_multiple" query="documentkey=ca43696c93e6021094e3f15a7bba10ac"/></record_update>]]></payload>
+        <payload_hash>-2023977142</payload_hash>
+        <record_name>cb_index</record_name>
+        <reverted_from/>
+        <source>247253e493ae021094e3f15a7bba10eb</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-05 11:45:25</sys_created_on>
+        <sys_id>4f0691ae9366c21094e3f15a7bba1027</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18fe837d8ee0000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-05 11:45:25</sys_updated_on>
+        <type>Page</type>
+        <update_guid>070691aef566c210dddda7402fea8b27</update_guid>
+        <update_guid_history>070691aef566c210dddda7402fea8b27:-2023977142,19a5d92e6966c2102f780f9b0fb11b41:471187847,3d75192e6a66c210277fe890bd417298:1047412965,196355eaea66c2103e370f9ed43e0279:-124759927,fb0ac06ea5ee82100f4ff5de9fab39af:18457805,9a588cea29ee8210136292af68d75872:1469815231,812888aa51ee821061af18a038058741:793846999,07d304a6a4ee8210402d75c557d47777:1613540401,a5873f5a66ae8210452df5ffc79bd346:-447912321,61e8be75abe60210d1cb1ed95c10bd59:837709646,3ab8fa35ebe602108f33ee181ba2a94f:-793862744,9399ed35d66202105d0e5024a3f6d4ab:-640260702,024325aca3e60210d192f3a231d554e8:2047902494</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="cb_index">843472ab93f2021094e3f15a7bba10dd</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-21 07:26:19</sys_created_on>
+        <sys_db_object display_value="" name="sp_page">sp_page</sys_db_object>
+        <sys_id>3bc940bbf49445ac8ad62b794a0fb690</sys_id>
+        <sys_metadata>ca43696c93e6021094e3f15a7bba10ac</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cb_index</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_page_ca43696c93e6021094e3f15a7bba10ac</sys_update_name>
+        <sys_update_version display_value="sp_page_ca43696c93e6021094e3f15a7bba10ac">4f0691ae9366c21094e3f15a7bba1027</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 07:26:19</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.badge{background: red;}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>issue_requests</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>issue_requests</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+  var c = this;
+  var data = {};
+  
+  if (!input) {
+    data.summary = [];
+    data.table = 'x_1383184_charityb_issues';
+    data.groupBy = 'status'; // Replace 'field_name' with the actual field you want to group by
+    
+    var ga = new GlideAggregate(data.table);
+    ga.setGroup(true);
+    ga.groupBy(data.groupBy);
+    ga.addAggregate('COUNT');
+    ga.query();
+    
+    while (ga.next()) {
+      data.summary.push({
+        agName: ga[data.groupBy].getDisplayValue() || 'None', // Correct usage of getDisplayValue()
+        agCount: ga.getAggregate('COUNT')
+      });
+    }
+  }
+  
+  // Logging data to verify
+  console.log(data);
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-20 16:02:24</sys_created_on>
+        <sys_id>b5b0e793937ac21094e3f15a7bba1015</sys_id>
+        <sys_mod_count>20</sys_mod_count>
+        <sys_name>issue_requests</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_b5b0e793937ac21094e3f15a7bba1015</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-20 17:06:09</sys_updated_on>
+        <template><![CDATA[<form>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Issues Raised
+  </div>
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="s in c.data.summary">{{ s.agName }}
+    <span class="badge">{{ s.agCount }}</span>
+    </li> 
+  </ul>
+</div>
+</form>]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_widget_b5b0e793937ac21094e3f15a7bba1015</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.badge{background: red;}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;issue_requests&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;issue_requests&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+  var c = this;
+  var data = {};
+  
+  if (!input) {
+    data.summary = [];
+    data.table = 'x_1383184_charityb_issues';
+    data.groupBy = 'status'; // Replace 'field_name' with the actual field you want to group by
+    
+    var ga = new GlideAggregate(data.table);
+    ga.setGroup(true);
+    ga.groupBy(data.groupBy);
+    ga.addAggregate('COUNT');
+    ga.query();
+    
+    while (ga.next()) {
+      data.summary.push({
+        agName: ga[data.groupBy].getDisplayValue() || 'None', // Correct usage of getDisplayValue()
+        agCount: ga.getAggregate('COUNT')
+      });
+    }
+  }
+  
+  // Logging data to verify
+  console.log(data);
+})();
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;christy&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-20 16:02:24&lt;/sys_created_on&gt;&lt;sys_id&gt;b5b0e793937ac21094e3f15a7bba1015&lt;/sys_id&gt;&lt;sys_mod_count&gt;20&lt;/sys_mod_count&gt;&lt;sys_name&gt;issue_requests&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_b5b0e793937ac21094e3f15a7bba1015&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;christy&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-20 17:06:09&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;form&gt;
+  
+
+&lt;div class="panel panel-default"&gt;
+  &lt;div class="panel-heading"&gt;
+    Issues Raised
+  &lt;/div&gt;
+  &lt;!-- List group --&gt;
+  &lt;ul class="list-group"&gt;
+    &lt;li class="list-group-item" ng-repeat="s in c.data.summary"&gt;{{ s.agName }}
+    &lt;span class="badge"&gt;{{ s.agCount }}&lt;/span&gt;
+    &lt;/li&gt; 
+  &lt;/ul&gt;
+&lt;/div&gt;
+&lt;/form&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-425998239</payload_hash>
+        <record_name>issue_requests</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-20 17:06:09</sys_created_on>
+        <sys_id>2b4f631793bac21094e3f15a7bba10e3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190369ce0960000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-20 17:06:09</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>ef4f631720bac210ae25ea23af0377e2</update_guid>
+        <update_guid_history>ef4f631720bac210ae25ea23af0377e2:-425998239,6c0fe7d378bac210b7e3b2f8b71a13fb:329146613,35bea7d36ebac210524052910a2cba45:915888579,656e23d368bac210421678d7a6100a70:1187477011,48dd6793fabac210b5405e76f3f3ed45:444717221,cffc6b13abbac2108ea69001c913ef3d:329146613,17ec675320bac210490f9c0d088a543a:610883655,265cefdf6b7ac2104637def503f651ac:-2037001292,154ca3dff37ac210a0ff6aa5597c0355:-737779402,7b8babdf3f7ac2106d73f08ab8a56cf6:-1073228774,697babdfcd7ac21067d1deb15bcc3890:-820307700,c65bef5f607ac210a63a0c432e735e9f:-455924404,0d1ba75f847ac210a24840d7d0b91488:1658937061,c80ba3df8f7ac210769a882816fdd44b:236921331,40c9e71f477ac2102126fc2a14803e85:1173288662,4098e3d75e7ac21091b6411718bc9a26:-993724229,9ed7af5b167ac21055be22a82ca7f51d:-156363002,d8d5e75b227ac210d76dee5165b2f13f:-1206501809,f6c36b93a37ac210c5c6c80446b2951b:212112477,42b36b932a7ac2100b414a59fa20d279:-1219550499,3db0e793257ac2106ea6e0f39fb01016:1896052426</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="issue_requests">94af5a6f9372021094e3f15a7bba104b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-21 05:56:30</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>24e25583fc02437e9414c48604f827f9</sys_id>
+        <sys_metadata>b5b0e793937ac21094e3f15a7bba1015</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>issue_requests</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_widget_b5b0e793937ac21094e3f15a7bba1015</sys_update_name>
+        <sys_update_version display_value="sp_widget_b5b0e793937ac21094e3f15a7bba1015">2b4f631793bac21094e3f15a7bba10e3</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 05:56:30</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

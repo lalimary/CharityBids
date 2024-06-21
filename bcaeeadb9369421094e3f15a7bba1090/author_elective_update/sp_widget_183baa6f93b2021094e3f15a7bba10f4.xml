@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, spUtil) {
+    var c = this;
+
+    // Initialize data.categories
+    c.data.categories = c.data.categories || [];
+
+    // Function to filter items based on selected categories
+    c.filterItems = function() {
+        var selectedCategories = c.data.categories
+            .filter(function(category) { return category.selected; })
+            .map(function(category) { return category.sys_id; });
+
+        spUtil.update($scope, {
+            selectedCategories: selectedCategories
+        });
+    };
+
+    // Function to handle resetting filters
+    c.resetFilters = function() {
+        c.data.categories.forEach(function(category) {
+            category.selected = false;
+        });
+        c.filterItems(); // Trigger filtering with no categories selected
+    };
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>item_category_filter</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Item category filter</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+    // Initialize data arrays
+    data.categories = [];
+
+    // Fetch all categories from 'x_1383184_charityb_category'
+    var categoryGR = new GlideRecord('x_1383184_charityb_category');
+    categoryGR.query();
+    while (categoryGR.next()) {
+        data.categories.push({
+            sys_id: categoryGR.getUniqueValue(),
+            name: categoryGR.getValue('name'),
+            selected: false
+        });
+    }
+})($sp, input, data, options, gs);
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-21 06:47:01</sys_created_on>
+        <sys_id>183baa6f93b2021094e3f15a7bba10f4</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Item category filter</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_183baa6f93b2021094e3f15a7bba10f4</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-21 06:57:17</sys_updated_on>
+        <template><![CDATA[<div>
+    <h3>Filter by Categories</h3>
+    <button class="btn btn-default" ng-click="c.resetFilters()">Reset Filters</button>
+    <div ng-repeat="category in c.data.categories">
+        <label>
+            <input type="checkbox" ng-model="category.selected" ng-change="c.filterItems()"> {{category.name}}
+        </label>
+    </div>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_widget_183baa6f93b2021094e3f15a7bba10f4</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller = function($scope, spUtil) {
+    var c = this;
+
+    // Initialize data.categories
+    c.data.categories = c.data.categories || [];
+
+    // Function to filter items based on selected categories
+    c.filterItems = function() {
+        var selectedCategories = c.data.categories
+            .filter(function(category) { return category.selected; })
+            .map(function(category) { return category.sys_id; });
+
+        spUtil.update($scope, {
+            selectedCategories: selectedCategories
+        });
+    };
+
+    // Function to handle resetting filters
+    c.resetFilters = function() {
+        c.data.categories.forEach(function(category) {
+            category.selected = false;
+        });
+        c.filterItems(); // Trigger filtering with no categories selected
+    };
+};
+]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;item_category_filter&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;Item category filter&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function($sp, input, data, options, gs) {
+    // Initialize data arrays
+    data.categories = [];
+
+    // Fetch all categories from 'x_1383184_charityb_category'
+    var categoryGR = new GlideRecord('x_1383184_charityb_category');
+    categoryGR.query();
+    while (categoryGR.next()) {
+        data.categories.push({
+            sys_id: categoryGR.getUniqueValue(),
+            name: categoryGR.getValue('name'),
+            selected: false
+        });
+    }
+})($sp, input, data, options, gs);
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;lalitha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-21 06:47:01&lt;/sys_created_on&gt;&lt;sys_id&gt;183baa6f93b2021094e3f15a7bba10f4&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;Item category filter&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_183baa6f93b2021094e3f15a7bba10f4&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;lalitha&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-21 06:57:17&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div&gt;
+    &lt;h3&gt;Filter by Categories&lt;/h3&gt;
+    &lt;button class="btn btn-default" ng-click="c.resetFilters()"&gt;Reset Filters&lt;/button&gt;
+    &lt;div ng-repeat="category in c.data.categories"&gt;
+        &lt;label&gt;
+            &lt;input type="checkbox" ng-model="category.selected" ng-change="c.filterItems()"&gt; {{category.name}}
+        &lt;/label&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-629163674</payload_hash>
+        <record_name>Item category filter</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-21 06:57:17</sys_created_on>
+        <sys_id>a28de62393f2021094e3f15a7bba10e8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1903995cf690000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-21 06:57:17</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>6a8de62303f20210d21efa6ad037c2e7</update_guid>
+        <update_guid_history>6a8de62303f20210d21efa6ad037c2e7:-629163674,bbbb22af6ab20210370a7d84bd24a1b6:21301316,786bae6f01b202101223b17985bd2be5:-369243433,503baa6fb5b20210c1c7abd487e995f6:-1587987859</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Item category filter">566ee2a393f2021094e3f15a7bba10c7</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-21 07:01:06</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>409e81ce116a4803b3d6c42d749c5381</sys_id>
+        <sys_metadata>183baa6f93b2021094e3f15a7bba10f4</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Item category filter</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_widget_183baa6f93b2021094e3f15a7bba10f4</sys_update_name>
+        <sys_update_version display_value="sp_widget_183baa6f93b2021094e3f15a7bba10f4">a28de62393f2021094e3f15a7bba10e8</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-21 07:01:06</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

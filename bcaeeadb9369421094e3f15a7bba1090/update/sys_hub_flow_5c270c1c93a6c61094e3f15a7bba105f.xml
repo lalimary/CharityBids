@@ -4,7 +4,7 @@
         <acls/>
         <active>true</active>
         <annotation/>
-        <attributes>browserActivatedIn=edge,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,timeFromCreateToActivate=622797000,viewActivatedIn=naturalLanguage</attributes>
+        <attributes>browserActivatedIn=edge,integrationActivatedIn=standalone,labelCacheCleanUpExecuted=true,timeFromCreateToActivate=1894262000,viewActivatedIn=naturalLanguage</attributes>
         <callable_by_client_api>false</callable_by_client_api>
         <category/>
         <copied_from/>
@@ -30,7 +30,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>5c270c1c93a6c61094e3f15a7bba105f</sys_id>
-        <sys_mod_count>38</sys_mod_count>
+        <sys_mod_count>41</sys_mod_count>
         <sys_name>Win bid notification</sys_name>
         <sys_overrides/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
@@ -38,7 +38,7 @@
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_hub_flow_5c270c1c93a6c61094e3f15a7bba105f</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:25:04</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:23</sys_updated_on>
         <type>flow</type>
     </sys_hub_flow>
     <sys_translated_text action="delete_multiple" query="documentkey=5c270c1c93a6c61094e3f15a7bba105f"/>
@@ -75,14 +75,14 @@
         <identifier>5c270c1c93a6c61094e3f15a7bba105f</identifier>
         <runner>FDTriggerRunner</runner>
         <sys_created_by>lalitha</sys_created_by>
-        <sys_created_on>2024-06-05 11:14:17</sys_created_on>
-        <sys_id>97ee01669366c21094e3f15a7bba1063</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_created_on>2024-06-20 04:25:23</sys_created_on>
+        <sys_id>ab2109df937e821094e3f15a7bba1017</sys_id>
+        <sys_mod_count>2</sys_mod_count>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:25:04</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:23</sys_updated_on>
         <trigger display_value="">894a21b59362021094e3f15a7bba1043</trigger>
     </sys_trigger_runner_mapping>
-    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=5c270c1c93a6c61094e3f15a7bba105f^sys_idNOT IN97ee01669366c21094e3f15a7bba1063"/>
+    <sys_trigger_runner_mapping action="delete_multiple" query="identifier=5c270c1c93a6c61094e3f15a7bba105f^sys_idNOT INab2109df937e821094e3f15a7bba1017"/>
     <sys_hub_trigger_instance action="delete_multiple" query="flow=5c270c1c93a6c61094e3f15a7bba105f^sys_idNOT IN1b7721b19362021094e3f15a7bba106a"/>
     <sys_hub_trigger_instance action="INSERT_OR_UPDATE">
         <comment/>
@@ -93,10 +93,10 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 05:06:10</sys_created_on>
         <sys_id>1b7721b19362021094e3f15a7bba106a</sys_id>
-        <sys_mod_count>35</sys_mod_count>
+        <sys_mod_count>38</sys_mod_count>
         <sys_scope/>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:18</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:23</sys_updated_on>
         <trigger_definition display_value="Updated">bb695e60c31322002841b63b12d3aea5</trigger_definition>
         <trigger_inputs/>
         <trigger_outputs/>
@@ -210,14 +210,14 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 05:06:10</sys_created_on>
         <sys_id>5b7721b19362021094e3f15a7bba1065</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name/>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:17</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:23</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -401,14 +401,14 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 05:06:09</sys_created_on>
         <sys_id>c37721b19362021094e3f15a7bba105e</sys_id>
-        <sys_mod_count>21</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name/>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:17</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:23</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -440,10 +440,10 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 05:14:25</sys_created_on>
         <sys_id>8c69a5359362021094e3f15a7bba10c8</sys_id>
-        <sys_mod_count>74</sys_mod_count>
+        <sys_mod_count>82</sys_mod_count>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-05 15:23:28</sys_updated_on>
+        <sys_updated_on>2024-06-20 07:04:29</sys_updated_on>
         <ui_id>5c0a2b1d-bbcc-48d8-87c0-ab22fd23014a</ui_id>
     </sys_hub_action_instance>
     <sys_variable_value action="delete_multiple" query="document_key=8c69a5359362021094e3f15a7bba10c8"/>
@@ -503,10 +503,10 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 17:02:25</sys_created_on>
         <sys_id>d76bc802936e021094e3f15a7bba1069</sys_id>
-        <sys_mod_count>16</sys_mod_count>
+        <sys_mod_count>24</sys_mod_count>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-05 15:23:28</sys_updated_on>
+        <sys_updated_on>2024-06-20 07:04:29</sys_updated_on>
         <ui_id>343aad69-bcd5-47a6-9615-8449c3354c31</ui_id>
     </sys_hub_action_instance>
     <sys_variable_value action="delete_multiple" query="document_key=d76bc802936e021094e3f15a7bba1069"/>
@@ -683,7 +683,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>6b7721b19362021094e3f15a7bba10e1</sys_id>
-        <sys_mod_count>10</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name/>
         <sys_overrides/>
         <sys_package/>
@@ -691,7 +691,7 @@
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name/>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:16</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:22</sys_updated_on>
         <type>flow</type>
     </sys_hub_flow_snapshot>
     <sys_translated_text action="delete_multiple" query="documentkey=6b7721b19362021094e3f15a7bba10e1"/>
@@ -706,10 +706,10 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 05:06:12</sys_created_on>
         <sys_id>fb7761b19362021094e3f15a7bba1024</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>35</sys_mod_count>
         <sys_scope/>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:17</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:23</sys_updated_on>
         <trigger_definition display_value="Updated">bb695e60c31322002841b63b12d3aea5</trigger_definition>
         <trigger_inputs/>
         <trigger_outputs/>
@@ -823,14 +823,14 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 05:06:12</sys_created_on>
         <sys_id>337761b19362021094e3f15a7bba1006</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name/>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:16</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:21</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -907,14 +907,14 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 05:06:12</sys_created_on>
         <sys_id>bb7721b19362021094e3f15a7bba10e3</sys_id>
-        <sys_mod_count>19</sys_mod_count>
+        <sys_mod_count>21</sys_mod_count>
         <sys_name/>
         <sys_package/>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name/>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:16</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:21</sys_updated_on>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>
@@ -1053,10 +1053,10 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 17:03:20</sys_created_on>
         <sys_id>38ab4042936e021094e3f15a7bba1011</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>12</sys_mod_count>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:16</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:22</sys_updated_on>
         <ui_id>343aad69-bcd5-47a6-9615-8449c3354c31</ui_id>
     </sys_hub_action_instance>
     <sys_variable_value action="delete_multiple" query="document_key=38ab4042936e021094e3f15a7bba1011"/>
@@ -1142,10 +1142,10 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 05:18:17</sys_created_on>
         <sys_id>bc4aed759362021094e3f15a7bba10be</sys_id>
-        <sys_mod_count>40</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:16</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:22</sys_updated_on>
         <ui_id>5c0a2b1d-bbcc-48d8-87c0-ab22fd23014a</ui_id>
     </sys_hub_action_instance>
     <sys_variable_value action="delete_multiple" query="document_key=bc4aed759362021094e3f15a7bba10be"/>
@@ -1277,17 +1277,17 @@
         <binding_strategy>com.snc.process_flow.engine.binding.OncePerRecord</binding_strategy>
         <plan>{"persistor":{"@class":".ChunkingPlanPersistor","table":"sys_flow_trigger_plan","id":"8c8761b19362021094e3f15a7bba106c","name":"plan","plan_signature":null}}</plan>
         <plan_id>5c270c1c93a6c61094e3f15a7bba105f</plan_id>
-        <snapshot>59f7ce26936ac21094e3f15a7bba10ae</snapshot>
+        <snapshot>0695a99b9332c21094e3f15a7bba1032</snapshot>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 05:06:13</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>8c8761b19362021094e3f15a7bba106c</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_overrides/>
         <sys_scope/>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 11:14:17</sys_updated_on>
+        <sys_updated_on>2024-06-20 04:25:23</sys_updated_on>
         <trigger display_value="">894a21b59362021094e3f15a7bba1043</trigger>
     </sys_flow_trigger_plan>
     <sys_flow_subflow_plan action="delete_multiple" query="plan_id=5c270c1c93a6c61094e3f15a7bba105f"/>

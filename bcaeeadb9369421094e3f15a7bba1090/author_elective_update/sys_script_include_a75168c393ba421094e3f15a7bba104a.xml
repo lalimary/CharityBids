@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>package_private</access>
+        <active>false</active>
+        <api_name>x_1383184_charityb.BidValidationUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>Validate bid process</description>
+        <name>BidValidationUtil</name>
+        <script><![CDATA[var BidValidationUtil = Class.create();
+BidValidationUtil.prototype = {
+    initialize: function() {
+    },
+
+    validateBidAmount: function(itemName, bidAmount) {
+        var itemGr = new GlideRecord('x_1383184_charityb_item');
+        if (itemGr.get('item_name', itemName)) {
+            var startBidAmount = parseFloat(itemGr.start_bid_amount);
+            var highestBidAmount = parseFloat(itemGr.highest_bid_amount);
+
+            // Validate bid amount
+            if (bidAmount <= startBidAmount || bidAmount <= highestBidAmount) {
+                return 'error';
+            } else {
+                return 'success';
+            }
+        } else {
+            gs.info("Item not found with name: " + itemName);
+            return 'error';
+        }
+    }
+};
+
+
+
+
+// var BidValidationUtil = Class.create();
+// BidValidationUtil.prototype = {
+//     initialize: function() {
+//     },
+
+//     validateBidAmount: function(itemName, bidAmount) {
+//         var itemGr = new GlideRecord('x_1383184_charityb_item');
+//         if (itemGr.get('item_name', itemName)) {
+//             var startBidAmount = parseFloat(itemGr.start_bid_amount);
+//             var highestBidAmount = parseFloat(itemGr.highest_bid_amount);
+
+//             // Validate bid amount
+//             if (bidAmount <= highestBidAmount) {
+//                 return 'errorLessThanHighest';
+//             } else if (bidAmount <= startBidAmount) {
+//                 return 'errorLessThanStart';
+//             } else {
+//                 return 'success';
+//             }
+//         } else {
+//             gs.log("Item not found with name: " + itemName);
+//             return 'errorItemNotFound';
+//         }
+//     }
+// };
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 07:29:52</sys_created_on>
+        <sys_id>a75168c393ba421094e3f15a7bba104a</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>BidValidationUtil</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_script_include_a75168c393ba421094e3f15a7bba104a</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 10:20:28</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_script_include_a75168c393ba421094e3f15a7bba104a</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;false&lt;/active&gt;&lt;api_name&gt;x_1383184_charityb.BidValidationUtil&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description&gt;Validate bid process&lt;/description&gt;&lt;name&gt;BidValidationUtil&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var BidValidationUtil = Class.create();
+BidValidationUtil.prototype = {
+    initialize: function() {
+    },
+
+    validateBidAmount: function(itemName, bidAmount) {
+        var itemGr = new GlideRecord('x_1383184_charityb_item');
+        if (itemGr.get('item_name', itemName)) {
+            var startBidAmount = parseFloat(itemGr.start_bid_amount);
+            var highestBidAmount = parseFloat(itemGr.highest_bid_amount);
+
+            // Validate bid amount
+            if (bidAmount &lt;= startBidAmount || bidAmount &lt;= highestBidAmount) {
+                return 'error';
+            } else {
+                return 'success';
+            }
+        } else {
+            gs.info("Item not found with name: " + itemName);
+            return 'error';
+        }
+    }
+};
+
+
+
+
+// var BidValidationUtil = Class.create();
+// BidValidationUtil.prototype = {
+//     initialize: function() {
+//     },
+
+//     validateBidAmount: function(itemName, bidAmount) {
+//         var itemGr = new GlideRecord('x_1383184_charityb_item');
+//         if (itemGr.get('item_name', itemName)) {
+//             var startBidAmount = parseFloat(itemGr.start_bid_amount);
+//             var highestBidAmount = parseFloat(itemGr.highest_bid_amount);
+
+//             // Validate bid amount
+//             if (bidAmount &lt;= highestBidAmount) {
+//                 return 'errorLessThanHighest';
+//             } else if (bidAmount &lt;= startBidAmount) {
+//                 return 'errorLessThanStart';
+//             } else {
+//                 return 'success';
+//             }
+//         } else {
+//             gs.log("Item not found with name: " + itemName);
+//             return 'errorItemNotFound';
+//         }
+//     }
+// };
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;lalitha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-19 07:29:52&lt;/sys_created_on&gt;&lt;sys_id&gt;a75168c393ba421094e3f15a7bba104a&lt;/sys_id&gt;&lt;sys_mod_count&gt;9&lt;/sys_mod_count&gt;&lt;sys_name&gt;BidValidationUtil&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_a75168c393ba421094e3f15a7bba104a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;lalitha&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-19 10:20:28&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1211914488</payload_hash>
+        <record_name>BidValidationUtil</record_name>
+        <reverted_from/>
+        <source>c0eb6f489326c61094e3f15a7bba1011</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 10:20:28</sys_created_on>
+        <sys_id>5bd8cd43937e421094e3f15a7bba1052</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19030031c120000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 10:20:28</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>13d8cd43ae7e421052bf1317ed697752</update_guid>
+        <update_guid_history>13d8cd43ae7e421052bf1317ed697752:1211914488,b0f93c03903e42101a43513a41c6a01e:457393513,4319f003f43e4210400313b4e0fbd4df:1211914488,05d3344b9efa42101fb7c3c6268bac7d:457393513,17c3f44b03fa421044f01bddbb449d32:-819832692,0222f847cbfa42106b7ea1f5c6f8a615:764617932,88e03c479dfa42102363cf11c4ec0d80:548368613,60d3e48769ba4210ca9b8128be119e48:-2009925078,c082a4c39cba42109a04cfec697d5984:1714251437,48d1600799ba4210434c9970fa45334b:399303294</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 17:06:55</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>1235063e5082411682cd060c920d6d44</sys_id>
+        <sys_metadata>a75168c393ba421094e3f15a7bba104a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>BidValidationUtil</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_script_include_a75168c393ba421094e3f15a7bba104a</sys_update_name>
+        <sys_update_version display_value="sys_script_include_a75168c393ba421094e3f15a7bba104a">5bd8cd43937e421094e3f15a7bba1052</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 17:06:55</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

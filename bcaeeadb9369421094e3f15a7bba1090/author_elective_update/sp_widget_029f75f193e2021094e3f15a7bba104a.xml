@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=(function() {
+    data.widgetId = options.widgetId; 
+
+    if (input && input.action === "create_profile") {
+        var name = input.name;
+        var location = input.location;
+        var bio = input.bio;
+        var profileImage = input.profileImage; 
+
+       
+        var userProfileGR = new GlideRecord("x_1383184_charityb_user_profile");
+        
+        // Set field values
+        userProfileGR.setValue("name", name);
+        userProfileGR.setValue("location", location);
+        userProfileGR.setValue("bio", bio);
+
+        
+        if (profileImage) {
+            userProfileGR.setValue("profile_image", profileImage);
+        }
+
+     
+        var profileSysId = userProfileGR.insert();
+
+        
+        gs.addInfoMessage("User profile created successfully.");
+        action.setRedirectURL(current);
+        return;
+    }
+})();]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_create_profile</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Charity Create Profile</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[var FetchUserProfileAjax = Class.create();
+FetchUserProfileAjax.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+    fetchUserProfile: function() {
+        var userId = gs.getUserID();
+        var userProfileGR = new GlideRecord("sys_user");
+        if (userProfileGR.get(userId)) {
+            var name = userProfileGR.getValue("name");
+            var location = userProfileGR.getValue("location");
+
+            var profileData = {
+                name: name,
+                location: location
+            };
+
+            return JSON.stringify(profileData);
+        } else {
+            return null; 
+        }
+    }
+
+});
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-03 06:51:29</sys_created_on>
+        <sys_id>029f75f193e2021094e3f15a7bba104a</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Charity Create Profile</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_029f75f193e2021094e3f15a7bba104a</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-03 07:18:31</sys_updated_on>
+        <template><![CDATA[<div class="container">
+  <h2>Create User Profile</h2>
+  <form id="profileForm">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input type="text" class="form-control" id="location" name="location" required>
+    </div>
+    <div class="form-group">
+      <label for="bio">Bio:</label>
+      <textarea class="form-control" id="bio" name="bio" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="profileImage">Profile Image:</label>
+      <input type="file" class="form-control-file" id="profileImage" name="profileImage">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_widget_029f75f193e2021094e3f15a7bba104a</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller=(function() {
+    data.widgetId = options.widgetId; 
+
+    if (input &amp;&amp; input.action === "create_profile") {
+        var name = input.name;
+        var location = input.location;
+        var bio = input.bio;
+        var profileImage = input.profileImage; 
+
+       
+        var userProfileGR = new GlideRecord("x_1383184_charityb_user_profile");
+        
+        // Set field values
+        userProfileGR.setValue("name", name);
+        userProfileGR.setValue("location", location);
+        userProfileGR.setValue("bio", bio);
+
+        
+        if (profileImage) {
+            userProfileGR.setValue("profile_image", profileImage);
+        }
+
+     
+        var profileSysId = userProfileGR.insert();
+
+        
+        gs.addInfoMessage("User profile created successfully.");
+        action.setRedirectURL(current);
+        return;
+    }
+})();]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;cb_create_profile&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;Charity Create Profile&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[var FetchUserProfileAjax = Class.create();
+FetchUserProfileAjax.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+
+    fetchUserProfile: function() {
+        var userId = gs.getUserID();
+        var userProfileGR = new GlideRecord("sys_user");
+        if (userProfileGR.get(userId)) {
+            var name = userProfileGR.getValue("name");
+            var location = userProfileGR.getValue("location");
+
+            var profileData = {
+                name: name,
+                location: location
+            };
+
+            return JSON.stringify(profileData);
+        } else {
+            return null; 
+        }
+    }
+
+});
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;christy&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-03 06:51:29&lt;/sys_created_on&gt;&lt;sys_id&gt;029f75f193e2021094e3f15a7bba104a&lt;/sys_id&gt;&lt;sys_mod_count&gt;3&lt;/sys_mod_count&gt;&lt;sys_name&gt;Charity Create Profile&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_029f75f193e2021094e3f15a7bba104a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;christy&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-03 07:18:31&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="container"&gt;
+  &lt;h2&gt;Create User Profile&lt;/h2&gt;
+  &lt;form id="profileForm"&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="name"&gt;Name:&lt;/label&gt;
+      &lt;input type="text" class="form-control" id="name" name="name" required&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="location"&gt;Location:&lt;/label&gt;
+      &lt;input type="text" class="form-control" id="location" name="location" required&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="bio"&gt;Bio:&lt;/label&gt;
+      &lt;textarea class="form-control" id="bio" name="bio" rows="4" required&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+      &lt;label for="profileImage"&gt;Profile Image:&lt;/label&gt;
+      &lt;input type="file" class="form-control-file" id="profileImage" name="profileImage"&gt;
+    &lt;/div&gt;
+    &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-894486359</payload_hash>
+        <record_name>Charity Create Profile</record_name>
+        <reverted_from/>
+        <source>247253e493ae021094e3f15a7bba10eb</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-03 07:18:31</sys_created_on>
+        <sys_id>cac506f993e2021094e3f15a7bba105b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18fdcf6c7f20000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-03 07:18:31</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>82c506f992e20210335eb6181d76435b</update_guid>
+        <update_guid_history>82c506f992e20210335eb6181d76435b:-894486359,2333c2b5cae2021038841f2e8f5c88a8:-421925930,1f610635c3e20210629be07c11c19176:1345089633,4a9f75f1eae202105271be42c0e6014b:-1130374150</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Charity Create Profile">d7b026ef9372021094e3f15a7bba1049</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-21 06:01:21</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>9d9af65c9b5a4ea7ad1ed182da25d251</sys_id>
+        <sys_metadata>029f75f193e2021094e3f15a7bba104a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Charity Create Profile</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_widget_029f75f193e2021094e3f15a7bba104a</sys_update_name>
+        <sys_update_version display_value="sp_widget_029f75f193e2021094e3f15a7bba104a">cac506f993e2021094e3f15a7bba105b</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 06:01:21</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

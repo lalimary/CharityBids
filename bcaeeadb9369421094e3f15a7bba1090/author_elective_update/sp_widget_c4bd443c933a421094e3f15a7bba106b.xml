@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* General Styles */
+
+.head {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    margin: 18px 0px;
+}
+
+.head-h1 {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.main-head {
+    display: flex;
+}
+
+.container-1 {
+    width: 33%;
+    padding: 1.1rem;
+    display: flex;
+    border: 2px solid #fff;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    margin: 15px;
+}
+
+p.p-container-1 {
+    text-align: center;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_home_widget_3</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb_home widget 3</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-12 06:15:36</sys_created_on>
+        <sys_id>c4bd443c933a421094e3f15a7bba106b</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>cb_home widget 3</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_c4bd443c933a421094e3f15a7bba106b</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-13 16:51:30</sys_updated_on>
+        <template><![CDATA[<div class="head">
+  <h1 class="head-h1">
+      About Our Organization
+    </h1>
+  <hr>
+  <div class="main-head">
+    <div class="container-1">
+      <h2 class="head-container-1">
+        Our Mission
+      </h2>
+      <p class="p-container-1">
+
+        To transform lives through generosity and community support, connecting donors with those in need to create positive change.
+      </p>
+    </div>
+
+
+     <div class="container-1">
+      <h2 class="head-container-2">
+        Our History
+      </h2>
+      <p class="p-container-1">
+        Founded in 2022, we began with a vision to make a tangible difference in the lives of those facing hardship. We've grown into a trusted platform for charitable auctions, providing critical aid where it's needed most.
+      </p>
+    </div>
+
+       <div class="container-1">
+      <h2 class="head-container-3">
+        Our Impact
+      </h2>
+      <p class="p-container-1">
+  We've delivered essential support to families in crisis, empowered children's education, and improved health and wellness in underserved communities. Your support brings hope and creates lasting change. Join us in making a difference.
+      </p>
+    </div>
+  </div>
+</div>]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_widget_c4bd443c933a421094e3f15a7bba106b</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;/* General Styles */
+
+.head {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    margin: 18px 0px;
+}
+
+.head-h1 {
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.main-head {
+    display: flex;
+}
+
+.container-1 {
+    width: 33%;
+    padding: 1.1rem;
+    display: flex;
+    border: 2px solid #fff;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    margin: 15px;
+}
+
+p.p-container-1 {
+    text-align: center;
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;cb_home_widget_3&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;cb_home widget 3&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;lalitha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-12 06:15:36&lt;/sys_created_on&gt;&lt;sys_id&gt;c4bd443c933a421094e3f15a7bba106b&lt;/sys_id&gt;&lt;sys_mod_count&gt;19&lt;/sys_mod_count&gt;&lt;sys_name&gt;cb_home widget 3&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_c4bd443c933a421094e3f15a7bba106b&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;lalitha&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-13 16:51:30&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="head"&gt;
+  &lt;h1 class="head-h1"&gt;
+      About Our Organization
+    &lt;/h1&gt;
+  &lt;hr&gt;
+  &lt;div class="main-head"&gt;
+    &lt;div class="container-1"&gt;
+      &lt;h2 class="head-container-1"&gt;
+        Our Mission
+      &lt;/h2&gt;
+      &lt;p class="p-container-1"&gt;
+
+        To transform lives through generosity and community support, connecting donors with those in need to create positive change.
+      &lt;/p&gt;
+    &lt;/div&gt;
+
+
+     &lt;div class="container-1"&gt;
+      &lt;h2 class="head-container-2"&gt;
+        Our History
+      &lt;/h2&gt;
+      &lt;p class="p-container-1"&gt;
+        Founded in 2022, we began with a vision to make a tangible difference in the lives of those facing hardship. We've grown into a trusted platform for charitable auctions, providing critical aid where it's needed most.
+      &lt;/p&gt;
+    &lt;/div&gt;
+
+       &lt;div class="container-1"&gt;
+      &lt;h2 class="head-container-3"&gt;
+        Our Impact
+      &lt;/h2&gt;
+      &lt;p class="p-container-1"&gt;
+  We've delivered essential support to families in crisis, empowered children's education, and improved health and wellness in underserved communities. Your support brings hope and creates lasting change. Join us in making a difference.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-238296097</payload_hash>
+        <record_name>cb_home widget 3</record_name>
+        <reverted_from/>
+        <source>c0eb6f489326c61094e3f15a7bba1011</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-13 16:51:30</sys_created_on>
+        <sys_id>f8d8e3c193bac21094e3f15a7bba10ac</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1901282f2f10000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-13 16:51:30</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>f0d8e3c100bac21085df15e9fe2b3aac</update_guid>
+        <update_guid_history>f0d8e3c100bac21085df15e9fe2b3aac:-238296097,5c19247cbdba4210db2c886eb2151332:779037587,fed8247c8aba421072325f8ca5ea8d20:658544167,e048683ce8ba4210eea60437a024d0a1:-694773532,f2d1a434c8ba4210eea4005d001c99ae:736530384,3071a4349eba4210f8c794ed90c0d082:741121390,7fb024b058ba421022161e89ff9f0989:-584013023,654068b01dba42104cb866d0cc1d776a:-1201939100,221068b0cbba4210531f9e2273e24436:-950832175,61ff94b0c8ba421001248538d4ef6789:-493061391,51bf547013ba421081f7fa9562b84475:-295277061,2b4fd470d7ba4210f8216475b66590a6:1857730296,b02f98bc437a4210b23e3fbc739b63dc:1018008914,95fe1470b5ba421048c34d8be8ef4908:-1327407438,53e098fcf43a4210620459c628ca2ec2:2139558072,f96098fc683a4210ee9b786fc271beae:1513100803,e8ffc83c3f3a42103c00400facf5a263:1943086489,92bf4cbc4e3a42100bc8352bb960d791:-1753418512,908f003c5b3a4210722ff0eea47464c9:-112372169,84bdc83cd13a4210ca53e589c1aa505a:-1403489896</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="cb_home widget 3">b43e1aeb9372021094e3f15a7bba10c4</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-21 05:50:15</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>6d5203749dff4470ab4da8bba29eb0c4</sys_id>
+        <sys_metadata>c4bd443c933a421094e3f15a7bba106b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cb_home widget 3</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_widget_c4bd443c933a421094e3f15a7bba106b</sys_update_name>
+        <sys_update_version display_value="sp_widget_c4bd443c933a421094e3f15a7bba106b">f8d8e3c193bac21094e3f15a7bba10ac</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 05:50:15</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

@@ -12,7 +12,7 @@
         <element attributes="edge_encryption_enabled=true" label="Description" mandatory="true" max_length="500" name="description" type="string"/>
         <element attributes="encode_utf8=false" default="javascript:new UserProfileUtils().getUserProfileSysId();" label="Donator" max_length="32" name="donator" read_only="true" reference="x_1383184_charityb_user_profile" reference_qual="null" reference_qual_condition="null" type="reference"/>
         <element label="End date" mandatory="true" max_length="40" name="end_date" type="glide_date"/>
-        <element label="Highest bid amount" max_length="20" name="highest_bid_amount" type="currency"/>
+        <element label="Highest bid amount" max_length="20" name="highest_bid_amount" read_only="true" type="currency"/>
         <element label="Image" max_length="40" name="image" type="user_image"/>
         <element attributes="edge_encryption_enabled=true" display="true" label="Item name" mandatory="true" max_length="40" name="item_name" type="string"/>
         <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>

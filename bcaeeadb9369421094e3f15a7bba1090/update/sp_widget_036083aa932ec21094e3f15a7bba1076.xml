@@ -2,7 +2,7 @@
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
         <client_script><![CDATA[// Define the 'api' object
-var api = {};
+
 
 // Controller function
 api.controller = function($scope) {
@@ -191,7 +191,7 @@ api.controller = function($scope) {
     };
 }
 ]]></link>
-        <name>event list</name>
+        <name>cb event list</name>
         <option_schema>[{"name":"show_star_rating","default_value":"Use system properties","section":"Presentation","label":"Show star rating","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]},{"hint":"Number of articles to display per page","name":"limit_article","section":"other","default_value":"10","label":"Number of articles to display per page","type":"integer"}]</option_schema>
         <public>true</public>
         <roles/>
@@ -229,14 +229,14 @@ api.controller = function($scope) {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-05 19:30:10</sys_created_on>
         <sys_id>036083aa932ec21094e3f15a7bba1076</sys_id>
-        <sys_mod_count>7</sys_mod_count>
-        <sys_name>event list</sys_name>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>cb event list</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_036083aa932ec21094e3f15a7bba1076</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-05 19:49:04</sys_updated_on>
+        <sys_updated_on>2024-06-21 06:13:46</sys_updated_on>
         <template><![CDATA[<div class="container">
     <h1>Events List</h1>
     <div id="events-grid" class="events-grid">

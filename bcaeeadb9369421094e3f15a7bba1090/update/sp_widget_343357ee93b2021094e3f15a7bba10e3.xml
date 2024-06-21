@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {
-  /* widget controller */
-  var c = this;
-	
-c.showDetails = function(item) {
-      // c.selectedItem = item;
-		var itemDetailUrl = "?id=cb_bid_form&sys_id=" + item.sys_id;
-		window.location.href = itemDetailUrl;
-	};
+        <client_script><![CDATA[// source_widget.client.js
+api.controller = function($rootScope, $location) {
+    var c = this;
+
+    c.showDetails = function(item) {
+        var params = {
+            sys_id: item.sys_id,
+            item_name: item.item_name,  // Adjust based on your item details structure
+            // Add other parameters as needed
+        };
+
+        // Broadcast event to update cb_bid_form
+        $rootScope.$broadcast('sp.update', {
+            widget: {
+                id: 'cb_bid_form'
+            },
+            
+            params: params
+        });
+    };
 };
-
-
-
-
-
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>img {
+    width: 50%;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -34,28 +42,28 @@ c.showDetails = function(item) {
         <roles/>
         <script><![CDATA[(function() {
 
-	  var ItemSysId = $sp.getParameter('sys_id');
+	var ItemSysId = $sp.getParameter('sys_id');
 
-    // Create a new GlideRecord object
-    var gr = new GlideRecord('x_1383184_charityb_item');
-        gr.addQuery('sys_id',ItemSysId)
-        gr.query();
-	
-	        
-		
-      while(gr.next()){
-				
-                data.item_name= gr.getValue('item_name');
-                data.start_date= gr.getValue('start_date');
-                data.end_date= gr.getValue('end_date');
-                data.value= gr.getValue('value');
-               data.start_bid_amount=gr.getValue('start_bid_amount');
-							 data.highest_bid_amount=gr.getValue('highest_bid_amount');
-				       data.auction_status=gr.getValue('auction_status');
-               data.image= gr.getDisplayValue('image');
-							data.description=gr.getValue('description'); 
-			}
- 
+	// Create a new GlideRecord object
+	var gr = new GlideRecord('x_1383184_charityb_item');
+	gr.addQuery('sys_id',ItemSysId)
+	gr.query();
+
+
+
+	while(gr.next()){
+
+		data.item_name= gr.getValue('item_name');
+		data.start_date= gr.getValue('start_date');
+		data.end_date= gr.getValue('end_date');
+		data.value= gr.getValue('value');
+		data.start_bid_amount=gr.getValue('start_bid_amount');
+		data.highest_bid_amount=gr.getValue('highest_bid_amount');
+		data.auction_status=gr.getValue('auction_status');
+		data.image= gr.getDisplayValue('image');
+		data.description=gr.getValue('description'); 
+	}
+
 })();
 ]]></script>
         <servicenow>false</servicenow>
@@ -63,23 +71,21 @@ c.showDetails = function(item) {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-18 07:07:54</sys_created_on>
         <sys_id>343357ee93b2021094e3f15a7bba10e3</sys_id>
-        <sys_mod_count>53</sys_mod_count>
+        <sys_mod_count>64</sys_mod_count>
         <sys_name>cb item details</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_343357ee93b2021094e3f15a7bba10e3</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-19 11:18:37</sys_updated_on>
-        <template><![CDATA[<!--<div class="item-details">-->
-<!--<div ng-if="c.selectedItem">-->
-
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-21 08:12:59</sys_updated_on>
+        <template><![CDATA[<div class="item-details" ng-if="c.data">
   <div class="modal-content">
     <div class="modal-header">
       <h4 class="modal-name">{{c.data.item_name}}</h4>
-    </div>-->
+    </div>
     <div class="imgC">
-      <img ng-src="{{c.selectedItem.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{c.selectedItem.item_name}}">
+      <img ng-src="{{c.data.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{c.data.item_name}}">
     </div>
     <div class="modal-body">
       <p><strong>Description:</strong> {{c.data.description}}</p>
@@ -89,9 +95,7 @@ c.showDetails = function(item) {
       <p><strong>Start Bid:</strong> {{c.data.start_bid_amount}}</p>
       <p><strong>Highest Bid:</strong> {{c.data.highest_bid_amount}}</p>
       <p><strong>Status:</strong> {{c.data.auction_status}}</p>
-        <!--<button class="btn btn-secondary" ng-click="c.addTo('Bid For Item')">Bid</button>-->
-       <a href="?id=cb_bid_form&sys_id={{item.sys_id}}" target="_blank" class="btn btn-primary">Bid</a>
-      </div>
+      <button class="btn btn-primary" ng-click="c.showDetails(c.data)">Place Bid</button>
     </div>
   </div>
 </div>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget">
+    <m2m_sp_ng_pro_sp_widget action="DELETE">
+        <sp_angular_provider display_value="spAttachmentManager">06e836f0d722120023c84f80de6103a1</sp_angular_provider>
+        <sp_widget display_value="events form">621fbe1e93aa821094e3f15a7bba10a3</sp_widget>
+        <sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-05 00:45:55</sys_created_on>
+        <sys_id>ee1fbe1e93aa821094e3f15a7bba10a5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>spAttachmentManager.events form</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>m2m_sp_ng_pro_sp_widget_ee1fbe1e93aa821094e3f15a7bba10a5</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-05 00:45:55</sys_updated_on>
+    </m2m_sp_ng_pro_sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>m2m_sp_ng_pro_sp_widget_ee1fbe1e93aa821094e3f15a7bba10a5</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget"><m2m_sp_ng_pro_sp_widget action="INSERT_OR_UPDATE"><sp_angular_provider display_value="spAttachmentManager">06e836f0d722120023c84f80de6103a1</sp_angular_provider><sp_widget display_value="events form">621fbe1e93aa821094e3f15a7bba10a3</sp_widget><sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name><sys_created_by>christy</sys_created_by><sys_created_on>2024-06-05 00:45:55</sys_created_on><sys_id>ee1fbe1e93aa821094e3f15a7bba10a5</sys_id><sys_mod_count>0</sys_mod_count><sys_name>spAttachmentManager.events form</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>m2m_sp_ng_pro_sp_widget_ee1fbe1e93aa821094e3f15a7bba10a5</sys_update_name><sys_updated_by>christy</sys_updated_by><sys_updated_on>2024-06-05 00:45:55</sys_updated_on></m2m_sp_ng_pro_sp_widget></record_update>]]></payload>
+        <payload_hash>1695736067</payload_hash>
+        <record_name>spAttachmentManager.events form</record_name>
+        <reverted_from/>
+        <source>247253e493ae021094e3f15a7bba10eb</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-05 00:45:55</sys_created_on>
+        <sys_id>261ff65e93aa821094e3f15a7bba10fc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18fe5dc10cf0000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-05 00:45:55</sys_updated_on>
+        <type>Angular Providers</type>
+        <update_guid>6a1ff65e5faa82108ddd108375f8bcfb</update_guid>
+        <update_guid_history>6a1ff65e5faa82108ddd108375f8bcfb:1695736067</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="spAttachmentManager.events form">bdb16e2393b2021094e3f15a7bba1081</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-21 06:05:37</sys_created_on>
+        <sys_db_object display_value="" name="m2m_sp_ng_pro_sp_widget">m2m_sp_ng_pro_sp_widget</sys_db_object>
+        <sys_id>0a7c621c838242e09674df9f48a275e1</sys_id>
+        <sys_metadata>ee1fbe1e93aa821094e3f15a7bba10a5</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>spAttachmentManager.events form</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>m2m_sp_ng_pro_sp_widget_ee1fbe1e93aa821094e3f15a7bba10a5</sys_update_name>
+        <sys_update_version display_value="m2m_sp_ng_pro_sp_widget_ee1fbe1e93aa821094e3f15a7bba10a5">261ff65e93aa821094e3f15a7bba10fc</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 06:05:37</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

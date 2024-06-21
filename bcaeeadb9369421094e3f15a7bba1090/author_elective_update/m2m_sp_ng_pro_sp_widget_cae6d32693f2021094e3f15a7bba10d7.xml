@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget">
+    <m2m_sp_ng_pro_sp_widget action="DELETE">
+        <sp_angular_provider display_value="Event details route">29b6dfe293f2021094e3f15a7bba10e6</sp_angular_provider>
+        <sp_widget display_value="Event list 2">2db06d859332c21094e3f15a7bba10e4</sp_widget>
+        <sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-18 07:24:06</sys_created_on>
+        <sys_id>cae6d32693f2021094e3f15a7bba10d7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Event details route.Event list 2</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>m2m_sp_ng_pro_sp_widget_cae6d32693f2021094e3f15a7bba10d7</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-18 07:24:06</sys_updated_on>
+    </m2m_sp_ng_pro_sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>m2m_sp_ng_pro_sp_widget_cae6d32693f2021094e3f15a7bba10d7</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="m2m_sp_ng_pro_sp_widget"><m2m_sp_ng_pro_sp_widget action="INSERT_OR_UPDATE"><sp_angular_provider display_value="Event details route">29b6dfe293f2021094e3f15a7bba10e6</sp_angular_provider><sp_widget display_value="Event list 2">2db06d859332c21094e3f15a7bba10e4</sp_widget><sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-06-18 07:24:06</sys_created_on><sys_id>cae6d32693f2021094e3f15a7bba10d7</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Event details route.Event list 2</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>m2m_sp_ng_pro_sp_widget_cae6d32693f2021094e3f15a7bba10d7</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-06-18 07:24:06</sys_updated_on></m2m_sp_ng_pro_sp_widget></record_update>]]></payload>
+        <payload_hash>-1843045213</payload_hash>
+        <record_name>Event details route.Event list 2</record_name>
+        <reverted_from/>
+        <source>c0eb6f489326c61094e3f15a7bba1011</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-18 07:24:06</sys_created_on>
+        <sys_id>0ee6d32693f2021094e3f15a7bba10d9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1902a3b48a20000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-18 07:24:06</sys_updated_on>
+        <type>Angular Providers</type>
+        <update_guid>42e6d326f8f202104a2ac7322f8881d9</update_guid>
+        <update_guid_history>42e6d326f8f202104a2ac7322f8881d9:-1843045213</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Event details route.Event list 2">2682a1979332c21094e3f15a7bba10b3</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-20 06:51:08</sys_created_on>
+        <sys_db_object display_value="" name="m2m_sp_ng_pro_sp_widget">m2m_sp_ng_pro_sp_widget</sys_db_object>
+        <sys_id>6de54ca12d384d4cb2cd36de980721e4</sys_id>
+        <sys_metadata>cae6d32693f2021094e3f15a7bba10d7</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Event details route.Event list 2</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>m2m_sp_ng_pro_sp_widget_cae6d32693f2021094e3f15a7bba10d7</sys_update_name>
+        <sys_update_version display_value="m2m_sp_ng_pro_sp_widget_cae6d32693f2021094e3f15a7bba10d7">0ee6d32693f2021094e3f15a7bba10d9</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-20 06:51:08</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

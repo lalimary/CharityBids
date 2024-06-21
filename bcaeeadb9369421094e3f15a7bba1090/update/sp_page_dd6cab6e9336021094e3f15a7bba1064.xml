@@ -17,15 +17,15 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-18 08:57:59</sys_created_on>
         <sys_id>dd6cab6e9336021094e3f15a7bba1064</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>2</sys_mod_count>
         <sys_name>cb_bid_form</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_page_dd6cab6e9336021094e3f15a7bba1064</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-19 06:07:20</sys_updated_on>
-        <title>Bid form</title>
+        <sys_updated_on>2024-06-21 07:23:30</sys_updated_on>
+        <title>cb bid form</title>
         <use_seo_script>false</use_seo_script>
     </sp_page>
     <sys_translated_text action="delete_multiple" query="documentkey=dd6cab6e9336021094e3f15a7bba1064"/>

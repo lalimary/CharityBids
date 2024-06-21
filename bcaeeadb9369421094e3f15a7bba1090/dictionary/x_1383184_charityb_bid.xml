@@ -3,7 +3,7 @@
         <element label="Bid amount" max_length="20" name="bid_amount" type="currency"/>
         <element label="Item name" max_length="32" name="item_name" reference="x_1383184_charityb_item" reference_qual="auction_status=auction_in_progress^EQ" reference_qual_condition="auction_status=auction_in_progress^EQ" type="reference"/>
         <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" read_only="true" type="string"/>
-        <element default="javascript:new UserProfileUtils().getUserProfileSysId();" display="true" label="Bidder" max_length="32" name="x_1383184_charityb_bidder" reference="x_1383184_charityb_user_profile" type="reference"/>
+        <element default="javascript:new UserProfileUtils().getUserProfileSysId();" display="true" label="Bidder" max_length="32" name="x_1383184_charityb_bidder" read_only="true" reference="x_1383184_charityb_user_profile" type="reference"/>
         <element active="false" label="Bid amount" mandatory="true" max_length="20" name="your_bid_amount" reference_qual="null" reference_qual_condition="null" type="currency"/>
         <index name="index">
             <element name="item_name"/>

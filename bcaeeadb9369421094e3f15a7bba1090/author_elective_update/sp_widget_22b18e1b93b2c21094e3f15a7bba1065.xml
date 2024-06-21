@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+    var c = this;
+
+    // Function to filter items based on selected categories
+    c.filterItems = function() {
+        var selectedCategories = c.data.categories.filter(function(category) {
+            return category.selected;
+        }).map(function(category) {
+            return category.name;
+        });
+
+        // Update server with selected categories and fetch filtered items
+        c.server.update({
+            selectedCategories: selectedCategories
+        }).then(function(response) {
+            // Update the item list with the response from the server
+            c.data.items = response.data.items;
+        });
+    };
+
+    // Initialize the widget by fetching all items (if necessary)
+    c.$onInit = function() {
+        c.filterItems();
+    };
+}();
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_filter_item</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Cb filter item</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+    // Initialize data objects
+    data.categories = [];
+    data.items = [];
+
+    // Fetch all unique categories from the item table
+    var categoryGR = new GlideRecord('x_1383184_charityb_item');
+    categoryGR.query();
+    var categorySet = new Set();
+    while (categoryGR.next()) {
+        var category = categoryGR.getValue('category');
+        if (category) {
+            categorySet.add(category);
+        }
+    }
+
+    // Convert category set to an array and store in data.categories
+    categorySet.forEach(function(category) {
+        data.categories.push({
+            name: category,
+            label: category
+        });
+    });
+
+    // Fetch items based on selected categories
+    if (input && input.selectedCategories && input.selectedCategories.length > 0) {
+        var selectedCategories = input.selectedCategories;
+        var itemGR = new GlideRecord('x_1383184_charityb_item');
+        itemGR.addQuery('category', 'IN', selectedCategories.join(','));
+        itemGR.query();
+        while (itemGR.next()) {
+            data.items.push({
+                sys_id: itemGR.getUniqueValue(),
+                name: itemGR.getValue('name'),
+                description: itemGR.getValue('description'),
+                category: itemGR.getValue('category'),
+                startdate: itemGR.getValue('start_date'),
+                enddate: itemGR.getValue('end_date'),
+                startBidAmount: itemGR.getValue('start_bid_amount'),
+                highestBidAmount: itemGR.getValue('highest_bid_amount'),
+                image: itemGR.getValue('image')
+            });
+        }
+    } else {
+        // Fetch all items if no categories are selected
+        var allItemGR = new GlideRecord('x_1383184_charityb_item');
+        allItemGR.query();
+        while (allItemGR.next()) {
+            data.items.push({
+                sys_id: allItemGR.getUniqueValue(),
+                name: allItemGR.getValue('name'),
+                description: allItemGR.getValue('description'),
+                category: allItemGR.getValue('category'),
+                startdate: allItemGR.getValue('start_date'),
+                enddate: allItemGR.getValue('end_date'),
+                startBidAmount: allItemGR.getValue('start_bid_amount'),
+                highestBidAmount: allItemGR.getValue('highest_bid_amount'),
+                image: allItemGR.getValue('image')
+            });
+        }
+    }
+})($sp, input, data, options, gs);
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-20 09:07:24</sys_created_on>
+        <sys_id>22b18e1b93b2c21094e3f15a7bba1065</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Cb filter item</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_22b18e1b93b2c21094e3f15a7bba1065</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-20 09:38:52</sys_updated_on>
+        <template><![CDATA[<div>
+    <h2>Categories</h2>
+    <div ng-repeat="category in c.data.categories">
+        <input type="checkbox" ng-model="category.selected" ng-change="c.filterItems()"/> {{category.label}}
+    </div>
+    <h2>Items</h2>
+    <div ng-repeat="item in c.data.items">
+        <div class="card">
+            <img ng-if="item.image" ng-src="{{item.image}}" alt="{{item.name}}"/>
+            <h3>{{item.name}}</h3>
+            <p>{{item.description}}</p>
+            <p>Category: {{item.category}}</p>
+            <p>Start Date: {{item.startdate}}</p>
+            <p>End Date: {{item.enddate}}</p>
+            <p>Start Bid Amount: {{item.startBidAmount}}</p>
+            <p>Highest Bid Amount: {{item.highestBidAmount}}</p>
+        </div>
+    </div>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_widget_22b18e1b93b2c21094e3f15a7bba1065</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller=function() {
+    var c = this;
+
+    // Function to filter items based on selected categories
+    c.filterItems = function() {
+        var selectedCategories = c.data.categories.filter(function(category) {
+            return category.selected;
+        }).map(function(category) {
+            return category.name;
+        });
+
+        // Update server with selected categories and fetch filtered items
+        c.server.update({
+            selectedCategories: selectedCategories
+        }).then(function(response) {
+            // Update the item list with the response from the server
+            c.data.items = response.data.items;
+        });
+    };
+
+    // Initialize the widget by fetching all items (if necessary)
+    c.$onInit = function() {
+        c.filterItems();
+    };
+}();
+]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css/&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;cb_filter_item&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;Cb filter item&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function($sp, input, data, options, gs) {
+    // Initialize data objects
+    data.categories = [];
+    data.items = [];
+
+    // Fetch all unique categories from the item table
+    var categoryGR = new GlideRecord('x_1383184_charityb_item');
+    categoryGR.query();
+    var categorySet = new Set();
+    while (categoryGR.next()) {
+        var category = categoryGR.getValue('category');
+        if (category) {
+            categorySet.add(category);
+        }
+    }
+
+    // Convert category set to an array and store in data.categories
+    categorySet.forEach(function(category) {
+        data.categories.push({
+            name: category,
+            label: category
+        });
+    });
+
+    // Fetch items based on selected categories
+    if (input &amp;&amp; input.selectedCategories &amp;&amp; input.selectedCategories.length &gt; 0) {
+        var selectedCategories = input.selectedCategories;
+        var itemGR = new GlideRecord('x_1383184_charityb_item');
+        itemGR.addQuery('category', 'IN', selectedCategories.join(','));
+        itemGR.query();
+        while (itemGR.next()) {
+            data.items.push({
+                sys_id: itemGR.getUniqueValue(),
+                name: itemGR.getValue('name'),
+                description: itemGR.getValue('description'),
+                category: itemGR.getValue('category'),
+                startdate: itemGR.getValue('start_date'),
+                enddate: itemGR.getValue('end_date'),
+                startBidAmount: itemGR.getValue('start_bid_amount'),
+                highestBidAmount: itemGR.getValue('highest_bid_amount'),
+                image: itemGR.getValue('image')
+            });
+        }
+    } else {
+        // Fetch all items if no categories are selected
+        var allItemGR = new GlideRecord('x_1383184_charityb_item');
+        allItemGR.query();
+        while (allItemGR.next()) {
+            data.items.push({
+                sys_id: allItemGR.getUniqueValue(),
+                name: allItemGR.getValue('name'),
+                description: allItemGR.getValue('description'),
+                category: allItemGR.getValue('category'),
+                startdate: allItemGR.getValue('start_date'),
+                enddate: allItemGR.getValue('end_date'),
+                startBidAmount: allItemGR.getValue('start_bid_amount'),
+                highestBidAmount: allItemGR.getValue('highest_bid_amount'),
+                image: allItemGR.getValue('image')
+            });
+        }
+    }
+})($sp, input, data, options, gs);
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;lalitha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-20 09:07:24&lt;/sys_created_on&gt;&lt;sys_id&gt;22b18e1b93b2c21094e3f15a7bba1065&lt;/sys_id&gt;&lt;sys_mod_count&gt;5&lt;/sys_mod_count&gt;&lt;sys_name&gt;Cb filter item&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_22b18e1b93b2c21094e3f15a7bba1065&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;lalitha&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-20 09:38:52&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div&gt;
+    &lt;h2&gt;Categories&lt;/h2&gt;
+    &lt;div ng-repeat="category in c.data.categories"&gt;
+        &lt;input type="checkbox" ng-model="category.selected" ng-change="c.filterItems()"/&gt; {{category.label}}
+    &lt;/div&gt;
+    &lt;h2&gt;Items&lt;/h2&gt;
+    &lt;div ng-repeat="item in c.data.items"&gt;
+        &lt;div class="card"&gt;
+            &lt;img ng-if="item.image" ng-src="{{item.image}}" alt="{{item.name}}"/&gt;
+            &lt;h3&gt;{{item.name}}&lt;/h3&gt;
+            &lt;p&gt;{{item.description}}&lt;/p&gt;
+            &lt;p&gt;Category: {{item.category}}&lt;/p&gt;
+            &lt;p&gt;Start Date: {{item.startdate}}&lt;/p&gt;
+            &lt;p&gt;End Date: {{item.enddate}}&lt;/p&gt;
+            &lt;p&gt;Start Bid Amount: {{item.startBidAmount}}&lt;/p&gt;
+            &lt;p&gt;Highest Bid Amount: {{item.highestBidAmount}}&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1149805341</payload_hash>
+        <record_name>Cb filter item</record_name>
+        <reverted_from/>
+        <source>c0eb6f489326c61094e3f15a7bba1011</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-20 09:38:52</sys_created_on>
+        <sys_id>a7e84e1393f2c21094e3f15a7bba100f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1903503601e0000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-20 09:38:52</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>6fe84e136ff2c2103c90afd85d54670e</update_guid>
+        <update_guid_history>6fe84e136ff2c2103c90afd85d54670e:-1149805341,4715ce5f71b2c210caf046eb8f4a1dfa:-1831668617,28e4ce5f21b2c2104d8d81cb648c7d3d:1263387292,5224ce1f8eb2c2102505a7a27f4b203c:-1810725445,d5f3ce1f95b2c21069fd1a26f388eb35:1439960089,6ab18e1b4bb2c210f4e84e4c92c38d66:-515429382</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Cb filter item">d9956aa793b2021094e3f15a7bba1090</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-21 06:22:31</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>20aa3583e3c24280acfab4231a8c4000</sys_id>
+        <sys_metadata>22b18e1b93b2c21094e3f15a7bba1065</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Cb filter item</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_widget_22b18e1b93b2c21094e3f15a7bba1065</sys_update_name>
+        <sys_update_version display_value="sp_widget_22b18e1b93b2c21094e3f15a7bba1065">a7e84e1393f2c21094e3f15a7bba100f</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 06:22:31</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

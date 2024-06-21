@@ -43,7 +43,7 @@
 // })(current, previous);
 
 
-(function executeRule(current, previous /*null when async*/) {
+(function executeRule(current, previous /*null when async*/ ) {
     var bidAmount = parseFloat(current.getValue('bid_amount'));
     var itemSysId = current.getValue('item_name');
 
@@ -53,19 +53,18 @@
     if (!result.valid) {
         gs.addErrorMessage(result.message);
         current.setAbortAction(true); // Prevent the insert operation
+        current.setValue('bid_amount','');
     } else if (result.highestBidUpdated) {
         gs.addInfoMessage(gs.getMessage('Highest bid amount updated successfully.'));
     }
-})(current, previous);
-
-]]></script>
+})(current, previous);]]></script>
         <sys_class_name>sys_script</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-19 08:41:59</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>37027c4793fa421094e3f15a7bba100d</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>17</sys_mod_count>
         <sys_name>testbs2</sys_name>
         <sys_overrides/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
@@ -73,7 +72,7 @@
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_script_37027c4793fa421094e3f15a7bba100d</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-19 11:03:11</sys_updated_on>
+        <sys_updated_on>2024-06-20 08:49:35</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

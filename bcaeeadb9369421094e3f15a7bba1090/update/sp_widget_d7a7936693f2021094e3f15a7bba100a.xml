@@ -83,7 +83,7 @@
         <id>cb_event_details</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
-        <name>Event details</name>
+        <name>cb event details</name>
         <option_schema/>
         <public>false</public>
         <roles/>
@@ -116,14 +116,14 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-18 07:27:28</sys_created_on>
         <sys_id>d7a7936693f2021094e3f15a7bba100a</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>Event details</sys_name>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>cb event details</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_d7a7936693f2021094e3f15a7bba100a</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-19 04:43:40</sys_updated_on>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-21 06:09:03</sys_updated_on>
         <template><![CDATA[<div class="event-details-widget">
     <!-- Event Image -->
     <div class="event-image" ng-if="c.data.eventDetails.imageUrl">
