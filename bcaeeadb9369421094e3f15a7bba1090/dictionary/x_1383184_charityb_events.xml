@@ -7,10 +7,11 @@
         <element display="true" label="Event name" mandatory="true" max_length="200" name="event_name" type="string"/>
         <element choice="3" default="new" label="Event status" max_length="40" name="event_status" type="choice">
             <choice>
-                <element inactive_on_update="false" label="New" sequence="0" value="new"/>
-                <element inactive_on_update="false" label="In Progress" sequence="1" value="in progress"/>
-                <element inactive_on_update="false" label="Completed" sequence="2" value="completed"/>
-                <element inactive_on_update="false" label="Canceled" sequence="3" value="canceled"/>
+                <element inactive_on_update="false" label="New" sequence="1" value="new"/>
+                <element inactive_on_update="false" label="Schedule" sequence="2" value="schedule"/>
+                <element inactive_on_update="false" label="In Progress" sequence="3" value="in progress"/>
+                <element inactive_on_update="false" label="Completed" sequence="4" value="completed"/>
+                <element inactive_on_update="false" label="Canceled" sequence="5" value="canceled"/>
             </choice>
         </element>
         <element label="Image" max_length="40" name="image" type="user_image"/>

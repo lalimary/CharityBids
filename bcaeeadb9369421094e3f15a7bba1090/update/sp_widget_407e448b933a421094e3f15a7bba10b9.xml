@@ -1,68 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[// cb_bid_form.client.js
-api.controller = function($rootScope, $scope, $http, spUtil) {
-    var c = this;
+        <client_script><![CDATA[api.controller=(function() {
+  var c = this;
 
-    c.itemName = '';
-    c.bidAmount = 0; // Initialize bid amount
-    c.bidderName = '';
-    c.bidderEmail = '';
-    c.startBidAmount = '';
-    c.highestBidAmount = '';
+  c.data = {
+    item: {},
+    bid_amount: null
+  };
 
-    $scope.$on('sp.update', function(event, args) {
-        if (args.widget.id === 'cb_bid_form') {
-            c.itemName = args.params.item_name;
-            // Fetch bidder info (current user) and item info
-            fetchBidderInfo();
-            fetchItemInfo(args.params.item_name);
-        }
+  // Fetch item details
+  c.server.get().then(function(response) {
+    c.data.item = response.data.item;
+  });
+
+  // Function to submit the bid
+  c.submitBid = function() {
+    c.server.update({
+      bid_amount: c.data.bid_amount
+    }).then(function(response) {
+      if (response.data.successMessage) {
+        alert(response.data.successMessage);
+        // Optionally refresh item details or perform any other action after bid submission
+      } else {
+        alert('Failed to place bid: ' + response.data.errorMessage);
+      }
     });
-
-    c.submitBid = function() {
-        // Ensure bidAmount is valid before submitting
-        if ($scope.bidForm.$valid) {
-            var requestBody = {
-                bidder: gs.getUser().getID(),
-                bid_amount: c.bidAmount,
-                item_name: c.itemName
-            };
-
-            // Example using $http to submit bid (adjust as per your ServiceNow configuration)
-            $http.post('/api/now/table/x_1383184_charityb_bid', requestBody).then(function(response) {
-                // Handle success
-                spUtil.addInfoMessage('Bid submitted successfully.');
-                // Fetch bidder info again after successful bid submission
-                fetchBidderInfo(); // Refresh bidder info (current user)
-                // You can optionally broadcast an event to refresh the item details widget or update UI
-                $rootScope.$broadcast('refreshItemDetails');
-            }, function(error) {
-                // Handle error
-                spUtil.addErrorMessage('Failed to submit bid: ' + error.statusText);
-            });
-        }
-    };
-
-    function fetchBidderInfo() {
-        // Fetch current user's details (bidder)
-        c.bidderName = gs.getUser().getDisplayName(); // Assuming bidder's display name
-        c.bidderEmail = gs.getUser().getEmail(); // Assuming bidder's email
-    }
-
-    function fetchItemInfo(itemName) {
-        // Example: Fetch start bid amount and highest bid amount for the item
-        var gr = new GlideRecord('x_1383184_charityb_item');
-        gr.addQuery('item_name', itemName);
-        gr.query(function() {
-            if (gr.next()) {
-                c.startBidAmount = gr.getValue('start_bid_amount');
-                c.highestBidAmount = gr.getValue('highest_bid_amount');
-            }
-        });
-    }
-};
+  };
+})();
 ]]></client_script>
         <controller_as>c</controller_as>
         <css>//Donator Field
@@ -71,6 +36,10 @@ api.controller = function($rootScope, $scope, $http, spUtil) {
     display: table-cell;
     width: 3.6rem;
     display: none;
+}
+
+form.ng-pristine.ng-invalid.ng-invalid-required {
+    width: 39%;
 }
 
 span.field-decorations {
@@ -404,65 +373,71 @@ h1, .h1 {
         <option_schema>[{"name":"disableUIActions","section":"Behavior","label":"Disable UI Actions on Form","type":"boolean"},{"name":"showFormView","section":"Behavior","label":"Display current form view","type":"boolean"},{"name":"omitHeaderOptions","section":"Behavior","label":"Omit header options icon","type":"boolean"}]</option_schema>
         <public>false</public>
         <roles/>
-        <script><![CDATA[// bid_form.server.js
-// cb_bid_form.server.js
-(function() {
-    data.itemName = $sp.getParameter('item_name');
-})();
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+  var itemSysId = $sp.getParameter('sys_id');
 
+  if (!itemSysId) {
+    data.errorMessage = 'No item specified.';
+    return;
+  }
 
-// Assuming this is how you handle inserting a bid into your table
-(function() {
-    var user = gs.getUser();
-    var gr = new GlideRecord('x_1383184_charityb_bid');
-    gr.initialize();
-    gr.bidder = user.getID();
-    gr.bid_amount = data.bidAmount; // Make sure to properly retrieve bid amount from data
-    gr.item_name = data.item_name;
-    gr.insert();
-})();
+  var itemGR = new GlideRecord('x_1383184_charityb_item');
+  if (itemGR.get(itemSysId)) {
+    data.item = {
+      sys_id: itemGR.getUniqueValue(),
+      item_name: itemGR.getValue('item_name'),
+      start_bid_amount: itemGR.getValue('start_bid_amount'),
+      highest_bid_amount: itemGR.getValue('highest_bid_amount')
+    };
+  } else {
+    data.errorMessage = 'Item not found.';
+    return;
+  }
+
+  // Function to handle bid submission
+  data.submitBid = function() {
+    var bidGR = new GlideRecord('x_1383184_charityb_bid');
+    bidGR.initialize();
+    bidGR.setValue('item_name', itemGR.getValue('item_name')); // Set item name
+    bidGR.setValue('bid_amount', input.bid_amount);
+    //bidGR.setValue('bidder', gs.getUser().getUniqueValue()); // Reference to current user
+    if (bidGR.insert()) {
+      data.successMessage = 'Bid placed successfully!';
+    } else {
+      data.errorMessage = 'Failed to place bid.';
+    }
+  };
+})($sp, input, data, options, gs);
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-19 06:05:12</sys_created_on>
         <sys_id>407e448b933a421094e3f15a7bba10b9</sys_id>
-        <sys_mod_count>23</sys_mod_count>
+        <sys_mod_count>31</sys_mod_count>
         <sys_name>cb_bid_form</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_407e448b933a421094e3f15a7bba10b9</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-21 08:12:57</sys_updated_on>
-        <template><![CDATA[<!-- cb_bid_form.html -->
-<div class="bid-form">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-name">Place Bid for {{ c.itemName }}</h4>
-        </div>
-        <div class="modal-body">
-            <form name="bidForm" ng-submit="c.submitBid()">
-                <div class="form-group">
-                    <label for="bidAmount">Bid Amount:</label>
-                    <input type="number" id="bidAmount" class="form-control" ng-model="c.bidAmount" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit Bid</button>
-            </form>
-            <div>
-                <hr>
-                <h4>Bidder Information:</h4>
-                <p><strong>Bidder Name:</strong> {{ c.bidderName }}</p>
-                <p><strong>Bidder Email:</strong> {{ c.bidderEmail }}</p>
-            </div>
-            <div ng-if="c.startBidAmount && c.highestBidAmount">
-                <hr>
-                <h4>Item Information:</h4>
-                <p><strong>Start Bid Amount:</strong> {{ c.startBidAmount }}</p>
-                <p><strong>Highest Bid Amount:</strong> {{ c.highestBidAmount }}</p>
-            </div>
-        </div>
+        <sys_updated_on>2024-06-24 09:07:50</sys_updated_on>
+        <template><![CDATA[<div class="container">
+  <h1>Bid on {{c.data.item.item_name}}</h1>
+  <p><strong>Start Bid Amount:</strong> {{c.data.item.start_bid_amount}}</p>
+  <p><strong>Highest Bid Amount:</strong> {{c.data.item.highest_bid_amount}}</p>
+  
+  <form ng-submit="c.submitBid()">
+    <div class="form-group">
+      <label for="bid_amount">Bid Amount:</label>
+      <input type="number" id="bid_amount" ng-model="c.data.bid_amount" required class="form-control">
     </div>
+    
+    <button type="submit" class="btn btn-primary">Submit Bid</button>
+  </form>
+  
+  <div ng-if="c.data.successMessage" class="alert alert-success">{{c.data.successMessage}}</div>
+  <div ng-if="c.data.errorMessage" class="alert alert-danger">{{c.data.errorMessage}}</div>
 </div>
 ]]></template>
     </sp_widget>

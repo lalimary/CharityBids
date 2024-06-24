@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+
+
+	
+	c.updateevent=function(){
+		c.data.testimonial=c.testimonial;
+	};
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_testimonial</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb testimonial</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+if(!input)
+{
+		data.testimonial='';
+		data.events=[];
+		
+ var Eventsgr=new GlideRecord('x_1383184_charityb_events');
+			Eventsgr.addQuery('event_status','completed');
+			Eventsgr.query();
+		
+		while(Eventsgr.next()){
+			data.events.push({
+            sys_id: Eventsgr.getUniqueValue(),
+            event:Eventsgr.getValue('event_name')	
+        });
+		}
+	
+		Eventsgr.update("testimonial",data.testimonial);
+	
+}
+	
+	
+}) ();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-24 05:03:52</sys_created_on>
+        <sys_id>ae50f1e89347061094e3f15a7bba1099</sys_id>
+        <sys_mod_count>52</sys_mod_count>
+        <sys_name>cb testimonial</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_ae50f1e89347061094e3f15a7bba1099</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-24 09:10:34</sys_updated_on>
+        <template><![CDATA[<form name="Testimonials">
+<legend>
+  Share your Testimonials!
+  </legend>  
+  <div class="form-group">
+  <div class="col-md-12">
+    <select class="form-control" 
+              id="event_name" 
+              name="event_name" 
+              ng-model="c.event_name">
+   <option ng-repeat="event in c.data.events" value="{{event.event}}">{{event.event}}</option>
+    </select>
+
+   
+  </div>
+</div>   
+    
+<div class="form-group">
+  <div class="col-md-12">
+    <textarea class="form-control" 
+              id="testimonial" 
+              name="testimonial" 
+              ng-model="c.testimonial">
+    </textarea>
+  </div>
+
+</div>
+  <div class="form-group">
+  <div class="col-md-12">
+    <button type="submit" class="btn btn-primary" ng-click="c.updateevent()">Submit Testimonial</button>
+</form>]]></template>
+    </sp_widget>
+</record_update>

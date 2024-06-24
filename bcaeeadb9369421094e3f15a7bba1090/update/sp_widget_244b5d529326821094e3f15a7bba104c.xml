@@ -304,7 +304,8 @@ h1 {
         <option_schema>[{"name":"show_star_rating","default_value":"Use system properties","section":"Presentation","label":"Show star rating","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]},{"hint":"Number of articles to display per page","name":"limit_article","section":"other","default_value":"10","label":"Number of articles to display per page","type":"integer"}]</option_schema>
         <public>true</public>
         <roles/>
-        <script><![CDATA[(function($sp, input, data, options, gs) {
+        <script><![CDATA[
+(function($sp, input, data, options, gs) {
     // Initialize data arrays
     data.items = [];
     
@@ -340,20 +341,21 @@ h1 {
         gs.addInfoMessage("No Items Available");
     }
 })($sp, input, data, options, gs);
+
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-04 17:29:41</sys_created_on>
         <sys_id>244b5d529326821094e3f15a7bba104c</sys_id>
-        <sys_mod_count>194</sys_mod_count>
+        <sys_mod_count>196</sys_mod_count>
         <sys_name>cb_Item list</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_244b5d529326821094e3f15a7bba104c</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-21 07:02:58</sys_updated_on>
+        <sys_updated_on>2024-06-24 08:49:00</sys_updated_on>
         <template><![CDATA[<div class="container">
     <h1>Items List</h1>
     <div id="items-grid" class="items-grid">

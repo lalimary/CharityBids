@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, spUtil) {
+    var c = this;
+
+    // Initialize data.items
+    c.data.items = c.data.items || [];
+
+    // Initialize selectedCategory
+    c.selectedCategory = null;
+
+    // Function to handle placing a bid
+    c.placeBid = function(item) {
+        alert('Placing bid for: ' + item.item_name);
+        // Add your logic here to open a bid modal, send a request, etc.
+    };
+
+    // Function to show item details
+    c.showDetails = function(item) {
+        var itemDetailUrl = "?id=item_details&sys_id=" + item.sys_id;
+        window.location.href = itemDetailUrl;
+    };
+
+    // Function to filter items based on the selected category
+    c.filterItems = function() {
+        var queryParams = {};
+        if (c.selectedCategory) {
+            queryParams.selectedCategory = c.selectedCategory;
+        }
+        
+        console.log('Filtering items with params:', queryParams); // Log to check parameters
+        
+        spUtil.update($scope, queryParams).then(function(response) {
+            console.log('Response from server:', response); // Log server response
+            
+            if (response && response.data) {
+                c.data.items = response.data.items || [];
+                c.data.noItemsMessage = response.data.noItemsMessage || '';
+            } else {
+                console.error('Invalid response structure:', response);
+                c.data.items = [];
+                c.data.noItemsMessage = 'Error fetching items. Please try again later.';
+            }
+        }).catch(function(error) {
+            console.error('Error updating items:', error); // Log any errors
+            c.data.items = [];
+            c.data.noItemsMessage = 'Error fetching items. Please try again later.';
+        });
+    };
+
+    // Watch the items array for changes
+    $scope.$watch(function() {
+        return c.data.items;
+    }, function(newVal, oldVal) {
+        if (newVal && newVal.length === 0) {
+            c.data.noItemsMessage = "No items available";
+        } else {
+            c.data.noItemsMessage = "";
+        }
+    }, true);
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.container {
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 1200px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.select {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.items-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.item-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: calc(33.333% - 20px);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.item-card:hover {
+    transform: translateY(-5px);
+}
+
+.item-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.item-details {
+    padding: 15px;
+}
+
+.item-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.item-value,
+.item-start-bid,
+.item-highest-bid {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.alert-warning {
+    padding: 15px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    border-radius: 4px;
+    text-align: center;
+    margin: 20px 0;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_item_categories</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Cb item categories</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+    // Ensure input object is defined
+    input = input || {};
+
+    // Initialize GlideRecord for 'x_1383184_charityb_item'
+    var itemGR = new GlideRecord('x_1383184_charityb_item');
+
+    // Add condition for items in auction in progress
+    itemGR.addQuery('auction_status', 'auction_in_progress');
+
+    // Add query condition for specific category if selected
+    if (input.selectedCategory && input.selectedCategory.sys_id) {
+        itemGR.addQuery('category', input.selectedCategory.sys_id);
+    }
+
+    // Execute the query
+    itemGR.query();
+
+    // Initialize data array for items
+    data.items = [];
+
+    // Process the results
+    while (itemGR.next()) {
+        // Retrieve and process each item record
+        var donatorName = '';
+        if (itemGR.donator) {
+            var userGR = new GlideRecord('sys_user');
+            if (userGR.get(itemGR.donator)) {
+                donatorName = userGR.getValue('name');
+            }
+        }
+
+        // Populate item details into data array
+        data.items.push({
+            sys_id: itemGR.getUniqueValue(),
+            item_name: itemGR.getValue('item_name'),
+            donator: donatorName,
+            start_date: itemGR.getValue('start_date'),
+            end_date: itemGR.getValue('end_date'),
+            value: itemGR.getValue('value'),
+            start_bid_amount: itemGR.getValue('start_bid_amount'),
+            highest_bid_amount: itemGR.getValue('highest_bid_amount'),
+            auction_status: itemGR.getValue('auction_status'),
+            image: itemGR.getDisplayValue('image'),
+            description: itemGR.getValue('description')
+        });
+    }
+
+    // Set message if no items found
+    if (data.items.length === 0) {
+        data.noItemsMessage = "No Items Available";
+    } else {
+        data.noItemsMessage = "";
+    }
+})($sp, input, data, options, gs);
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-24 07:41:39</sys_created_on>
+        <sys_id>b174122c930b061094e3f15a7bba101d</sys_id>
+        <sys_mod_count>81</sys_mod_count>
+        <sys_name>Cb item categories</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_b174122c930b061094e3f15a7bba101d</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-24 18:05:50</sys_updated_on>
+        <template><![CDATA[<div class="container">
+    <h1>Items List</h1>
+    <div>
+        <select class="select" ng-model="c.selectedCategory">
+            <option value="">Select Category</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Books & Media">Books & Media</option>
+            <option value="Toys">Toys</option>
+            <option value="Accessories & Clothing">Accessories & Clothing</option>
+            <option value="Others">Others</option>
+            <option value="Musical Instruments">Musical Instruments</option>
+            <option value="Art & Craft">Art & Craft</option>
+            <option value="Home & Decor">Home & Decor</option>
+        </select>
+        <button class="btn btn-primary" ng-click="c.filterItems()">Filter</button>
+    </div>
+    <div id="items-grid" class="items-grid">
+        <div ng-repeat="item in c.data.items" class="item-card">
+            <img ng-src="{{ item.image || 'https://example.com/default_image.jpg' }}" alt="{{ item.item_name }}">
+            <div class="item-details">
+                <div class="item-title">{{ item.item_name }}</div>
+                <div class="item-value">Value: {{ item.value }}</div>
+                <div ng-if="item.auction_status === 'auction_in_progress'" class="item-start-bid">Start Bid: {{ item.start_bid_amount }}</div>
+                <div ng-if="item.auction_status === 'auction_in_progress' || item.auction_status === 'auction_completed'" class="item-highest-bid">Highest Bid: {{ item.highest_bid_amount }}</div>
+                <a href="?id=item_details&sys_id={{ item.sys_id }}" target="_blank" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+        <div ng-if="c.data.noItemsMessage" class="alert alert-warning">{{ c.data.noItemsMessage }}</div>
+    </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="DELETE">
+        <active>false</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>your_bid_amount</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Validate your bid amount</name>
+        <order/>
+        <script><![CDATA[var isUpdating = false;
+
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+    if (isLoading || newValue === '') {
+        return;
+    }
+
+   
+    if (isUpdating) {
+        return;
+    }
+
+    isUpdating = true;
+
+    function parseCurrency(value) {
+        if (!value) return NaN;
+        value = value.replace(/[^0-9.-]+/g, "");
+        return parseFloat(value);
+    }
+
+    var yourBid = parseCurrency(g_form.getValue('your_bid_amount'));
+    var startBid = parseCurrency(g_form.getValue('item_name.start_bid_amount'));
+    var highestBid = parseCurrency(g_form.getValue('item_name.highest_bid_amount'));
+
+    if (yourBid > startBid && yourBid > highestBid) {
+        g_form.setValue('item_name.highest_bid_amount', yourBid);
+    } else {
+        
+        g_form.setValue('your_bid_amount', 'null');
+        g_form.showFieldMsg('your_bid_amount', 'Your bid should be greater than the highest bid and start bid', 'error');
+
+        
+        return false;
+    }
+
+    g_form.clearMessages('your_bid_amount');
+
+    isUpdating = false; // Reset the flag after execution
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-05-29 16:31:52</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>86541ad493620a1094e3f15a7bba10fb</sys_id>
+        <sys_mod_count>58</sys_mod_count>
+        <sys_name>Validate your bid amount</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_script_client_86541ad493620a1094e3f15a7bba10fb</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 07:29:46</sys_updated_on>
+        <table>x_1383184_charityb_bid</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_script_client_86541ad493620a1094e3f15a7bba10fb</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;false&lt;/active&gt;&lt;applies_extended&gt;false&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description/&gt;&lt;field&gt;your_bid_amount&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;messages/&gt;&lt;name&gt;Validate your bid amount&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[var isUpdating = false;
+
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+    if (isLoading || newValue === '') {
+        return;
+    }
+
+   
+    if (isUpdating) {
+        return;
+    }
+
+    isUpdating = true;
+
+    function parseCurrency(value) {
+        if (!value) return NaN;
+        value = value.replace(/[^0-9.-]+/g, "");
+        return parseFloat(value);
+    }
+
+    var yourBid = parseCurrency(g_form.getValue('your_bid_amount'));
+    var startBid = parseCurrency(g_form.getValue('item_name.start_bid_amount'));
+    var highestBid = parseCurrency(g_form.getValue('item_name.highest_bid_amount'));
+
+    if (yourBid &gt; startBid &amp;&amp; yourBid &gt; highestBid) {
+        g_form.setValue('item_name.highest_bid_amount', yourBid);
+    } else {
+        
+        g_form.setValue('your_bid_amount', 'null');
+        g_form.showFieldMsg('your_bid_amount', 'Your bid should be greater than the highest bid and start bid', 'error');
+
+        
+        return false;
+    }
+
+    g_form.clearMessages('your_bid_amount');
+
+    isUpdating = false; // Reset the flag after execution
+}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;lalitha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-05-29 16:31:52&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;86541ad493620a1094e3f15a7bba10fb&lt;/sys_id&gt;&lt;sys_mod_count&gt;58&lt;/sys_mod_count&gt;&lt;sys_name&gt;Validate your bid amount&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_86541ad493620a1094e3f15a7bba10fb&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;lalitha&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-19 07:29:46&lt;/sys_updated_on&gt;&lt;table&gt;x_1383184_charityb_bid&lt;/table&gt;&lt;type&gt;onChange&lt;/type&gt;&lt;ui_type&gt;10&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>568254302</payload_hash>
+        <record_name>Validate your bid amount</record_name>
+        <reverted_from/>
+        <source>c0eb6f489326c61094e3f15a7bba1011</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 07:29:46</sys_created_on>
+        <sys_id>f6c1600793ba421094e3f15a7bba10b5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1902f66d3740000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 07:29:46</sys_updated_on>
+        <type>Client Script</type>
+        <update_guid>bec160073fba42101e71ba0ec40bc4b4</update_guid>
+        <update_guid_history>bec160073fba42101e71ba0ec40bc4b4:568254302,e0c96ef127a60210d4a19afe704313ea:-136191407,ea76a531526202102398b1718e40d391:-245307840,ae6629315462021006b49289f9ffab98:-1866950462,0d4661313c620210df9a1b08a7caeb79:-2097210874,193625312c620210fbecbd794539b821:-245307840,e2166131b9620210855d6fc15553f675:-783649204,fdf565bdb522021000281b33d84b3fa4:759671878,49d56dbd01220210c689b71c57ebedf3:-597212372,e285a5fd91220210b6ca95bcd6727860:1155001140,6949ddec4366021071a58339e339175f:-245307840,4f669da84066021003c4f70455855010:-1988025386,da569d68076602102d775a372cdabff1:1023205096,2636d9a86f66021086310d6bb58b6abc:-601197358,91261d681f66021080e5eeece7ac9ade:-190229397,d816d9a87d660210bb739dfa0a833203:-1536645585,da85916802660210b34e135033b5969c:1022693335,fe55516893660210a938ab559af1bdd6:1528831615,63d45d288e660210067fa452038c537d:432141119,9fc4116844660210b58b0d43272e8427:-217992073,a4b45d28dd66021035653a11e5c9f049:1150010670,1184592802660210212317807c1981d5:1463046295,96b3d1e4ca6602105a2403405ecc5d08:-217992073,db739da4c566021065217f6f3d13e672:-1637934763,f65391e49e6602105c295dda2fe114cd:1979237471,6a1351a4fe660210fc9716a83a6389be:-100028231,86f2d9a4b7660210f2ad75f9608264b4:1358005811,bdd219a400660210e3cd787cce617706:-348893897,01c2d5a41e66021062d966324ae54fa2:-1098106587,00b251a48b66021022654bc14a65efb7:-348893897,a88251a4e1660210a0cfb7307b26e381:-1168890145,061295645466021015db2b560eaae718:1049146235,1d2055ec6426021025fcc83f8f179293:-1302350517,cf5f89ac372602109e4802f4f3a968ae:-1503649429,e60fcde8362602107b45f56826c03efc:-1691808392,84de01e817260210b790ee5d47191641:228142842,8aae8de412260210204a959cefd04742:-356303087,088e01e81e260210cd330b9713667e3b:-1863524328,f95e4de4222602102a3f9cb55c7d0ff6:-1348442503,1e8b49a8f9e20210255330043c0a52da:1786553892,ae6b012cd0e20210d56fb66ccd27e72b:1622960435,d3c84d6c4f620210f98963701955bcdd:1786553892,58cdfc60af6e0a1057bbd1caab6b7e56:809121792,d749d29c24620a10d77c8f0df571ffee:-513934046,f129169c0d620a10da590cdbb3caf751:1956892752,31f85a9c86620a106d447ea5dbba5d59:-1398445238,24d8569cdd620a10e5debfa7e47aa3b3:-2007343241,72b8d29ce9620a10b46aabb4928d5a9f:830829197,cf88565cd5620a106b922c35e57e3512:75279246,aa78165cd1620a10b4e034d1154a727d:-1822623973,8ff7d61c89620a1005ea5d069be4ecfe:-1492095257,91571ad860620a101f82760806267ad9:283221140,c2f6ded857620a10c5bb81b65bcd6af4:572689016,85e61ad84b620a10d3d8203504c2ccd2:-1993570902,6d9616d835620a10523f5991ada05344:-1471117734,fe56d2d8c6620a10fd1b8cd0c9e0eff5:441152517,a0e51a1805620a102f0d3e1f1f0663ef:1881547831,78949618aa620a106418397e8c8fea8b:101124359,76749218b7620a10b39dfd1820cfdef2:1438655707</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-24 06:40:32</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_client">sys_script_client</sys_db_object>
+        <sys_id>f5105f47fb674b02af68708f483592a9</sys_id>
+        <sys_metadata>86541ad493620a1094e3f15a7bba10fb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Validate your bid amount</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent display_value="Bid">73f7b8929396c61094e3f15a7bba107f</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_script_client_86541ad493620a1094e3f15a7bba10fb</sys_update_name>
+        <sys_update_version display_value="sys_script_client_86541ad493620a1094e3f15a7bba10fb">f6c1600793ba421094e3f15a7bba10b5</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-24 06:40:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
