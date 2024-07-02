@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[// source_widget.client.js
+api.controller = function($rootScope, $location, $window) {
+    var c = this;
+	
+	c.openJustGivingPage = function(url) {
+        $window.open(url, '_blank');
+    };
+
+
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>img {
+    width: 107%;
+    object-fit: cover;
+}
+
+.eventData {
+    display: flex;
+    margin: 41px 5px;
+    justify-content: space-between;
+}
+
+.imgC {
+    display: flex;
+    width: 53%;
+    justify-content: center;
+}
+
+.modal-body {
+    font-size: 24px !important;
+    line-height: 32px !important;
+}
+
+h2.ng-binding {
+    font-size: 4rem;
+    padding-left: .6rem;
+    font-weight: 600;
+    background-image: radial-gradient(ellipse, #29b3ff, #31789f);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_cloned_event_details</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb cloned event details</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+
+	data.EventSysId = $sp.getParameter('sys_id');
+
+	// Create a new GlideRecord object
+	var gr = new GlideRecord('x_1383184_charityb_events');
+	gr.addQuery('sys_id',data.EventSysId)
+	gr.query();
+
+
+
+	while(gr.next()){
+
+		data.event_name= gr.getValue('event_name');
+		data.start_date= gr.getValue('start_date');
+		data.end_date= gr.getValue('end_date');
+		data.justgiving_url= gr.getValue('justgiving_url');
+		//data.start_bid_amount=gr.getValue('start_bid_amount');
+		//data.highest_bid_amount=gr.getValue('highest_bid_amount');
+		data.event_status=gr.getValue('event_status');
+		data.image= gr.getDisplayValue('image');
+		data.description=gr.getValue('description'); 
+	}
+
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-25 04:39:25</sys_created_on>
+        <sys_id>c254be30934f461094e3f15a7bba108b</sys_id>
+        <sys_mod_count>48</sys_mod_count>
+        <sys_name>cb cloned event details</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_c254be30934f461094e3f15a7bba108b</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-28 07:24:18</sys_updated_on>
+        <template><![CDATA[<div class="event-details" ng-if="c.data">
+  <!--<div class="modal-content">-->
+    <!--<div class="modal-header">-->
+      <h2>{{c.data.event_name}}</h2>
+  <div class="eventData">
+    <div class="imgC">
+      <img ng-src="{{c.data.image || 'https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg'}}" alt="{{c.data.event_name}}">
+    </div>
+    <div class="modal-body">
+      <p> {{c.data.description}}</p>
+      <p><strong>Start Date:</strong> {{c.data.start_date}}</p>
+      <p><strong>End Date:</strong> {{c.data.end_date}}</p>
+      <p><strong>Donation URL:</strong><a href="{{c.data.justgiving_url}}" target="_blank">{{c.data.justgiving_url}}</a></p>
+      <!--<p><strong>Start Bid:</strong> {{c.data.start_bid_amount}}</p>
+      <p><strong>Highest Bid:</strong> {{c.data.highest_bid_amount}}</p>-->
+      <p><strong>Status:</strong> {{c.data.event_status}}</p>
+      <button class="btn btn-primary" ng-click="c.openJustGivingPage(c.data.justgiving_url)">Donate Money</button>
+      <a href="?id=list_of_items" target="_blank" class="btn btn-primary" ng-if="c.data.event_status === 'in progress'">Participate in Auction</a>
+      <a href="?id=upload_item&event_name={{c.data.event_name}}" target="_blank" class="btn btn-primary" ng-if="c.data.event_status === 'schedule'" >Donate Items</a>
+      <!--<button class="btn btn-primary" ng-if="c.data.event_status === 'schedule'" ng-click="c.showDetails(c.data)">Donate Items</button>-->
+      <!--<button class="btn btn-primary" ng-if="c.data.event_status === 'in progress'" ng-click="c.showDetails(c.data)">Participate in Auction</button>-->
+    </div>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

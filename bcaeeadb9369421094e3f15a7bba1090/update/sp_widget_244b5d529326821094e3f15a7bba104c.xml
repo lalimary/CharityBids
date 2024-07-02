@@ -348,14 +348,14 @@ h1 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-04 17:29:41</sys_created_on>
         <sys_id>244b5d529326821094e3f15a7bba104c</sys_id>
-        <sys_mod_count>196</sys_mod_count>
+        <sys_mod_count>198</sys_mod_count>
         <sys_name>cb_Item list</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_244b5d529326821094e3f15a7bba104c</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-24 08:49:00</sys_updated_on>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-26 05:04:05</sys_updated_on>
         <template><![CDATA[<div class="container">
     <h1>Items List</h1>
     <div id="items-grid" class="items-grid">

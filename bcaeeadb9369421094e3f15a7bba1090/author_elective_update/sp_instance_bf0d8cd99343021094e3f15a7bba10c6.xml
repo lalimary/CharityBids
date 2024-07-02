@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance">
+    <sp_instance action="DELETE">
+        <active>true</active>
+        <class_name/>
+        <color>default</color>
+        <css/>
+        <glyph/>
+        <id/>
+        <order>1</order>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">809dfb499303021094e3f15a7bba10cf</sp_column>
+        <sp_widget display_value="test">88e41c3b93ba021094e3f15a7bba10f1</sp_widget>
+        <sys_class_name>sp_instance</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-26 05:45:30</sys_created_on>
+        <sys_id>bf0d8cd99343021094e3f15a7bba10c6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_instance_bf0d8cd99343021094e3f15a7bba10c6</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-26 05:45:30</sys_updated_on>
+        <title/>
+        <url/>
+        <widget_parameters/>
+    </sp_instance>
+    <sys_translated_text action="DELETE" query="documentkey=bf0d8cd99343021094e3f15a7bba10c6"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_instance_bf0d8cd99343021094e3f15a7bba10c6</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance"><sp_instance action="INSERT_OR_UPDATE"><active>true</active><class_name/><color>default</color><css/><glyph/><id/><order>1</order><roles/><short_description/><size>md</size><sp_column display_value="1">809dfb499303021094e3f15a7bba10cf</sp_column><sp_widget display_value="test">88e41c3b93ba021094e3f15a7bba10f1</sp_widget><sys_class_name>sp_instance</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-06-26 05:45:30</sys_created_on><sys_id>bf0d8cd99343021094e3f15a7bba10c6</sys_id><sys_mod_count>0</sys_mod_count><sys_name/><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sp_instance_bf0d8cd99343021094e3f15a7bba10c6</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-06-26 05:45:30</sys_updated_on><title/><url/><widget_parameters/></sp_instance><sys_translated_text action="delete_multiple" query="documentkey=bf0d8cd99343021094e3f15a7bba10c6"/></record_update>]]></payload>
+        <payload_hash>1180050034</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-26 05:45:30</sys_created_on>
+        <sys_id>bf0d401d9343021094e3f15a7bba1011</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1905313e2e90000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-26 05:45:30</sys_updated_on>
+        <type>Instance</type>
+        <update_guid>f30d401deb4302105bc03d0572bcef11</update_guid>
+        <update_guid_history>f30d401deb4302105bc03d0572bcef11:1180050034</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="">d3852d69938b421094e3f15a7bba10b6</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-27 06:50:36</sys_created_on>
+        <sys_db_object display_value="" name="sp_instance">sp_instance</sys_db_object>
+        <sys_id>4805d143a67d410e834e702f52321009</sys_id>
+        <sys_metadata>bf0d8cd99343021094e3f15a7bba10c6</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_instance_bf0d8cd99343021094e3f15a7bba10c6</sys_update_name>
+        <sys_update_version display_value="sp_instance_bf0d8cd99343021094e3f15a7bba10c6">bf0d401d9343021094e3f15a7bba1011</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-27 06:50:36</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

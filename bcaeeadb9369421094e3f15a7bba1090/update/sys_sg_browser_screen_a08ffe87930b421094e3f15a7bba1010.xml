@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_browser_screen">
+    <sys_sg_browser_screen action="INSERT_OR_UPDATE">
+        <available_offline>true</available_offline>
+        <check_acl>false</check_acl>
+        <description/>
+        <dynamic_prefetch_count/>
+        <empty_state/>
+        <external_browser>false</external_browser>
+        <fetch_type>not_required</fetch_type>
+        <filter/>
+        <hide_filters>false</hide_filters>
+        <hide_screen_name>false</hide_screen_name>
+        <icon display_value="Clipboard Lines">a08ffe87930b421094e3f15a7bba100f</icon>
+        <name>Donation form</name>
+        <relative_url>false</relative_url>
+        <roles_override/>
+        <sys_class_name>sys_sg_browser_screen</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-02 05:14:32</sys_created_on>
+        <sys_id>a08ffe87930b421094e3f15a7bba1010</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Donation form</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_browser_screen_a08ffe87930b421094e3f15a7bba1010</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-02 05:14:32</sys_updated_on>
+        <url>https://dev203498.service-now.com/cb?id=upload_item</url>
+    </sys_sg_browser_screen>
+    <sys_translated_text action="delete_multiple" query="documentkey=a08ffe87930b421094e3f15a7bba1010"/>
+</record_update>

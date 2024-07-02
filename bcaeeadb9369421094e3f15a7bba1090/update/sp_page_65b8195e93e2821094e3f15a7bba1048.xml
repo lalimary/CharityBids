@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_page">
     <sp_page action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <css>&#13;
-.vcecf05a69366c21094e3f15a7bba10f4 .navbar {&#13;
-    transition: 250ms opacity ease-in-out;&#13;
-    -webkit-transition: 250ms opacity ease-in-out;&#13;
-    border: 0;&#13;
-    background: linear-gradient(90deg, #e7ecf1 0%, #30789e 0%, #42aaa1 100%);&#13;
-}&#13;
-&#13;
-&#13;
-/* Global Styles */&#13;
+        <css>/* Global Styles */&#13;
 body {&#13;
     font-family: 'Roboto', sans-serif;&#13;
-    background-color: #f9f5e8;&#13;
+    background-color: #fff;&#13;
     color: #333;&#13;
     margin: 0;&#13;
     padding: 0;&#13;
@@ -188,6 +179,11 @@ h1 {&#13;
         margin-bottom: 10px;&#13;
     }&#13;
 }&#13;
+.navbar{&#13;
+  transition: 250ms opacity ease-in-out;&#13;
+    -webkit-transition: 250ms opacity ease-in-out;&#13;
+    border: 0;&#13;
+  background: linear-gradient(90deg, #e7ecf1 0%, #30789e 0%, #42aaa1 100%);}&#13;
 </css>
         <draft>false</draft>
         <dynamic_title_structure/>
@@ -203,14 +199,14 @@ h1 {&#13;
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-04 17:18:34</sys_created_on>
         <sys_id>65b8195e93e2821094e3f15a7bba1048</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>13</sys_mod_count>
         <sys_name>list_of_items</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_page_65b8195e93e2821094e3f15a7bba1048</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-21 06:26:12</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-27 06:05:34</sys_updated_on>
         <title>cb item list</title>
         <use_seo_script>false</use_seo_script>
     </sp_page>

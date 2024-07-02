@@ -2,23 +2,24 @@
     <element db_object_id="6d85325b93a9421094e3f15a7bba10ea" label="Item" max_length="40" name="x_1383184_charityb_item" type="collection">
         <element choice="3" default="item_submitted" label="Auction status" max_length="40" name="auction_status" type="choice">
             <choice>
-                <element inactive_on_update="false" label="Item submitted" sequence="100" value="item_submitted"/>
-                <element inactive_on_update="false" label="Auction scheduled" sequence="200" value="auction_scheduled"/>
-                <element inactive_on_update="false" label="Auction in progress" sequence="300" value="auction_in_progress"/>
-                <element inactive_on_update="false" label="Auction completed" sequence="400" value="auction_completed"/>
+                <element inactive_on_update="false" label="Item submitted" sequence="0" value="item_submitted"/>
+                <element inactive_on_update="false" label="Auction scheduled" sequence="1" value="auction_scheduled"/>
+                <element inactive_on_update="false" label="Auction in progress" sequence="2" value="auction_in_progress"/>
+                <element inactive_on_update="false" label="Auction completed" sequence="3" value="auction_completed"/>
             </choice>
         </element>
         <element label=" Category" mandatory="true" max_length="32" name="category" reference="x_1383184_charityb_category" type="reference"/>
         <element attributes="edge_encryption_enabled=true" label="Description" mandatory="true" max_length="500" name="description" type="string"/>
-        <element attributes="encode_utf8=false" default="javascript:new UserProfileUtils().getUserProfileSysId();" label="Donator" max_length="32" name="donator" read_only="true" reference="x_1383184_charityb_user_profile" reference_qual="null" reference_qual_condition="null" type="reference"/>
-        <element active="false" label="End date" mandatory="true" max_length="40" name="end_date" type="glide_date"/>
-        <element label="Event name" mandatory="true" max_length="32" name="event_name" reference="x_1383184_charityb_events" reference_qual="event_status=schedule^EQ" reference_qual_condition="event_status=schedule^EQ" type="reference"/>
+        <element attributes="encode_utf8=false" default="javascript:new UserProfileUtils().getUserProfileSysId();" label="Donator" mandatory="true" max_length="32" name="donator" read_only="true" reference="x_1383184_charityb_user_profile" reference_qual="null" reference_qual_condition="null" type="reference"/>
+        <element label="Duration" max_length="50" name="duration" type="string"/>
+        <element label="End date" mandatory="true" max_length="40" name="end_date" type="glide_date"/>
+        <element label="Event name" max_length="32" name="event_name" reference="x_1383184_charityb_events" reference_qual="event_status=in progress^EQ" reference_qual_condition="event_status=in progress^EQ" type="reference"/>
         <element label="Highest bid amount" max_length="20" name="highest_bid_amount" read_only="true" type="currency"/>
         <element label="Image" max_length="40" name="image" type="user_image"/>
         <element attributes="edge_encryption_enabled=true" display="true" label="Item name" mandatory="true" max_length="40" name="item_name" type="string"/>
         <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
         <element attributes="omit_sys_original=true" label="Start bid amount" mandatory="true" max_length="20" name="start_bid_amount" type="currency"/>
-        <element active="false" label="Start date" mandatory="true" max_length="40" name="start_date" type="glide_date"/>
+        <element label="Start date" mandatory="true" max_length="40" name="start_date" type="glide_date"/>
         <element label="Value" max_length="20" name="value" type="currency"/>
         <index name="index">
             <element name="category"/>

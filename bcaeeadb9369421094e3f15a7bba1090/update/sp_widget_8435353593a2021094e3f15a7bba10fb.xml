@@ -150,6 +150,12 @@
         search.sys_id = response.sys_id;
         search.spa = 1;
         $location.search(search).replace();
+				
+				var url = '/cb'; 
+      var params = { id: 'cde_index' }; 
+
+      $location.path(url).search(params).replace();
+				
       } else
         message = $scope.data.updatedMsg;
  
@@ -298,141 +304,44 @@
   }
 }]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* Styling for the panel */
+        <css>/* General styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Panel styling */
 .panel {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #fff;
+    width: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
 }
 
-/* Styling for the panel body */
+.panel-default {
+    border: none;
+}
+
 .panel-body {
-  padding: 15px;
-  
+    padding: 20px 40px;
+    text-align: left;
 }
-
-/* Styling for the panel footer */
-.panel-footer {
-  padding: 10px 15px;
-  background-color: #f5f5f5;
-  border-top: 1px solid #ddd;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-/* Styling for the button */
-.btn {
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  user-select: none;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
-}
-
-/* Styling for the primary action button */
-.btn-primary {
-  background-color: #428bca;
-  border-color: #357ebd;
-}
-
-/* Styling for the disabled button */
-.btn:disabled,
-.btn[disabled] {
-  cursor: not-allowed;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-}
-
-/* Styling for the form elements */
-.form-group {
-  margin-bottom: 15px;
-}
-
-/* Styling for the input fields */
-.form-control {
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-}
-
-/* Styling for the labels */
-.label {
-  display: inline;
-  padding: .2em .6em .3em;
-  font-size: 75%;
-  font-weight: 700;
-  line-height: 1;
-  color: #fff;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: .25em;
-}
-
-/* Styling for the alert messages */
-.alert {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-
-/* Styling for the success alert */
-.alert-success {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-}
-
-/* Styling for the info alert */
-.alert-info {
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
-}
-
-/* Styling for the error alert */
-.alert-danger {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
-}
-
-label.h4 {
-  display: none;
-}
-
-a.ng-binding.ng-scope {
-  display: none;
-}
+    .col-md-6 {
+        font-size: large;
+        padding-right: 35px;
+        width: 50%;
+        padding-top: 117px;
+        color: #428bca;
+        font-weight: normal;
+    }
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -450,7 +359,7 @@ a.ng-binding.ng-scope {
         <script><![CDATA[(function($sp, input, data, options, gs) {
 	// Messages and settings
 	data.attachmentUploadSuccessMsg = gs.getMessage("Attachment upload was successful");
-	data.recordAddedMsg = gs.getMessage("Record Added");
+	data.recordAddedMsg = gs.getMessage("User profile created");
 	data.updatedMsg = gs.getMessage("Record Updated");
 	data.addAttachmentMsg = gs.getMessage("Add an attachment");
 	data.supportedAttachmentExtensions = gs.getProperty("glide.attachment.extensions", '');
@@ -555,17 +464,17 @@ a.ng-binding.ng-scope {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-03 06:06:01</sys_created_on>
         <sys_id>8435353593a2021094e3f15a7bba10fb</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>cb charity profile</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_8435353593a2021094e3f15a7bba10fb</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-19 09:08:00</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-27 07:10:29</sys_updated_on>
         <template><![CDATA[<div ng-if="::!data.isValid && !data.emptyStateTemplate" class="panel panel-default">
   <div class="panel-body wrapper-lg text-center">
-    <span ng-if="!data.tableUnsupported">${Record not found}</span>
+    <span ng-if="!data.tableUnsupported">${User profile not found}</span>
     <span ng-if="data.tableUnsupported">${Form view not supported for requested table}</span>
   </div>
 </div>
@@ -664,6 +573,6 @@ a.ng-binding.ng-scope {
     </div>
   </div>
 </div>
-has context menu]]></template>
+]]></template>
     </sp_widget>
 </record_update>

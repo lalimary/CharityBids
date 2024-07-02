@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {
+  /* widget controller */
+  var c = this;
+	
+	$scope.submitForm = function() {
+		var startDateTimeUTC = convertToUTC($scope.startDateTime);
+		var endDateTimeUTC = convertToUTC($scope.endDateTime);
+		var formData = {
+			workout:selected_workoutID,
+			start_date:startDateTimeUTC,
+			end_date:endDateTimeUTC,
+		};
+		console.log(formData )
+
+		$http({
+			method: 'POST',
+			url: '/api/now/table/x_1383283_fitness_proworkout', 
+			data: formData
+		}).then(function(response) {
+			$location.search({id: 'fn_my_workouts'});
+			console.log('Form submitted successfully:', response.data);
+
+			$scope.selectedWorkout = '';
+			$scope.startDateTime = '';
+			$scope.endDateTime = '';
+		}, function(error) {
+
+			console.error('Error submitting form:', error);
+		});
+	};
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_bid_tryy</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb_bid tryy</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+	
+	
+var WorkoutGR=new GlideRecord('x_1383283_fitness_workout');
+	//WorkoutGR.addQuery('name');
+	WorkoutGR.query();
+	while(WorkoutGR.next()){
+				data.allworkout.push({
+					name:WorkoutGR.getDisplayValue('name'),
+					sys_id: WorkoutGR.sys_id.toString()
+
+				});
+
+				}
+		console.log(data.allworkout);
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-26 10:48:00</sys_created_on>
+        <sys_id>8342511193c7021094e3f15a7bba1010</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>cb_bid tryy</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_8342511193c7021094e3f15a7bba1010</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-26 11:02:43</sys_updated_on>
+        <template><![CDATA[<div class="card">
+  <h3>Bid On</h3>
+  <form ng-submit="submitForm()">
+    <div class="form-group">
+      <label for="bidNumber">Number</label>
+      <input type="text" class="form-control" id="bidNumber" ng-model="bidNumber" readonly>
+    </div>
+    <div class="form-group">
+      <label for="bidder">Bidder</label>
+      <input type="text" class="form-control" id="bidder" ng-model="bidder" readonly>
+    </div>
+    <div class="form-group">
+      <label for="bidAmount">Bid Amount</label>
+      <input type="number" class="form-control" id="bidAmount" ng-model="bidAmount">
+    </div>
+    <div class="form-group">
+      <label for="itemName">Item Name</label>
+      <input type="text" class="form-control" id="itemName" ng-model="itemName" list="items">
+      <datalist id="items">
+        <option ng-repeat='item in c.data.allItems' value="{{item.name}}"></option>
+      </datalist>
+    </div>
+    <div class="form-group">
+      <label for="startBidAmount">Start Bid Amount</label>
+      <input type="number" class="form-control" id="startBidAmount" ng-model="startBidAmount">
+    </div>
+    <div class="form-group">
+      <label for="highestBidAmount">Highest Bid Amount</label>
+      <input type="number" class="form-control" id="highestBidAmount" ng-model="highestBidAmount" readonly>
+    </div>
+    <button type="submit" class="btn btn-block">Submit</button>
+  </form>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

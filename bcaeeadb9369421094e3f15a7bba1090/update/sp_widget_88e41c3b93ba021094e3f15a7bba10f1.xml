@@ -1,162 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope, $http) {
-    $scope.event = {
-        title: '',
-        location: '',
-        type: 'private',
-        event_manager: '',
-        charityCompany: '',
-        startDate: '',
-        endDate: '',
-        time: '',
-        status: 'upcoming',
-        description: '',
-        justGivingUrl: '',
-        imageUrl: ''
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+
+    // Initialize data.items
+    c.data.events = c.data.events || [];
+
+    // Initialize search query
+    $scope.searchQuery = '';
+
+    // Function to open event details
+    c.openEventDetails = function(sysId) {
+        var eventDetailUrl = "?id=event_details&sys_id=" + sysId;
+        window.open(eventDetailUrl, '_blank');
     };
 
-    $scope.createEvent = function() {
-        var formData = new FormData();
-        formData.append('title', $scope.event.title);
-        formData.append('location', $scope.event.location);
-        formData.append('type', $scope.event.type);
-        formData.append('event_manager', $scope.event_manager);
-        formData.append('charityCompany', $scope.event.charity_company);
-        formData.append('startDate', $scope.event.startDate);
-        formData.append('endDate', $scope.event.endDate);
-      //  formData.append('time', $scope.event.time);
-        formData.append('status', $scope.event.status);
-        formData.append('description', $scope.event.description);
-        formData.append('justGivingUrl', $scope.event.justGivingUrl);
-        formData.append('image', $scope.event.image);
+    // Watch the items array for changes
+    $scope.$watch(function() {
+        return c.data.events;
+    }, function(newVal, oldVal) {
+        if (newVal && newVal.length === 0) {
+            $scope.noEventsMessage = "No events available";
+        } else {
+            $scope.noEventsMessage = "";
+        }
+        // Update filtered events based on search query
+        updateFilteredEvents();
+    }, true);
 
-        $http.post('/api/now/table/x_1383184_charityb_events', formData, {
-            headers: { 'Content-Type': undefined }
-        }).then(function(response) {
-            $scope.eventCreated = true;
-            $scope.createdEvent = response.data.result;
-        }, function(error) {
-            console.error('Error creating event', error);
-        });
-    };
-}
+    // Watch the searchQuery for changes and filter events accordingly
+    $scope.$watch('searchQuery', function(newVal, oldVal) {
+        if (newVal !== oldVal) {
+            updateFilteredEvents();
+        }
+    });
+
+    // Function to filter events based on search query
+    function updateFilteredEvents() {
+        if (!$scope.searchQuery) {
+            $scope.filteredEvents = c.data.events;
+        } else {
+            $scope.filteredEvents = c.data.events.filter(function(event) {
+                // Match event name and description against search query
+                return event.event_name.toLowerCase().includes($scope.searchQuery.toLowerCase()) ||
+                       event.description.toLowerCase().includes($scope.searchQuery.toLowerCase());
+            });
+        }
+    }
+
+    // Display filtered events initially
+    $scope.filteredEvents = c.data.events;
+
+};
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>.create-event-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    padding: 20px;
-    background-color: #f9f9f9;
+        <css>body {
+  font-family: 'Calibri', sans-serif;
+  font-size: 16px;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
-.create-event, .event-created {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 20px;
-    width: 45%;
+.event-details {
+  max-width: 800px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
-.create-event h1, .create-event p, .event-created h2, .event-created p {
-    text-align: center;
+.event-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  background-image: radial-gradient(circle, #29b3ff, #31789f);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
-.create-event h1 {
-    font-size: 24px;
-    color: #333;
+.event-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.create-event p {
-    font-size: 16px;
-    color: #555;
+.event-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
-.create-event form {
-    display: flex;
-    flex-direction: column;
+.event-info {
+  flex: 1;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
-.create-event form label {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
+.event-info p {
+  margin: 10px 0;
 }
 
-.create-event form input, .create-event form select, .create-event form textarea {
-    padding: 10px;
-    margin-top: 5px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.event-info strong {
+  font-weight: 600;
 }
 
-.create-event form .event-image-upload {
-    margin-top: 10px;
-    text-align: center;
+.event-info a {
+  color: #31789f;
+  text-decoration: none;
 }
 
-.create-event form .event-image-upload img {
-    width: 100%;
-    border-radius: 5px;
+.event-info a:hover {
+  text-decoration: underline;
 }
 
-.create-event form button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #d18b45;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #fff;
 }
 
-.event-created .success-message {
-    text-align: center;
+.status.in-progress {
+  background-color: #29b3ff;
 }
 
-.event-created .success-message img {
-    width: 50px;
+.status.schedule {
+  background-color: #ffba29;
 }
 
-.event-created .event-summary {
-    margin-top: 20px;
-    text-align: center;
+.status.completed {
+  background-color: #4caf50;
 }
 
-.event-created .event-summary img {
-    width: 100%;
-    border-radius: 5px;
+.event-actions {
+  margin-top: 20px;
 }
 
-.event-created .event-summary h3 {
-    font-size: 20px;
-    color: #333;
-    margin: 10px 0;
+.event-actions .btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.event-created .event-summary p {
-    font-size: 16px;
-    color: #555;
+.event-actions .btn-primary {
+  background-color: #31789f;
+  color: #fff;
 }
 
-.event-created .event-summary button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #d18b45;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.event-actions .btn-primary:hover {
+  background-color: #255b7b;
 }
 
-.event-created .event-summary a {
-    display: block;
-    margin-top: 10px;
-    color: #d18b45;
-    text-decoration: none;
+.fundraising-stats {
+  text-align: right;
+}
+
+.fundraising-stats p {
+  margin: 0;
+}
+
+.fundraising-stats .amount {
+  font-size: 41pt;
+}
+
+.fundraising-stats .raised {
+  font-size: 13pt;
+}
+
+.fundraising-stats .supporters {
+  font-size: 13pt;
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -172,126 +193,93 @@
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function() {
-    data.createdEvent = null;
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+    data.events = [];
+    
+    var eventGR = new GlideRecord('x_1383184_charityb_events');
+    eventGR.addQuery('event_status', 'IN', ['in progress', 'schedule', 'completed']);
+    eventGR.query();
 
-    if (input) {
-        var eventGR = new GlideRecord('x_1383184_charityb_events');
-        eventGR.initialize();
-        
-       
-        eventGR.setValue('event_manager', input.event_manager);
-        eventGR.setValue('charity_company', input.charityCompany);
-        eventGR.setValue('start_date', input.startDate);
-        eventGR.setValue('end_date', input.endDate);
-       
-        eventGR.setValue('status', input.status);
-        eventGR.setValue('description', input.description);
-        eventGR.setValue('just_giving_url', input.justGivingUrl);
-        eventGR.setValue('image', input.image); // Assuming you handle image upload separately
-        eventGR.insert();
+    while (eventGR.next()) {
+        var event_managerName = '';
+        if (eventGR.event_manager) {
+            var userGR = new GlideRecord('x_1383184_charityb_user_profile');
+            if (userGR.get(eventGR.event_manager)) {
+                event_managerName = userGR.getValue('name');
+            }
+        }
 
-        data.createdEvent = {
-            //title: eventGR.getValue('title'),
-            //location: eventGR.getValue('location'),
-          //  type: eventGR.getValue('type'),
-            event_manager: eventGR.getValue('event_manager'),
-            charityCompany: eventGR.getValue('charity_company'),
-            startDate: eventGR.getValue('start_date'),
-            endDate: eventGR.getValue('end_date'),
-           // time: eventGR.getValue('time'),
-            status: eventGR.getValue('event_status'),
+        data.events.push({
+            sys_id: eventGR.getUniqueValue(),
+            event_name: eventGR.getValue('event_name'),
             description: eventGR.getValue('description'),
-            justGivingUrl: eventGR.getValue('just_giving_url'),
-            image: eventGR.getValue('image')
-        };
+            start_date: eventGR.getValue('start_date'),
+            end_date: eventGR.getValue('end_date'),
+            charity_company: eventGR.getValue('charity_company'),
+            status: eventGR.getValue('event_status'),
+            image: eventGR.getDisplayValue('image'),
+            justgiving_url: eventGR.getValue('justgiving_url')
+        });
     }
-})();
+
+    if (data.events.length === 0) {
+        gs.addInfoMessage("No Events Available");
+    }
+})($sp, input, data, options, gs);
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-21 14:28:46</sys_created_on>
         <sys_id>88e41c3b93ba021094e3f15a7bba10f1</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>128</sys_mod_count>
         <sys_name>test</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_88e41c3b93ba021094e3f15a7bba10f1</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-21 14:48:36</sys_updated_on>
-        <template><![CDATA[<div class="create-event-container">
-    <div class="create-event">
-        <h1>Create Event</h1>
-        <p>Enter your event details below to create event.</p>
-        <form ng-submit="createEvent()">
-            <label for="event-title">Event title</label>
-            <input type="text" id="event-title" ng-model="event.title">
-            
-            
-            
-           
-            
-            <label for="event-manager">Event manager</label>
-            <input type="text" id="event-manager" ng-model="event.manager">
-            
-            <label for="charity-company">Charity company</label>
-            <input type="text" id="charity-company" ng-model="event.charityCompany">
+        <sys_updated_on>2024-07-01 10:55:43</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-            <label for="start-date">Start date</label>
-            <input type="date" id="start-date" ng-model="event.startDate">
-            
-            <label for="end-date">End date</label>
-            <input type="date" id="end-date" ng-model="event.endDate">
-
-           
-
-            <label for="event-status">Event status</label>
-            <select id="event-status" ng-model="event.status">
-                <option value="new">New</option>
-                <option value="in_progress">In progress</option>
-                <option value="completed">Completed</option>
-               <option value="cancelled">Cancelled</option>
-            </select>
-
-            <label for="description">Description</label>
-            <textarea id="description" ng-model="event.description"></textarea>
-            
-            <label for="just-giving-url">JustGiving URL</label>
-            <input type="url" id="just-giving-url" ng-model="event.justGivingUrl">
-
-            <label for="event-image">Event Image</label>
-            <input type="file" id="event-image" file-model="event.image">
-
-            <button type="submit">Create Event</button>
-        </form>
+<div class="event-details">
+  <div class="event-header">
+    <h2>Charity Event</h2>
+  </div>
+  <div class="event-content">
+    <div class="event-image">
+      <img src="https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg" alt="Charity Event">
     </div>
-    <div class="event-created" ng-if="eventCreated">
-        <div class="success-message">
-            <img src="https://via.placeholder.com/50" alt="Success Icon">
-            <h2>Event created successfully!</h2>
-            <p>You have successfully created a new event, see event details below.</p>
-        </div>
-        <div class="event-summary">
-            <img ng-src="{{createdEvent.image}}" alt="Event Image">
-            <h3>{{createdEvent.title}}</h3>
-            
-            <p><strong>Date:</strong> {{createdEvent.startDate}}</p>
-            
-            <p><strong>Event Manager:</strong> {{createdEvent.event_manager}}</p>
-            <p><strong>Charity Company:</strong> {{createdEvent.charityCompany}}</p>
-            <p><strong>Start Date:</strong> {{createdEvent.startDate}}</p>
-            <p><strong>End Date:</strong> {{createdEvent.endDate}}</p>
-            <p><strong>Event Status:</strong> {{createdEvent.status}}</p>
-            <p><strong>Description:</strong> {{createdEvent.description}}</p>
-            <p><strong>JustGiving URL:</strong> <a ng-href="{{createdEvent.justGivingUrl}}">{{createdEvent.justGivingUrl}}</a></p>
-            <button>Open event details</button>
-           <a href="/sp?id=cb_event_list">Back to Event List</a>
--
-        </div>
+    <div class="event-info">
+      <p>Description of the event goes here. It provides an overview of what the event is about, its purpose, and key details.</p>
+      <p><strong>Start Date:</strong> 01/07/2024</p>
+      <p><strong>End Date:</strong> 31/07/2024</p>
+      <p><strong>Donation URL:</strong> <a href="#" target="_blank">https://justgiving.com</a></p>
+      <p><strong>Status:</strong> <span class="status in-progress">In Progress</span></p>
+      <div class="event-actions">
+        <button class="btn btn-primary">Donate Money</button>
+        <a href="?id=list_of_items" target="_blank" class="btn btn-primary">Participate in Auction</a>
+        <a href="?id=upload_item&event_name=Charity Event" target="_blank" class="btn btn-primary">Donate Items</a>
+      </div>
     </div>
+  </div>
+  <div class="fundraising-stats">
+    <p class="amount">£6,104,888</p>
+    <p class="raised">raised of £6,800,000 target</p>
+    <p class="supporters">by 29646 supporters</p>
+  </div>
 </div>
+
+</body>
+</html>
 ]]></template>
     </sp_widget>
 </record_update>

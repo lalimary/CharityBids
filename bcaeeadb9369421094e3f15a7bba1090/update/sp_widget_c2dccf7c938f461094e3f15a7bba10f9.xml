@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+
+    // Initialize data.items
+    c.data.events = c.data.events || [];
+
+    // Function to handle placing a bid
+   // c.placeBid = function(item) {
+       // alert('Placing bid for: ' + item.item_name);
+        // Add your logic here to open a bid modal, send a request, etc.
+   // };
+
+    // Function to show item details
+    c.showDetails = function(event) {
+        var eventDetailUrl = "?id=event_details&sys_id=" + event.sys_id;
+        window.location.href = eventDetailUrl;
+    };
+
+    // Watch the items array for changes
+    $scope.$watch(function() {
+        return c.data.events;
+    }, function(newVal, oldVal) {
+        if (newVal && newVal.length === 0) {
+            $scope.noEventsMessage = "No events available";
+        } else {
+            $scope.noEventsMessage = "";
+        }
+    }, true);
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.event-card {
+  background-color: #fff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.event-card:hover {
+  //transform: translateY(-5px);
+ // box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+   transform: none;
+}
+
+.event-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.event-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: bold;
+}
+
+.event-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Adjustments for the modal content */
+.modal-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  background-color: #fefefe;
+}
+
+.modal-header {
+  border-bottom: none;
+  text-align: center;
+  position: relative;
+}
+
+.modal-header h4 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.modal-header .close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 1.5em;
+  color: #aaa;
+  opacity: 1;
+  transition: color 0.3s;
+}
+
+.modal-header .close:hover {
+  color: #333;
+}
+
+.modal-body {
+  text-align: left;
+}
+
+.modal-body p {
+  margin: 10px 0;
+  font-size: 1em;
+  color: #555;
+}
+
+.modal-body strong {
+  display: inline-block;
+  width: 120px;
+  color: #333;
+}
+
+/* Button styles inside modal */
+.add-to-options .btn-secondary {
+  margin-right: 1rem;
+  color: #fff;
+  background-color: #428bca;
+  border-color: #357ebd;
+  padding: 1rem 2rem;
+  box-shadow: 0 .4rem .6rem rgba(0, 0, 0, .1);
+  font-size: 21px;
+  cursor: pointer;
+  transition: background .3s, box-shadow .3s;
+}
+
+.add-to-options .btn-secondary:hover {
+  background: linear-gradient(45deg, #394372, #4E598C);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.add-to-options .btn-secondary .icon-image {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.imgFix {
+  width: 84%;
+}
+
+.imgC {
+  display: flex;
+  justify-content: center;
+}
+
+.countdown {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>color</field_list>
+        <has_preview>true</has_preview>
+        <id>cb_events_in_schedule</id>
+        <internal>false</internal>
+        <link><![CDATA[function link($scope) {
+    // Link function to handle additional setup
+    $scope.placeBid = function(item) {
+        alert('Placing bid for: ' + item.name);
+        // Here you can add logic to open a bid modal, send a request, etc.
+    };
+}
+]]></link>
+        <name>cb events in schedule</name>
+        <option_schema>[{"name":"show_star_rating","default_value":"Use system properties","section":"Presentation","label":"Show star rating","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]},{"hint":"Number of articles to display per page","name":"limit_article","section":"other","default_value":"10","label":"Number of articles to display per page","type":"integer"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[
+(function($sp, input, data, options, gs) {
+    // Initialize data arrays
+    data.events = [];
+    
+    // Fetch all items in 'auction_in_progress' status
+    var eventGR = new GlideRecord('x_1383184_charityb_events');
+    eventGR.addQuery('event_status', 'schedule');
+	
+	  
+    
+    eventGR.query();
+    while (eventGR.next()) {
+        var event_managerName = '';
+       if (eventGR.event_manager) {
+           var userGR = new GlideRecord('sys_user');
+            if (userGR.get(eventGR.event_manager)) {
+                event_managerName = userGR.getValue('name');
+            }
+       }
+
+        data.events.push({
+            sys_id: eventGR.getUniqueValue(),
+            event_name: eventGR.getValue('event_name'),
+            //donator: donatorName,
+            description: eventGR.getValue('description'),
+           //end_date: itemGR.getValue('end_date'),
+            //value: itemGR.getValue('value'),
+            //start_bid_amount: itemGR.getValue('start_bid_amount'),
+            //highest_bid_amount: itemGR.getValue('highest_bid_amount'),
+           // auction_status: itemGR.getValue('auction_status'),
+           image: eventGR.getDisplayValue('image'),
+           // description: itemGR.getValue('description')
+        });
+    }
+
+    if (data.events.length === 0) {
+        gs.addInfoMessage("No Events Available");
+    }
+})($sp, input, data, options, gs);
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-25 06:26:27</sys_created_on>
+        <sys_id>c2dccf7c938f461094e3f15a7bba10f9</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>cb events in schedule</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_c2dccf7c938f461094e3f15a7bba10f9</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-27 17:08:52</sys_updated_on>
+        <template><![CDATA[<div class="container">
+    <h2>Scheduled Events</h2>
+    <div id="events-grid" class="events-grid">
+        <div ng-repeat="event in c.data.events"  class="event-card" ng-click="c.showDetails(event)">
+            <img ng-src="{{event.image || 'https://dev203498.service-now.com/issues.png'}}" alt="{{event.event_name}}">
+            <div class="event-details">
+                <div class="event-title">{{event.event_name}}</div>
+              <div class="event-description">{{event.description}}</div>
+                <!--<div class="item-value">Value: {{item.value}}</div>
+                <div ng-if="event.event_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
+                <div ng-if="item.event_status === 'Auction In Progress' || item.event_status === 'Auction Completed'" class="item-highest-bid">Highest Bid: {{item.highest_bid_amount}}</div>-->
+                <a href="?id=event_details&sys_id={{event.sys_id}}" target="_blank" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+        <div ng-if="noEventsMessage" class="alert alert-warning">{{noEventsMessage}}</div>
+    </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

@@ -200,14 +200,14 @@ p.p-class-5 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-12 15:51:54</sys_created_on>
         <sys_id>4e91567093b2821094e3f15a7bba102a</sys_id>
-        <sys_mod_count>62</sys_mod_count>
+        <sys_mod_count>64</sys_mod_count>
         <sys_name>cb home widget 4</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_4e91567093b2821094e3f15a7bba102a</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-21 06:19:49</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-27 19:33:49</sys_updated_on>
         <template><![CDATA[<div class="solutions-overview-intro">
   <div class="container">
     <div class="row">
@@ -231,7 +231,8 @@ p.p-class-5 {
         <p class="p-class-3">
           Hit your fundraising goals with software that streamlines the guest experience start to finish. From before the fundraising begins to the final bid, we’ll help you delight donors and raise more.
         </p>  
-        
+        <a class="solutions-learn-more-1" href="https://dev203498.service-now.com/cb?id=list_of_items" target="_self">Learn More</a>
+
       </div>
       
     </div>
@@ -250,7 +251,8 @@ p.p-class-5 {
         <p class="p-class-4">
           Engage donors online and fuel your mission year-round. Quickly launch giving campaigns that drive impact and convert online donations.
         </p>  
-        <a class="solutions-learn-more-1" href="https://dev203498.service-now.com/cb?id=list_of_events/" target="_self">Learn More</a>
+       <a class="solutions-learn-more-1" href="https://dev203498.service-now.com/cb?id=list_of_events" target="_self">Learn More</a>
+
       </div>
       
       <img src="homeimage7.jpg" alt="logo image.jpg" width="500" height="600" class="image-container-3">
@@ -268,7 +270,9 @@ p.p-class-5 {
         </h2>
         <p class="p-class-5">
           Streamline the donation process with our efficient management system, allowing donors to contribute money or items effortlessly, and track their impact in real-time.
-        </p>  
+        </p> 
+        <a class="solutions-learn-more-1" href="https://dev203498.service-now.com/cb?id=upload_item" target="_self">Learn More</a>
+
       </div>   
     </div>
   </div>

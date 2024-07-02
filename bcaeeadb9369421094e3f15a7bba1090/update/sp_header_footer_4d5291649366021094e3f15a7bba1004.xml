@@ -93,106 +93,137 @@
 }
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>
-/* First Header Section Styles */
-.first-header {
-    /* float: right; */
-    display: flex;
-    width: 100%;
-  font-family: "Exo 2", sans-serif;
-    justify-content: flex-end;
-}
-
-.first-header .header-links {
-    display: flex;
-  
-    align-items: center;
-}
-
-.first-header .header-links a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 10px;
-}
-
-.first-header .search-form {
-    display: flex;
-    align-items: center;
-}
-
-.first-header .search-input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-right: 5px;
-}
-
-@media (min-width: 768px) {
-  .navbar-collapse.collapse {
-    display: flex !important;
-    height: auto !important;
-    width: 80%;
-    padding-bottom: 0;
-    overflow: visible !important;
-  }
-}
-
-.first-header .search-button {
-    padding: 5px 10px;
-    background-color: #42aaa1; /* Adjust button background color */
-    border: none;
-    border-radius: 3px;
-    color: #fff;
-    cursor: pointer;
-}
-
-/* Second Header Section Styles */
-.second-header {
-    background-color: transparent;
- font-family: "Exo 2", sans-serif;
-    color: #fff;
-  font-size: 2rem;
-    padding: 1rem;
-    padding-top: 2rem;
-}
-
-.second-header .navbar {
-    margin-bottom: 0;
-    border: 0;
-    text-align: center;
-    display: flex;
-}
-
-.second-header .navbar-header {
-    padding: 0;
-}
-
-.second-header .navbar-brand img {
-    max-height: 60px;
-    padding: 0;
-    margin: 0;
-}
-
-.second-header .navbar-nav {
-    margin: 0 auto; /* Center navigation options */
-    display: inline-block;
-}
-
-.second-header .navbar-nav &gt; li {
-    display: inline;
-    margin-right: 10px;
-}
-
-.second-header .navbar-nav &gt; li &gt; a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.second-header .navbar-nav &gt; li &gt; a:hover {
-    color: #ccc; /* Change color on hover */
-}
-
-
+        <css>/* General styling */&#13;
+body {&#13;
+    font-family: Arial, sans-serif;&#13;
+    margin: 0;&#13;
+    padding: 0;&#13;
+}&#13;
+&#13;
+/* Header and Navigation Bar */&#13;
+.navbar-inverse {&#13;
+    background-color: #fff;&#13;
+    border: none;&#13;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);&#13;
+}&#13;
+&#13;
+.navbar-inverse .navbar-header .navbar-brand,&#13;
+.navbar-inverse .navbar-nav &gt; li &gt; a {&#13;
+    color: #000;&#13;
+    font-weight: bold;&#13;
+}&#13;
+&#13;
+/* Logo styling */&#13;
+.navbar-brand-logo img {&#13;
+    height: 40px;&#13;
+}&#13;
+&#13;
+/* Navbar toggle button */&#13;
+.navbar-toggle {&#13;
+    border: none;&#13;
+    background-color: transparent;&#13;
+}&#13;
+&#13;
+.navbar-toggle .icon-bar {&#13;
+    background-color: #000;&#13;
+}&#13;
+&#13;
+/* Navbar links */&#13;
+.navbar-nav &gt; li {&#13;
+    position: relative;&#13;
+}&#13;
+&#13;
+.navbar-nav &gt; li &gt; a {&#13;
+    padding: 15px 20px;&#13;
+    color: #000;&#13;
+    font-weight: bold;&#13;
+}&#13;
+&#13;
+.navbar-nav &gt; li &gt; a:hover,&#13;
+.navbar-nav &gt; li &gt; a:focus {&#13;
+    background-color: #f1f1f1;&#13;
+    color: #000;&#13;
+}&#13;
+&#13;
+/* Dropdown menu */&#13;
+.navbar-nav .dropdown-menu {&#13;
+    display: none;&#13;
+    position: absolute;&#13;
+    background-color: #fff;&#13;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);&#13;
+    min-width: 160px;&#13;
+    z-index: 1;&#13;
+}&#13;
+&#13;
+.navbar-nav .dropdown-menu &gt; li &gt; a {&#13;
+    padding: 12px 16px;&#13;
+    color: #000;&#13;
+}&#13;
+&#13;
+.navbar-nav .dropdown-menu &gt; li &gt; a:hover,&#13;
+.navbar-nav .dropdown-menu &gt; li &gt; a:focus {&#13;
+    background-color: #f1f1f1;&#13;
+}&#13;
+&#13;
+/* Show dropdown menu on hover */&#13;
+.navbar-nav &gt; li:hover .dropdown-menu {&#13;
+    display: block;&#13;
+}&#13;
+&#13;
+/* Avatar and profile dropdown */&#13;
+.navbar-avatar {&#13;
+    display: inline-block;&#13;
+    margin-right: 10px;&#13;
+}&#13;
+&#13;
+.dropdown-menu[aria-label*="profile"] {&#13;
+    left: auto;&#13;
+    right: 0;&#13;
+}&#13;
+&#13;
+.hidden-xs.hidden-sm.dropdown .dropdown-menu {&#13;
+    left: auto;&#13;
+    right: 0;&#13;
+}&#13;
+&#13;
+/* Mobile view adjustments */&#13;
+@media (max-width: 767px) {&#13;
+    .navbar-header {&#13;
+        display: flex;&#13;
+        justify-content: space-between;&#13;
+    }&#13;
+&#13;
+    .navbar-toggle {&#13;
+        margin-right: 10px;&#13;
+    }&#13;
+&#13;
+    .navbar-nav {&#13;
+        display: none;&#13;
+        width: 100%;&#13;
+    }&#13;
+&#13;
+    .navbar-nav &gt; li {&#13;
+        display: block;&#13;
+        width: 100%;&#13;
+    }&#13;
+&#13;
+    .navbar-nav &gt; li &gt; a {&#13;
+        padding: 10px 15px;&#13;
+    }&#13;
+&#13;
+    .navbar-nav &gt; li &gt; .dropdown-menu {&#13;
+        position: static;&#13;
+        box-shadow: none;&#13;
+    }&#13;
+&#13;
+    .navbar-nav &gt; li:hover .dropdown-menu {&#13;
+        display: block;&#13;
+    }&#13;
+&#13;
+    .collapse.in {&#13;
+        display: block !important;&#13;
+    }&#13;
+}&#13;
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -390,14 +421,14 @@ data.loginWidget = $sp.getWidgetFromInstance('login-modal');
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-05-30 06:21:19</sys_created_on>
         <sys_id>4d5291649366021094e3f15a7bba1004</sys_id>
-        <sys_mod_count>44</sys_mod_count>
+        <sys_mod_count>50</sys_mod_count>
         <sys_name>Charity Bids Header</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_header_footer_4d5291649366021094e3f15a7bba1004</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-12 06:58:39</sys_updated_on>
+        <sys_updated_on>2024-06-26 09:16:51</sys_updated_on>
         <template><![CDATA[<div>
   <nav class="navbar-inverse" ng-class="::{'navbar':!isViewNative, 'is-native': isViewNative}"
        role="navigation" aria-label="${Primary}">

@@ -2,7 +2,7 @@
     <sp_page action="INSERT_OR_UPDATE">
         <category>custom</category>
         <css>body{&#13;
-	background-color: #f9f5e8;&#13;
+	background-color: #fff;&#13;
 &#13;
 }&#13;
 &#13;
@@ -81,12 +81,15 @@
 &#13;
 &#13;
 .imageupload {&#13;
-    background-image: url(donate1.png);&#13;
-    height: 84vh;&#13;
+    background-image: url('donate1.png'); /* Adjust the URL and path as needed */&#13;
+    height: 70vh;&#13;
     background-size: cover;&#13;
-    width: 81vh;&#13;
-      margin-top: 116px;&#13;
-}</css>
+    width: 68vh;&#13;
+    float: left; /* or 'right' depending on your layout */&#13;
+    margin-top: 20px; /* Adjust the top margin as needed */&#13;
+    margin-bottom: 20px; /* Adjust the bottom margin as needed */&#13;
+}&#13;
+</css>
         <draft>false</draft>
         <dynamic_title_structure/>
         <human_readable_url_structure/>
@@ -101,14 +104,14 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-03 09:28:55</sys_created_on>
         <sys_id>cca36e7d9366021094e3f15a7bba106b</sys_id>
-        <sys_mod_count>48</sys_mod_count>
+        <sys_mod_count>59</sys_mod_count>
         <sys_name>upload_item</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_page_cca36e7d9366021094e3f15a7bba106b</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-21 07:31:07</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-27 06:06:43</sys_updated_on>
         <title>cb upload item</title>
         <use_seo_script>false</use_seo_script>
     </sp_page>

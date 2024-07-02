@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=(function() {
-  var c = this;
+        <client_script><![CDATA[api.controller = function($timeout, $location, spUtil) {
+    /* widget controller */
+    var c = this;
 
-  c.data = {
-    item: {},
-    bid_amount: null
-  };
-
-  // Fetch item details
-  c.server.get().then(function(response) {
-    c.data.item = response.data.item;
-  });
-
-  // Function to submit the bid
-  c.submitBid = function() {
-    c.server.update({
-      bid_amount: c.data.bid_amount
-    }).then(function(response) {
-      if (response.data.successMessage) {
-        alert(response.data.successMessage);
-        // Optionally refresh item details or perform any other action after bid submission
-      } else {
-        alert('Failed to place bid: ' + response.data.errorMessage);
-      }
+    // Fetch the list of items for the dropdown
+    spUtil.get('cb_bid_form', {}).then(function(response) {
+        c.items = response.items;
     });
-  };
-})();
+
+    /* Step 3. Accept user input */
+
+    // Pass in the isValid parameter from the HTML Template
+    c.submitForm = function(isValid) {
+
+        // Trigger the validation
+        c.submitted = true;
+
+        // Don't do anything if the form is not valid
+        if (!isValid)
+            return;
+
+        // Write variables into the data object
+        c.data.bidder = c.bidder;
+        c.data.bid_amount = c.bid_amount;
+        c.data.item_name = c.item_name;
+
+        // Pass the data object to the server, add a promise (callback)
+        // to process the server's response
+        c.server.update().then(function(response) {
+            if (response.status == 'success') {
+                c.message = null; // Hide the error message
+                c.success = response.message;
+
+                // Return to the homepage after 5 seconds
+                $timeout(function() {
+                    $location.search({ id: 'cde_index' });
+                }, 5000);
+            }
+            else if (response.status == 'error') {
+                c.message = response.message;
+            }
+        });
+    };
+};
 ]]></client_script>
         <controller_as>c</controller_as>
         <css>//Donator Field
@@ -373,72 +390,76 @@ h1, .h1 {
         <option_schema>[{"name":"disableUIActions","section":"Behavior","label":"Disable UI Actions on Form","type":"boolean"},{"name":"showFormView","section":"Behavior","label":"Display current form view","type":"boolean"},{"name":"omitHeaderOptions","section":"Behavior","label":"Omit header options icon","type":"boolean"}]</option_schema>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function($sp, input, data, options, gs) {
-  var itemSysId = $sp.getParameter('sys_id');
+        <script><![CDATA[/* Step 4. Process user input */
+if (input) {
 
-  if (!itemSysId) {
-    data.errorMessage = 'No item specified.';
-    return;
-  }
+    // Insert the new bid record
+    var grNewBid = new GlideRecordSecure('x_1383184_charityb_bid'); // Replace 'x_your_table_bid' with your actual table name
+    grNewBid.initialize();
+    grNewBid.setValue('bidder', input.bidder);
+    grNewBid.setValue('bid_amount', input.bid_amount);
+    grNewBid.setValue('item_name', input.item_name); // Ensure item_name is a reference field to the Item Table
 
-  var itemGR = new GlideRecord('x_1383184_charityb_item');
-  if (itemGR.get(itemSysId)) {
-    data.item = {
-      sys_id: itemGR.getUniqueValue(),
-      item_name: itemGR.getValue('item_name'),
-      start_bid_amount: itemGR.getValue('start_bid_amount'),
-      highest_bid_amount: itemGR.getValue('highest_bid_amount')
-    };
-  } else {
-    data.errorMessage = 'Item not found.';
-    return;
-  }
+    var bidSysId = grNewBid.insert();
 
-  // Function to handle bid submission
-  data.submitBid = function() {
-    var bidGR = new GlideRecord('x_1383184_charityb_bid');
-    bidGR.initialize();
-    bidGR.setValue('item_name', itemGR.getValue('item_name')); // Set item name
-    bidGR.setValue('bid_amount', input.bid_amount);
-    //bidGR.setValue('bidder', gs.getUser().getUniqueValue()); // Reference to current user
-    if (bidGR.insert()) {
-      data.successMessage = 'Bid placed successfully!';
+    // If the record is created successfully, send the success
+    // message to the client, else send the error message
+    if (!gs.nil(bidSysId)) {
+        data.status = "success";
+        data.message = "Your bid has been successfully submitted.";
     } else {
-      data.errorMessage = 'Failed to place bid.';
+        data.status = "error";
     }
-  };
-})($sp, input, data, options, gs);
+}
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-19 06:05:12</sys_created_on>
         <sys_id>407e448b933a421094e3f15a7bba10b9</sys_id>
-        <sys_mod_count>31</sys_mod_count>
+        <sys_mod_count>48</sys_mod_count>
         <sys_name>cb_bid_form</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_407e448b933a421094e3f15a7bba10b9</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-24 09:07:50</sys_updated_on>
-        <template><![CDATA[<div class="container">
-  <h1>Bid on {{c.data.item.item_name}}</h1>
-  <p><strong>Start Bid Amount:</strong> {{c.data.item.start_bid_amount}}</p>
-  <p><strong>Highest Bid Amount:</strong> {{c.data.item.highest_bid_amount}}</p>
-  
-  <form ng-submit="c.submitBid()">
+        <sys_updated_on>2024-06-27 10:08:32</sys_updated_on>
+        <template><![CDATA[<form name="Bid" class="form-horizontal cloud-widgets" novalidate ng-submit="c.submitForm(Bid.$valid)">
+    <legend>Place a Bid</legend>
+
+    <!-- Bidder -->
     <div class="form-group">
-      <label for="bid_amount">Bid Amount:</label>
-      <input type="number" id="bid_amount" ng-model="c.data.bid_amount" required class="form-control">
+        <div class="col-md-12">
+            <input id="bidder" name="bidder" type="text" placeholder="Bidder" class="form-control input-md" ng-model="c.bidder">
+        </div>
     </div>
-    
-    <button type="submit" class="btn btn-primary">Submit Bid</button>
-  </form>
-  
-  <div ng-if="c.data.successMessage" class="alert alert-success">{{c.data.successMessage}}</div>
-  <div ng-if="c.data.errorMessage" class="alert alert-danger">{{c.data.errorMessage}}</div>
-</div>
+
+    <!-- Bid Amount -->
+    <div class="form-group" ng-class="{'has-error': Bid.bid_amount.$invalid && c.submitted}">
+        <div class="col-md-12">
+            <input id="bid_amount" name="bid_amount" type="text" placeholder="Bid Amount" class="form-control input-md" ng-model="c.bid_amount" ng-required="true">
+            <p class="help-block" ng-show="Bid.bid_amount.$invalid && c.submitted">Field is required.</p>
+        </div>
+    </div>
+
+    <!-- Item Name -->
+    <div class="form-group" ng-class="{'has-error': Bid.item_name.$invalid && c.submitted}">
+        <div class="col-md-12">
+            <select id="item_name" name="item_name" class="form-control input-md" ng-model="c.item_name" ng-options="item.sys_id as item.name for item in c.items" ng-required="true">
+                <option value="">Select an Item</option>
+            </select>
+            <p class="help-block" ng-show="Bid.item_name.$invalid && c.submitted">Field is required.</p>
+        </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+        <div class="col-md-4">
+            <button id="button" name="submit" class="btn btn-primary">Place a Bid</button>
+        </div>
+    </div>
+</form>
 ]]></template>
     </sp_widget>
 </record_update>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($rootScope, $location) {
+    var c = this;
+
+	c.test = function(){
+		c.data.temp1 = c.bid;
+		c.server.update();
+	}
+    c.showDetails = function(item) {
+        var params = {
+            sys_id: item.sys_id,
+            item_name: item.item_name,  // Adjust based on your item details structure
+            // Add other parameters as needed
+        };
+
+        // Broadcast event to update cb_bid_form
+        $rootScope.$broadcast('sp.update', {
+            widget: {
+                id: 'cb_bid_form'
+            },
+            
+            params: params
+        });
+    };
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>img {
+    width: 50%;
+}
+
+.imgC {
+    display: flex;
+    justify-content: center;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_test_bid</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb test bid</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	
+	var bidgr = new GlideRecord('x_1383184_charityb_bid');
+  bidgr.initialize();
+	bidgr.setValue('bid_amount',input.temp1);
+	bidgr.insert();
+	
+	var ItemSysId = $sp.getParameter('sys_id');
+
+	// Create a new GlideRecord object
+	var gr = new GlideRecord('x_1383184_charityb_item');
+	gr.addQuery('sys_id',ItemSysId)
+	gr.query();
+
+
+
+	while(gr.next()){
+
+		data.start_bid_amount= gr.getValue('start_bid_amount');
+		data.highest_bid_amount= gr.getValue('highest_bid_amount');
+		//data.end_date= gr.getValue('end_date');
+		//data.value= gr.getValue('value');
+		//data.start_bid_amount=gr.getValue('start_bid_amount');
+		//data.highest_bid_amount=gr.getValue('highest_bid_amount');
+		//data.auction_status=gr.getDisplayValue('auction_status');
+		//data.image= gr.getDisplayValue('image');
+		//data.description=gr.getValue('description'); 
+	}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-25 10:06:54</sys_created_on>
+        <sys_id>874fbf3c9383861094e3f15a7bba106a</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>cb test bid</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_874fbf3c9383861094e3f15a7bba106a</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-25 10:46:04</sys_updated_on>
+        <template><![CDATA[<div class="item-details" ng-if="c.data">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1>
+        Bid On
+      </h1>
+      <h4 class="modal-name">{{c.data.item_name}}</h4>
+    </div>
+   <!-- <div class="imgC">
+      <img ng-src="{{c.data.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{c.data.item_name}}">
+    </div>-->
+    <div class="modal-body">
+      <p><strong>Start Bid Amount:</strong> {{c.data.start_bid_amount}}</p>
+      <p><strong>Highest Bid Amount:</strong> {{c.data.highest_bid_amount}}</p>
+   
+      <form ng-submit="submitBid()">
+        <label for="bid_amount"> Bid Amount:</label>
+        <input type="number" id="bid_amount" ng-model="bid_amount" required>
+        <button type="submit">Submit Bid</button>
+      </form>
+      
+    </div>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

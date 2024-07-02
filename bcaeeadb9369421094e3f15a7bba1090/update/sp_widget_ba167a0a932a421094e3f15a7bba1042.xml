@@ -150,6 +150,13 @@
         search.sys_id = response.sys_id;
         search.spa = 1;
         $location.search(search).replace();
+				
+				//var url = '/cb'; 
+     // var params = { id: 'list_of_events' }; 
+
+      //$location.path(url).search(params).replace();
+				
+				
       } else
         message = $scope.data.updatedMsg;
 
@@ -310,9 +317,7 @@ span.field-decorations {
     display: none;
 }
 
-.vba167a0a932a421094e3f15a7bba1042 .btn-primary {
-    background-color: #34829f;
-}
+
 
 .input-group-addon SELECT, .msie10 .input-group-addon SELECT, .msie11 .input-group-addon SELECT, .windows.chrome .input-group-addon SELECT {
     border: .1rem solid #939393;
@@ -339,7 +344,7 @@ label.field-label.field-label-question {
 }
 
 button.btn.btn-default {
-    background: #34829f;
+    background: #50bae1;
     display: flex;
     align-items: center;
 }
@@ -416,7 +421,7 @@ input#sp_formfield_number {
     background: none;
     border: none;
     display: flex;
-    width: 31rem;
+    width: 18rem;
     border-radius: 2rem;
     align-items: center;
 }
@@ -425,6 +430,7 @@ input#sp_formfield_number {
     padding: 2.5rem;
     border: none;
     background: #fff;
+      width: 90%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     border-radius: 22px;
   	left: 0px !important;
@@ -594,7 +600,7 @@ span#container_82d57a5b93a9421094e3f15a7bba10bd {
 }
  
 .btn-primary {
-  background-color: #327f9f;
+  background-color: #50bae1;
 }
  
 .btn-primary:hover {
@@ -639,13 +645,17 @@ h1, .h1 {
         <roles/>
         <script><![CDATA[(function($sp, input, data, options, gs) {
   // Messages and settings
+	data.event_name=$sp.getParameter('event_name');
   data.attachmentUploadSuccessMsg = gs.getMessage("Attachment upload was successful");
   data.recordAddedMsg = gs.getMessage("Record Added");
   data.updatedMsg = gs.getMessage("Record Updated");
   data.addAttachmentMsg = gs.getMessage("Add an attachment");
   data.supportedAttachmentExtensions = gs.getProperty("glide.attachment.extensions", '');
   data.maxAttachmentSize = parseInt(gs.getProperty("com.glide.attachment.max_size", 1024));
-  if (isNaN(data.maxAttachmentSize)) {
+ 
+	//gs.addInfoMessage(data.event_name);
+	
+	if (isNaN(data.maxAttachmentSize)) {
     data.maxAttachmentSize = 24;
   }
   data.largeAttachmentMsg = gs.getMessage("Attached files must be smaller than {0} - please try again", "" + data.maxAttachmentSize + "MB");
@@ -763,6 +773,7 @@ h1, .h1 {
     // Populate item data according to your table schema
     data.item = {
       itemName: gr.getValue('name'),
+			eventName:data.event_name,
       itemDescription: gr.getValue('description'),
       donator: gr.getValue('donator'),
       startDate: gr.getDisplayValue('start_date'),
@@ -783,14 +794,14 @@ h1, .h1 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-04 05:28:07</sys_created_on>
         <sys_id>ba167a0a932a421094e3f15a7bba1042</sys_id>
-        <sys_mod_count>63</sys_mod_count>
+        <sys_mod_count>80</sys_mod_count>
         <sys_name>cb_Upload item form</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_ba167a0a932a421094e3f15a7bba1042</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-18 08:59:28</sys_updated_on>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-28 05:05:33</sys_updated_on>
         <template><![CDATA[<div ng-if="::!data.isValid && !data.emptyStateTemplate" class="panel panel-default">
   <div class="panel-body wrapper-lg text-center">
     <span ng-if="!data.tableUnsupported">${Record not found}</span>

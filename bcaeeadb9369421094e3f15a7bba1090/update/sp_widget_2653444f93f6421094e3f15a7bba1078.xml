@@ -150,6 +150,13 @@
         search.sys_id = response.sys_id;
         search.spa = 1;
         $location.search(search).replace();
+				
+				var url = '/cb'; 
+      var params = { id: 'cde_index' }; 
+
+      $location.path(url).search(params).replace();
+				
+				
       } else
         message = $scope.data.updatedMsg;
 
@@ -368,10 +375,9 @@ legend, .sp-form-container .form-container-caption {
 }
 
 .panel-default {
-    /* border-color: #ddd; */
     border: none;
     background: none;
-  margin-top: -18px;
+    margin-top: 0;
 }
 
 .form-control {
@@ -783,14 +789,14 @@ h1, .h1 {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-19 05:16:46</sys_created_on>
         <sys_id>2653444f93f6421094e3f15a7bba1078</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>cb_issue form</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_2653444f93f6421094e3f15a7bba1078</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-19 06:04:16</sys_updated_on>
+        <sys_updated_on>2024-06-27 17:58:13</sys_updated_on>
         <template><![CDATA[<div ng-if="::!data.isValid && !data.emptyStateTemplate" class="panel panel-default">
   <div class="panel-body wrapper-lg text-center">
     <span ng-if="!data.tableUnsupported">${Record not found}</span>

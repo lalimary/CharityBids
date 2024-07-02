@@ -9,7 +9,7 @@
         <name>cb event details - Container 1</name>
         <order>1</order>
         <semantic_tag/>
-        <sp_page display_value="cb_event_details">d637d72693f2021094e3f15a7bba10c2</sp_page>
+        <sp_page display_value="event_details">d637d72693f2021094e3f15a7bba10c2</sp_page>
         <subheader>false</subheader>
         <sys_class_name>sp_container</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>

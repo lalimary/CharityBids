@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="DELETE">
+        <background_color>#ffffff</background_color>
+        <background_image/>
+        <background_style>cover</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name>body</container_class_name>
+        <name>cb events form - Container 3</name>
+        <order>3</order>
+        <semantic_tag/>
+        <sp_page display_value="charity_bids_events">699f2bde936e821094e3f15a7bba1000</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-05 17:32:13</sys_created_on>
+        <sys_id>5765e26a93eac21094e3f15a7bba1053</sys_id>
+        <sys_mod_count>11</sys_mod_count>
+        <sys_name>cb events form - Container 3</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_container_5765e26a93eac21094e3f15a7bba1053</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-26 21:06:44</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_container_5765e26a93eac21094e3f15a7bba1053</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container"><sp_container action="INSERT_OR_UPDATE"><background_color>#ffffff</background_color><background_image/><background_style>cover</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name>body</container_class_name><name>cb events form - Container 3</name><order>3</order><semantic_tag/><sp_page display_value="charity_bids_events">699f2bde936e821094e3f15a7bba1000</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-06-05 17:32:13</sys_created_on><sys_id>5765e26a93eac21094e3f15a7bba1053</sys_id><sys_mod_count>11</sys_mod_count><sys_name>cb events form - Container 3</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sp_container_5765e26a93eac21094e3f15a7bba1053</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-06-26 21:06:44</sys_updated_on><title/><width>container</width></sp_container></record_update>]]></payload>
+        <payload_hash>278973854</payload_hash>
+        <record_name>cb events form - Container 3</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-26 21:06:44</sys_created_on>
+        <sys_id>96ef5b919343421094e3f15a7bba105d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190565f4af30000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-26 21:06:44</sys_updated_on>
+        <type>Container</type>
+        <update_guid>1eef5b91d84342103c44bd9ed7fb0f5c</update_guid>
+        <update_guid_history>1eef5b91d84342103c44bd9ed7fb0f5c:278973854,8cbbdb70c9038610bb19f714eccf05bb:1522510013,93275ff8ffcf4610aafeccada82f6ae3:1626841939,b927dff853cf46103b9e1011e25d7fec:-1092706476,dc2757f80ccf46108f1335675ba2af2f:132486599,d1d3766b42f202108eaf340ee76d7e05:589762867,fb884499993ec2101108a9148040dc28:-215729267,c8813ea6062ec210a51de160414e13a9:1275207630,8f713ea6562ec21067807057c2644658:1929801112,03713ea6c32ec210c2e2fc62492ab353:810964647,9631f6a69f2ec2102a43c358cf177e6d:2113469483,38507266c92ec210c6eb081a890961d4:-973615691,b3207266f12ec210f6180ac210eef6e6:-1125902615,db65e26a1eeac2106a57d897d238f354:2113469483</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="cb events form - Container 3">2cff5b919343421094e3f15a7bba10fb</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-26 21:06:52</sys_created_on>
+        <sys_db_object display_value="" name="sp_container">sp_container</sys_db_object>
+        <sys_id>057b588f36d74254802c6c7a4159eb10</sys_id>
+        <sys_metadata>5765e26a93eac21094e3f15a7bba1053</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cb events form - Container 3</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_container_5765e26a93eac21094e3f15a7bba1053</sys_update_name>
+        <sys_update_version display_value="sp_container_5765e26a93eac21094e3f15a7bba1053">96ef5b919343421094e3f15a7bba105d</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-26 21:06:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

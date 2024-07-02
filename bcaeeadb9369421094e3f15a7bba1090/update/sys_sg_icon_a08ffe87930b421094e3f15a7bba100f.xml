@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_icon">
+    <sys_sg_icon action="INSERT_OR_UPDATE">
+        <icon>{"Name":"Clipboard Lines","Value":"e902","FontName":"now-mobile-icons","Shape":"Circle"}</icon>
+        <name>Clipboard Lines</name>
+        <sys_class_name>sys_sg_icon</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-02 05:14:32</sys_created_on>
+        <sys_id>a08ffe87930b421094e3f15a7bba100f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Clipboard Lines</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_icon_a08ffe87930b421094e3f15a7bba100f</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-02 05:14:32</sys_updated_on>
+        <type>font</type>
+    </sys_sg_icon>
+</record_update>

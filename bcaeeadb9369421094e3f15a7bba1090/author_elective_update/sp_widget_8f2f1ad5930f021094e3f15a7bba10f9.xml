@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+
+    // Initialize data.items
+    c.data.items = c.data.items || [];
+
+    // Function to handle placing a bid
+   // c.placeBid = function(item) {
+       // alert('Placing bid for: ' + item.item_name);
+        // Add your logic here to open a bid modal, send a request, etc.
+   // };
+
+    // Function to show item details
+    //c.showDetails = function(event) {
+     //   var eventDetailUrl = "?id=event_details&sys_id=" + event.sys_id;
+     //   window.location.href = eventDetailUrl;
+  //  };
+
+    // Watch the items array for changes
+    $scope.$watch(function() {
+        return c.data.items;
+    }, function(newVal, oldVal) {
+        if (newVal && newVal.length === 0) {
+            $scope.noItemsMessage = "No Items available";
+        } else {
+            $scope.noItemsMessage = "";
+        }
+    }, true);
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f9fc;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 36px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.event-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  height: 500px;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.event-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-details {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.event-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: bold;
+}
+
+.event-donator, .event-dates div, .event-value, .event-start-bid {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.event-dates div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-status {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.event-status.item-submitted {
+  color: #3498db;
+}
+
+.event-status.schedule {
+  color: #f39c12;
+}
+
+.event-status.in_progress {
+  color: #27ae60;
+}
+
+.event-status.completed {
+  color: #e74c3c;
+}
+
+.place-bid-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  //align-self: flex-end;
+  align-items: center;
+  margin-top: auto;
+}
+
+
+.add-to-options {
+  display: flex;
+  justify-content: center;
+}
+
+.place-bid-btn:hover {
+  background-color: #218838;
+}
+
+/* Item details section styles */
+.event-details-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-details-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.event-details-section img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.details {
+  font-size: 16px;
+  color: #555;
+}
+
+.details p {
+  margin-bottom: 10px;
+}
+
+.details .place-bid-btn {
+  margin-top: 20px;
+}
+
+/* Modal styles */
+.modal-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  background-color: #fefefe;
+}
+
+.modal-header {
+  border-bottom: none;
+  text-align: center;
+  position: relative; /* For positioning the close button */
+}
+
+.modal-header h4 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #FF8C42;
+}
+
+.modal-header .close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 1.5em;
+  color: #aaa;
+  opacity: 1;
+  transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.modal-header .close:hover {
+  color: #333; /* Darker color on hover */
+}
+
+.modal-body {
+  text-align: left;
+}
+
+.modal-body p {
+  margin: 10px 0;
+  font-size: 1em;
+  color: #555;
+}
+
+.modal-body strong {
+  display: inline-block;
+  width: 120px; /* Fixed width for alignment */
+  color: #333;
+}
+
+/* Button styles inside modal */
+.add-to-options .btn-secondary {
+
+  margin-right: 1rem;
+  /*background: linear-gradient(45deg, #C8DF52, #C8DF52);*/
+      color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+ 
+  padding: 1rem 2rem;
+  /* border-radius: 2.5rem; */
+  box-shadow: 0 .4rem .6rem rgba(0, 0, 0, .1);
+  font-size: 21px;
+  cursor: pointer;
+  align-items: center;
+  /* align-items: center; */
+  transition: background .3s, box-shadow .3s;
+}
+
+
+.imgFix {
+  width: 84%;
+}
+
+.imgC {
+  display: flex;
+  justify-content: center;
+}
+.add-to-options .btn-secondary:hover {
+  background: linear-gradient(45deg, #394372, #4E598C); /* Lighten the gradient on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow on hover */
+}
+
+.add-to-options .btn-secondary .icon-image {
+  width: 16px; /* Adjust size as needed */
+  height: 16px; /* Adjust size as needed */
+  margin-right: 5px;
+}
+
+
+
+
+
+ .event-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .event-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .event-description {
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .countdown {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list>color</field_list>
+        <has_preview>true</has_preview>
+        <id>cb_cloned_my_donation</id>
+        <internal>false</internal>
+        <link><![CDATA[function link($scope) {
+    // Link function to handle additional setup
+    $scope.placeBid = function(item) {
+        alert('Placing bid for: ' + item.name);
+        // Here you can add logic to open a bid modal, send a request, etc.
+    };
+}
+]]></link>
+        <name>cb cloned my donation</name>
+        <option_schema>[{"name":"show_star_rating","default_value":"Use system properties","section":"Presentation","label":"Show star rating","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]},{"hint":"Number of articles to display per page","name":"limit_article","section":"other","default_value":"10","label":"Number of articles to display per page","type":"integer"}]</option_schema>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[
+(function($sp, input, data, options, gs) {
+    // Initialize data arrays
+    data.items = [];
+    
+    // Fetch all items in 'auction_in_progress' status
+    var itemGR = new GlideRecord('x_1383184_charityb_item');
+    itemGR.addQuery('item_status', 'in progress');
+	
+	  
+    
+    itemGR.query();
+    while (itemGR.next()) {
+        var item_donatorName = '';
+       if (itemGR.item_manager) {
+           var userGR = new GlideRecord('sys_user');
+           // if (userGR.get(itemGR.item_manager)) {
+              //  event_managerName = userGR.getValue('name');
+          //  }
+       }
+
+        data.items.push({
+            sys_id: itemGR.getUniqueValue(),
+            item_name: itemGR.getValue('item_name'),
+            //donator: donatorName,
+            description: eventGR.getValue('description'),
+            end_date: itemGR.getValue('end_date'),
+            value: itemGR.getValue('value'),
+            start_bid_amount: itemGR.getValue('start_bid_amount'),
+            highest_bid_amount: itemGR.getValue('highest_bid_amount'),
+           auction_status: itemGR.getValue('auction_status'),
+           image: eventGR.getDisplayValue('image'),
+           // description: itemGR.getValue('description')
+        });
+    }
+
+    if (data.items.length === 0) {
+        gs.addInfoMessage("No Items Available");
+    }
+})($sp, input, data, options, gs);
+
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-26 16:23:53</sys_created_on>
+        <sys_id>8f2f1ad5930f021094e3f15a7bba10f9</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>cb cloned my donation</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_8f2f1ad5930f021094e3f15a7bba10f9</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-26 16:50:52</sys_updated_on>
+        <template><![CDATA[<div class="container">
+  <h1>My Donations</h1>
+    <div id="items-grid" class="items-grid">
+        <div ng-repeat="item in c.data.items"  class="item-card" ng-click="c.showDetails(item)">
+            <img ng-src="{{item.image || 'https://dev203498.service-now.com/x_1383184_charityb.default%20image.png'}}" alt="{{item.item_name}}">
+            <div class="item-details">
+                <div class="item-title">{{item.item_name}}</div>
+              <div class="item-description">{{item.description}}</div>
+            
+              
+                <!--<div class="item-value">Value: {{item.value}}</div>
+                <div ng-if="event.event_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
+                <div ng-if="item.event_status === 'Auction In Progress' || item.event_status === 'Auction Completed'" class="item-highest-bid">Highest Bid: {{item.highest_bid_amount}}</div>-->
+                <a href="?id=item_details&sys_id={{item.sys_id}}" target="_blank" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+        <div ng-if="noItemsMessage" class="alert alert-warning">{{noItemsMessage}}</div>
+    </div>
+</div>
+
+
+]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_widget_8f2f1ad5930f021094e3f15a7bba10f9</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller = function($scope) {
+    var c = this;
+
+    // Initialize data.items
+    c.data.items = c.data.items || [];
+
+    // Function to handle placing a bid
+   // c.placeBid = function(item) {
+       // alert('Placing bid for: ' + item.item_name);
+        // Add your logic here to open a bid modal, send a request, etc.
+   // };
+
+    // Function to show item details
+    //c.showDetails = function(event) {
+     //   var eventDetailUrl = "?id=event_details&amp;sys_id=" + event.sys_id;
+     //   window.location.href = eventDetailUrl;
+  //  };
+
+    // Watch the items array for changes
+    $scope.$watch(function() {
+        return c.data.items;
+    }, function(newVal, oldVal) {
+        if (newVal &amp;&amp; newVal.length === 0) {
+            $scope.noItemsMessage = "No Items available";
+        } else {
+            $scope.noItemsMessage = "";
+        }
+    }, true);
+};
+]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f9fc;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 36px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.event-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  height: 500px;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.event-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-details {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.event-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: bold;
+}
+
+.event-donator, .event-dates div, .event-value, .event-start-bid {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.event-dates div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-status {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.event-status.item-submitted {
+  color: #3498db;
+}
+
+.event-status.schedule {
+  color: #f39c12;
+}
+
+.event-status.in_progress {
+  color: #27ae60;
+}
+
+.event-status.completed {
+  color: #e74c3c;
+}
+
+.place-bid-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  //align-self: flex-end;
+  align-items: center;
+  margin-top: auto;
+}
+
+
+.add-to-options {
+  display: flex;
+  justify-content: center;
+}
+
+.place-bid-btn:hover {
+  background-color: #218838;
+}
+
+/* Item details section styles */
+.event-details-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-details-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.event-details-section img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.details {
+  font-size: 16px;
+  color: #555;
+}
+
+.details p {
+  margin-bottom: 10px;
+}
+
+.details .place-bid-btn {
+  margin-top: 20px;
+}
+
+/* Modal styles */
+.modal-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  background-color: #fefefe;
+}
+
+.modal-header {
+  border-bottom: none;
+  text-align: center;
+  position: relative; /* For positioning the close button */
+}
+
+.modal-header h4 {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #FF8C42;
+}
+
+.modal-header .close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 1.5em;
+  color: #aaa;
+  opacity: 1;
+  transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.modal-header .close:hover {
+  color: #333; /* Darker color on hover */
+}
+
+.modal-body {
+  text-align: left;
+}
+
+.modal-body p {
+  margin: 10px 0;
+  font-size: 1em;
+  color: #555;
+}
+
+.modal-body strong {
+  display: inline-block;
+  width: 120px; /* Fixed width for alignment */
+  color: #333;
+}
+
+/* Button styles inside modal */
+.add-to-options .btn-secondary {
+
+  margin-right: 1rem;
+  /*background: linear-gradient(45deg, #C8DF52, #C8DF52);*/
+      color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+ 
+  padding: 1rem 2rem;
+  /* border-radius: 2.5rem; */
+  box-shadow: 0 .4rem .6rem rgba(0, 0, 0, .1);
+  font-size: 21px;
+  cursor: pointer;
+  align-items: center;
+  /* align-items: center; */
+  transition: background .3s, box-shadow .3s;
+}
+
+
+.imgFix {
+  width: 84%;
+}
+
+.imgC {
+  display: flex;
+  justify-content: center;
+}
+.add-to-options .btn-secondary:hover {
+  background: linear-gradient(45deg, #394372, #4E598C); /* Lighten the gradient on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow on hover */
+}
+
+.add-to-options .btn-secondary .icon-image {
+  width: 16px; /* Adjust size as needed */
+  height: 16px; /* Adjust size as needed */
+  margin-right: 5px;
+}
+
+
+
+
+
+ .event-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .event-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .event-description {
+            margin: 10px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .countdown {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list&gt;color&lt;/field_list&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;cb_cloned_my_donation&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link($scope) {
+    // Link function to handle additional setup
+    $scope.placeBid = function(item) {
+        alert('Placing bid for: ' + item.name);
+        // Here you can add logic to open a bid modal, send a request, etc.
+    };
+}
+]]&gt;&lt;/link&gt;&lt;name&gt;cb cloned my donation&lt;/name&gt;&lt;option_schema&gt;[{"name":"show_star_rating","default_value":"Use system properties","section":"Presentation","label":"Show star rating","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]},{"hint":"Number of articles to display per page","name":"limit_article","section":"other","default_value":"10","label":"Number of articles to display per page","type":"integer"}]&lt;/option_schema&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[
+(function($sp, input, data, options, gs) {
+    // Initialize data arrays
+    data.items = [];
+    
+    // Fetch all items in 'auction_in_progress' status
+    var itemGR = new GlideRecord('x_1383184_charityb_item');
+    itemGR.addQuery('item_status', 'in progress');
+	
+	  
+    
+    itemGR.query();
+    while (itemGR.next()) {
+        var item_donatorName = '';
+       if (itemGR.item_manager) {
+           var userGR = new GlideRecord('sys_user');
+           // if (userGR.get(itemGR.item_manager)) {
+              //  event_managerName = userGR.getValue('name');
+          //  }
+       }
+
+        data.items.push({
+            sys_id: itemGR.getUniqueValue(),
+            item_name: itemGR.getValue('item_name'),
+            //donator: donatorName,
+            description: eventGR.getValue('description'),
+            end_date: itemGR.getValue('end_date'),
+            value: itemGR.getValue('value'),
+            start_bid_amount: itemGR.getValue('start_bid_amount'),
+            highest_bid_amount: itemGR.getValue('highest_bid_amount'),
+           auction_status: itemGR.getValue('auction_status'),
+           image: eventGR.getDisplayValue('image'),
+           // description: itemGR.getValue('description')
+        });
+    }
+
+    if (data.items.length === 0) {
+        gs.addInfoMessage("No Items Available");
+    }
+})($sp, input, data, options, gs);
+
+]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;christy&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-26 16:23:53&lt;/sys_created_on&gt;&lt;sys_id&gt;8f2f1ad5930f021094e3f15a7bba10f9&lt;/sys_id&gt;&lt;sys_mod_count&gt;7&lt;/sys_mod_count&gt;&lt;sys_name&gt;cb cloned my donation&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_8f2f1ad5930f021094e3f15a7bba10f9&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;christy&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-26 16:50:52&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="container"&gt;
+  &lt;h1&gt;My Donations&lt;/h1&gt;
+    &lt;div id="items-grid" class="items-grid"&gt;
+        &lt;div ng-repeat="item in c.data.items"  class="item-card" ng-click="c.showDetails(item)"&gt;
+            &lt;img ng-src="{{item.image || 'https://dev203498.service-now.com/x_1383184_charityb.default%20image.png'}}" alt="{{item.item_name}}"&gt;
+            &lt;div class="item-details"&gt;
+                &lt;div class="item-title"&gt;{{item.item_name}}&lt;/div&gt;
+              &lt;div class="item-description"&gt;{{item.description}}&lt;/div&gt;
+            
+              
+                &lt;!--&lt;div class="item-value"&gt;Value: {{item.value}}&lt;/div&gt;
+                &lt;div ng-if="event.event_status === 'Auction Scheduled'" class="item-start-bid"&gt;Start Bid: {{item.start_bid_amount}}&lt;/div&gt;
+                &lt;div ng-if="item.event_status === 'Auction In Progress' || item.event_status === 'Auction Completed'" class="item-highest-bid"&gt;Highest Bid: {{item.highest_bid_amount}}&lt;/div&gt;--&gt;
+                &lt;a href="?id=item_details&amp;sys_id={{item.sys_id}}" target="_blank" class="btn btn-primary"&gt;Details&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div ng-if="noItemsMessage" class="alert alert-warning"&gt;{{noItemsMessage}}&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-636530419</payload_hash>
+        <record_name>cb cloned my donation</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-26 16:50:52</sys_created_on>
+        <sys_id>96552211934f021094e3f15a7bba1048</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19055750b1f0000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-26 16:50:52</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>5e552211a44f02106aa8016f6b149847</update_guid>
+        <update_guid_history>5e552211a44f02106aa8016f6b149847:-636530419,1a4526115e4f0210a3dba82f4d94b915:-1436185378,15152a5d420f021034fb07f1f1e3e759:1360628990,6af4aedd8f0f02101d249ce639d1521e:-1332933653,e5b3ea5d130f0210d89bb37eff32dbfa:-1447721698,aed0ea99fa0f0210137895248d417200:1950398278,7c802699940f0210bea58067574b2dfd:-451898030,0b2f1ad5ad0f0210c97b77eff0e1bbfb:-43228229</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="cb cloned my donation">ae95ea11934f021094e3f15a7bba102e</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-06-26 16:51:58</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>9ae07c426cea42f8adfd31397ea58a40</sys_id>
+        <sys_metadata>8f2f1ad5930f021094e3f15a7bba10f9</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cb cloned my donation</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_widget_8f2f1ad5930f021094e3f15a7bba10f9</sys_update_name>
+        <sys_update_version display_value="sp_widget_8f2f1ad5930f021094e3f15a7bba10f9">96552211934f021094e3f15a7bba1048</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-06-26 16:51:58</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

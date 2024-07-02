@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
     <sp_container action="INSERT_OR_UPDATE">
-        <background_color/>
+        <background_color>#ffffff</background_color>
         <background_image/>
         <background_style>default</background_style>
         <bootstrap_alt>false</bootstrap_alt>
@@ -15,14 +15,14 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-21 06:59:46</sys_created_on>
         <sys_id>8f1ea26393f2021094e3f15a7bba108f</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>cb item list - Container 1</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_container_8f1ea26393f2021094e3f15a7bba108f</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-21 06:59:46</sys_updated_on>
+        <sys_updated_on>2024-06-25 16:50:16</sys_updated_on>
         <title/>
         <width>container</width>
     </sp_container>

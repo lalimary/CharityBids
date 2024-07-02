@@ -7,16 +7,13 @@
     // Initialize data.items
     c.data.events = c.data.events || [];
 
-    // Function to handle placing a bid
-   // c.placeBid = function(item) {
-       // alert('Placing bid for: ' + item.item_name);
-        // Add your logic here to open a bid modal, send a request, etc.
-   // };
+    // Initialize search query
+    $scope.searchQuery = '';
 
-    // Function to show item details
-    c.showDetails = function(event) {
-        var eventDetailUrl = "?id=event_details&sys_id=" + event.sys_id;
-        window.location.href = eventDetailUrl;
+    // Function to open event details
+    c.openEventDetails = function(sysId) {
+        var eventDetailUrl = "?id=event_details&sys_id=" + sysId;
+        window.open(eventDetailUrl, '_blank');
     };
 
     // Watch the items array for changes
@@ -28,260 +25,255 @@
         } else {
             $scope.noEventsMessage = "";
         }
+        // Update filtered events based on search query
+        updateFilteredEvents();
     }, true);
+
+    // Watch the searchQuery for changes and filter events accordingly
+    $scope.$watch('searchQuery', function(newVal, oldVal) {
+        if (newVal !== oldVal) {
+            updateFilteredEvents();
+        }
+    });
+
+    // Function to filter events based on search query
+    function updateFilteredEvents() {
+        if (!$scope.searchQuery) {
+            $scope.filteredEvents = c.data.events;
+        } else {
+            $scope.filteredEvents = c.data.events.filter(function(event) {
+                // Match event name and description against search query
+                return event.event_name.toLowerCase().includes($scope.searchQuery.toLowerCase()) ||
+                       event.description.toLowerCase().includes($scope.searchQuery.toLowerCase());
+            });
+        }
+    }
+
+    // Display filtered events initially
+    $scope.filteredEvents = c.data.events;
+
 };
 ]]></client_script>
         <controller_as>c</controller_as>
         <css>body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f7f9fc;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
 }
 
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 40px;
-  font-size: 36px;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.search-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
 .events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
 }
 
 .event-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-  height: 500px;
+    position: relative;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
 }
 
-.event-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.event-image {
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: 0;
+    transition: filter 0.3s;
 }
 
-.event-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.event-card:hover .event-image {
+    filter: blur(0);
 }
 
-.event-details {
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+.event-date {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-month {
+    font-size: 14px;
+    color: #888;
+    font-weight: bold;
+}
+
+.event-day {
+    font-size: 20px;
+    color: #333;
+}
+
+.end-date-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.event-content {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: -50px;
+    text-align: center;
+    transition: margin-top 0.3s;
 }
 
 .event-title {
-  font-size: 22px;
-  margin-bottom: 15px;
-  color: #333;
-  font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
 }
 
-.event-donator, .event-dates div, .event-value, .event-start-bid {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 10px;
-  word-wrap: break-word;
+.event-description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    display: none;
 }
 
-.event-dates div {
-  display: flex;
-  justify-content: space-between;
+.event-card:hover .event-title {
+    display: none;
+}
+
+.event-card:hover .event-description {
+    display: block;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3;
 }
 
 .event-status {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
 }
 
-.event-status.item-submitted {
-  color: #3498db;
+.event-status-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
 }
 
-.event-status.schedule {
-  color: #f39c12;
+.event-status-icon i {
+    font-size: 18px; /* Adjust icon size */
 }
 
-.event-status.in_progress {
-  color: #27ae60;
+.event-status-text {
+    font-size: 14px;
+    color: #888;
 }
 
-.event-status.completed {
-  color: #e74c3c;
+.event-status-icon.in-progress {
+    background-color: #5cb85c; /* Green for 'In Progress' */
+    color: #fff;
 }
 
-.place-bid-btn {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 8px;
-  //align-self: flex-end;
-  align-items: center;
-  margin-top: auto;
+.event-status-icon.schedule {
+    background-color: #428bca; /* Blue for 'Scheduled' */
+    color: #fff;
 }
 
-
-.add-to-options {
-  display: flex;
-  justify-content: center;
+.event-status-icon.completed {
+    background-color: #d9534f; /* Red for 'Completed' */
+    color: #fff;
 }
 
-.place-bid-btn:hover {
-  background-color: #218838;
+.event-closed-msg {
+    font-size: 16px;
+    color: #999;
+    margin-top: 10px;
+    text-align: center;
 }
 
-/* Item details section styles */
-.event-details-section {
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.donation-options {
+    margin-top: 20px;
+    text-align: center;
 }
 
-.event-details-section h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #333;
-  font-weight: bold;
+.donation-options .donateButton {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    border: 2px solid #007bff; /* Blue outline */
+    color: #007bff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.event-details-section img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  margin-bottom: 20px;
+.donation-options a:hover {
+    background-color: #007bff;
+    color: #fff;
 }
 
-.details {
-  font-size: 16px;
-  color: #555;
-}
-
-.details p {
-  margin-bottom: 10px;
-}
-
-.details .place-bid-btn {
-  margin-top: 20px;
-}
-
-/* Modal styles */
-.modal-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  background-color: #fefefe;
-}
-
-.modal-header {
-  border-bottom: none;
-  text-align: center;
-  position: relative; /* For positioning the close button */
-}
-
-.modal-header h4 {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #FF8C42;
-}
-
-.modal-header .close {
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  font-size: 1.5em;
-  color: #aaa;
-  opacity: 1;
-  transition: color 0.3s; /* Smooth transition for hover effect */
-}
-
-.modal-header .close:hover {
-  color: #333; /* Darker color on hover */
-}
-
-.modal-body {
-  text-align: left;
-}
-
-.modal-body p {
-  margin: 10px 0;
-  font-size: 1em;
-  color: #555;
-}
-
-.modal-body strong {
-  display: inline-block;
-  width: 120px; /* Fixed width for alignment */
-  color: #333;
-}
-
-/* Button styles inside modal */
-.add-to-options .btn-secondary {
-
-  margin-right: 1rem;
-  /*background: linear-gradient(45deg, #C8DF52, #C8DF52);*/
-      color: #fff;
-    background-color: #428bca;
-    border-color: #357ebd;
- 
-  padding: 1rem 2rem;
-  /* border-radius: 2.5rem; */
-  box-shadow: 0 .4rem .6rem rgba(0, 0, 0, .1);
-  font-size: 21px;
-  cursor: pointer;
-  align-items: center;
-  /* align-items: center; */
-  transition: background .3s, box-shadow .3s;
-}
-
-
-.imgFix {
-  width: 84%;
-}
-
-.imgC {
-  display: flex;
-  justify-content: center;
-}
-.add-to-options .btn-secondary:hover {
-  background: linear-gradient(45deg, #394372, #4E598C); /* Lighten the gradient on hover */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow on hover */
-}
-
-.add-to-options .btn-secondary .icon-image {
-  width: 16px; /* Adjust size as needed */
-  height: 16px; /* Adjust size as needed */
-  margin-right: 5px;
+.event-closed.ng-scope {
+    padding-top: 24px;
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -304,38 +296,32 @@ h1 {
         <option_schema>[{"name":"show_star_rating","default_value":"Use system properties","section":"Presentation","label":"Show star rating","type":"choice","choices":[{"label":"Yes","value":"Yes"},{"label":"No","value":"No"},{"label":"Use system properties","value":"Use system properties"}]},{"hint":"Number of articles to display per page","name":"limit_article","section":"other","default_value":"10","label":"Number of articles to display per page","type":"integer"}]</option_schema>
         <public>true</public>
         <roles/>
-        <script><![CDATA[
-(function($sp, input, data, options, gs) {
-    // Initialize data arrays
+        <script><![CDATA[(function($sp, input, data, options, gs) {
     data.events = [];
     
-    // Fetch all items in 'auction_in_progress' status
     var eventGR = new GlideRecord('x_1383184_charityb_events');
-    eventGR.addQuery('event_status', 'in progress');
-	  eventGR.addOrCondition('event_status', 'in progress');
-    
+    eventGR.addQuery('event_status', 'IN', ['in progress', 'schedule', 'completed']);
     eventGR.query();
+
     while (eventGR.next()) {
         var event_managerName = '';
-       if (eventGR.event_manager) {
-           var userGR = new GlideRecord('sys_user');
+        if (eventGR.event_manager) {
+            var userGR = new GlideRecord('x_1383184_charityb_user_profile');
             if (userGR.get(eventGR.event_manager)) {
                 event_managerName = userGR.getValue('name');
             }
-       }
+        }
 
         data.events.push({
             sys_id: eventGR.getUniqueValue(),
             event_name: eventGR.getValue('event_name'),
-            //donator: donatorName,
-            //start_date: itemGR.getValue('start_date'),
-           //end_date: itemGR.getValue('end_date'),
-            //value: itemGR.getValue('value'),
-            //start_bid_amount: itemGR.getValue('start_bid_amount'),
-            //highest_bid_amount: itemGR.getValue('highest_bid_amount'),
-           // auction_status: itemGR.getValue('auction_status'),
-           image: eventGR.getDisplayValue('image'),
-           // description: itemGR.getValue('description')
+            description: eventGR.getValue('description'),
+            start_date: eventGR.getValue('start_date'),
+            end_date: eventGR.getValue('end_date'),
+            charity_company: eventGR.getValue('charity_company'),
+            status: eventGR.getValue('event_status'),
+            image: eventGR.getDisplayValue('image'),
+            justgiving_url: eventGR.getValue('justgiving_url')
         });
     }
 
@@ -343,37 +329,72 @@ h1 {
         gs.addInfoMessage("No Events Available");
     }
 })($sp, input, data, options, gs);
-
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-24 09:49:35</sys_created_on>
         <sys_id>b3b1baec938b061094e3f15a7bba10dc</sys_id>
-        <sys_mod_count>27</sys_mod_count>
+        <sys_mod_count>82</sys_mod_count>
         <sys_name>cb cloned event list</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_b3b1baec938b061094e3f15a7bba10dc</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-24 11:00:02</sys_updated_on>
-        <template><![CDATA[<div class="container">
-    <h1>Events List</h1>
-    <div id="events-grid" class="events-grid">
-        <div ng-repeat="event in c.data.events"  class="event-card" ng-click="c.showDetails(event)">
-            <img ng-src="{{event.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{event.event_name}}">
-            <div class="event-details">
-                <div class="event-title">{{event.event_name}}</div>
-                <!--<div class="item-value">Value: {{item.value}}</div>
-                <div ng-if="event.event_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
-                <div ng-if="item.event_status === 'Auction In Progress' || item.event_status === 'Auction Completed'" class="item-highest-bid">Highest Bid: {{item.highest_bid_amount}}</div>-->
-                <a href="?id=event_details&sys_id={{event.sys_id}}" target="_blank" class="btn btn-primary">Details</a>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-01 10:13:03</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope and Healing Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hope and Healing Events</h1>
+        <input type="text" ng-model="searchQuery" placeholder="Search events..." class="search-input">
+        <div id="events-grid" class="events-grid">
+            <div ng-repeat="event in c.data.events | filter:searchQuery" class="event-card" ng-click="openEventDetails(event.sys_id)">
+                <a ng-href="?id=event_details&sys_id={{event.sys_id}}" target="_blank" class="event-card-link">
+                    <div class="event-image" ng-style="{'background-image': 'url(' + (event.image || 'https://dev203498.service-now.com/issues.png') + ')'}"></div>
+                    <div class="event-date">
+                        <span class="event-month">
+                            {{event.status === 'completed' ? (event.end_date | date:'MMM') : (event.start_date | date:'MMM')}}
+                        </span>
+                        <span class="event-day">
+                            {{event.status === 'completed' ? (event.end_date | date:'dd') : (event.start_date | date:'dd')}}
+                        </span>
+                        <div class="end-date-label">{{event.status === 'completed' ? 'End Date' : 'Start Date'}}</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-title">{{event.event_name}}</div>
+                        <div class="event-description">{{event.description}}</div>
+                        <div class="event-status">
+                            <div class="event-status-icon {{event.status === 'in progress' ? 'in-progress' : event.status === 'schedule' ? 'schedule' : 'completed'}}">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="event-status-text">
+                                {{event.status}}
+                            </div>
+                        </div>
+                        <div class="donation-options" ng-if="event.status === 'in progress' || event.status === 'schedule'">
+                            <a ng-href="cb?id=upload_item" target="_blank" class="donateButton" ng-if="event.status === 'schedule'">Donate Item</a>
+                            <a ng-href="{{event.justgiving_url}}" target="_blank" class="donateButton">Donate Money</a>
+                        </div>
+                        <div class="event-closed" ng-if="event.status === 'completed'">
+                            This event is closed for donations.
+                        </div>
+                    </div>
+                </a>
             </div>
+            <div ng-if="noEventsMessage" class="alert alert-warning">{{noEventsMessage}}</div>
         </div>
-        <div ng-if="noEventsMessage" class="alert alert-warning">{{noEventsMessage}}</div>
     </div>
-</div>
+</body>
+</html>
 ]]></template>
     </sp_widget>
 </record_update>
