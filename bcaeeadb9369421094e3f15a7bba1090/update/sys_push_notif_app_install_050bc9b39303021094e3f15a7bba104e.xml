@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_push_notif_app_install">
+    <sys_push_notif_app_install action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <last_registered_on>2024-07-10 09:55:10</last_registered_on>
+        <send_badge_count>true</send_badge_count>
+        <sys_class_name>sys_push_notif_app_install</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-04 04:41:00</sys_created_on>
+        <sys_id>050bc9b39303021094e3f15a7bba104e</sys_id>
+        <sys_mod_count>96</sys_mod_count>
+        <sys_name>eqe23eSKSReviFY1bvEczL:APA91bFIlZBKQmshZp8UDyUPq7Zb2iZiypGsHT0tMWeAAqKomH68Q6izbzkMEb9wbDIj8YQmLd_1x3MkAEOpJb45_nm2vGIQx_6jrnrSGlCB8zI3zncUKgOaJPJ8KRk9JE_dqU4woNb9</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_push_application_id display_value="ServiceNow Request Application">ac7f61d273122300d63a566a4cf6a78b</sys_push_application_id>
+        <sys_push_platform_id display_value="Google">53e75f30ff0002009738ffffffffff12</sys_push_platform_id>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_push_notif_app_install_050bc9b39303021094e3f15a7bba104e</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 09:55:10</sys_updated_on>
+        <sys_user_id display_value="Christy George">4e73e64c93e9021094e3f15a7bba10ac</sys_user_id>
+        <token>eqe23eSKSReviFY1bvEczL:APA91bFIlZBKQmshZp8UDyUPq7Zb2iZiypGsHT0tMWeAAqKomH68Q6izbzkMEb9wbDIj8YQmLd_1x3MkAEOpJb45_nm2vGIQx_6jrnrSGlCB8zI3zncUKgOaJPJ8KRk9JE_dqU4woNb9</token>
+    </sys_push_notif_app_install>
+</record_update>

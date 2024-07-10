@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_empty_state">
+    <sys_sg_empty_state action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <name>Empty State - My Bids</name>
+        <sys_class_name>sys_sg_empty_state</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 07:22:51</sys_created_on>
+        <sys_id>60006f15935f821094e3f15a7bba10cc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Empty State - My Bids</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_empty_state_60006f15935f821094e3f15a7bba10cc</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 07:22:51</sys_updated_on>
+        <view_config display_value="Empty State - My Bid Card">c08fd315935f821094e3f15a7bba104b</view_config>
+    </sys_sg_empty_state>
+    <sys_translated_text action="delete_multiple" query="documentkey=60006f15935f821094e3f15a7bba10cc"/>
+</record_update>

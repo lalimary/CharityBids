@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_config_element">
+    <sys_sg_view_config_element action="INSERT_OR_UPDATE">
+        <name>image_02_element</name>
+        <sys_class_name>sys_sg_view_config_element</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 06:48:10</sys_created_on>
+        <sys_id>398e9c279383021094e3f15a7bba1046</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>image_02_element</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_config_element_398e9c279383021094e3f15a7bba1046</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-03 06:48:10</sys_updated_on>
+        <view_config display_value="Events">071d98e39383021094e3f15a7bba10db</view_config>
+        <view_template_slot display_value="image_02">e0fd14279383021094e3f15a7bba100a</view_template_slot>
+    </sys_sg_view_config_element>
+</record_update>

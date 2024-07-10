@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_write_back_action_item">
+    <sys_sg_write_back_action_item action="INSERT_OR_UPDATE">
+        <description/>
+        <execution_script><![CDATA[(function WriteBackAction(parm_input, parm_variable, actionResult) {
+    var gr = new GlideRecord('x_1383184_charityb_item');
+    gr.initialize();
+    gr.setValue('item_name', parm_input.item_name);
+    gr.setValue('value', parm_input.value);
+    gr.setValue('category', parm_input.category);
+    gr.setValue('start_bid_amount', parm_input.start_bid_amount);
+    gr.setValue('event_name', parm_input.event_name);
+    gr.setValue('start_date', parm_input.start_date);
+    gr.setValue('end_date', parm_input.end_date);
+    gr.setValue('image', parm_input.image);
+    //actionResult.addAttachment("image", "x_1383184_charityb_item", parm_input.image);
+   
+    
+    gr.insert();
+})(parm_input, parm_variable, actionResult);]]></execution_script>
+        <name>Donation action</name>
+        <parameter_screen display_value="Donation Form ">8e2eda00931b421094e3f15a7bba109c</parameter_screen>
+        <query_condition/>
+        <sys_class_name>sys_sg_write_back_action_item</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-05 05:12:48</sys_created_on>
+        <sys_id>64eb5a4c93d7421094e3f15a7bba10f3</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>Donation action</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_write_back_action_item_64eb5a4c93d7421094e3f15a7bba10f3</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-09 06:12:18</sys_updated_on>
+        <table>x_1383184_charityb_item</table>
+        <template>item_name={{Input: Item Name}}^donator={{Input: Donator }}^EQ</template>
+        <type>script</type>
+        <use_current_record_as_condition>true</use_current_record_as_condition>
+        <use_fields_for_ref_lookup>false</use_fields_for_ref_lookup>
+    </sys_sg_write_back_action_item>
+    <sys_translated_text action="delete_multiple" query="documentkey=64eb5a4c93d7421094e3f15a7bba10f3"/>
+</record_update>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_icon">
+    <sys_sg_icon action="INSERT_OR_UPDATE">
+        <icon>{"FontName":"now-mobile-icons","Value":"e90f","FontColor":"#34849e","Name ":"My Donations"}</icon>
+        <name>My Donations</name>
+        <sys_class_name>sys_sg_icon</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-04 06:13:11</sys_created_on>
+        <sys_id>d310edbb9343021094e3f15a7bba10d2</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>My Donations</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_icon_d310edbb9343021094e3f15a7bba10d2</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-04 09:09:17</sys_updated_on>
+        <type>font</type>
+    </sys_sg_icon>
+</record_update>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_master_item">
+    <sys_sg_master_item action="INSERT_OR_UPDATE">
+        <condition_order/>
+        <datasource_table>x_1383184_charityb_item</datasource_table>
+        <datasource_table_condition/>
+        <embedded_screen display_value="Item details Record Screen">bc351f04931f421094e3f15a7bba10a7</embedded_screen>
+        <item_view/>
+        <name>Auctions</name>
+        <sys_class_name>sys_sg_master_item</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 05:40:52</sys_created_on>
+        <sys_id>0c2fc4e39343021094e3f15a7bba1054</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Auctions</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_master_item_0c2fc4e39343021094e3f15a7bba1054</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-10 10:16:05</sys_updated_on>
+        <use_view_config>true</use_view_config>
+        <view_config display_value="Item Card">73315539931b061094e3f15a7bba10eb</view_config>
+    </sys_sg_master_item>
+</record_update>

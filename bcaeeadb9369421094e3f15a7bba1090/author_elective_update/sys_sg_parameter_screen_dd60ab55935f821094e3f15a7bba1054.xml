@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_parameter_screen">
+    <sys_sg_parameter_screen action="DELETE">
+        <active>true</active>
+        <advanced>true</advanced>
+        <available_offline>false</available_offline>
+        <cancel_label>Cancel</cancel_label>
+        <description/>
+        <dynamic_prefetch_count/>
+        <empty_state/>
+        <fetch_type>not_required</fetch_type>
+        <filter/>
+        <header_only_on_first_page>false</header_only_on_first_page>
+        <hide_filters>false</hide_filters>
+        <hide_screen_name>false</hide_screen_name>
+        <icon/>
+        <name>Create profile_2</name>
+        <next_label>Next</next_label>
+        <pagination_type>all</pagination_type>
+        <prev_label>Previous</prev_label>
+        <reset_after_submit>false</reset_after_submit>
+        <resume>false</resume>
+        <roles_override/>
+        <submit_label>Submit</submit_label>
+        <sys_class_name>sys_sg_parameter_screen</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-09 07:24:33</sys_created_on>
+        <sys_id>dd60ab55935f821094e3f15a7bba1054</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create profile_2</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_parameter_screen_dd60ab55935f821094e3f15a7bba1054</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-09 07:24:33</sys_updated_on>
+        <type display_value="">string</type>
+        <view_config/>
+    </sys_sg_parameter_screen>
+    <sys_translated_text action="DELETE" query="documentkey=dd60ab55935f821094e3f15a7bba1054"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_sg_parameter_screen_dd60ab55935f821094e3f15a7bba1054</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_parameter_screen"><sys_sg_parameter_screen action="INSERT_OR_UPDATE"><active>true</active><advanced>true</advanced><available_offline>false</available_offline><cancel_label>Cancel</cancel_label><description/><dynamic_prefetch_count/><empty_state/><fetch_type>not_required</fetch_type><filter/><header_only_on_first_page>false</header_only_on_first_page><hide_filters>false</hide_filters><hide_screen_name>false</hide_screen_name><icon/><name>Create profile_2</name><next_label>Next</next_label><pagination_type>all</pagination_type><prev_label>Previous</prev_label><reset_after_submit>false</reset_after_submit><resume>false</resume><roles_override/><submit_label>Submit</submit_label><sys_class_name>sys_sg_parameter_screen</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-09 07:24:33</sys_created_on><sys_id>dd60ab55935f821094e3f15a7bba1054</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Create profile_2</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_sg_parameter_screen_dd60ab55935f821094e3f15a7bba1054</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-09 07:24:33</sys_updated_on><type display_value="">string</type><view_config/></sys_sg_parameter_screen><sys_translated_text action="delete_multiple" query="documentkey=dd60ab55935f821094e3f15a7bba1054"/></record_update>]]></payload>
+        <payload_hash>1907917672</payload_hash>
+        <record_name>Create profile_2</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-09 07:24:33</sys_created_on>
+        <sys_id>5d60ab55935f821094e3f15a7bba1057</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19096613edc0000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-09 07:24:33</sys_updated_on>
+        <type>Input form screen</type>
+        <update_guid>9160ab55fa5f8210bdcf0a66e865ff57</update_guid>
+        <update_guid_history>9160ab55fa5f8210bdcf0a66e865ff57:1907917672</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-09 07:25:32</sys_created_on>
+        <sys_db_object display_value="" name="sys_sg_parameter_screen">sys_sg_parameter_screen</sys_db_object>
+        <sys_id>4d00a3cfc6474b889a97969296677d19</sys_id>
+        <sys_metadata>dd60ab55935f821094e3f15a7bba1054</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create profile_2</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_sg_parameter_screen_dd60ab55935f821094e3f15a7bba1054</sys_update_name>
+        <sys_update_version display_value="sys_sg_parameter_screen_dd60ab55935f821094e3f15a7bba1054">5d60ab55935f821094e3f15a7bba1057</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-09 07:25:32</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

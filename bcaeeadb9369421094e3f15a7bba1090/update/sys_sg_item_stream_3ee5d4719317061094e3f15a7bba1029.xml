@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_item_stream">
+    <sys_sg_item_stream action="INSERT_OR_UPDATE">
+        <data_item display_value="Events in progress">22f2907d93d3061094e3f15a7bba104b</data_item>
+        <interleaved_field/>
+        <name>Events in progress</name>
+        <sys_class_name>sys_sg_item_stream</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-10 05:56:53</sys_created_on>
+        <sys_id>3ee5d4719317061094e3f15a7bba1029</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Events in progress</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_item_stream_3ee5d4719317061094e3f15a7bba1029</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 05:56:53</sys_updated_on>
+        <table/>
+    </sys_sg_item_stream>
+</record_update>

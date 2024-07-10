@@ -4,10 +4,10 @@
         <description>Table containing the information of items</description>
         <group_by/>
         <instance_relative_url_qc/>
-        <name>Item</name>
+        <name>Auctions</name>
         <offline_query_condition/>
         <offline_query_condition_script/>
-        <query_condition table="x_1383184_charityb_item">donatorDYNAMIC^EQ<item endquery="false" field="donator" goto="false" newquery="false" operator="DYNAMIC" or="false" value=""/>
+        <query_condition table="x_1383184_charityb_item">auction_status=auction_in_progress^EQ<item display_value="Auction in progress" endquery="false" field="auction_status" goto="false" newquery="false" operator="=" or="false" value="auction_in_progress"/>
             <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </query_condition>
         <query_condition_script/>
@@ -15,14 +15,14 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-07-02 08:27:52</sys_created_on>
         <sys_id>f8cb234b93cb421094e3f15a7bba10c5</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>Item</sys_name>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Auctions</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_sg_data_item_f8cb234b93cb421094e3f15a7bba10c5</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-02 08:27:52</sys_updated_on>
+        <sys_updated_on>2024-07-09 06:16:37</sys_updated_on>
         <table>x_1383184_charityb_item</table>
     </sys_sg_data_item>
     <sys_translated_text action="delete_multiple" query="documentkey=f8cb234b93cb421094e3f15a7bba10c5"/>

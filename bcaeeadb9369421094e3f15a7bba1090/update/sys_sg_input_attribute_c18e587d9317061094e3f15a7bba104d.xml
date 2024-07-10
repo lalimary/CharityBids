@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_input_attribute">
+    <sys_sg_input_attribute action="INSERT_OR_UPDATE">
+        <input display_value="Item Name">f84e907d9317061094e3f15a7bba10ac</input>
+        <name>SourceFieldName</name>
+        <sys_class_name>sys_sg_input_attribute</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-10 06:34:27</sys_created_on>
+        <sys_id>c18e587d9317061094e3f15a7bba104d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SourceFieldName</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_input_attribute_c18e587d9317061094e3f15a7bba104d</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 06:34:27</sys_updated_on>
+        <value>item_name</value>
+    </sys_sg_input_attribute>
+</record_update>

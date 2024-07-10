@@ -24,33 +24,39 @@
 
     if (startDateObj.toDateString() === currentDate.toDateString()) {
         g_form.clearValue('start_date');
-        g_form.showFieldMsg('start_date', 'Start date cannot be today', 'error');
+        g_form.showFieldMsg('start_date', getMessage('start_date_today'), 'error');
         return;
     } else if (isNewRecord && startDateObj < currentDate) {
         g_form.clearValue('start_date');
-        g_form.showFieldMsg('start_date', 'Start date cannot be before today', 'error');
+        g_form.showFieldMsg('start_date', getMessage('start_date_before_today'), 'error');
         return;
     }
 
     g_form.clearMessages('start_date');
+}
 
-
-}]]></script>
+function getMessage(key) {
+    var messages = {};
+    messages['start_date_today'] = 'Start date cannot be today';
+    messages['start_date_before_today'] = 'Start date cannot be before today';
+    return messages[key];
+}
+]]></script>
         <sys_class_name>sys_script_client</sys_class_name>
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-05-25 17:28:52</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>3e7a3dc79316821094e3f15a7bba10e5</sys_id>
-        <sys_mod_count>7</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>Event start date validation</sys_name>
         <sys_overrides/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_script_client_3e7a3dc79316821094e3f15a7bba10e5</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-28 06:26:50</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-10 04:40:46</sys_updated_on>
         <table>x_1383184_charityb_events</table>
         <type>onChange</type>
         <ui_type>10</ui_type>

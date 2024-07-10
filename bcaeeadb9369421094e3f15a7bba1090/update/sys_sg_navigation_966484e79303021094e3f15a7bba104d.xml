@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_navigation">
+    <sys_sg_navigation action="INSERT_OR_UPDATE">
+        <color/>
+        <legacy_application>true</legacy_application>
+        <name>Charity Bids</name>
+        <quick_actions_menu_color/>
+        <sys_class_name>sys_sg_navigation</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 04:54:03</sys_created_on>
+        <sys_id>966484e79303021094e3f15a7bba104d</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Charity Bids</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_navigation_966484e79303021094e3f15a7bba104d</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-09 06:40:41</sys_updated_on>
+    </sys_sg_navigation>
+</record_update>

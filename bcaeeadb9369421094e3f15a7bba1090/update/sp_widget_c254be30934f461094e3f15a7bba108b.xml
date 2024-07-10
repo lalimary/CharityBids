@@ -13,37 +13,97 @@ api.controller = function($rootScope, $location, $window) {
 };
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>img {
-    width: 107%;
-    object-fit: cover;
+        <css>.event-details {
+  font-family: Arial, sans-serif;
+  color: #333;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.eventData {
-    display: flex;
-    margin: 41px 5px;
-    justify-content: space-between;
+.event-header {
+  position: relative;
+  width: 100%;
 }
 
-.imgC {
-    display: flex;
-    width: 53%;
-    justify-content: center;
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.modal-body {
-    font-size: 24px !important;
-    line-height: 32px !important;
+.event-content {
+  background-color: white;
+  padding: 20px;
 }
 
-h2.ng-binding {
-    font-size: 4rem;
-    padding-left: .6rem;
-    font-weight: 600;
-    background-image: radial-gradient(ellipse, #29b3ff, #31789f);
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-}</css>
+.event-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.event-info div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.event-icon {
+  margin-right: 5px;
+}
+
+.event-company {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.event-description {
+  margin-bottom: 20px;
+}
+
+.event-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-btn {
+  background-color: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  flex: 1;
+  text-align: center;
+}
+
+.event-btn:not(:last-child) {
+  margin-right: 10px;
+}
+
+.event-btn.donate-money-btn {
+  background-color: #4CAF50; /* Green */
+}
+
+.event-btn.remind-me-btn {
+  background-color: #FFC107; /* Amber */
+}
+
+.event-btn.donate-item-btn {
+  background-color: #2196F3; /* Blue */
+}
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -88,38 +148,45 @@ h2.ng-binding {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-25 04:39:25</sys_created_on>
         <sys_id>c254be30934f461094e3f15a7bba108b</sys_id>
-        <sys_mod_count>48</sys_mod_count>
+        <sys_mod_count>49</sys_mod_count>
         <sys_name>cb cloned event details</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_c254be30934f461094e3f15a7bba108b</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-28 07:24:18</sys_updated_on>
-        <template><![CDATA[<div class="event-details" ng-if="c.data">
-  <!--<div class="modal-content">-->
-    <!--<div class="modal-header">-->
-      <h2>{{c.data.event_name}}</h2>
-  <div class="eventData">
-    <div class="imgC">
-      <img ng-src="{{c.data.image || 'https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg'}}" alt="{{c.data.event_name}}">
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-03 16:58:00</sys_updated_on>
+        <template><![CDATA[<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<div class="event-details" ng-if="c.data">
+  <div class="event-header">
+    <img class="event-image" ng-src="{{c.data.image || 'https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg'}}" alt="{{c.data.event_name}}">
+  </div>
+  <div class="event-content">
+    <h2 class="event-title">{{c.data.event_name}}</h2>
+    <div class="event-info">
+      <div class="event-date">
+        <i class="fa-regular fa-calendar-days event-icon"></i>
+        <span>{{c.data.start_date}} - {{c.data.end_date}}</span>
+      </div>
+      <div class="event-manager">
+        <i class="fa-solid fa-user event-icon"></i>
+        <span>{{c.data.event_manager}}</span>
+      </div>
     </div>
-    <div class="modal-body">
-      <p> {{c.data.description}}</p>
-      <p><strong>Start Date:</strong> {{c.data.start_date}}</p>
-      <p><strong>End Date:</strong> {{c.data.end_date}}</p>
-      <p><strong>Donation URL:</strong><a href="{{c.data.justgiving_url}}" target="_blank">{{c.data.justgiving_url}}</a></p>
-      <!--<p><strong>Start Bid:</strong> {{c.data.start_bid_amount}}</p>
-      <p><strong>Highest Bid:</strong> {{c.data.highest_bid_amount}}</p>-->
-      <p><strong>Status:</strong> {{c.data.event_status}}</p>
-      <button class="btn btn-primary" ng-click="c.openJustGivingPage(c.data.justgiving_url)">Donate Money</button>
-      <a href="?id=list_of_items" target="_blank" class="btn btn-primary" ng-if="c.data.event_status === 'in progress'">Participate in Auction</a>
-      <a href="?id=upload_item&event_name={{c.data.event_name}}" target="_blank" class="btn btn-primary" ng-if="c.data.event_status === 'schedule'" >Donate Items</a>
-      <!--<button class="btn btn-primary" ng-if="c.data.event_status === 'schedule'" ng-click="c.showDetails(c.data)">Donate Items</button>-->
-      <!--<button class="btn btn-primary" ng-if="c.data.event_status === 'in progress'" ng-click="c.showDetails(c.data)">Participate in Auction</button>-->
+    <div class="event-company">
+      <strong>Organized by:</strong> {{c.data.charity_company}}
+    </div>
+    <p class="event-description">{{c.data.description}}</p>
+    <div class="event-buttons">
+      <button class="event-btn donate-money-btn">Donate Money</button>
+      <button class="event-btn remind-me-btn">Remind Me</button>
+      <button class="event-btn donate-item-btn">Donate Item</button>
     </div>
   </div>
 </div>
-]]></template>
+</head>]]></template>
     </sp_widget>
 </record_update>

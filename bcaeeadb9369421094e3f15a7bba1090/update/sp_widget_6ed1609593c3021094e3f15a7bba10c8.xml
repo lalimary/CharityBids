@@ -1,95 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function($scope, spUtil, $http) {
-    $scope.data = {};
-
-    // Function to fetch bids
-    $scope.fetchBids = function() {
-        var url = '/api/now/table/x_1383184_charityb_bid'; // Specify your bid table name
-        var config = {
-            params: {
-                sysparm_query: 'bidder.name.sys_userId.name=' + gs.getUserDisplayName(), // Correct dot-walking path
-                sysparm_display_value: 'true'
-            }
-        };
-
-        $http.get(url, config).then(function(response) {
-            var bids = response.data.result;
-            $scope.data.bids = bids.map(function(bid) {
-                return {
-                    id: bid.sys_id,
-                    bidAmount: bid.bid_amount,
-                    itemName: bid.item_name.display_value,
-                    createdOn: bid.sys_created_on
-                    // Add more fields as needed
-                };
-            });
-        });
-    };
-
-    // Initialize the widget
-    $scope.initWidget = function() {
-        $scope.fetchBids();
-    };
-
-    // Function to view bid details (example)
-    $scope.viewBidDetails = function(bidId) {
-        // Implement as per your requirements
-        console.log('Viewing details for bid ID:', bidId);
-    };
-
-    $scope.initWidget(); // Initialize widget on load
-}
+        <client_script><![CDATA[(function() {
+  /* Client-side script */
+})();
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>.card-container {
-    margin-top: 20px;
+        <css>.item-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
 }
 
-.card {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    transition: box-shadow 0.3s ease-in-out;
+.item-card h3 {
+  margin: 0;
+  color: #333;
 }
 
-.card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.card-header {
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #ccc;
-}
-
-.card-title {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-
-.card-body {
-    padding: 10px;
-}
-
-.card-body p {
-    margin-bottom: 10px;
-}
-
-.card-footer {
-    padding: 10px;
-    text-align: center;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ccc;
-}
-
-.btn-primary {
-    background-color: #428bca;
-    border-color: #357ebd;
-    color: #fff;
+.item-card p {
+  margin: 5px 0;
+  color: #666;
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -106,21 +37,36 @@
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-    var gr = new GlideRecord('x_1383184_charityb_bid');
-    gr.addQuery('bidder', gs.getUserID()); // Assuming 'bidder' is the reference field to the User Profile table
-    gr.query();
-    var bids = [];
-    while (gr.next()) {
-        var bid = {
-            id: gr.getValue('sys_id'),
-            bidAmount: gr.getValue('bid_amount'),
-            itemName: gr.getDisplayValue('item_name'),
-            createdOn: gr.getDisplayValue('sys_created_on')
-            // Add more fields as needed
-        };
-        bids.push(bid);
+  data.bids = [];
+  var userSysId = gs.getUserID(); // Get the Sys ID of the logged-in user
+
+  // Query the user_profile table to get the profile name
+  var userProfileGR = new GlideRecord('x_1383184_charityb_user_profile');
+  userProfileGR.addQuery('name', userSysId);
+  userProfileGR.query();
+
+  if (userProfileGR.next()) {
+    var userProfileName = userProfileGR.getValue('name');
+
+    // Query the Bid table for bids placed by the logged-in user (referenced through user profile name)
+    var bidGR = new GlideRecord('x_1383184_charityb_bid');
+    bidGR.addQuery('bidder', userProfileName);
+    bidGR.query();
+
+    while (bidGR.next()) {
+      // Get the item details from the referenced Item table
+      var itemGR = new GlideRecord('x_1383184_charityb_item');
+      if (itemGR.get(bidGR.getValue('item_name'))) {
+        // Add bid and item details to the data array
+        data.bids.push({
+          bid_amount: bidGR.getValue('bid_amount'),
+          item_name: {
+            display_value: itemGR.getDisplayValue('item_name')
+          }
+        });
+      }
     }
-    data.bids = bids;
+  }
 })();
 ]]></script>
         <servicenow>false</servicenow>
@@ -128,39 +74,22 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-26 07:16:21</sys_created_on>
         <sys_id>6ed1609593c3021094e3f15a7bba10c8</sys_id>
-        <sys_mod_count>11</sys_mod_count>
+        <sys_mod_count>22</sys_mod_count>
         <sys_name>My bid history</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_6ed1609593c3021094e3f15a7bba10c8</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-26 18:08:03</sys_updated_on>
-        <template><![CDATA[<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">My Bids</h3>
+        <sys_updated_on>2024-07-09 16:00:09</sys_updated_on>
+        <template><![CDATA[<div>
+  <h2>My Bid History</h2>
+  <div ng-repeat="bid in c.data.bids">
+    <div class="item-card">
+      <h3>{{ bid.item_name.display_value }}</h3>
+      <p>Bid Amount: {{ bid.bid_amount }}</p>
     </div>
-    <div class="panel-body">
-        <div class="card-container">
-            <div class="row">
-                <div class="col-md-4" ng-repeat="bid in data.bids">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">{{ bid.itemName }}</h4>
-                        </div>
-                        <div class="card-body">
-                            <p><strong>Bid Amount:</strong> {{ bid.bidAmount }}</p>
-                            <p><strong>Created On:</strong> {{ bid.createdOn }}</p>
-                            <!-- Add more fields as per your requirements -->
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-primary" ng-click="viewBidDetails(bid.id)">View Details</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 ]]></template>
     </sp_widget>

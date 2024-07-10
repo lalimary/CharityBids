@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_native_client">
+    <sys_sg_native_client action="INSERT_OR_UPDATE">
+        <client_theme/>
+        <empty_state/>
+        <force_local_login>false</force_local_login>
+        <geolocation_enabled>false</geolocation_enabled>
+        <mobile_theme display_value="Mobile Legacy">2fbc01335bc11110848b28582d81c75f</mobile_theme>
+        <name>Charity Bids</name>
+        <navigation display_value="Charity Bids">966484e79303021094e3f15a7bba104d</navigation>
+        <offline_enabled>false</offline_enabled>
+        <order/>
+        <required_roles/>
+        <sys_class_name>sys_sg_native_client</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 04:54:03</sys_created_on>
+        <sys_id>5a6484e79303021094e3f15a7bba1051</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Charity Bids</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_native_client_5a6484e79303021094e3f15a7bba1051</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-09 06:40:41</sys_updated_on>
+        <type>request</type>
+        <vision_android_app_id/>
+        <vision_api_key/>
+        <vision_ios_app_id/>
+    </sys_sg_native_client>
+</record_update>

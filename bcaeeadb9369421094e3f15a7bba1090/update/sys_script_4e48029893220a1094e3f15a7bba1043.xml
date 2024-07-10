@@ -15,9 +15,7 @@
         <condition/>
         <description/>
         <execute_function>false</execute_function>
-        <filter_condition table="x_1383184_charityb_bid">your_bid_amountGT_FIELDitem_name.highest_bid_amount^your_bid_amountGT_FIELDitem_name.start_bid_amount^EQ<item endquery="false" field="your_bid_amount" goto="false" newquery="false" operator="GT_FIELD" or="false" value="item_name.highest_bid_amount"/>
-            <item endquery="false" field="your_bid_amount" goto="false" newquery="false" operator="GT_FIELD" or="false" value="item_name.start_bid_amount"/>
-            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        <filter_condition table="x_1383184_charityb_bid">your_bid_amountGT_FIELDitem_name.highest_bid_amount^your_bid_amountGT_FIELDitem_name.start_bid_amount^EQ<item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
         </filter_condition>
         <is_rest>false</is_rest>
         <message><![CDATA[<p>Your Bid amount should be greater than highest bid</p>]]></message>

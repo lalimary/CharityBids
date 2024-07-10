@@ -3,168 +3,154 @@
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>event_name</element>
             <position>0</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:29</sys_created_on>
-            <sys_id>76bb9f709303861094e3f15a7bba10a4</sys_id>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>5bcf4370931b021094e3f15a7bba1030</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:29</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>event_manager</element>
             <position>1</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:29</sys_created_on>
-            <sys_id>7ebb9f709303861094e3f15a7bba10a4</sys_id>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>93cf4370931b021094e3f15a7bba1031</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:29</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>charity_company</element>
             <position>2</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>72bb9f709303861094e3f15a7bba10a5</sys_id>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>97cf4370931b021094e3f15a7bba1031</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.split</element>
             <position>3</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>76bb9f709303861094e3f15a7bba10a5</sys_id>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>9bcf4370931b021094e3f15a7bba1031</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type>.split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>start_date</element>
             <position>4</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>7abb9f709303861094e3f15a7bba10a5</sys_id>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>9fcf4370931b021094e3f15a7bba1031</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>end_date</element>
             <position>5</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>7ebb9f709303861094e3f15a7bba10a5</sys_id>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>93cf4370931b021094e3f15a7bba1032</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
-            <sys_user/>
-            <type/>
-        </sys_ui_element>
-        <sys_ui_element action="INSERT_OR_UPDATE">
-            <element>event_status</element>
-            <position>6</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>72bb9f709303861094e3f15a7bba10a6</sys_id>
-            <sys_mod_count>0</sys_mod_count>
-            <sys_ui_formatter/>
-            <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>.end_split</element>
-            <position>7</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>76bb9f709303861094e3f15a7bba10a6</sys_id>
+            <position>6</position>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>97cf4370931b021094e3f15a7bba1032</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type>.end_split</type>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>justgiving_url</element>
-            <position>8</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>7abb9f709303861094e3f15a7bba10a6</sys_id>
+            <position>7</position>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>9bcf4370931b021094e3f15a7bba1032</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>description</element>
-            <position>9</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>7ebb9f709303861094e3f15a7bba10a6</sys_id>
+            <position>8</position>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>9fcf4370931b021094e3f15a7bba1032</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>image</element>
-            <position>10</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>72bb9f709303861094e3f15a7bba10a7</sys_id>
+            <position>9</position>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>93cf4370931b021094e3f15a7bba1033</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>testimonial</element>
-            <position>11</position>
-            <sys_created_by>christy</sys_created_by>
-            <sys_created_on>2024-06-25 07:31:30</sys_created_on>
-            <sys_id>76bb9f709303861094e3f15a7bba10a7</sys_id>
+            <position>10</position>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-07 16:55:05</sys_created_on>
+            <sys_id>97cf4370931b021094e3f15a7bba1033</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_events" sys_domain="global" view="Default view">f435f9cf93d2821094e3f15a7bba10d3</sys_ui_section>
-            <sys_updated_by>christy</sys_updated_by>
-            <sys_updated_on>2024-06-25 07:31:30</sys_updated_on>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-07 16:55:05</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

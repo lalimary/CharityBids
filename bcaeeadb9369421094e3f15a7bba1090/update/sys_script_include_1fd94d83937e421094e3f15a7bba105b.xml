@@ -4,7 +4,7 @@
         <active>true</active>
         <api_name>x_1383184_charityb.BidValidation</api_name>
         <caller_access/>
-        <client_callable>false</client_callable>
+        <client_callable>true</client_callable>
         <description/>
         <name>BidValidation</name>
         <script><![CDATA[var BidValidation = Class.create();
@@ -24,11 +24,9 @@ BidValidation.prototype = {
             var highestBidAmount = parseFloat(item.getValue('highest_bid_amount'));
 
             if (bidAmount <= startBidAmount) {
-				
-                result.message = 'Bid amount must be greater than the start bid amount.';
-				
+                result.message = gs.getMessage('bid_amount_greater_start');
             } else if (bidAmount <= highestBidAmount) {
-                result.message = 'Bid amount must be greater than the current highest bid amount.';
+                result.message = gs.getMessage('bid_amount_greater_highest');
             } else {
                 result.valid = true;
                 item.setValue('highest_bid_amount', bidAmount);
@@ -36,7 +34,7 @@ BidValidation.prototype = {
                 result.highestBidUpdated = true;
             }
         } else {
-            result.message = 'Item not found.';
+            result.message = gs.getMessage('item_not_found');
         }
 
         return result;
@@ -44,22 +42,18 @@ BidValidation.prototype = {
 
     type: 'BidValidation'
 };
-
-
-
-
 ]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-19 10:25:56</sys_created_on>
         <sys_id>1fd94d83937e421094e3f15a7bba105b</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>BidValidation</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_script_include_1fd94d83937e421094e3f15a7bba105b</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-20 06:32:07</sys_updated_on>
+        <sys_updated_on>2024-07-10 04:31:54</sys_updated_on>
     </sys_script_include>
 </record_update>

@@ -23,15 +23,15 @@
             <label>Item submitted</label>
             <language>en</language>
             <name>x_1383184_charityb_item</name>
-            <sequence>100</sequence>
+            <sequence>0</sequence>
             <synonyms/>
             <sys_created_by>lalitha</sys_created_by>
             <sys_created_on>2024-04-22 16:49:04</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>8</sys_mod_count>
-            <sys_updated_by>lalitha</sys_updated_by>
-            <sys_updated_on>2024-04-23 06:50:17</sys_updated_on>
+            <sys_mod_count>9</sys_mod_count>
+            <sys_updated_by>christy</sys_updated_by>
+            <sys_updated_on>2024-06-25 07:40:24</sys_updated_on>
             <value>item_submitted</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -42,15 +42,15 @@
             <label>Auction scheduled</label>
             <language>en</language>
             <name>x_1383184_charityb_item</name>
-            <sequence>200</sequence>
+            <sequence>1</sequence>
             <synonyms/>
             <sys_created_by>lalitha</sys_created_by>
             <sys_created_on>2024-04-23 06:13:01</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>3</sys_mod_count>
-            <sys_updated_by>lalitha</sys_updated_by>
-            <sys_updated_on>2024-04-23 06:59:40</sys_updated_on>
+            <sys_mod_count>4</sys_mod_count>
+            <sys_updated_by>christy</sys_updated_by>
+            <sys_updated_on>2024-06-25 07:40:24</sys_updated_on>
             <value>auction_scheduled</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -61,15 +61,15 @@
             <label>Auction in progress</label>
             <language>en</language>
             <name>x_1383184_charityb_item</name>
-            <sequence>300</sequence>
+            <sequence>2</sequence>
             <synonyms/>
             <sys_created_by>lalitha</sys_created_by>
             <sys_created_on>2024-04-23 06:13:31</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>2</sys_mod_count>
-            <sys_updated_by>lalitha</sys_updated_by>
-            <sys_updated_on>2024-04-23 06:59:45</sys_updated_on>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>christy</sys_updated_by>
+            <sys_updated_on>2024-06-25 07:40:24</sys_updated_on>
             <value>auction_in_progress</value>
         </sys_choice>
         <sys_choice action="INSERT_OR_UPDATE">
@@ -80,15 +80,15 @@
             <label>Auction completed</label>
             <language>en</language>
             <name>x_1383184_charityb_item</name>
-            <sequence>400</sequence>
+            <sequence>3</sequence>
             <synonyms/>
             <sys_created_by>lalitha</sys_created_by>
             <sys_created_on>2024-04-23 06:13:49</sys_created_on>
             <sys_domain>global</sys_domain>
             <sys_domain_path>/</sys_domain_path>
-            <sys_mod_count>2</sys_mod_count>
-            <sys_updated_by>lalitha</sys_updated_by>
-            <sys_updated_on>2024-04-23 06:59:48</sys_updated_on>
+            <sys_mod_count>3</sys_mod_count>
+            <sys_updated_by>christy</sys_updated_by>
+            <sys_updated_on>2024-06-25 07:40:24</sys_updated_on>
             <value>auction_completed</value>
         </sys_choice>
     </sys_choice>

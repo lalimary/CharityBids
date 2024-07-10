@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_variable">
+    <sys_sg_variable action="INSERT_OR_UPDATE">
+        <name>item_name_autofill</name>
+        <parameter_screen display_value="Bid form">2cda5a459397421094e3f15a7bba1066</parameter_screen>
+        <parameter_section/>
+        <sys_class_name>sys_sg_variable</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 06:23:12</sys_created_on>
+        <sys_id>aa125751931f821094e3f15a7bba1036</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>item_name_autofill</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_variable_aa125751931f821094e3f15a7bba1036</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 06:23:12</sys_updated_on>
+        <type>scripted</type>
+    </sys_sg_variable>
+</record_update>

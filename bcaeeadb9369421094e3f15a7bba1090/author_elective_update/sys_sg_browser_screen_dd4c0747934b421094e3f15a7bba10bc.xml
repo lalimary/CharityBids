@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_browser_screen">
+    <sys_sg_browser_screen action="DELETE">
+        <available_offline>false</available_offline>
+        <check_acl>false</check_acl>
+        <description>Charity bids home page</description>
+        <dynamic_prefetch_count/>
+        <empty_state/>
+        <external_browser>false</external_browser>
+        <fetch_type>not_required</fetch_type>
+        <filter/>
+        <hide_filters>false</hide_filters>
+        <hide_screen_name>false</hide_screen_name>
+        <icon display_value="Clipboard Lines">a08ffe87930b421094e3f15a7bba100f</icon>
+        <name>Home page</name>
+        <relative_url>false</relative_url>
+        <roles_override/>
+        <sys_class_name>sys_sg_browser_screen</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-02 06:10:18</sys_created_on>
+        <sys_id>dd4c0747934b421094e3f15a7bba10bc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Home page</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_browser_screen_dd4c0747934b421094e3f15a7bba10bc</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-02 06:10:18</sys_updated_on>
+        <url>https://dev203498.service-now.com/cb?id=cde_index</url>
+    </sys_sg_browser_screen>
+    <sys_translated_text action="DELETE" query="documentkey=dd4c0747934b421094e3f15a7bba10bc"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_sg_browser_screen_dd4c0747934b421094e3f15a7bba10bc</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_browser_screen"><sys_sg_browser_screen action="INSERT_OR_UPDATE"><available_offline>false</available_offline><check_acl>false</check_acl><description>Charity bids home page</description><dynamic_prefetch_count/><empty_state/><external_browser>false</external_browser><fetch_type>not_required</fetch_type><filter/><hide_filters>false</hide_filters><hide_screen_name>false</hide_screen_name><icon display_value="Clipboard Lines">a08ffe87930b421094e3f15a7bba100f</icon><name>Home page</name><relative_url>false</relative_url><roles_override/><sys_class_name>sys_sg_browser_screen</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-02 06:10:18</sys_created_on><sys_id>dd4c0747934b421094e3f15a7bba10bc</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Home page</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_sg_browser_screen_dd4c0747934b421094e3f15a7bba10bc</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-02 06:10:18</sys_updated_on><url>https://dev203498.service-now.com/cb?id=cde_index</url></sys_sg_browser_screen><sys_translated_text action="delete_multiple" query="documentkey=dd4c0747934b421094e3f15a7bba10bc"/></record_update>]]></payload>
+        <payload_hash>792380158</payload_hash>
+        <record_name>Home page</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-02 06:10:18</sys_created_on>
+        <sys_id>e54c0387934b421094e3f15a7bba10f1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1907210bebe0000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-02 06:10:18</sys_updated_on>
+        <type>Mobile web screen</type>
+        <update_guid>ed4c0747f84b4210eee75298b648c8be</update_guid>
+        <update_guid_history>ed4c0747f84b4210eee75298b648c8be:792380158</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 04:56:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_sg_browser_screen">sys_sg_browser_screen</sys_db_object>
+        <sys_id>56d8dcc9768449aaa44495bafe00cde4</sys_id>
+        <sys_metadata>dd4c0747934b421094e3f15a7bba10bc</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Home page</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_sg_browser_screen_dd4c0747934b421094e3f15a7bba10bc</sys_update_name>
+        <sys_update_version display_value="sys_sg_browser_screen_dd4c0747934b421094e3f15a7bba10bc">e54c0387934b421094e3f15a7bba10f1</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-03 04:56:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

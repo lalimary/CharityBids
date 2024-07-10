@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_input">
+    <sys_sg_input action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <autofill_variable/>
+        <category/>
+        <description/>
+        <label>Issue Type</label>
+        <mandatory>false</mandatory>
+        <name>issue_type</name>
+        <order>10</order>
+        <page/>
+        <parameter_screen display_value=" Event Issue Form">3bfd9b8c931f421094e3f15a7bba1007</parameter_screen>
+        <parameter_section/>
+        <placeholder/>
+        <readonly>false</readonly>
+        <sys_class_name>sys_sg_input</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-05 10:05:21</sys_created_on>
+        <sys_id>71de1300935f421094e3f15a7bba10c5</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Issue Type</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_input_71de1300935f421094e3f15a7bba10c5</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-05 10:58:08</sys_updated_on>
+        <type display_value="Choice">8dfb205517021010f2b43b9fadb9592e</type>
+    </sys_sg_input>
+</record_update>

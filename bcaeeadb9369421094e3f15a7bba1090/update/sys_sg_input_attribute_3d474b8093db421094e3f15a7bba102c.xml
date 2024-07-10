@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_input_attribute">
+    <sys_sg_input_attribute action="INSERT_OR_UPDATE">
+        <input display_value="End Date">2e37438093db421094e3f15a7bba100f</input>
+        <name>RenderType</name>
+        <sys_class_name>sys_sg_input_attribute</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-05 08:22:24</sys_created_on>
+        <sys_id>3d474b8093db421094e3f15a7bba102c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>RenderType</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_input_attribute_3d474b8093db421094e3f15a7bba102c</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-05 08:22:24</sys_updated_on>
+        <value>date</value>
+    </sys_sg_input_attribute>
+</record_update>

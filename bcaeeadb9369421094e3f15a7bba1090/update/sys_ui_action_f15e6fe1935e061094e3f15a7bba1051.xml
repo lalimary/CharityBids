@@ -31,8 +31,16 @@
         <onclick/>
         <order>30</order>
         <script><![CDATA[(function executeAction() {
+    // Set the status to 'resolved'
     current.setValue('status', 'resolved'); 
+
+    // Set the resolution date to the current date and time
+    current.setValue('resolution_date', new GlideDateTime());
+
+    // Save the changes
     current.update();
+    
+    // Redirect to the current record to refresh the form
     action.setRedirectURL(current);
 })();
 ]]></script>
@@ -46,15 +54,15 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>f15e6fe1935e061094e3f15a7bba1051</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Resolve Issue</sys_name>
         <sys_overrides/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_ui_action_f15e6fe1935e061094e3f15a7bba1051</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-20 11:00:58</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-09 09:06:52</sys_updated_on>
         <table>x_1383184_charityb_issues</table>
         <ui11_compatible>true</ui11_compatible>
         <ui16_compatible>false</ui16_compatible>

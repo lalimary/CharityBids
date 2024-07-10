@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_applet_launcher_tab">
+    <sys_sg_applet_launcher_tab action="INSERT_OR_UPDATE">
+        <active>false</active>
+        <applet_launcher display_value="">d34dae80935b421094e3f15a7bba102c</applet_launcher>
+        <icon display_value="Bag">081d8da2b72200108223e126de11a9c9</icon>
+        <label>Bid</label>
+        <sys_class_name>sys_sg_applet_launcher_tab</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-05 06:28:54</sys_created_on>
+        <sys_id>d74dae80935b421094e3f15a7bba102f</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Bid</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_applet_launcher_tab_d74dae80935b421094e3f15a7bba102f</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 06:01:22</sys_updated_on>
+    </sys_sg_applet_launcher_tab>
+</record_update>

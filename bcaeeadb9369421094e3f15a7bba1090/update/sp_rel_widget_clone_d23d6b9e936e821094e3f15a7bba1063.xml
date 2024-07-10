@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
     <sp_rel_widget_clone action="INSERT_OR_UPDATE">
-        <child display_value="event create form">9a3d6b9e936e821094e3f15a7bba105d</child>
+        <child display_value="cb event form">9a3d6b9e936e821094e3f15a7bba105d</child>
         <cloned>2024-06-05 04:07:26</cloned>
         <last_validated>2024-06-05 04:07:26</last_validated>
         <parent display_value="Form">fd1f4ec347730200ba13a5554ee490c0</parent>

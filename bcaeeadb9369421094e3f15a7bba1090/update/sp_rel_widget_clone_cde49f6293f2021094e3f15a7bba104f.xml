@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
     <sp_rel_widget_clone action="INSERT_OR_UPDATE">
-        <child display_value="my donations">30e49f6293f2021094e3f15a7bba104a</child>
+        <child display_value="cb my donations">30e49f6293f2021094e3f15a7bba104a</child>
         <cloned>2024-06-04 17:29:42</cloned>
         <last_validated>2024-06-04 17:29:42</last_validated>
         <parent display_value="KB Category Page">fb5d068cd7610200a9ad1e173e24d400</parent>

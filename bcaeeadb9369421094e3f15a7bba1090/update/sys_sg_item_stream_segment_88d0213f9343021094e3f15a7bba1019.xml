@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_item_stream_segment">
+    <sys_sg_item_stream_segment action="INSERT_OR_UPDATE">
+        <empty_state/>
+        <interleave_order_direction>asc</interleave_order_direction>
+        <max_offline_rows>500</max_offline_rows>
+        <name>My Donations</name>
+        <order/>
+        <screen display_value="My Donations">f67f95bb9343021094e3f15a7bba10be</screen>
+        <sys_class_name>sys_sg_item_stream_segment</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-04 06:16:15</sys_created_on>
+        <sys_id>88d0213f9343021094e3f15a7bba1019</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>My Donations</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_item_stream_segment_88d0213f9343021094e3f15a7bba1019</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-04 06:16:15</sys_updated_on>
+    </sys_sg_item_stream_segment>
+</record_update>

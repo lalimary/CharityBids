@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_config_element">
+    <sys_sg_view_config_element action="INSERT_OR_UPDATE">
+        <name>es-image-slot-1_element</name>
+        <sys_class_name>sys_sg_view_config_element</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 07:38:04</sys_created_on>
+        <sys_id>9b73af95935f821094e3f15a7bba10a3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>es-image-slot-1_element</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_config_element_9b73af95935f821094e3f15a7bba10a3</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 07:38:04</sys_updated_on>
+        <view_config display_value="Empty State - My Donations Card">0df127d5935f821094e3f15a7bba1024</view_config>
+        <view_template_slot display_value="es-image-slot-1">6775d192b723101096aa25efce11a95d</view_template_slot>
+    </sys_sg_view_config_element>
+</record_update>

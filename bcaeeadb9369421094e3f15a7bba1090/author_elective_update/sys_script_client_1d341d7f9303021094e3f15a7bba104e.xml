@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="DELETE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>start_date</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>duration count</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue === '') {
+      return;
+   }
+
+    // Get the current date
+    var currentDate = new Date();
+
+    // Get the start date and end date from the form
+    var startDateStr = g_form.getValue('start_date');
+    var endDateStr = g_form.getValue('end_date');
+
+    if (!startDateStr || !endDateStr) {
+        return; // Exit if start date or end date is not set
+    }
+
+    var startDate = new Date(startDateStr);
+    var endDate = new Date(endDateStr);
+
+    if (currentDate < startDate) {
+        // Calculate days to start date
+        var daysToStart = dateDiffInDays(currentDate, startDate);
+        g_form.setValue('duration', daysToStart);
+    } else if (currentDate >= startDate && currentDate <= endDate) {
+        // Calculate days to end date
+        var daysToEnd = dateDiffInDays(currentDate, endDate);
+        g_form.setValue('duration', daysToEnd);
+    } else {
+        // If current date is after end date, set days to 0 or handle as needed
+        g_form.setValue('duration', 0);
+    }
+}
+
+// Function to calculate difference in days between two dates
+function dateDiffInDays(date1, date2) {
+    var diffTime = Math.abs(date2 - date1);
+    var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+}
+]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-04 05:29:53</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>1d341d7f9303021094e3f15a7bba104e</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>duration count</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_script_client_1d341d7f9303021094e3f15a7bba104e</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-04 05:29:53</sys_updated_on>
+        <table>x_1383184_charityb_events</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_script_client_1d341d7f9303021094e3f15a7bba104e</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;applies_extended&gt;false&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description/&gt;&lt;field&gt;start_date&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;messages/&gt;&lt;name&gt;duration count&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   if (isLoading || newValue === '') {
+      return;
+   }
+
+    // Get the current date
+    var currentDate = new Date();
+
+    // Get the start date and end date from the form
+    var startDateStr = g_form.getValue('start_date');
+    var endDateStr = g_form.getValue('end_date');
+
+    if (!startDateStr || !endDateStr) {
+        return; // Exit if start date or end date is not set
+    }
+
+    var startDate = new Date(startDateStr);
+    var endDate = new Date(endDateStr);
+
+    if (currentDate &lt; startDate) {
+        // Calculate days to start date
+        var daysToStart = dateDiffInDays(currentDate, startDate);
+        g_form.setValue('duration', daysToStart);
+    } else if (currentDate &gt;= startDate &amp;&amp; currentDate &lt;= endDate) {
+        // Calculate days to end date
+        var daysToEnd = dateDiffInDays(currentDate, endDate);
+        g_form.setValue('duration', daysToEnd);
+    } else {
+        // If current date is after end date, set days to 0 or handle as needed
+        g_form.setValue('duration', 0);
+    }
+}
+
+// Function to calculate difference in days between two dates
+function dateDiffInDays(date1, date2) {
+    var diffTime = Math.abs(date2 - date1);
+    var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+}
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;lalitha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-07-04 05:29:53&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;1d341d7f9303021094e3f15a7bba104e&lt;/sys_id&gt;&lt;sys_mod_count&gt;0&lt;/sys_mod_count&gt;&lt;sys_name&gt;duration count&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_1d341d7f9303021094e3f15a7bba104e&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;lalitha&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-07-04 05:29:53&lt;/sys_updated_on&gt;&lt;table&gt;x_1383184_charityb_events&lt;/table&gt;&lt;type&gt;onChange&lt;/type&gt;&lt;ui_type&gt;10&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1717364208</payload_hash>
+        <record_name>duration count</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-04 05:29:53</sys_created_on>
+        <sys_id>49361d7f9303021094e3f15a7bba1003</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1907c3877f80000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-04 05:29:53</sys_updated_on>
+        <type>Client Script</type>
+        <update_guid>8d361d7ffa0302102c461a49dcaab702</update_guid>
+        <update_guid_history>8d361d7ffa0302102c461a49dcaab702:-1717364208</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-10 04:35:42</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_client">sys_script_client</sys_db_object>
+        <sys_id>60e2cac7f89e4b519fc78c8f9480fcf1</sys_id>
+        <sys_metadata>1d341d7f9303021094e3f15a7bba104e</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>duration count</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent display_value="Events">2ff0398b93d2821094e3f15a7bba100c</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_script_client_1d341d7f9303021094e3f15a7bba104e</sys_update_name>
+        <sys_update_version display_value="sys_script_client_1d341d7f9303021094e3f15a7bba104e">49361d7f9303021094e3f15a7bba1003</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-10 04:35:42</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

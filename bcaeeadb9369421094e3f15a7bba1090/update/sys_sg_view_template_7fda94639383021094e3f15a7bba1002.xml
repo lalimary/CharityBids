@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_template">
+    <sys_sg_view_template action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>A card template for events card</description>
+        <name>Events card</name>
+        <preview_image/>
+        <root_view_attrs_json/>
+        <sys_class_name>sys_sg_view_template</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 06:32:11</sys_created_on>
+        <sys_id>7fda94639383021094e3f15a7bba1002</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>Events card</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_template_7fda94639383021094e3f15a7bba1002</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 06:19:24</sys_updated_on>
+        <template_json>{"Type":"ViewGroup","Margin":{"Top":15,"Bottom":17},"Orientation":"Vertical","Alignment":"Left","Distribution":"Auto","Id":"Root","Height":700,"Children":[{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_02","CellId":"container_02","Children":[{"Type":"Image","Scaling":"Fit","Id":"image_03","CellId":"image_03","Height":250,"Width":400}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_04","CellId":"container_04","Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_03","CellId":"text_03","Height":50}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_05","CellId":"container_05","Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_06","CellId":"text_06","Height":50}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_06","CellId":"container_06","Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_08","CellId":"text_08"},{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_09","CellId":"text_09"}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_07","CellId":"container_07","Height":100,"Children":[{"Type":"Button","TextAlignment":"Center","Id":"button_01","CellId":"button_01"},{"Type":"Button","TextAlignment":"Center","Id":"button_04","CellId":"button_04","Height":70,"Margin":{"Left":60},"Width":70}]}]}</template_json>
+    </sys_sg_view_template>
+    <sys_translated_text action="delete_multiple" query="documentkey=7fda94639383021094e3f15a7bba1002"/>
+</record_update>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_content_section_m2m_item_stream_container">
+    <sys_sg_content_section_m2m_item_stream_container action="INSERT_OR_UPDATE">
+        <content_section display_value="Noticeboard">8a7befcc935f421094e3f15a7bba10a1</content_section>
+        <item_stream_container display_value="Noticeboard">ce7befcc935f421094e3f15a7bba10a6</item_stream_container>
+        <order>10</order>
+        <sys_class_name>sys_sg_content_section_m2m_item_stream_container</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-05 11:00:31</sys_created_on>
+        <sys_id>4a7befcc935f421094e3f15a7bba10a9</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_content_section_m2m_item_stream_container_4a7befcc935f421094e3f15a7bba10a9</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-05 11:05:21</sys_updated_on>
+    </sys_sg_content_section_m2m_item_stream_container>
+</record_update>

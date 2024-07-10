@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_push_notif_msg">
+    <sys_push_notif_msg action="INSERT_OR_UPDATE">
+        <message_string>Congratulations 🎉 Your ${item_name} has been submitted successfully. Thank you for your contribution!</message_string>
+        <name>Item Submitted Message</name>
+        <push_app display_value="ServiceNow Request Application">ac7f61d273122300d63a566a4cf6a78b</push_app>
+        <push_message_content display_value="Item Submitted Notification">d07822c193d7421094e3f15a7bba10cf</push_message_content>
+        <subject/>
+        <sys_class_name>sys_push_notif_msg</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-08 09:04:46</sys_created_on>
+        <sys_id>a81d2a0993d7421094e3f15a7bba100d</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Item Submitted Message</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_push_notif_msg_a81d2a0993d7421094e3f15a7bba100d</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 07:26:39</sys_updated_on>
+        <table>x_1383184_charityb_item</table>
+        <type>push</type>
+    </sys_push_notif_msg>
+</record_update>

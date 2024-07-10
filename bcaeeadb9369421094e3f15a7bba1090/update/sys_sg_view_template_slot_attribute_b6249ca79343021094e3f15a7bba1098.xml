@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_template_slot_attribute">
+    <sys_sg_view_template_slot_attribute action="INSERT_OR_UPDATE">
+        <description>Background_container_02_ImageURL</description>
+        <name display_value="ImageURL">4f1f59c2b7321010df65f6efce11a9d0</name>
+        <sys_class_name>sys_sg_view_template_slot_attribute</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 06:02:54</sys_created_on>
+        <sys_id>b6249ca79343021094e3f15a7bba1098</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>4f1f59c2b7321010df65f6efce11a9d0</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_template_slot_attribute_b6249ca79343021094e3f15a7bba1098</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-03 06:02:54</sys_updated_on>
+        <translated_value/>
+        <value/>
+        <view_template_slot display_value="Background_container_02">b2249ca79343021094e3f15a7bba1096</view_template_slot>
+    </sys_sg_view_template_slot_attribute>
+    <sys_translated_text action="delete_multiple" query="documentkey=b6249ca79343021094e3f15a7bba1098"/>
+</record_update>

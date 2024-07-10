@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_navigation_section_m2m_destination">
+    <sys_sg_navigation_section_m2m_destination action="INSERT_OR_UPDATE">
+        <navigation_section display_value="Home icons">b9c22f04935f421094e3f15a7bba10a5</navigation_section>
+        <navigation_section_destination display_value="Fundraising events">86c22f04935f421094e3f15a7bba10ab</navigation_section_destination>
+        <order>10</order>
+        <sys_class_name>sys_sg_navigation_section_m2m_destination</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-05 10:22:33</sys_created_on>
+        <sys_id>4ec22f04935f421094e3f15a7bba10ae</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_navigation_section_m2m_destination_4ec22f04935f421094e3f15a7bba10ae</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-05 10:28:45</sys_updated_on>
+    </sys_sg_navigation_section_m2m_destination>
+</record_update>

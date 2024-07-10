@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_list_screen">
+    <sys_sg_list_screen action="INSERT_OR_UPDATE">
+        <available_offline>false</available_offline>
+        <description>List showing all the items I have donated</description>
+        <dynamic_prefetch_count/>
+        <empty_state display_value="Empty State - My Donations">cc22abd5935f821094e3f15a7bba1001</empty_state>
+        <fetch_type>on_demand</fetch_type>
+        <filter/>
+        <hide_filters>false</hide_filters>
+        <hide_screen_name>false</hide_screen_name>
+        <icon display_value="My Donations">d310edbb9343021094e3f15a7bba10d2</icon>
+        <name>My Donations</name>
+        <parameter_screen/>
+        <roles_override/>
+        <sys_class_name>sys_sg_list_screen</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-04 06:10:25</sys_created_on>
+        <sys_id>f67f95bb9343021094e3f15a7bba10be</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>My Donations</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_list_screen_f67f95bb9343021094e3f15a7bba10be</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 07:32:07</sys_updated_on>
+    </sys_sg_list_screen>
+    <sys_translated_text action="delete_multiple" query="documentkey=f67f95bb9343021094e3f15a7bba10be"/>
+</record_update>

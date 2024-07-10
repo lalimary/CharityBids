@@ -11,7 +11,7 @@
         <short_description/>
         <size>md</size>
         <sp_column display_value="1">9a955a3893b2821094e3f15a7bba106e</sp_column>
-        <sp_widget display_value="cb_home widget 3">c4bd443c933a421094e3f15a7bba106b</sp_widget>
+        <sp_widget/>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-12 06:26:51</sys_created_on>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_item_section">
+    <sys_sg_item_section action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <card_size display_value="Large">68803cd5c7023010be78953c14c260bc</card_size>
+        <column_count/>
+        <custom_height/>
+        <custom_width/>
+        <data_item/>
+        <destination_screen display_value="Events In Progress">f2e5d0719317061094e3f15a7bba100e</destination_screen>
+        <display_title>true</display_title>
+        <hide_header>false</hide_header>
+        <hide_section_if_empty>false</hide_section_if_empty>
+        <hide_see_all_button>false</hide_see_all_button>
+        <is_custom_size>false</is_custom_size>
+        <is_hidden_preference_name/>
+        <max_items_display_count>15</max_items_display_count>
+        <orientation>horizontal</orientation>
+        <required_roles/>
+        <row_count/>
+        <scrolling_type>free</scrolling_type>
+        <sys_class_name>sys_sg_item_section</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-05 11:09:56</sys_created_on>
+        <sys_id>00adeb80939f421094e3f15a7bba10b0</sys_id>
+        <sys_mod_count>7</sys_mod_count>
+        <sys_name>Noticeboard</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_item_section_00adeb80939f421094e3f15a7bba10b0</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 05:58:42</sys_updated_on>
+        <table/>
+        <title>Noticeboard</title>
+        <visible_condition/>
+        <wide_column_count/>
+    </sys_sg_item_section>
+</record_update>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_data_item">
+    <sys_sg_data_item action="DELETE">
+        <condition_type>declarative</condition_type>
+        <description>A screen that displays all the items the user has bid</description>
+        <group_by>sys_mod_count</group_by>
+        <instance_relative_url_qc/>
+        <name>My bids</name>
+        <offline_query_condition/>
+        <offline_query_condition_script/>
+        <query_condition table="x_1383184_charityb_bid">x_1383184_charityb_bidder.nameDYNAMIC90d1921e5f510100a9ad2572f2b477fe^EQ<item endquery="false" field="x_1383184_charityb_bidder.name" goto="false" newquery="false" operator="DYNAMIC" or="false" value="90d1921e5f510100a9ad2572f2b477fe"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </query_condition>
+        <query_condition_script/>
+        <sys_class_name>sys_sg_data_item</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-05 06:32:31</sys_created_on>
+        <sys_id>9c2e6ec0935b421094e3f15a7bba1058</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>My bids</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_data_item_9c2e6ec0935b421094e3f15a7bba1058</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-05 07:09:26</sys_updated_on>
+        <table>x_1383184_charityb_bid</table>
+    </sys_sg_data_item>
+    <sys_translated_text action="DELETE" query="documentkey=9c2e6ec0935b421094e3f15a7bba1058"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_sg_data_item_9c2e6ec0935b421094e3f15a7bba1058</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_data_item"><sys_sg_data_item action="INSERT_OR_UPDATE"><condition_type>declarative</condition_type><description>A screen that displays all the items the user has bid</description><group_by>sys_mod_count</group_by><instance_relative_url_qc/><name>My bids</name><offline_query_condition/><offline_query_condition_script/><query_condition table="x_1383184_charityb_bid">x_1383184_charityb_bidder.nameDYNAMIC90d1921e5f510100a9ad2572f2b477fe^EQ<item endquery="false" field="x_1383184_charityb_bidder.name" goto="false" newquery="false" operator="DYNAMIC" or="false" value="90d1921e5f510100a9ad2572f2b477fe"/><item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/></query_condition><query_condition_script/><sys_class_name>sys_sg_data_item</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-05 06:32:31</sys_created_on><sys_id>9c2e6ec0935b421094e3f15a7bba1058</sys_id><sys_mod_count>5</sys_mod_count><sys_name>My bids</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_sg_data_item_9c2e6ec0935b421094e3f15a7bba1058</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-05 07:09:26</sys_updated_on><table>x_1383184_charityb_bid</table></sys_sg_data_item><sys_translated_text action="delete_multiple" query="documentkey=9c2e6ec0935b421094e3f15a7bba1058"/></record_update>]]></payload>
+        <payload_hash>1771379994</payload_hash>
+        <record_name>My bids</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-05 07:09:27</sys_created_on>
+        <sys_id>d996b2cc935b421094e3f15a7bba10bc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19081b9f9ca0000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-05 07:09:27</sys_updated_on>
+        <type>Data Item</type>
+        <update_guid>9196b2cc935b421013f78b184f8cd0bc</update_guid>
+        <update_guid_history>9196b2cc935b421013f78b184f8cd0bc:1771379994,fc86b2cc3c5b42105fed63eb508b73b1:1831824387,6576fe8c195b42107d93ab11ee88e8d9:965238155,d7563e8c335b42106310a4439e140ec3:-1447203407,43c5728c5a5b4210b425484778188947:1707148573,d42e6ec0ed5b4210f940c5a50b69b45b:-787682825</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-05 07:11:49</sys_created_on>
+        <sys_db_object display_value="" name="sys_sg_data_item">sys_sg_data_item</sys_db_object>
+        <sys_id>8f3208f6c21542e0bec9da3e8367c484</sys_id>
+        <sys_metadata>9c2e6ec0935b421094e3f15a7bba1058</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>My bids</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_sg_data_item_9c2e6ec0935b421094e3f15a7bba1058</sys_update_name>
+        <sys_update_version display_value="sys_sg_data_item_9c2e6ec0935b421094e3f15a7bba1058">d996b2cc935b421094e3f15a7bba10bc</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-05 07:11:49</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

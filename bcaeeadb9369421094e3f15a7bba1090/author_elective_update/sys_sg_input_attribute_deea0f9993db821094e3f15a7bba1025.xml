@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_input_attribute">
+    <sys_sg_input_attribute action="DELETE">
+        <input display_value="Start Bid Amount">b8befe99939b821094e3f15a7bba10bf</input>
+        <name>SourceFieldName</name>
+        <sys_class_name>sys_sg_input_attribute</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 05:50:40</sys_created_on>
+        <sys_id>deea0f9993db821094e3f15a7bba1025</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>SourceFieldName</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_input_attribute_deea0f9993db821094e3f15a7bba1025</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 05:56:52</sys_updated_on>
+        <value>item_name.start_bid_amount</value>
+    </sys_sg_input_attribute>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_sg_input_attribute_deea0f9993db821094e3f15a7bba1025</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_input_attribute"><sys_sg_input_attribute action="INSERT_OR_UPDATE"><input display_value="Start Bid Amount">b8befe99939b821094e3f15a7bba10bf</input><name>SourceFieldName</name><sys_class_name>sys_sg_input_attribute</sys_class_name><sys_created_by>christy</sys_created_by><sys_created_on>2024-07-09 05:50:40</sys_created_on><sys_id>deea0f9993db821094e3f15a7bba1025</sys_id><sys_mod_count>2</sys_mod_count><sys_name>SourceFieldName</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_sg_input_attribute_deea0f9993db821094e3f15a7bba1025</sys_update_name><sys_updated_by>christy</sys_updated_by><sys_updated_on>2024-07-09 05:56:52</sys_updated_on><value>item_name.start_bid_amount</value></sys_sg_input_attribute></record_update>]]></payload>
+        <payload_hash>1824576748</payload_hash>
+        <record_name>SourceFieldName</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 05:56:52</sys_created_on>
+        <sys_id>c55cc71d93db821094e3f15a7bba109a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1909610f8560000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 05:56:52</sys_updated_on>
+        <type>Input Attribute</type>
+        <update_guid>8d5cc71ddedb82108073acbb17d88699</update_guid>
+        <update_guid_history>8d5cc71ddedb82108073acbb17d88699:1824576748,41abc7d9a2db8210893ebb810be94406:1464409251,96ea0f9981db82104f1e4b5a2d9f2127:1824576748</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 06:01:05</sys_created_on>
+        <sys_db_object display_value="" name="sys_sg_input_attribute">sys_sg_input_attribute</sys_db_object>
+        <sys_id>51483a20208f418aae55c6eb72c766b1</sys_id>
+        <sys_metadata>deea0f9993db821094e3f15a7bba1025</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>SourceFieldName</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_sg_input_attribute_deea0f9993db821094e3f15a7bba1025</sys_update_name>
+        <sys_update_version display_value="sys_sg_input_attribute_deea0f9993db821094e3f15a7bba1025">c55cc71d93db821094e3f15a7bba109a</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 06:01:05</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

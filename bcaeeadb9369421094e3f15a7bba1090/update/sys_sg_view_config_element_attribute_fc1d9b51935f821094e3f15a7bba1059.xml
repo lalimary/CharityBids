@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_config_element_attribute">
+    <sys_sg_view_config_element_attribute action="INSERT_OR_UPDATE">
+        <description>es-button-slot-1_TextColor</description>
+        <name display_value="TextColor">773f99c2b7321010df65f6efce11a9d7</name>
+        <sys_class_name>sys_sg_view_config_element_attribute</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 07:10:03</sys_created_on>
+        <sys_id>fc1d9b51935f821094e3f15a7bba1059</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>773f99c2b7321010df65f6efce11a9d7</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_config_element_attribute_fc1d9b51935f821094e3f15a7bba1059</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 07:10:03</sys_updated_on>
+        <translated_value/>
+        <value>#151920</value>
+        <view_config_element display_value="es-button-slot-1_element">781d9b51935f821094e3f15a7bba1057</view_config_element>
+    </sys_sg_view_config_element_attribute>
+    <sys_translated_text action="delete_multiple" query="documentkey=fc1d9b51935f821094e3f15a7bba1059"/>
+</record_update>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
     <sp_rel_widget_clone action="INSERT_OR_UPDATE">
-        <child display_value="Charity Profile">8435353593a2021094e3f15a7bba10fb</child>
+        <child display_value="cb charity profile">8435353593a2021094e3f15a7bba10fb</child>
         <cloned>2024-06-03 06:06:01</cloned>
         <last_validated>2024-06-03 06:06:01</last_validated>
         <parent display_value="User Profile">6e6ac664d710120023c84f80de610318</parent>

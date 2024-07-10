@@ -2,7 +2,7 @@
     <element db_object_id="2ff0398b93d2821094e3f15a7bba100c" label="Events" max_length="40" name="x_1383184_charityb_events" type="collection">
         <element label="Charity company" max_length="32" name="charity_company" reference="core_company" type="reference"/>
         <element label="Description" mandatory="true" max_length="500" name="description" type="string"/>
-        <element label="Duration of Days" max_length="100" name="duration_of_days" type="string"/>
+        <element label="Duration" max_length="40" name="duration" type="integer"/>
         <element label="End date" mandatory="true" max_length="40" name="end_date" type="glide_date"/>
         <element default="javascript:new UserProfileUtils().getUserProfileSysId();" label="Event manager" mandatory="true" max_length="32" name="event_manager" read_only="true" reference="x_1383184_charityb_user_profile" type="reference"/>
         <element display="true" label="Event name" mandatory="true" max_length="200" name="event_name" type="string"/>

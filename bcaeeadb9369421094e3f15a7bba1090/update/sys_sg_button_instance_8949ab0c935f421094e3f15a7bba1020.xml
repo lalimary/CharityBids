@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_button_instance">
+    <sys_sg_button_instance action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <button display_value="Donation ">6ceb5a4c93d7421094e3f15a7bba10f7</button>
+        <color_theme/>
+        <description/>
+        <disable_offline>false</disable_offline>
+        <field_name/>
+        <icon display_value="MS icon-Plus-Solid">f681df3a0fca6010729bb3c9c4767e4e</icon>
+        <label>Donate item</label>
+        <location>quick_action</location>
+        <name>Donate item</name>
+        <order/>
+        <parent>da9a0fc3934b421094e3f15a7bba1045</parent>
+        <parent_table>sys_sg_applet_launcher</parent_table>
+        <sys_class_name>sys_sg_button_instance</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-05 10:50:53</sys_created_on>
+        <sys_id>8949ab0c935f421094e3f15a7bba1020</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Donate item</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_button_instance_8949ab0c935f421094e3f15a7bba1020</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-05 10:50:53</sys_updated_on>
+        <table/>
+    </sys_sg_button_instance>
+    <sys_translated_text action="delete_multiple" query="documentkey=8949ab0c935f421094e3f15a7bba1020"/>
+</record_update>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_item_stream_m2m_segment">
+    <sys_sg_item_stream_m2m_segment action="INSERT_OR_UPDATE">
+        <item_stream display_value="Musical instruments">33e720b99357061094e3f15a7bba1034</item_stream>
+        <segment display_value="Musical Instruments">f3e7a0799357061094e3f15a7bba10a3</segment>
+        <sys_class_name>sys_sg_item_stream_m2m_segment</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-10 07:15:36</sys_created_on>
+        <sys_id>ffe720b99357061094e3f15a7bba1036</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_item_stream_m2m_segment_ffe720b99357061094e3f15a7bba1036</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-10 07:15:36</sys_updated_on>
+    </sys_sg_item_stream_m2m_segment>
+</record_update>

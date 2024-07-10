@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>package_private</access>
+        <active>false</active>
+        <api_name>x_1383184_charityb.BidValidationScriptInclude</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>BidValidationScriptInclude</name>
+        <script><![CDATA[var BidValidationScriptInclude = Class.create();
+BidValidationScriptInclude.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+    validateBid: function() {
+        var bidAmount = parseFloat(this.getParameter('bidAmount'));
+        var itemSysId = this.getParameter('itemSysId');
+        
+        var itemGr = new GlideRecord('x_1383184_charityb_item');
+        if (itemGr.get(itemSysId)) {
+            var startBidAmount = parseFloat(itemGr.getValue('start_bid_amount'));
+            var highestBidAmount = parseFloat(itemGr.getValue('highest_bid_amount'));
+            
+            if (bidAmount < startBidAmount) {
+                return JSON.stringify({ valid: false, message: gs.getMessage('Bid amount must be at least the start bid amount.') });
+            } else if (bidAmount <= highestBidAmount) {
+                return JSON.stringify({ valid: false, message: gs.getMessage('Bid amount must be higher than the current highest bid.') });
+            } else {
+                return JSON.stringify({ valid: true });
+            }
+        } else {
+            return JSON.stringify({ valid: false, message: gs.getMessage('Item not found.') });
+        }
+    }
+});
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 16:59:46</sys_created_on>
+        <sys_id>2ad3aa8793f2821094e3f15a7bba1014</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>BidValidationScriptInclude</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_script_include_2ad3aa8793f2821094e3f15a7bba1014</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 17:06:33</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_script_include_2ad3aa8793f2821094e3f15a7bba1014</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;active&gt;false&lt;/active&gt;&lt;api_name&gt;x_1383184_charityb.BidValidationScriptInclude&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;BidValidationScriptInclude&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var BidValidationScriptInclude = Class.create();
+BidValidationScriptInclude.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+    validateBid: function() {
+        var bidAmount = parseFloat(this.getParameter('bidAmount'));
+        var itemSysId = this.getParameter('itemSysId');
+        
+        var itemGr = new GlideRecord('x_1383184_charityb_item');
+        if (itemGr.get(itemSysId)) {
+            var startBidAmount = parseFloat(itemGr.getValue('start_bid_amount'));
+            var highestBidAmount = parseFloat(itemGr.getValue('highest_bid_amount'));
+            
+            if (bidAmount &lt; startBidAmount) {
+                return JSON.stringify({ valid: false, message: gs.getMessage('Bid amount must be at least the start bid amount.') });
+            } else if (bidAmount &lt;= highestBidAmount) {
+                return JSON.stringify({ valid: false, message: gs.getMessage('Bid amount must be higher than the current highest bid.') });
+            } else {
+                return JSON.stringify({ valid: true });
+            }
+        } else {
+            return JSON.stringify({ valid: false, message: gs.getMessage('Item not found.') });
+        }
+    }
+});
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;lalitha&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-06-19 16:59:46&lt;/sys_created_on&gt;&lt;sys_id&gt;2ad3aa8793f2821094e3f15a7bba1014&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;BidValidationScriptInclude&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_2ad3aa8793f2821094e3f15a7bba1014&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;lalitha&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-06-19 17:06:33&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1582031102</payload_hash>
+        <record_name>BidValidationScriptInclude</record_name>
+        <reverted_from/>
+        <source>c0eb6f489326c61094e3f15a7bba1011</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-06-19 17:06:33</sys_created_on>
+        <sys_id>abc5ae0b93f2821094e3f15a7bba10a7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1903176e29a0000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-06-19 17:06:33</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>63c5ae0ba8f2821059b100fda4603da7</update_guid>
+        <update_guid_history>63c5ae0ba8f2821059b100fda4603da7:1582031102,2c44ee872ff28210ac3fe723f5b99dd2:-385609427</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-05 05:18:48</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>46272abe006d45c2b6b3332de082e044</sys_id>
+        <sys_metadata>2ad3aa8793f2821094e3f15a7bba1014</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>BidValidationScriptInclude</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_script_include_2ad3aa8793f2821094e3f15a7bba1014</sys_update_name>
+        <sys_update_version display_value="sys_script_include_2ad3aa8793f2821094e3f15a7bba1014">abc5ae0b93f2821094e3f15a7bba10a7</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-05 05:18:48</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

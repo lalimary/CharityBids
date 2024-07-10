@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($http, $location, spUtil, $scope) {
+    var c = this;
+
+    // Initialize data object
+    c.data = {
+        sys_id: $location.search().sys_id,
+        bidAmount: '' // Ensure bidAmount is properly initialized
+    };
+
+    // Fetch item details
+    var itemUrl = '/api/now/table/x_1383184_charityb_item/' + c.data.sys_id;
+    $http.get(itemUrl).then(function(response) {
+        c.data.item_name = response.data.result.item_name;
+        c.data.highest_bid_amount = response.data.result.highest_bid_amount;
+    }, function(error) {
+        console.error('Failed to fetch item details:', error);
+        c.errorMessage = 'Failed to fetch item details.';
+    });
+
+    // Function to submit the bid
+    c.submitBid = function() {
+        var bidAmount = parseFloat(c.data.bidAmount);
+        if (isNaN(bidAmount)) {
+            c.errorMessage = 'Invalid bid amount.';
+            return;
+        }
+
+        var bidData = {
+            item_name: c.data.item_name, // Corrected to use item_name
+            bid_amount: bidAmount,
+            item: c.data.sys_id // Adjusted to use sys_id for the item
+        };
+
+        $http.post('/api/now/table/x_1383184_charityb_bid', bidData).then(function(response) {
+            if (response.data.result) {
+                c.data.bidAmount = ''; // Clear input field after successful submission
+                c.server.refresh(); // Refresh the widget after submission
+            } else {
+                c.errorMessage = 'Failed to submit bid.';
+            }
+        }, function(error) {
+            console.error('Error during bid submission:', error);
+            c.errorMessage = 'An error occurred during bid submission.';
+        });
+    };
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.countdown-timer {
+  font-family: Arial, sans-serif;
+  font-size: 2em;
+  text-align: center;
+  color: #333;
+}
+.time {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+img {
+  width: 50%;
+}
+.imgC {
+  display: flex;
+  justify-content: center;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>bid__test_</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Bid (test)</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    var ItemSysId = $sp.getParameter('sys_id');
+    var data = {}; // Ensure data is defined
+
+    // Fetch item details
+    var itemGr = new GlideRecord('x_1383184_charityb_item');
+    if (itemGr.get(ItemSysId)) {
+        data.item_name = itemGr.getValue('item_name');
+        data.highest_bid_amount = itemGr.getValue('highest_bid_amount');
+        data.sys_id = itemGr.getUniqueValue();
+    } else {
+        data.errorMessage = 'Item not found';
+        // You might want to log this or handle it differently
+    }
+
+    // Return data to the client script
+    return data;
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-09 17:14:31</sys_created_on>
+        <sys_id>13676da193d7c21094e3f15a7bba10f3</sys_id>
+        <sys_mod_count>21</sys_mod_count>
+        <sys_name>Bid (test)</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_13676da193d7c21094e3f15a7bba10f3</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-10 10:11:05</sys_updated_on>
+        <template><![CDATA[<div class="item-details" ng-if="c.data">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Place Your Bid Here</h4>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form name="bidForm" ng-submit="c.submitBid()">
+                    <div class="modal-body">
+                        <p><strong>Highest Bid Amount:</strong> {{c.data.highest_bid_amount}}</p>
+
+                        <!-- Input field for Bid Amount -->
+                        <div class="form-group">
+                            <label for="bidAmount">Bid Amount:</label>
+                            <input type="number" class="form-control" id="bidAmount" ng-model="c.data.bidAmount" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Submit Bid</button>
+                        <p ng-if="c.errorMessage" class="text-danger">{{c.errorMessage}}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

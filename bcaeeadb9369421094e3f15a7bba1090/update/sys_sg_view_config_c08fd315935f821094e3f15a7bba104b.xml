@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_config">
+    <sys_sg_view_config action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <advanced>false</advanced>
+        <description>This card will show up when I don't have any bids.</description>
+        <name>Empty State - My Bid Card</name>
+        <scratchpad_script/>
+        <sys_class_name>sys_sg_view_config</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 07:20:39</sys_created_on>
+        <sys_id>c08fd315935f821094e3f15a7bba104b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Empty State - My Bid Card</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_config_c08fd315935f821094e3f15a7bba104b</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 07:20:39</sys_updated_on>
+        <table/>
+        <template display_value="Default Empty State Template">7eb49d52b723101096aa25efce11a954</template>
+    </sys_sg_view_config>
+    <sys_translated_text action="delete_multiple" query="documentkey=c08fd315935f821094e3f15a7bba104b"/>
+</record_update>

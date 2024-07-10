@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_button_instance">
+    <sys_sg_button_instance action="DELETE">
+        <active>true</active>
+        <button display_value="Raise Issue">866c534c931f421094e3f15a7bba10cf</button>
+        <color_theme>positive</color_theme>
+        <description/>
+        <disable_offline>false</disable_offline>
+        <field_name/>
+        <icon/>
+        <label>Donation Form</label>
+        <location>top</location>
+        <name>Donation</name>
+        <order>10</order>
+        <parent>587a98239383021094e3f15a7bba1004</parent>
+        <parent_table>sys_sg_list_screen</parent_table>
+        <sys_class_name>sys_sg_button_instance</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-05 05:43:23</sys_created_on>
+        <sys_id>ace2aa44931b421094e3f15a7bba10c4</sys_id>
+        <sys_mod_count>5</sys_mod_count>
+        <sys_name>Donation</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_button_instance_ace2aa44931b421094e3f15a7bba10c4</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-05 11:09:05</sys_updated_on>
+        <table/>
+    </sys_sg_button_instance>
+    <sys_translated_text action="DELETE" query="documentkey=ace2aa44931b421094e3f15a7bba10c4"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_sg_button_instance_ace2aa44931b421094e3f15a7bba10c4</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_button_instance"><sys_sg_button_instance action="INSERT_OR_UPDATE"><active>true</active><button display_value="Raise Issue">866c534c931f421094e3f15a7bba10cf</button><color_theme>positive</color_theme><description/><disable_offline>false</disable_offline><field_name/><icon/><label>Donation Form</label><location>top</location><name>Donation</name><order>10</order><parent>587a98239383021094e3f15a7bba1004</parent><parent_table>sys_sg_list_screen</parent_table><sys_class_name>sys_sg_button_instance</sys_class_name><sys_created_by>christy</sys_created_by><sys_created_on>2024-07-05 05:43:23</sys_created_on><sys_id>ace2aa44931b421094e3f15a7bba10c4</sys_id><sys_mod_count>5</sys_mod_count><sys_name>Donation</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_sg_button_instance_ace2aa44931b421094e3f15a7bba10c4</sys_update_name><sys_updated_by>christy</sys_updated_by><sys_updated_on>2024-07-05 11:09:05</sys_updated_on><table/></sys_sg_button_instance><sys_translated_text action="delete_multiple" query="documentkey=ace2aa44931b421094e3f15a7bba10c4"/></record_update>]]></payload>
+        <payload_hash>700122809</payload_hash>
+        <record_name>Donation</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-05 11:09:06</sys_created_on>
+        <sys_id>336de380939f421094e3f15a7bba10f3</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190829560a70000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-05 11:09:06</sys_updated_on>
+        <type>Function instance</type>
+        <update_guid>f76de380e69f4210da62db8b065854f2</update_guid>
+        <update_guid_history>f76de380e69f4210da62db8b065854f2:700122809,1f742208541b42104bd14695e750238b:724231177,18e32e84b01b42102f49f577e2b4a312:451531794,d3a3ea84781b4210680015926d13c7bc:-1395514654,9653ea84ce1b4210b949e7d29a6566b4:-1942601932,6ce2aa44581b4210a3b3bd23fae5cdc7:-2108663708</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-08 04:29:37</sys_created_on>
+        <sys_db_object display_value="" name="sys_sg_button_instance">sys_sg_button_instance</sys_db_object>
+        <sys_id>00a26a34d90348e8800d9dec21363dc4</sys_id>
+        <sys_metadata>ace2aa44931b421094e3f15a7bba10c4</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Donation</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_sg_button_instance_ace2aa44931b421094e3f15a7bba10c4</sys_update_name>
+        <sys_update_version display_value="sys_sg_button_instance_ace2aa44931b421094e3f15a7bba10c4">336de380939f421094e3f15a7bba10f3</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-08 04:29:37</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

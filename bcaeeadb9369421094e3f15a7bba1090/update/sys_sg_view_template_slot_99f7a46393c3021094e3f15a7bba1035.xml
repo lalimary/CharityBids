@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_template_slot">
+    <sys_sg_view_template_slot action="INSERT_OR_UPDATE">
+        <name>button_01</name>
+        <sys_class_name>sys_sg_view_template_slot</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 07:29:22</sys_created_on>
+        <sys_id>99f7a46393c3021094e3f15a7bba1035</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>button_01</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_template_slot_99f7a46393c3021094e3f15a7bba1035</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-03 07:29:22</sys_updated_on>
+        <type>button</type>
+        <view_template display_value="Template 13-copy">4df7246393c3021094e3f15a7bba10d1</view_template>
+    </sys_sg_view_template_slot>
+</record_update>

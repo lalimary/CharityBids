@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_data_item">
+    <sys_sg_data_item action="INSERT_OR_UPDATE">
+        <condition_type>declarative</condition_type>
+        <description>Events list which are in state of scheduled</description>
+        <group_by/>
+        <instance_relative_url_qc/>
+        <name>Events</name>
+        <offline_query_condition/>
+        <offline_query_condition_script/>
+        <query_condition table="x_1383184_charityb_events">event_status=schedule^EQ<item display_value="Schedule" endquery="false" field="event_status" goto="false" newquery="false" operator="=" or="false" value="schedule"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </query_condition>
+        <query_condition_script/>
+        <sys_class_name>sys_sg_data_item</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 06:28:32</sys_created_on>
+        <sys_id>da0a18ef9343021094e3f15a7bba10b6</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Events</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_data_item_da0a18ef9343021094e3f15a7bba10b6</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 10:27:15</sys_updated_on>
+        <table>x_1383184_charityb_events</table>
+    </sys_sg_data_item>
+    <sys_translated_text action="delete_multiple" query="documentkey=da0a18ef9343021094e3f15a7bba10b6"/>
+</record_update>

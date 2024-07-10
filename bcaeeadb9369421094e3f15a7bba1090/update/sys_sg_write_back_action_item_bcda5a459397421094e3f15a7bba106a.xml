@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_write_back_action_item">
+    <sys_sg_write_back_action_item action="INSERT_OR_UPDATE">
+        <description/>
+        <execution_script><![CDATA[
+(function WriteBackAction(parm_input, parm_variable, actionResult) {
+    var gr = new GlideRecord('x_1383184_charityb_bid');
+    gr.initialize();
+    gr.setValue('item_name', parm_input.item_name);
+    gr.setValue('bid_amount', parm_input.bid_amount);
+    gr.setValue('start_bid_amount', parm_input.start_bid_amount);
+    
+    gr.insert();
+})(parm_input, parm_variable, actionResult);]]></execution_script>
+        <name>Bid action</name>
+        <parameter_screen display_value="Bid form">2cda5a459397421094e3f15a7bba1066</parameter_screen>
+        <query_condition/>
+        <sys_class_name>sys_sg_write_back_action_item</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-08 07:42:06</sys_created_on>
+        <sys_id>bcda5a459397421094e3f15a7bba106a</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Bid action</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_write_back_action_item_bcda5a459397421094e3f15a7bba106a</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 05:32:28</sys_updated_on>
+        <table/>
+        <template/>
+        <type>script</type>
+        <use_current_record_as_condition>true</use_current_record_as_condition>
+        <use_fields_for_ref_lookup>false</use_fields_for_ref_lookup>
+    </sys_sg_write_back_action_item>
+    <sys_translated_text action="delete_multiple" query="documentkey=bcda5a459397421094e3f15a7bba106a"/>
+</record_update>

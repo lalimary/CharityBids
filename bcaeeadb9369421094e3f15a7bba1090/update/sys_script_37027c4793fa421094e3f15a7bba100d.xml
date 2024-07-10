@@ -27,22 +27,7 @@
         <rest_service_text/>
         <rest_variables/>
         <role_conditions/>
-        <script><![CDATA[// (function executeRule(current, previous /*null when async*/) {
-//     var bidAmount = parseFloat(current.getValue('bid_amount'));
-//     var itemSysId = current.getValue('item_name');
-
-//     var bidValidation = new BidValidation();
-//     var result = bidValidation.validateBidAmount(bidAmount, itemSysId);
-
-//     if (!result.valid) {
-//         gs.addErrorMessage(result.message);
-//        // current.setAbortAction(true); 
-//     } else if (result.highestBidUpdated) {
-//         gs.addInfoMessage(gs.getMessage('Highest bid amount updated successfully.'));
-//     }
-// })(current, previous);
-
-
+        <script><![CDATA[
 (function executeRule(current, previous /*null when async*/ ) {
     var bidAmount = parseFloat(current.getValue('bid_amount'));
     var itemSysId = current.getValue('item_name');
@@ -64,7 +49,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>37027c4793fa421094e3f15a7bba100d</sys_id>
-        <sys_mod_count>17</sys_mod_count>
+        <sys_mod_count>18</sys_mod_count>
         <sys_name>testbs2</sys_name>
         <sys_overrides/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
@@ -72,7 +57,7 @@
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_script_37027c4793fa421094e3f15a7bba100d</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-20 08:49:35</sys_updated_on>
+        <sys_updated_on>2024-07-10 04:35:09</sys_updated_on>
         <template/>
         <when>before</when>
     </sys_script>

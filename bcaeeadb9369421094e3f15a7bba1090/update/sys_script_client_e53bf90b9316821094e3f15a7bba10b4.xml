@@ -11,6 +11,10 @@
         <name>Event end date validation</name>
         <order/>
         <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+    if (isLoading || newValue === '') {
+        return;
+    }
+
     var startDate = g_form.getValue('start_date');
     var endDate = g_form.getValue('end_date');
 
@@ -19,20 +23,19 @@
 
     if (endDateObj < startDateObj) {
         g_form.clearValue('end_date');
-       //alert(getMessage('end_date', 'End date cannot be before start date', 'error'));
-        g_form.showFieldMsg('end_date', 'End date cannot be before start date', 'error');
-
+        g_form.showFieldMsg('end_date', g_form.getMessage('end_date_before_start'), 'error');
         return;
     }
     g_form.clearMessages('end_date');
-}]]></script>
+}
+]]></script>
         <sys_class_name>sys_script_client</sys_class_name>
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-05-25 17:30:43</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>e53bf90b9316821094e3f15a7bba10b4</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>10</sys_mod_count>
         <sys_name>Event end date validation</sys_name>
         <sys_overrides/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
@@ -40,7 +43,7 @@
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_script_client_e53bf90b9316821094e3f15a7bba10b4</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-27 16:31:55</sys_updated_on>
+        <sys_updated_on>2024-07-10 04:53:44</sys_updated_on>
         <table>x_1383184_charityb_events</table>
         <type>onChange</type>
         <ui_type>10</ui_type>
