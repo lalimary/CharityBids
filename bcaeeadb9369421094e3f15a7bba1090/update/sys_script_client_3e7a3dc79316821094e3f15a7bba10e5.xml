@@ -48,15 +48,15 @@ function getMessage(key) {
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>3e7a3dc79316821094e3f15a7bba10e5</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>11</sys_mod_count>
         <sys_name>Event start date validation</sys_name>
         <sys_overrides/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_script_client_3e7a3dc79316821094e3f15a7bba10e5</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-10 04:40:46</sys_updated_on>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-11 05:41:39</sys_updated_on>
         <table>x_1383184_charityb_events</table>
         <type>onChange</type>
         <ui_type>10</ui_type>

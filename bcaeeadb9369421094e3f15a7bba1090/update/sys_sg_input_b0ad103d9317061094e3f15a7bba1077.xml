@@ -5,7 +5,7 @@
         <category/>
         <description/>
         <label>Reason</label>
-        <mandatory>false</mandatory>
+        <mandatory>true</mandatory>
         <name>reason</name>
         <order>20</order>
         <page/>
@@ -17,14 +17,14 @@
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-07-10 06:30:36</sys_created_on>
         <sys_id>b0ad103d9317061094e3f15a7bba1077</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>Reason</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_sg_input_b0ad103d9317061094e3f15a7bba1077</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-10 06:30:36</sys_updated_on>
+        <sys_updated_on>2024-07-11 04:28:10</sys_updated_on>
         <type display_value="Reference">770c605517021010f2b43b9fadb95900</type>
     </sys_sg_input>
 </record_update>

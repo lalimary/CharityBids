@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_push_notif_msg">
+    <sys_push_notif_msg action="DELETE">
+        <message_string>Won</message_string>
+        <name>Winbid notification</name>
+        <push_app display_value="ServiceNow Request Application">ac7f61d273122300d63a566a4cf6a78b</push_app>
+        <push_message_content/>
+        <subject/>
+        <sys_class_name>sys_push_notif_msg</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 09:33:11</sys_created_on>
+        <sys_id>6cbdf71993df821094e3f15a7bba102a</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Winbid notification</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_push_notif_msg_6cbdf71993df821094e3f15a7bba102a</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 10:25:59</sys_updated_on>
+        <table>x_1383184_charityb_bid</table>
+        <type>push</type>
+    </sys_push_notif_msg>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_push_notif_msg_6cbdf71993df821094e3f15a7bba102a</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_push_notif_msg"><sys_push_notif_msg action="INSERT_OR_UPDATE"><message_string>Won</message_string><name>Winbid notification</name><push_app display_value="ServiceNow Request Application">ac7f61d273122300d63a566a4cf6a78b</push_app><push_message_content/><subject/><sys_class_name>sys_push_notif_msg</sys_class_name><sys_created_by>christy</sys_created_by><sys_created_on>2024-07-09 09:33:11</sys_created_on><sys_id>6cbdf71993df821094e3f15a7bba102a</sys_id><sys_mod_count>3</sys_mod_count><sys_name>Winbid notification</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_push_notif_msg_6cbdf71993df821094e3f15a7bba102a</sys_update_name><sys_updated_by>christy</sys_updated_by><sys_updated_on>2024-07-10 10:25:59</sys_updated_on><table>x_1383184_charityb_bid</table><type>push</type></sys_push_notif_msg></record_update>]]></payload>
+        <payload_hash>1224676535</payload_hash>
+        <record_name>Winbid notification</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-10 10:36:26</sys_created_on>
+        <sys_id>82e55531935b061094e3f15a7bba10ee</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1909c3747d90000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 10:36:26</sys_updated_on>
+        <type>Push Notification Message</type>
+        <update_guid>f8831d3d311b061049bfad7099d70822</update_guid>
+        <update_guid_history>f8831d3d311b061049bfad7099d70822:1995602079,f8831d3d311b061049bfad7099d70822:1995602079,d2d1cced2fdf8210faf0bb0c5e2cc13c:-1488466500,85ed33997ddf8210a479dd62dc10a1b1:1802847368,61ddf31973df8210111830844faa2718:42104532</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-10 10:36:58</sys_created_on>
+        <sys_db_object display_value="" name="sys_push_notif_msg">sys_push_notif_msg</sys_db_object>
+        <sys_id>28f6d972daac402099093498a78ec029</sys_id>
+        <sys_metadata>6cbdf71993df821094e3f15a7bba102a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Winbid notification</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_push_notif_msg_6cbdf71993df821094e3f15a7bba102a</sys_update_name>
+        <sys_update_version display_value="sys_push_notif_msg_6cbdf71993df821094e3f15a7bba102a">82e55531935b061094e3f15a7bba10ee</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 10:36:58</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

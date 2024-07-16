@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_template">
+    <sys_sg_view_template action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <name>Item Scheduled Template</name>
+        <preview_image/>
+        <root_view_attrs_json/>
+        <sys_class_name>sys_sg_view_template</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-15 05:47:35</sys_created_on>
+        <sys_id>5fb3029393d7ca1094e3f15a7bba1031</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>Item Scheduled Template</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_template_5fb3029393d7ca1094e3f15a7bba1031</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-15 08:36:45</sys_updated_on>
+        <template_json>{"Type":"ViewGroup","Margin":{"Top":15,"Bottom":17},"Orientation":"Vertical","Alignment":"Left","Distribution":"Auto","Id":"Root","Children":[{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Right","Distribution":"Auto","Id":"container_02","CellId":"container_02","Height":250,"Width":320,"Background":{"Opacity":"1","Type":"Image","CellId":"Background_container_02","Id":"Background_container_02"},"Children":[{"Type":"ViewGroup","Orientation":"Vertical","Alignment":"Right","Distribution":"Auto","Id":"container_03","CellId":"container_03","Margin":{"Top":200,"Right":10},"Children":[{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_04","CellId":"container_04","Margin":{"Left":10},"Background":{"Color":"#FFFFFF","Opacity":1,"Type":"Color","CellId":"Background_container_04","Id":"Background_container_04","elementId":"483bbf14-0e08-eea0-7115-351de5f637b6"},"Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_01","CellId":"text_01"},{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_02","CellId":"text_02","Margin":{"Right":5}}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_05","CellId":"container_05","Margin":{"Top":5,"Left":10},"Background":{"Opacity":1,"Type":"Color","ColorVariable":"NULL","CellId":"Background_container_05","Id":"Background_container_05","elementId":"62c48f97-9634-e9f2-fcd1-843f804a9620","Color":"#D2EABD"},"Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_03","CellId":"text_03"},{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_04","CellId":"text_04"}]}]}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_06","CellId":"container_06","Height":50,"Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_05","CellId":"text_05","Margin":{"Top":10,"Bottom":10,"Left":10}},{"Type":"Button","TextAlignment":"Center","Id":"button_01","CellId":"button_01"}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_07","CellId":"container_07","Height":30,"Children":[]}]}</template_json>
+    </sys_sg_view_template>
+    <sys_translated_text action="delete_multiple" query="documentkey=5fb3029393d7ca1094e3f15a7bba1031"/>
+</record_update>

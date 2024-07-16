@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_template">
+    <sys_sg_view_template action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <name>Events in progress Card</name>
+        <preview_image/>
+        <root_view_attrs_json/>
+        <sys_class_name>sys_sg_view_template</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-10 15:31:51</sys_created_on>
+        <sys_id>5589d6fd935f061094e3f15a7bba10c4</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Events in progress Card</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_template_5589d6fd935f061094e3f15a7bba10c4</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 16:24:53</sys_updated_on>
+        <template_json>{"Type":"ViewGroup","Margin":{"Top":15,"Bottom":17},"Orientation":"Vertical","Alignment":"Center","Distribution":"Auto","Id":"Root","Height":700,"Children":[{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Center","Distribution":"Auto","Id":"container_02","CellId":"container_02","Children":[{"Type":"Image","Scaling":"Fit","Id":"image_03","CellId":"image_03","Height":250,"Width":400}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_04","CellId":"container_04","Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_01","CellId":"text_01"}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_05","CellId":"container_05","Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_02","CellId":"text_02"}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_06","CellId":"container_06","Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_03","CellId":"text_03"},{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_04","CellId":"text_04"}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_07","CellId":"container_07","Children":[{"Type":"Button","TextAlignment":"Center","Id":"button_01","CellId":"button_01"},{"Type":"Button","TextAlignment":"Center","Id":"button_02","CellId":"button_02"}]}]}</template_json>
+    </sys_sg_view_template>
+    <sys_translated_text action="delete_multiple" query="documentkey=5589d6fd935f061094e3f15a7bba10c4"/>
+</record_update>

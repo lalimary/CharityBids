@@ -7,6 +7,26 @@
     // Initialize data.items
     c.data.items = c.data.items || [];
 
+    // Function to calculate days left
+    c.calculateDaysLeft = function(endDate) {
+        if (!endDate) {
+            return 'N/A';
+        }
+
+        var endDateTime = new Date(endDate);
+        var currentDateTime = new Date();
+        var timeDiff = endDateTime.getTime() - currentDateTime.getTime();
+        var daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+        if (daysLeft === 0) {
+            return 'Ending today';
+        } else if (daysLeft === 1) {
+            return 'Ending tomorrow';
+        } else {
+            return 'Ending in ' + daysLeft + ' days';
+        }
+    };
+
     // Function to handle placing a bid
     c.placeBid = function(item) {
         alert('Placing bid for: ' + item.item_name);
@@ -34,11 +54,12 @@
         }
     }, true);
 
-    // Function to filter items based on the selected categories
+    // Function to filter items based on the selected categories and search query
     c.filterItems = function() {
         var selectedCategories = c.data.categoryArray.filter(category => category.selected).map(category => category.sys_id);
         var params = {
-            selectedCategories: selectedCategories.join(',')
+            selectedCategories: selectedCategories.join(','),
+            searchQuery: c.searchQuery || ""
         };
 
         spUtil.get('cb_item_categories', params).then(function(response) {
@@ -61,11 +82,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-}
-
-.item-card {
-    height: 36rem;
-    /* min-height: 10rem; */
+    color: black; /* Set default font color to black */
 }
 
 .container {
@@ -77,20 +94,36 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
-    //color: #33A5DF;
     font-size: 2.5em;
 }
 
 .container1 {
     display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
+    width: 75%;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
 }
 
 .category {
-    width: 100%;
-    max-width: 300px;
+    width: 22%;
+}
+
+.cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+h2 {
+    font-size: 1.5em; /* Increase font size for category heading */
+    margin-bottom: 10px; /* Add margin below heading for spacing */
+    color: #333; /* Darken color for heading */
+}
+
+.multiselect {
+    width: 100%; /* Full width for multiselect container */
+    position: relative;
 }
 
 .select {
@@ -101,38 +134,77 @@ h1 {
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s ease;
+    position: relative;
 }
 
 .select:focus {
     border-color: #007bff;
 }
 
+.options-container {
+    background-color: #fff;
+    border: .1rem solid #ccc;
+    border-radius: .4rem;
+    box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .1);
+    padding: 1rem;
+    max-height: 20rem;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.option {
+    display: block;
+    padding: 8px 12px;
+    font-size: 14px; /* Adjust font size for options */
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #f0f0f0; /* Highlight option on hover */
+}
+
+/* Search Bar Styles */
+.search-bar {
+    width: 100%; /* Full width */
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.6rem;
+    border: .1rem solid #ccc;
+    border-radius: 2.4rem;
+    box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .1);
+}
+
+/* Items Grid and Item Card Styles */
 .items-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    width: -webkit-fill-available;
     justify-content: center;
     margin-top: 2rem;
+    width: 100%; /* Full width */
 }
 
 .item-card {
+    flex: 0 0 calc(33.333% - 2rem); /* Three items per row */
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: calc(33.333% - 20px);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     opacity: 0;
     animation: fadeIn 0.5s forwards, slideInBottom 0.5s forwards;
+    height: 400px; /* Increased height for larger cards */
+    position: relative; /* Ensure positioning context for absolute positioning */
 }
 
 .item-card:hover {
-   // transform: translateY(-5px);
-   // box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-   transform: none;
+    transform: none;
 }
 
 @keyframes fadeIn {
@@ -155,15 +227,14 @@ h1 {
 
 .item-card img {
     width: 100%;
-    height: 200px;
+    height: 200px; /* Adjust height to fit within the card */
     object-fit: cover;
     border-bottom: 1px solid #ddd;
     transition: transform 0.3s ease;
 }
 
 .item-card:hover img {
-   // transform: scale(1.05);
-   transform: none;
+    transform: none;
 }
 
 .item-details {
@@ -175,7 +246,6 @@ h1 {
     font-weight: bold;
     margin-bottom: 10px;
     color: #33A5DF;
-    //color: #007bff;
 }
 
 .item-value,
@@ -185,69 +255,54 @@ h1 {
     margin-bottom: 5px;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-secondary {
     display: block;
     width: 100%;
     padding: 10px;
     text-align: center;
-    background-color: #33A5DF;
-    color: #fff;
     border: none;
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease, color 0.3s ease;
     margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #33A5DF;
+    color: #fff;
 }
 
 .btn-primary:hover {
     background-color: #0056b3;
 }
 
-.alert-warning {
-    padding: 15px;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    color: #721c24;
-    border-radius: 4px;
-    text-align: center;
-    margin: 20px 0;
-    opacity: 0;
-    animation: slideIn 0.5s forwards;
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .btn-secondary {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    text-align: center;
     background-color: #6c757d;
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin-top: 10px;
 }
 
 .btn-secondary:hover {
     background-color: #5a6268;
 }
 
-/* Smooth scroll behavior for anchor links */
-html {
-    scroll-behavior: smooth;
+/* Days Left Indicator */
+.days-left-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
 }
+
+.days-left-orange {
+    background-color: #FFA500; /* Orange color */
+}
+
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -262,7 +317,7 @@ html {
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function($sp, input, data, options, gs) {
+        <script><![CDATA[(function(input, data, options, gs) {
 
     data.items = [];
     data.categoryArray = [];
@@ -280,96 +335,105 @@ html {
     }
 
     input = input || {};
-    gs.info('Input received: ' + JSON.stringify(input));
+    if (input.selectedCategories || input.searchQuery) {
+        var selectedCategories = input.selectedCategories ? input.selectedCategories.split(',') : [];
+        var searchQuery = input.searchQuery ? input.searchQuery : "";
 
-    // Fetch items based on selected categories
-    var itemGR = new GlideRecord('x_1383184_charityb_item');
-    itemGR.addQuery('auction_status', 'auction_in_progress');
-
-    if (input.selectedCategories && input.selectedCategories !== '') {
-        var categorySysIds = input.selectedCategories.split(',');
-        var categoryQuery = itemGR.addQuery('category', categorySysIds[0]);
-        for (var i = 1; i < categorySysIds.length; i++) {
-            categoryQuery.addOrCondition('category', categorySysIds[i]);
+        var itemGR = new GlideRecord('x_1383184_charityb_item');
+        
+        if (selectedCategories.length > 0) {
+            itemGR.addQuery('category', 'IN', selectedCategories);
         }
-    }
-
-    itemGR.query();
-    while (itemGR.next()) {
-        var donatorName = '';
-        if (itemGR.donator) {
-            var userGR = new GlideRecord('x_1383184_charityb_user_profile');
-            if (userGR.get(itemGR.donator)) {
-                donatorName = userGR.getValue('name');
-            }
+        
+        if (searchQuery) {
+            itemGR.addQuery('item_name', 'CONTAINS', searchQuery);
         }
 
-        data.items.push({
-            sys_id: itemGR.getUniqueValue(),
-            item_name: itemGR.getValue('item_name'),
-            category: itemGR.getValue('category'),
-            donator: donatorName,
-            start_date: itemGR.getValue('start_date'),
-            end_date: itemGR.getValue('end_date'),
-            value: itemGR.getValue('value'),
-            start_bid_amount: itemGR.getValue('start_bid_amount'),
-            highest_bid_amount: itemGR.getValue('highest_bid_amount'),
-            auction_status: itemGR.getValue('auction_status'),
-            image: itemGR.getDisplayValue('image'),
-            description: itemGR.getValue('description')
-        });
-    }
-
-    // Check if no items are found
-    if (data.items.length === 0) {
-        gs.info('No items found for categories: ' + input.selectedCategories);
-        data.noItemsMessage = "No Items Available";
+        itemGR.query();
+        while (itemGR.next()) {
+            var itemObj = {
+                sys_id: itemGR.getUniqueValue(),
+                item_name: itemGR.getValue('item_name'),
+                value: itemGR.getValue('value'),
+                highest_bid_amount: itemGR.getValue('highest_bid_amount'),
+                auction_status: itemGR.getValue('auction_status'),
+                start_bid_amount: itemGR.getValue('start_bid_amount'),
+                end_date: itemGR.getValue('end_date'), // Ensure end_date is being fetched
+                image: itemGR.getDisplayValue('image')
+            };
+            data.items.push(itemObj);
+        }
     } else {
-        data.noItemsMessage = "";
+        var allItemsGR = new GlideRecord('x_1383184_charityb_item');
+        allItemsGR.query();
+        while (allItemsGR.next()) {
+            var itemObj = {
+                sys_id: allItemsGR.getUniqueValue(),
+                item_name: allItemsGR.getValue('item_name'),
+                value: allItemsGR.getValue('value'),
+                highest_bid_amount: allItemsGR.getValue('highest_bid_amount'),
+                auction_status: allItemsGR.getValue('auction_status'),
+                start_bid_amount: allItemsGR.getValue('start_bid_amount'),
+                end_date: allItemsGR.getValue('end_date'), // Ensure end_date is being fetched
+                image: allItemsGR.getDisplayValue('image')
+            };
+            data.items.push(itemObj);
+        }
     }
-
-})($sp, input, data, options, gs);
+})(input, data, options, gs);
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-24 07:41:39</sys_created_on>
         <sys_id>b174122c930b061094e3f15a7bba101d</sys_id>
-        <sys_mod_count>239</sys_mod_count>
+        <sys_mod_count>287</sys_mod_count>
         <sys_name>Cb item categories</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_b174122c930b061094e3f15a7bba101d</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-27 15:50:43</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-15 07:22:08</sys_updated_on>
         <template><![CDATA[<div class="container">
     <h1>Exclusive Auctions</h1>
-    <div class="container1">
+    <div class="cont">
         <div class="category">
-            <div ng-repeat="category in c.data.categoryArray">
-                <label>
-                    <input type="checkbox" ng-model="category.selected" ng-change="c.filterItems()">
-                    {{ category.category }}
-                </label>
-            </div>
-        </div>
-        <div id="items-grid" class="items-grid">
-            <div ng-repeat="item in c.data.items" class="item-card">
-                <img ng-src="{{item.image || 'https://dev203498.service-now.com/issues.png'}}" alt="{{item.item_name}}">
-                <div class="item-details">
-                    <div class="item-title">{{item.item_name}}</div>
-                    <div class="item-value">Value: {{item.value}}</div>
-                    <div class="item-value">Highest Bid: {{item.highest_bid_amount}}</div>
-                    <div ng-if="item.auction_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
-                    <!--<div ng-if="item.auction_status === 'Auction In Progress' || item.auction_status === 'Auction Completed'" class="item-highest-bid">Highest Bid: {{item.highest_bid_amount}}</div>-->
-                    <a href="?id=item_details&sys_id={{item.sys_id}}" target="_blank" class="btn btn-primary">Details</a>
-                    <button ng-if="item.auction_status === 'Auction In Progress'" class="btn btn-secondary" ng-click="c.placeBid(item)">Place Bid</button>
+            <h2>Select Category</h2>
+            <div class="multiselect">
+                <div class="options-container">
+                    <label ng-repeat="category in c.data.categoryArray" class="option">
+                        <input type="checkbox" ng-model="category.selected" ng-change="c.filterItems()">
+                        <span>{{ category.category }}</span>
+                    </label>
                 </div>
             </div>
         </div>
-        <div ng-if="c.data.noItemsMessage">
-            {{ c.data.noItemsMessage }}
+        <div class="container1">
+            <div class="search-bar">
+                <input type="text" ng-model="c.searchQuery" placeholder="Search by item name" ng-change="c.filterItems()">
+            </div>
+            <div id="items-grid" class="items-grid">
+                <div ng-repeat="item in c.data.items" class="item-card" ng-click="c.showDetails(item)">
+                    <img ng-src="{{item.image || 'https://dev203498.service-now.com/issues.png'}}" alt="{{item.item_name}}">
+                    <div class="item-details">
+                        <div class="item-title">{{item.item_name}}</div>
+                        <div class="item-value">Value: $ {{item.value}}</div>
+                        <div class="item-value">Highest Bid: $ {{item.highest_bid_amount}}</div>
+                        <div ng-if="item.auction_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
+                        <div class="item-days-left">
+                            <span class="days-left-indicator"
+                                  ng-class="{'days-left-orange': c.calculateDaysLeft(item.end_date) !== 'Ended'}">
+                                {{ c.calculateDaysLeft(item.end_date) === '2' ? '2 days left' : c.calculateDaysLeft(item.end_date) }}
+                            </span>
+                        </div>
+                        <button ng-if="item.auction_status === 'Auction In Progress'" class="btn btn-secondary" ng-click="c.placeBid(item)">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="c.data.noItemsMessage">
+                {{ c.data.noItemsMessage }}
+            </div>
         </div>
     </div>
 </div>

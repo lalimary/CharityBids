@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="DELETE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>start_date</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>Item start date validation</name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+    if (isLoading || newValue === '') {
+        return;
+    }
+
+    var isNewRecord = g_form.isNewRecord();
+
+    var startDate = g_form.getValue('start_date');
+    var currentDate = new Date();
+
+    var startDateObj = new Date(startDate);
+
+    if (startDateObj.toDateString() === currentDate.toDateString()) {
+        g_form.clearValue('start_date');
+        g_form.showFieldMsg('start_date', getMessage('Start date cannot be today.'), 'error');
+        return;
+    } else if (isNewRecord && startDateObj < currentDate) {
+        g_form.clearValue('start_date');
+        g_form.showFieldMsg('start_date', getMessage('Start date cannot be before today.'), 'error');
+        return;
+    }
+
+    g_form.clearMessages('start_date');
+}
+]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-05-07 10:47:16</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>6252b7c5934e421094e3f15a7bba1097</sys_id>
+        <sys_mod_count>48</sys_mod_count>
+        <sys_name>Item start date validation</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_script_client_6252b7c5934e421094e3f15a7bba1097</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-11 05:41:55</sys_updated_on>
+        <table>x_1383184_charityb_item</table>
+        <type>onChange</type>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_script_client>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_script_client_6252b7c5934e421094e3f15a7bba1097</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;applies_extended&gt;false&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description/&gt;&lt;field&gt;start_date&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;messages/&gt;&lt;name&gt;Item start date validation&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+    if (isLoading || newValue === '') {
+        return;
+    }
+
+    var isNewRecord = g_form.isNewRecord();
+
+    var startDate = g_form.getValue('start_date');
+    var currentDate = new Date();
+
+    var startDateObj = new Date(startDate);
+
+    if (startDateObj.toDateString() === currentDate.toDateString()) {
+        g_form.clearValue('start_date');
+        g_form.showFieldMsg('start_date', getMessage('Start date cannot be today.'), 'error');
+        return;
+    } else if (isNewRecord &amp;&amp; startDateObj &lt; currentDate) {
+        g_form.clearValue('start_date');
+        g_form.showFieldMsg('start_date', getMessage('Start date cannot be before today.'), 'error');
+        return;
+    }
+
+    g_form.clearMessages('start_date');
+}
+]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;christy&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-05-07 10:47:16&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;6252b7c5934e421094e3f15a7bba1097&lt;/sys_id&gt;&lt;sys_mod_count&gt;48&lt;/sys_mod_count&gt;&lt;sys_name&gt;Item start date validation&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_6252b7c5934e421094e3f15a7bba1097&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;christy&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-07-11 05:41:55&lt;/sys_updated_on&gt;&lt;table&gt;x_1383184_charityb_item&lt;/table&gt;&lt;type&gt;onChange&lt;/type&gt;&lt;ui_type&gt;10&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-1813892628</payload_hash>
+        <record_name>Item start date validation</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-11 05:41:55</sys_created_on>
+        <sys_id>d11cd142931f461094e3f15a7bba1047</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190a04ffdb10000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-11 05:41:55</sys_updated_on>
+        <type>Client Script</type>
+        <update_guid>991cd142511f461036601e3e0021da46</update_guid>
+        <update_guid_history>991cd142511f461036601e3e0021da46:-1813892628,9b61e5bd9d5b0610248b90fea1a686da:-739626055,735b083da09306100fc62a1e10acaa26:-1813892628,ef08ccf536930610de2c1b55394be6ca:1152106199,9fd8c344dbdb4210acae5bf052e5e41b:-988774720,1ac84744e9db4210d3cd6604995e79f8:-1694954476,3fa92af96943c210ecdea715e7d675e3:-988774720,da5ffb69ad478210d0eacff8550ce549:-1152821165,0f5cf7e518478210e98f4bd193e260a5:-988774720,334cb3e549478210d839497374c1d149:386742951,b2fc636561078210c989222d04e6a3db:1540352149,87e27520aa8706105078d552f7a22f58:-25179486,766f562fa37202109e826cb54ee7fdab:-988774720,c0366a4b7bf282103e252241e1b5a256:-1152821165,edd46ed1bcf606109d6ac8a32707f4cf:-988774720,e8abc13e27a60610c3758826e2844f97:-2132963979,2ca305f2e3a60610824d4e4bd7d483f6:-198593150,45f85d6236a6c210a929be0bdb503de1:-2132963979,5dbac9ae5126c2100be76e2962d12f95:-198593150,b5e98cdc20a6c61096925cb1b92dcd19:-2132963979,1b5abfc84a66c61071583fc2335c0cd1:-198593150,9f429fb3d65286106fa8475f738e85cd:-2132963979,d980dfffeb128610986b8df710d8a544:-198593150,c64dbe2a4e56021063f0f0e09cc33d0d:-2132963979,2fb2aa8628028610cb972cf6bdebe69e:1255852651,6bb1e606bf0286106bae5ff8f112ba83:-1011961986,c72f35ca704e46109c6067e990c5d072:1255852651,fe0c06a9148ac210c24b5851c734506b:-1011961986,fb1a786d3f06c210f3f4dc6f8d92186c:1255852651,0de934edf706c21001d5846c543c8a5f:1807860990,29a9b0ed4706c21087c254c65648adee:263577443,00f8f0ad2206c210621f00bba3d2b4ef:-464067475,06683c6dc806c210e2e6b479da44a7bb:1471038238,8e38386d0206c210403e36d6cedfa68f:-511897843,13e7b06d6d06c210edf55addad2adf0b:-1070269972,b9953c690d06c2105cc8185c33a59993:-464067475,9ef470697606c210ee8e5174cebce73e:368588031,03a47ce5a606c2105b52b5c86e812d7d:132460722,3a9374e5ac06c2102d942940032d021e:152614832,aba270a5ce06c2108d5c6ca396a59b2c:132460722,0282b865ba06c2101fca961d1cb868da:368588031,3f1a64e978c2c21037ff356b9b4c5146:132460722,1069a4a903c2c2105e2ebcc96d92bc83:368588031,ae4b9c695182c210071c9074c3982d8d:132460722,40c298ad3542c2101badf800278c81c1:368588031,08ccff9d00ce8210f5f74b95a1385e7f:132460722,9378b3959ace82106326be174f23e7ef:368588031,3c133709714e421044f3d6974cad529b:132460722,6ca277c5b34e42101e9f530046eda9ff:1229257213</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-15 05:01:16</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_client">sys_script_client</sys_db_object>
+        <sys_id>bbd86f68ce9741d0bd872a4ab0706100</sys_id>
+        <sys_metadata>6252b7c5934e421094e3f15a7bba1097</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Item start date validation</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent display_value="Item">6d85325b93a9421094e3f15a7bba10ea</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_script_client_6252b7c5934e421094e3f15a7bba1097</sys_update_name>
+        <sys_update_version display_value="sys_script_client_6252b7c5934e421094e3f15a7bba1097">d11cd142931f461094e3f15a7bba1047</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-15 05:01:16</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

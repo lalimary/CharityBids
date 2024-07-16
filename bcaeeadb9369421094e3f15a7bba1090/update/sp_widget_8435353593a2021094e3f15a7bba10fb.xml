@@ -342,6 +342,14 @@ body {
         color: #428bca;
         font-weight: normal;
     }
+.sp-row-content.row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: flex-end;
+    justify-content: space-between;
+    margin: 58px;
+    margin-top: 79px;
+}
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -464,14 +472,14 @@ body {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-03 06:06:01</sys_created_on>
         <sys_id>8435353593a2021094e3f15a7bba10fb</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>33</sys_mod_count>
         <sys_name>cb charity profile</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_8435353593a2021094e3f15a7bba10fb</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-27 07:10:29</sys_updated_on>
+        <sys_updated_on>2024-07-11 04:55:33</sys_updated_on>
         <template><![CDATA[<div ng-if="::!data.isValid && !data.emptyStateTemplate" class="panel panel-default">
   <div class="panel-body wrapper-lg text-center">
     <span ng-if="!data.tableUnsupported">${User profile not found}</span>

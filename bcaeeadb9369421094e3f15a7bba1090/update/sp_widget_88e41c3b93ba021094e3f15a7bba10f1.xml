@@ -3,348 +3,106 @@
         <category>custom</category>
         <client_script/>
         <controller_as>c</controller_as>
-        <css>body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: bordebody {
-    font-family: Arial, sans-serif;
+        <css>/* Reset some default styles */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-header {
-    background-color: #003366;
-    color: #fff;
-    text-align: center;
-    padding: 50px 20px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-header h2 {
-    margin: 10px 0 0;
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.donation-section {
-    background-color: #004080;
-    color: #fff;
-    text-align: center;
-    padding: 30px 20px;
-}
-
-.donation-section h3 {
-    margin: 0 0 20px;
-    font-size: 28px;
-}
-
-.donation-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.donation-buttons button, .donation-buttons input {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-}
-
-.donation-buttons button {
-    background-color: #0066cc;
-    color: #fff;
-    cursor: pointer;
-}
-
-.donation-buttons input {
-    width: 100px;
-    text-align: center;
-}
-
-.navigation-section {
-    display: flex;
-    justify-content: center;
-    padding: 50px 20px;
-    background-color: #e6f2ff;
-}
-
-.nav-card {
-    margin: 10px;
+/* Container and Heading */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
     padding: 20px;
-    border-radius: 10px;
-    width: calc(33% - 20px);
+}
+
+.features-heading {
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
 }
 
-.nav-card:hover {
-    transform: translateY(-5px);
+/* Card Background */
+.card-background {
+    background-color: #f9f9f9; /* Solid color background for the card section */
+    padding: 20px;
+    border-radius: 8px;
 }
 
-.nav-card a {
-    text-decoration: none;
-    color: inherit;
+/* Card Section */
+.card-section {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line if necessary */
+    gap: 20px;
+    justify-content: space-between; /* Distributes space between cards */
 }
 
-.nav-card .icon {
+/* Card */
+.card {
+    background: #368a9f; /* Solid background color for cards */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 20px); /* Adjusts to 1/3 of the container width minus the gap */
+    max-width: calc(33.333% - 20px); /* Ensures cards don't exceed one-third of the container width */
+    margin-bottom: 20px; /* Space between rows of cards */
+    transition: transform 0.3s ease;
+    color: #fff; /* White text color */
+    display: flex;
+    flex-direction: column; /* Allows flexible alignment of content */
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Ensures images are the same size and fit inside the card */
+.card-image {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    display: block;
+}
+
+.card-content {
+    padding: 15px;
+    flex: 1; /* Allows the content area to grow and fill available space */
+}
+
+.card-title {
+    font-size: 1.5em;
     margin-bottom: 10px;
-    width: 50px;
-    height: 50px;
-    background: url('icon-placeholder.png') no-repeat center center;
-    background-size: contain;
 }
 
-.nav-card.volunteer {
-    background-color: #ffcc00;
+.card-description {
+    font-size: 1em;
+    margin-bottom: 15px;
 }
 
-.nav-card.donation {
-    background-color: #ff6666;
-}
-
-.nav-card.fundraise {
-    background-color: #6666ff;
-}
-
-.nav-card h4 {
-    font-size: 24px;
-    margin: 10px 0;
-}
-
-.nav-card p {
-    font-size: 16px;
-    margin: 10px 0;
-}
-
-.nav-card button {
-    background-color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.causes-section {
-    display: flex;
-    padding: 50px 20px;
-    background-color: #f4f4f4;
-}
-
-.cause-description {
-    flex: 1;
-    padding-right: 20px;
-}
-
-.cause-description h3 {
-    font-size: 28px;
-    color: #004080;
-}
-
-.cause-description p {
-    color: #333;
-}
-
-.causes-images {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.causes-images img {
-    margin: 5px;
-    width: calc(50% - 10px);
-}
-
-.mission-section {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: #e6f2ff;
-}
-
-.mission-section h3 {
-    font-size: 28px;
-    color: #003366;
-}
-
-.missions {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.mission {
-    background-color: #cce6ff;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 10px;
-    width: calc(33% - 20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.mission h4 {
-    font-size: 24px;
-    color: #004080;
-}
-
-.mission p {
-    color: #333;
-}
-
-footer {
-    background-color: #004080;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-}
-
-.total-donation h4 {
-    margin: 0;
-    font-size: 24px;
-}
-r-box;
-}
-
-header {
-    background-color: #003366;
-    color: #fff;
-    text-align: center;
-    padding: 50px 20px;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-header h2 {
-    margin: 10px 0 0;
-    font-size: 32px;
+.card-link {
+    text-decoration: none;
+    color: #fff; /* White font color for the link */
     font-weight: bold;
-}
-
-.donation-section {
-    background-color: #004080;
-    color: #fff;
-    text-align: center;
-    padding: 30px 20px;
-}
-
-.donation-section h3 {
-    margin: 0 0 20px;
-    font-size: 28px;
-}
-
-.donation-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.donation-buttons button, .donation-buttons input {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
+    background-color: #28a745; /* Green background color for the button */
+    padding: 10px;
     border-radius: 5px;
-}
-
-.donation-buttons button {
-    background-color: #0066cc;
-    color: #fff;
-    cursor: pointer;
-}
-
-.donation-buttons input {
-    width: 100px;
     text-align: center;
+    display: block; /* Makes the link a block element */
+    transition: background-color 0.3s ease;
 }
 
-.causes-section {
-    display: flex;
-    padding: 50px 20px;
-    background-color: #f4f4f4;
-}
-
-.cause-description {
-    flex: 1;
-    padding-right: 20px;
-}
-
-.cause-description h3 {
-    font-size: 28px;
-    color: #004080;
-}
-
-.cause-description p {
-    color: #333;
-}
-
-.causes-images {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.causes-images img {
-    margin: 5px;
-    width: calc(50% - 10px);
-}
-
-.mission-section {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: #e6f2ff;
-}
-
-.mission-section h3 {
-    font-size: 28px;
-    color: #003366;
-}
-
-.missions {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.mission {
-    background-color: #cce6ff;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 10px;
-    width: calc(33% - 20px);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.mission h4 {
-    font-size: 24px;
-    color: #004080;
-}
-
-.mission p {
-    color: #333;
-}
-
-footer {
-    background-color: #004080;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-}
-
-.total-donation h4 {
-    margin: 0;
-    font-size: 24px;
+.card-link:hover {
+    background-color: #218838; /* Darker green shade for the hover effect */
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -366,99 +124,65 @@ footer {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-21 14:28:46</sys_created_on>
         <sys_id>88e41c3b93ba021094e3f15a7bba10f1</sys_id>
-        <sys_mod_count>149</sys_mod_count>
+        <sys_mod_count>155</sys_mod_count>
         <sys_name>test</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_88e41c3b93ba021094e3f15a7bba10f1</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-09 17:47:27</sys_updated_on>
+        <sys_updated_on>2024-07-11 05:20:34</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donation Website</title>
+    <title>Card Layout Example</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>Helping around the world</h1>
-            <h2>MAKE SOMEONE'S LIFE BY GIVING OF YOURS.</h2>
+    <div class="container">
+        <!-- Features Heading -->
+        <h1 class="features-heading">Features</h1>
+        
+        <!-- Card Section with Background -->
+        <div class="card-background">
+            <section class="card-section">
+                <div class="card">
+                    <img src="homeImage6.jpg" alt="Auction and Events" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Auctions and Events</h2>
+                        <p class="card-description">
+                            Hit your fundraising goals with software that streamlines the guest experience start to finish. From before the fundraising begins to the final bid, we’ll help you delight donors and raise more.
+                        </p>
+                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_items" target="_self">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="homeimage7.jpg" alt="Online Fundraising" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Online Fundraising</h2>
+                        <p class="card-description">
+                            Engage donors online and fuel your mission year-round. Quickly launch giving campaigns that drive impact and convert online donations.
+                        </p>
+                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_events" target="_self">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="eventimage2.jpg" alt="Donation Management" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Donation Management</h2>
+                        <p class="card-description">
+                            Streamline the donation process with our efficient management system, allowing donors to contribute money or items effortlessly, and track their impact in real-time.
+                        </p>
+                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=upload_item" target="_self">Learn More</a>
+                    </div>
+                </div>
+            </section>
         </div>
-    </header>
-    <section class="donation-section">
-        <h3>MAKE A DONATION</h3>
-        <div class="donation-buttons">
-            <button>$10</button>
-            <button>$25</button>
-            <button>$50</button>
-            <button>$100</button>
-            <button>$250</button>
-            <input type="number" placeholder="$100">
-            <button>DONATE NOW</button>
-        </div>
-    </section>
-    <section class="navigation-section">
-        <div class="nav-card volunteer">
-            <a href="volunteer.html">
-                <div class="icon"></div>
-                <h4>Volunteer</h4>
-                <p>Join your hand with us for a better life and future.</p>
-                <button>REGISTER NOW</button>
-            </a>
-        </div>
-        <div class="nav-card donation">
-            <a href="donation.html">
-                <div class="icon"></div>
-                <h4>Donation</h4>
-                <p>Supported by community leaders, corporate sponsors, churches.</p>
-                <button>DONATE NOW</button>
-            </a>
-        </div>
-        <div class="nav-card fundraise">
-            <a href="fundraise.html">
-                <div class="icon"></div>
-                <h4>Fundraise</h4>
-                <p>Charity nonprofit organization supported by community.</p>
-                <button>READ MORE</button>
-            </a>
-        </div>
-    </section>
-    <section class="causes-section">
-        <div class="cause-description">
-            <h3>Your support is REALLY POWERFUL.</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium...</p>
-        </div>
-        <div class="causes-images">
-             <img src="eventimage2.jpg" alt="Cause 1">
-            <img src="DonateMain4.jpg" alt="Cause 2">
-        </div>
-    </section>
-    <section class="mission-section">
-        <h3>WE ARE IN A MISSION NEED TO HELP</h3>
-        <div class="missions">
-            <div class="mission">
-                <h4>Food & Water</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium...</p>
-            </div>
-            <div class="mission">
-                <h4>Education Help</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium...</p>
-            </div>
-            <div class="mission">
-                <h4>Medical Help</h4>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium...</p>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <div class="total-donation">
-            <h4>4M+ TOTAL DONATION</h4>
-        </div>
-    </footer>
+    </div>
 </body>
 </html>
 ]]></template>

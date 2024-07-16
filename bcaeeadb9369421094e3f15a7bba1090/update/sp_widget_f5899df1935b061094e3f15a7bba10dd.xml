@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+
+    // Function to handle category selection
+    c.selectCategory = function(categoryName) {
+        window.location.href = 'cb?id=cb_test&category=' + encodeURIComponent(categoryName);
+    };
+	
+	
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color:white;
+}
+
+.scroll-container {
+    display: flex;
+    background-color: #f8f5f2;
+    padding: 2rem;
+    gap: 2rem;
+    border-radius: 21px;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    /* overflow-x: auto; */
+    /* scroll-snap-type: x mandatory; */
+    /* scroll-behavior: smooth; */
+    /* width: 100%; */
+    align-items: baseline;
+}
+.category {
+    flex: 0 0 auto;
+    /* background-color: #ffffff; */
+    /* border: .1rem solid #e0e0e0; */
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    width: 14rem;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: transform .3s ease;
+}
+
+.category img {
+  width: 120px; /* Adjusted image size */
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px; /* Increased margin */
+}
+
+.category h3 {
+  font-size: 20px; /* Increased font size */
+  color: #333;
+  margin: 10px 0 5px 0;
+}
+
+.category p {
+  font-size: 18px; /* Increased font size */
+  color: #ff9900;
+  margin: 5px 0;
+  text-transform: uppercase;
+}
+
+.category p:hover {
+  text-decoration: underline;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>test_2</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>test 2</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-10 10:52:16</sys_created_on>
+        <sys_id>f5899df1935b061094e3f15a7bba10dd</sys_id>
+        <sys_mod_count>19</sys_mod_count>
+        <sys_name>test 2</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_f5899df1935b061094e3f15a7bba10dd</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-10 22:34:40</sys_updated_on>
+        <template><![CDATA[<h2>Item Categories</h2>
+
+<div class="scroll-container">
+  <div class="category" ng-click="c.selectCategory('Home & Decor')">
+    <img src="home.jpg" alt="Home & Decor">
+    <h3>Home & Decor</h3>
+    <p>Explore</p>
+  </div>
+  <div class="category" ng-click="c.selectCategory('Electronics')">
+    <img src="electronics.jpg" alt="Electronics">
+    <h3>Electronics</h3>
+    <p>Explore</p>
+  </div>
+  <div class="category" ng-click="c.selectCategory('Books & Media')">
+    <img src="books.jpg" alt="Books & Media">
+    <h3>Books & Media</h3>
+    <p>Explore</p>
+  </div>
+  <div class="category" ng-click="c.selectCategory('Toys')">
+    <img src="toys.jpg" alt="Toys">
+    <h3>Toys</h3>
+    <p>Explore</p>
+  </div>
+  <div class="category" ng-click="c.selectCategory('Accessories & Clothing')">
+    <img src="clothing.jpg" alt="Accessories & Clothing">
+    <h3>Accessories & Clothing</h3>
+    <p>Explore</p>
+  </div>
+  <div class="category" ng-click="c.selectCategory('Musical Instruments')">
+    <img src="musical.jpg" alt="Musical Instruments">
+    <h3>Musical Instruments</h3>
+    <p>Explore</p>
+  </div>
+  <div class="category" ng-click="c.selectCategory('Art & Craft')">
+    <img src="art.jpg" alt="Art & Craft">
+    <h3>Art & Craft</h3>
+    <p>Explore</p>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

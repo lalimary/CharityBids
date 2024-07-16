@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, $location) {
+    var c = this;
+
+    // Initialize data
+    c.data = {
+        items: [],
+        category: null
+    };
+
+    // Function to handle category selection
+    c.selectCategory = function(categoryName) {
+        $location.search('category', categoryName);
+        c.server.update();
+    };
+
+    // Function to show item details
+    c.showDetails = function(item) {
+        var itemDetailUrl = "?id=item_details&sys_id=" + item.sys_id;
+        window.location.href = itemDetailUrl;
+    };
+
+    // Watch the items array for changes
+    $scope.$watchCollection(function() {
+        return c.data.items;
+    }, function(newVal, oldVal) {
+        if (newVal && newVal.length === 0) {
+            $scope.noItemsMessage = "No items available";
+        } else {
+            $scope.noItemsMessage = "";
+        }
+    });
+
+    // Get the category from the URL parameters
+    var selectedCategory = $location.search().category;
+
+    // Pass the selected category to the server script
+    if (selectedCategory) {
+        c.data.category = selectedCategory;
+        c.server.update();
+    } else {
+        $scope.noItemsMessage = "No category selected.";
+    }
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f3e9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.items-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.item-card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 200px;
+    cursor: pointer;
+}
+
+.item-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.item-details {
+    padding: 10px;
+}
+
+.item-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.item-value, .item-start-bid, .item-highest-bid {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 3px;
+    display: inline-block;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_home_category_widget</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb home category widget</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+    // Initialize data arrays
+    data.items = [];
+
+    // Fetch items based on selected category
+    var category = input && input.category ? input.category : null;
+    if (category) {
+        var categoryGR = new GlideRecord('x_1383184_charityb_category');
+        categoryGR.addQuery('category', category); // Query based on 'category' field
+        categoryGR.query();
+        if (categoryGR.next()) {
+            var categorySysId = categoryGR.getUniqueValue();
+
+            var itemGR = new GlideRecord('x_1383184_charityb_item');
+            itemGR.addQuery('category', categorySysId);
+            itemGR.query();
+            while (itemGR.next()) {
+                var donatorName = '';
+                if (itemGR.donator) {
+                    var userGR = new GlideRecord('x_1383184_charityb_user_profile');
+                    if (userGR.get(itemGR.donator)) {
+                        donatorName = userGR.getValue('name');
+                    }
+                }
+
+                data.items.push({
+                    sys_id: itemGR.getUniqueValue(),
+                    item_name: itemGR.getValue('item_name'),
+                    donator: donatorName,
+                    start_date: itemGR.getValue('start_date'),
+                    end_date: itemGR.getValue('end_date'),
+                    value: itemGR.getValue('value'),
+                    start_bid_amount: itemGR.getValue('start_bid_amount'),
+                    highest_bid_amount: itemGR.getValue('highest_bid_amount'),
+                    auction_status: itemGR.getValue('auction_status'),
+                    image: itemGR.getDisplayValue('image'),
+                    description: itemGR.getValue('description')
+                });
+            }
+
+            if (data.items.length === 0) {
+                gs.addInfoMessage("No Items Available");
+            }
+        } else {
+            gs.addErrorMessage("Invalid category.");
+        }
+    } else {
+        gs.addErrorMessage("No category selected.");
+    }
+})($sp, input, data, options, gs);
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-10 14:03:42</sys_created_on>
+        <sys_id>0e550eb5931f061094e3f15a7bba1021</sys_id>
+        <sys_mod_count>10</sys_mod_count>
+        <sys_name>cb home category widget</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_0e550eb5931f061094e3f15a7bba1021</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-10 14:41:44</sys_updated_on>
+        <template><![CDATA[<div class="container">
+    <h1>Items List</h1>
+    <div id="items-grid" class="items-grid">
+        <div ng-repeat="item in c.data.items" class="item-card" ng-click="c.showDetails(item)">
+            <img ng-src="{{item.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{item.item_name}}">
+            <div class="item-details">
+                <div class="item-title">{{item.item_name}}</div>
+                <div class="item-value">Value: {{item.value}}</div>
+                <div ng-if="item.auction_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
+                <div ng-if="item.auction_status === 'Auction In Progress' || item.auction_status === 'Auction Completed'" class="item-highest-bid">Highest Bid: {{item.highest_bid_amount}}</div>
+                <a href="?id=item_details&sys_id={{item.sys_id}}" target="_blank" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+        <div ng-if="noItemsMessage" class="alert alert-warning">{{noItemsMessage}}</div>
+    </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

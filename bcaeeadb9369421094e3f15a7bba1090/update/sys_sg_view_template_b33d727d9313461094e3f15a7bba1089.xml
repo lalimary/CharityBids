@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_template">
+    <sys_sg_view_template action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>null</description>
+        <name>Event Details (Test)</name>
+        <preview_image/>
+        <root_view_attrs_json/>
+        <sys_class_name>sys_sg_view_template</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-10 18:07:57</sys_created_on>
+        <sys_id>b33d727d9313461094e3f15a7bba1089</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Event Details (Test)</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_template_b33d727d9313461094e3f15a7bba1089</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-10 18:10:01</sys_updated_on>
+        <template_json>{"Type":"ViewGroup","Margin":{"Top":15,"Bottom":17},"Orientation":"Vertical","Alignment":"Left","Distribution":"Auto","Id":"Root","Children":[{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_02","CellId":"container_02","CornerRadius":20,"Children":[{"Type":"Image","Scaling":"Fill","Id":"image_01","CellId":"image_01","Height":250,"Width":320,"CornerRadius":20}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Stretch","Distribution":"Auto","Id":"container_03","CellId":"container_03","Height":50,"Children":[{"Type":"Text","TextColor":"#151920","MaxLines":1,"Id":"text_01","CellId":"text_01","TextAlignment":"Left","Margin":{"Left":10,"Top":10,"Bottom":10}}]},{"Type":"ViewGroup","Orientation":"Horizontal","Alignment":"Center","Distribution":"Auto","Id":"container_12","CellId":"container_12","Height":30,"Children":[{"Type":"Button","TextAlignment":"Center","Id":"button_02","CellId":"button_02","Height":30,"Margin":{"Left":10},"CornerRadius":20,"Width":100},{"Type":"Button","TextAlignment":"Center","Id":"button_03","CellId":"button_03","Height":70,"Width":70}]}]}</template_json>
+    </sys_sg_view_template>
+    <sys_translated_text action="delete_multiple" query="documentkey=b33d727d9313461094e3f15a7bba1089"/>
+</record_update>

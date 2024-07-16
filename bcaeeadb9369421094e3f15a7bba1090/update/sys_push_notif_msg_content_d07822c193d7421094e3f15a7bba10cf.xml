@@ -11,7 +11,7 @@ var text_01 = layoutGen.layoutField(current.getTableName(), current.sys_id, "ite
 
 var deepLinkGenerator = new global.MobileDeepLinkGenerator("Request"); 
 // var link = deepLinkGenerator.getFormScreenLink
-	var link = deepLinkGenerator.getFormScreenLink("6ceb5a4c93d7421094e3f15a7bba10f7", current.getTableName(), current.getValue("sys_id")); 
+	var link = deepLinkGenerator.getFormScreenLink("bc351f04931f421094e3f15a7bba10a7", current.getTableName(), current.getValue("sys_id")); 
 
 var json = { 
 
@@ -36,13 +36,13 @@ return json;
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-07-08 08:53:12</sys_created_on>
         <sys_id>d07822c193d7421094e3f15a7bba10cf</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Item Submitted Notification</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_push_notif_msg_content_d07822c193d7421094e3f15a7bba10cf</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-08 09:05:39</sys_updated_on>
+        <sys_updated_on>2024-07-10 18:29:19</sys_updated_on>
     </sys_push_notif_msg_content>
 </record_update>

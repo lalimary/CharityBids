@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_push_notif_msg_content">
+    <sys_push_notif_msg_content action="DELETE">
+        <name>Outbid Notification Event</name>
+        <push_app display_value="ServiceNow Request Application">ac7f61d273122300d63a566a4cf6a78b</push_app>
+        <script><![CDATA[(function buildJSON( /*GlideRecord*/ current, /*String*/ message, /*Object*/ attributes) { 
+
+var layoutGen = new global.NotificationLayoutFieldGenerator(); 
+var text_01 = layoutGen.layoutField(current.getTableName(), current.sys_id, "item_name.donator"); 
+//var text_02 = layoutGen.layoutField(current.getTableName(), current.sys_id, "start_date"); 
+//var text_03 = layoutGen.layoutField(current.getTableName(), current.sys_id, "end_date"); 
+
+var deepLinkGenerator = new global.MobileDeepLinkGenerator("Request"); 
+// var link = deepLinkGenerator.getFormScreenLink
+	var link = deepLinkGenerator.getFormScreenLink("bc351f04931f421094e3f15a7bba10a7", current.getTableName(), current.getValue("sys_id")); 
+
+var json = { 
+
+	"Link": link, 
+
+	"Layout": { 
+
+		"item_name.donator": text_01, 
+
+		//"Identifier": text_02, 
+
+		//"Description": text_03 
+
+	} 
+
+}; 
+
+return json;
+
+})(current, message, attributes);]]></script>
+        <sys_class_name>sys_push_notif_msg_content</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 09:30:56</sys_created_on>
+        <sys_id>626c371993df821094e3f15a7bba1068</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Outbid Notification Event</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_push_notif_msg_content_626c371993df821094e3f15a7bba1068</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 09:44:12</sys_updated_on>
+    </sys_push_notif_msg_content>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_push_notif_msg_content_626c371993df821094e3f15a7bba1068</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_push_notif_msg_content"&gt;&lt;sys_push_notif_msg_content action="INSERT_OR_UPDATE"&gt;&lt;name&gt;Outbid Notification Event&lt;/name&gt;&lt;push_app display_value="ServiceNow Request Application"&gt;ac7f61d273122300d63a566a4cf6a78b&lt;/push_app&gt;&lt;script&gt;&lt;![CDATA[(function buildJSON( /*GlideRecord*/ current, /*String*/ message, /*Object*/ attributes) { 
+
+var layoutGen = new global.NotificationLayoutFieldGenerator(); 
+var text_01 = layoutGen.layoutField(current.getTableName(), current.sys_id, "item_name.donator"); 
+//var text_02 = layoutGen.layoutField(current.getTableName(), current.sys_id, "start_date"); 
+//var text_03 = layoutGen.layoutField(current.getTableName(), current.sys_id, "end_date"); 
+
+var deepLinkGenerator = new global.MobileDeepLinkGenerator("Request"); 
+// var link = deepLinkGenerator.getFormScreenLink
+	var link = deepLinkGenerator.getFormScreenLink("bc351f04931f421094e3f15a7bba10a7", current.getTableName(), current.getValue("sys_id")); 
+
+var json = { 
+
+	"Link": link, 
+
+	"Layout": { 
+
+		"item_name.donator": text_01, 
+
+		//"Identifier": text_02, 
+
+		//"Description": text_03 
+
+	} 
+
+}; 
+
+return json;
+
+})(current, message, attributes);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_push_notif_msg_content&lt;/sys_class_name&gt;&lt;sys_created_by&gt;christy&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-07-09 09:30:56&lt;/sys_created_on&gt;&lt;sys_id&gt;626c371993df821094e3f15a7bba1068&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;Outbid Notification Event&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_push_notif_msg_content_626c371993df821094e3f15a7bba1068&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;christy&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-07-09 09:44:12&lt;/sys_updated_on&gt;&lt;/sys_push_notif_msg_content&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>2093113951</payload_hash>
+        <record_name>Outbid Notification Event</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-09 09:44:12</sys_created_on>
+        <sys_id>cf5040ad93df821094e3f15a7bba1020</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>19096e117cb0000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-09 09:44:12</sys_updated_on>
+        <type>Push Notification Message Content</type>
+        <update_guid>475040ad3edf821006c12197bed1f620</update_guid>
+        <update_guid_history>475040ad3edf821006c12197bed1f620:2093113951,a05df719badf8210659a74f9c6e8124c:1454323753</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-10 10:36:26</sys_created_on>
+        <sys_db_object display_value="" name="sys_push_notif_msg_content">sys_push_notif_msg_content</sys_db_object>
+        <sys_id>01100b84e4d34628808532a13dcb5491</sys_id>
+        <sys_metadata>626c371993df821094e3f15a7bba1068</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Outbid Notification Event</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_push_notif_msg_content_626c371993df821094e3f15a7bba1068</sys_update_name>
+        <sys_update_version display_value="sys_push_notif_msg_content_626c371993df821094e3f15a7bba1068">cf5040ad93df821094e3f15a7bba1020</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 10:36:26</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

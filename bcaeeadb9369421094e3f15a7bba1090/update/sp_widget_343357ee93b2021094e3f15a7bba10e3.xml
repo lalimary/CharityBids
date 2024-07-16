@@ -1,25 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function($rootScope, $location, $scope) {
+        <client_script><![CDATA[api.controller = function($rootScope, $location, $scope, $window, $interval) {
     var c = this;
 
-    c.showDetails = function(item) {
-        var params = {
-            sys_id: item.sys_id,
-            item_name: item.item_name,
-            start_bid_amount: item.start_bid_amount,
-            highest_bid_amount: item.highest_bid_amount
-        };
+    // Initialize data.items
+    c.data.items = c.data.items || [];
 
-        // Broadcast event to update cb_bid_form
-        $rootScope.$broadcast('sp.update', {
-            widget: {
-                id: 'cb_bid_2'
-            },
-            params: params
+    // Countdown timer function
+    function updateCountdown(endDateTime) {
+        var now = new Date();
+        var endTime = new Date(endDateTime);
+
+        var timeRemaining = endTime.getTime() - now.getTime();
+        if (timeRemaining < 0) {
+            // If end time has passed
+            return {text: "Closed", colorClass: "red"};
+        } else {
+            var hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+            var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            var countdownText = ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+            return {text: countdownText, colorClass: "green"};
+        }
+    }
+
+    // Update countdown initially and every second
+    $interval(function() {
+        c.data.items.forEach(function(item) {
+            var countdown = updateCountdown(item.end_date);
+            item.countdown = countdown.text;
+            item.countdownClass = countdown.colorClass;
         });
+    }, 1000);
+
+    // Function to show item details
+    c.showDetails = function(item) {
+        var itemDetailUrl = "?id=item_details&sys_id=" + item.sys_id;
+        $window.location.href = itemDetailUrl; // Redirect to item details page
     };
+
+    // Watch the items array for changes
+    $scope.$watch(function() {
+        return c.data.items;
+    }, function(newVal, oldVal) {
+        if (newVal && newVal.length === 0) {
+            $scope.noItemsMessage = "No items available";
+        } else {
+            $scope.noItemsMessage = "";
+        }
+    }, true);
+
+    // Additional functions from the second script
 
     c.isToday = function(endDate) {
         var today = new Date().toISOString().split('T')[0];
@@ -49,31 +81,179 @@
         }, 1000);
     };
 
+    c.formatDate = function(dateString) {
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var date = new Date(dateString);
+        return date.toLocaleDateString(undefined, options);
+    };
+
+    // Initialize countdown if today is the end date
     if (c.isToday(c.data.end_date)) {
         $scope.initializeCountdown();
     }
 };
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>.countdown-timer {
-  font-family: Arial, sans-serif;
-  font-size: 2em;
-  text-align: center;
-  color: #333;
+        <css>.v343357ee93b2021094e3f15a7bba10e3 .item-details {
+    color: #000000;
+    padding: 2rem;
+    border-radius: .8rem;
+    width: 80%; /* Adjusted width */
+    margin: 0 auto;
+    border: 1.9rem solid #FFD700;
+    display: inline-block;
+    vertical-align: top;
 }
-.time {
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
-  display: inline-block;
+
+.countdown-timer {
+    display: inline-block;
+    vertical-align: top;
+    padding: 1rem;
+    display: flex;
+    border-radius: .8rem;
+    background-color: #FFFFFF;
+    border: .4rem solid #FFD700;
+    box-shadow: 0 .2rem .4rem rgba(0, 0, 0, .1);
+    align-items: center;
+    height: 45px;
+    margin-top: 15px;
 }
-img {
-  width: 50%;
+
+.modal-header .header-title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    width: 73%;
+    margin-bottom: 1rem;
+    color: #000000;
 }
-.imgC {
-  display: flex;
-  justify-content: center;
-}</css>
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: .1rem solid #e5e5e5;
+    display: flex;
+}
+
+.img-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.img-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem;
+    background-color: #F7F7F7;
+    border-radius: .8rem;
+    margin-bottom: 2rem;
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: #FFFFFF;
+    border-radius: .8rem;
+    box-shadow: 0 .2rem .4rem rgba(0, 0, 0, .1);
+    min-width: 11rem;
+    margin: 0 1rem;
+}
+
+.info-box .label {
+    font-weight: bold;
+    margin-bottom: .5rem;
+    font-size: 15px;
+    color: #000000;
+}
+
+.info-box .value {
+    color: #000000; /* Updated text color */
+}
+
+.modal-body .details-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 1.5rem; */
+    margin-bottom: 2rem;
+    flex-direction: column;
+}
+
+.detail {
+    /* flex: 1; */
+    display: flex;
+    min-width: 20rem;
+    align-items: baseline;
+}
+
+.label {
+    font-weight: bold;
+    color: #000000; /* Updated text color */
+}
+
+.date-box {
+    background-color: #FFD700;
+    color: #000000;
+    padding: 5px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.bid-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.bid-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.bid-start,
+.bid-current {
+    margin-bottom: 5px;
+    color: #000000; /* Updated text color */
+}
+
+.labelDonator {
+    color: #000;
+    font-size: 18px;
+    margin-right: 6px;
+    font-weight: bold;
+}
+
+.value p {
+    font-size: 17px;
+    color: #000;
+}
+
+.btn-bid {
+    background-color: #FFD700;
+    color: #000000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-bid:hover {
+    background-color: #FFC700;
+}
+
+.countdown-timer .time {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFD700;
+}
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -88,21 +268,25 @@ img {
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-    var ItemSysId = $sp.getParameter('sys_id');
+    var itemSysId = $sp.getParameter('sys_id');
     var gr = new GlideRecord('x_1383184_charityb_item');
-    gr.addQuery('sys_id', ItemSysId);
-    gr.query();
-
-    while (gr.next()) {
+    if (gr.get(itemSysId)) {
         data.item_name = gr.getValue('item_name');
+        data.description = gr.getValue('description');
         data.start_date = gr.getValue('start_date');
         data.end_date = gr.getValue('end_date');
         data.value = gr.getValue('value');
+        data.auction_status = gr.getValue('auction_status');
         data.start_bid_amount = gr.getValue('start_bid_amount');
         data.highest_bid_amount = gr.getValue('highest_bid_amount');
-        data.auction_status = gr.getDisplayValue('auction_status');
         data.image = gr.getDisplayValue('image');
-        data.description = gr.getValue('description');
+        data.category = gr.getDisplayValue('category');
+        var donatorId = gr.getValue('donator');
+        var donatorGr = new GlideRecord('x_1383184_charityb_user_profile');
+        if (donatorGr.get(donatorId)) {
+            data.donator = donatorGr.getDisplayValue('name');
+            data.donator_location = donatorGr.getDisplayValue('location');
+        }
     }
 })();
 ]]></script>
@@ -111,38 +295,68 @@ img {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-18 07:07:54</sys_created_on>
         <sys_id>343357ee93b2021094e3f15a7bba10e3</sys_id>
-        <sys_mod_count>87</sys_mod_count>
+        <sys_mod_count>165</sys_mod_count>
         <sys_name>cb item details</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_343357ee93b2021094e3f15a7bba10e3</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-09 19:00:43</sys_updated_on>
-        <template><![CDATA[<h1>Embrace Exclusivity: {{c.data.item_name}} Awaits You!</h1>
-<div class="item-details" ng-if="c.data">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h4 class="modal-name">{{c.data.item_name}}</h4>
-    </div>
-    <div class="imgC">
-      <img ng-src="{{c.data.image || 'https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg'}}" alt="{{c.data.item_name}}">
-    </div>
-    <div class="modal-body">
-      <p><strong>Description:</strong> {{c.data.description}}</p>
-      <p><strong>Auction Start Date:</strong> {{c.data.start_date}}</p>
-      <p><strong>Auction End Date:</strong> {{c.data.end_date}}</p>
-      <p><strong>Value:</strong> {{c.data.value}}</p>
-      <p><strong>Status:</strong> {{c.data.auction_status}}</p>
-      <!--<button class="btn btn-primary" ng-click="c.showDetails(c.data)">Place Bid</button>-->
-    </div>
-    <div ng-if="c.isToday(c.data.end_date)">
-      <div class="countdown-timer">
-        <div class="time" id="countdown"></div>
+        <sys_updated_on>2024-07-15 08:59:35</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html ng-app="charityApp">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Charity Bids Item Details</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body ng-controller="ItemDetailsController as c">
+  <div class="item-details" ng-if="c.data">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="header-title">Embrace Exclusivity: {{c.data.item_name}} Awaits You!</h1>
+        <div class="countdown-timer">
+          <div class="time" id="countdown">
+            {{ c.data.countdown }}
+          </div>
+        </div>
+      </div>
+      <div class="img-container">
+        <img ng-src="{{c.data.image || 'https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg'}}" alt="{{c.data.item_name}}">
+      </div>
+      <div class="info-container">
+        <div class="info-box">
+          <div class="label">Location</div>
+          <div class="value">{{c.data.donator_location}}</div>
+        </div>
+        <div class="info-box">
+          <div class="label">Category</div>
+          <div class="value">{{c.data.category}}</div>
+        </div>
+        <div class="info-box">
+          <div class="label">Current Bid</div>
+          <div class="value">$ {{c.data.highest_bid_amount}}</div>
+        </div>
+        <div class="info-box">
+          <div class="label">End Date</div>
+          <div class="value">{{c.formatDate(c.data.end_date)}}</div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="details-container">
+          <h3>Description:</h3>
+          <div class="detail">
+            <div class="value">
+              <p>{{c.data.description}}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
 
 
 ]]></template>

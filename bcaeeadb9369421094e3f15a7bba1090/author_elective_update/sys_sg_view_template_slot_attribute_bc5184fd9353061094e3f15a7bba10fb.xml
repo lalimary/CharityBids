@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_template_slot_attribute">
+    <sys_sg_view_template_slot_attribute action="DELETE">
+        <description>text_19_FieldValue</description>
+        <name display_value="FieldValue">c2eed5c2b7321010df65f6efce11a9cf</name>
+        <sys_class_name>sys_sg_view_template_slot_attribute</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-10 04:26:54</sys_created_on>
+        <sys_id>bc5184fd9353061094e3f15a7bba10fb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>c2eed5c2b7321010df65f6efce11a9cf</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_template_slot_attribute_bc5184fd9353061094e3f15a7bba10fb</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 04:26:54</sys_updated_on>
+        <translated_value/>
+        <value/>
+        <view_template_slot display_value="text_19">7c5184fd9353061094e3f15a7bba10f6</view_template_slot>
+    </sys_sg_view_template_slot_attribute>
+    <sys_translated_text action="DELETE" query="documentkey=bc5184fd9353061094e3f15a7bba10fb"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_sg_view_template_slot_attribute_bc5184fd9353061094e3f15a7bba10fb</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_template_slot_attribute"><sys_sg_view_template_slot_attribute action="INSERT_OR_UPDATE"><description>text_19_FieldValue</description><name display_value="FieldValue">c2eed5c2b7321010df65f6efce11a9cf</name><sys_class_name>sys_sg_view_template_slot_attribute</sys_class_name><sys_created_by>christy</sys_created_by><sys_created_on>2024-07-10 04:26:54</sys_created_on><sys_id>bc5184fd9353061094e3f15a7bba10fb</sys_id><sys_mod_count>0</sys_mod_count><sys_name>c2eed5c2b7321010df65f6efce11a9cf</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_sg_view_template_slot_attribute_bc5184fd9353061094e3f15a7bba10fb</sys_update_name><sys_updated_by>christy</sys_updated_by><sys_updated_on>2024-07-10 04:26:54</sys_updated_on><translated_value/><value/><view_template_slot display_value="text_19">7c5184fd9353061094e3f15a7bba10f6</view_template_slot></sys_sg_view_template_slot_attribute><sys_translated_text action="delete_multiple" query="documentkey=bc5184fd9353061094e3f15a7bba10fb"/></record_update>]]></payload>
+        <payload_hash>1587481215</payload_hash>
+        <record_name>c2eed5c2b7321010df65f6efce11a9cf</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-10 04:26:54</sys_created_on>
+        <sys_id>705184fd9353061094e3f15a7bba10fe</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1909ae4f49f0000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-10 04:26:54</sys_updated_on>
+        <type>Card template element attribute</type>
+        <update_guid>b45184fd3d5306102f0571a07d5518fd</update_guid>
+        <update_guid_history>b45184fd3d5306102f0571a07d5518fd:1587481215</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-10 17:05:27</sys_created_on>
+        <sys_db_object display_value="" name="sys_sg_view_template_slot_attribute">sys_sg_view_template_slot_attribute</sys_db_object>
+        <sys_id>082e5a820a724ff293d42c1886553d19</sys_id>
+        <sys_metadata>bc5184fd9353061094e3f15a7bba10fb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>c2eed5c2b7321010df65f6efce11a9cf</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_sg_view_template_slot_attribute_bc5184fd9353061094e3f15a7bba10fb</sys_update_name>
+        <sys_update_version display_value="sys_sg_view_template_slot_attribute_bc5184fd9353061094e3f15a7bba10fb">705184fd9353061094e3f15a7bba10fe</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-10 17:05:27</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

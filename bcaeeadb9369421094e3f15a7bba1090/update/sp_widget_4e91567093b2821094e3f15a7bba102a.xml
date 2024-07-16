@@ -3,184 +3,112 @@
         <category>custom</category>
         <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
         <controller_as>c</controller_as>
-        <css>@media (min-width: 992px) {
-    .solutions-overview--intro {
-        padding-bottom: 140px;
-    }
+        <css>/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.solutions-overview--intro :last-child {
-    margin-bottom: 0;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
 }
 
-h2.head-3 {
-    padding-top: 3.6rem;
-    color: #337daf;
-    font-size: 5.8rem;
-}
-
-
-img.bannerImage {
-    width: 132.5%;
-    height: 26rem;
-    object-fit: cover;
-    position: relative;
-    left: -20rem;
-}
-
-img.bannerImage2 {
-    width: 132.5%;
-    height: 14rem;
-    object-fit: cover;
-    filter: brightness(0.7);
-    position: relative;
-    left: -20rem;
-}
-
-.row {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-}
-
-.col-12{
-    position: relative;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-.tagline {
-    color: var(--body-color-lt);
-    font-size: 28px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 19px;
-}
-
-@media (min-width: 992px) {
-    h2, .h2 {
-        font-size: 60px;
-    }
-}
-
-a.solutions-learn-more-1{
-    color: var(--blue);
-    font-family: 'Lato', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-    text-transform: uppercase;
-    position: relative;
-}
-
-.header-2 {
-    margin-bottom: 9rem;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5rem;
-}
-
-.image-container-2 {
-    vertical-align: middle;
+/* Container and Heading */
+.container {
     width: 90%;
-    height: 147%;
-    border-radius: 30px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
 }
 
-.image-container-3 {
-    vertical-align: middle;
-    width: 60%;
-    height: 147%;
-    border-radius: 3rem;
+.features-heading {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
 }
 
-.image-container-4 {
-    vertical-align: middle;
-    width: 33%;
-    height: 147%;
-    border-radius: 3rem;
+/* Card Background */
+.card-background {
+    background-color: #f9f9f9; /* Solid color background for the card section */
+    padding: 20px;
+    border-radius: 8px;
 }
 
-.text-container-2 {
-    padding-left: 70px;
-    /* font-size: medium; */
-    font-family: exo2;
-}
-
-p.p-class-3 {
-    color: black;
-    font-family: exo2;
-    font-size: 19px;
-}
-
-
-
-.header-3 {
-    margin-bottom: 7rem;
+/* Card Section */
+.card-section {
     display: flex;
-    justify-content: space-between;
-    margin-top: 7rem;
+    flex-wrap: wrap; /* Allows cards to wrap to the next line if necessary */
+    gap: 20px;
+    justify-content: space-between; /* Distributes space between cards */
 }
 
-
-
-.text-container-3 {
-    padding-right: 18rem;
-    font-family: exo2;
-}
-
-h2.head-4 {
-    padding-top: 3.6rem;
-    color: #337daf;
-    font-size: 5.8rem;
-}
-
-p.tagline {
-    margin-top: 18px;
-}
-
-p.p-class-4 {
-    color: black;
-    font-family: exo2;
-    font-size: 1.9rem;
-}
-
-.header-4 {
-    margin-bottom: 50px;
+/* Card */
+.card {
+    background: #368a9f; /* Solid background color for cards */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 20px); /* Adjusts to 1/3 of the container width minus the gap */
+    max-width: calc(33.333% - 20px); /* Ensures cards don't exceed one-third of the container width */
+    margin-bottom: 20px; /* Space between rows of cards */
+    transition: transform 0.3s ease;
+    color: #fff; /* White text color */
     display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
+    flex-direction: column; /* Allows flexible alignment of content */
 }
 
-.text-container-4 {
-    padding-bottom: 6.6rem;
-    padding-left: 2rem;
-    font-family: exo2;
-    width: 60%;
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Ensures images are the same size and fit inside the card */
+.card-image {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    display: block;
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-h2.head-4 {
-    padding-top: 36px;
-    color: #337daf;
+.card-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
 }
 
-h2.head-5 {
-    color: #337daf;
-    font-size: 5.8rem;
+.card-description {
+    font-size: 1em;
+    margin-bottom: 15px;
 }
 
-p.p-class-5 {
-    color: black;
-    font-family: exo2;
-    font-size: 1.9rem;
-    width: 33rem;
-}</css>
+.card-link {
+    text-decoration: none;
+    color: #000; /* Black text color for the link */
+    font-weight: bold;
+    background-color: #fff; /* White background color for the button */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: block; /* Makes the link a block element */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card-link:hover {
+    background-color: #f1f1f1; /* Light gray background color for the hover effect */
+    color: #000; /* Ensures text color remains black on hover */
+}
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -200,83 +128,67 @@ p.p-class-5 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-12 15:51:54</sys_created_on>
         <sys_id>4e91567093b2821094e3f15a7bba102a</sys_id>
-        <sys_mod_count>64</sys_mod_count>
+        <sys_mod_count>73</sys_mod_count>
         <sys_name>cb home widget 4</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_4e91567093b2821094e3f15a7bba102a</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-27 19:33:49</sys_updated_on>
-        <template><![CDATA[<div class="solutions-overview-intro">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <img src="auctionBanner.jpg" class="bannerImage">
-        <p class="tagline" style="text-align:center;">
-          Solutions
-        </p>
-        <h2 style="text-align:center;">
-          Take Giving to Next Level
-        </h2>
-      </div>
-    </div>
-    
-    <div class="header-2">      
-      <img src="homeImage6.jpg" alt="logo image.jpg" width="500" height="600" class="image-container-2">
-      <div class="text-container-2">
-        <h2 class="head-3">
-          Auctions and Events
-        </h2>
-        <p class="p-class-3">
-          Hit your fundraising goals with software that streamlines the guest experience start to finish. From before the fundraising begins to the final bid, we’ll help you delight donors and raise more.
-        </p>  
-        <a class="solutions-learn-more-1" href="https://dev203498.service-now.com/cb?id=list_of_items" target="_self">Learn More</a>
-
-      </div>
-      
-    </div>
-    
-    
-     
-     
-    <div class="header-3">
-    
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-11 05:47:50</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Layout Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Features Heading -->
+        <h1 class="features-heading">Features</h1>
         
-      
-      <div class="text-container-3">
-        <h2 class="head-4">
-          Online Fundraising
-        </h2>
-        <p class="p-class-4">
-          Engage donors online and fuel your mission year-round. Quickly launch giving campaigns that drive impact and convert online donations.
-        </p>  
-       <a class="solutions-learn-more-1" href="https://dev203498.service-now.com/cb?id=list_of_events" target="_self">Learn More</a>
+        <!-- Card Section with Background -->
+        <div class="card-background">
+            <section class="card-section">
+                <div class="card">
+                    <img src="homeImage6.jpg" alt="Auction and Events" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Auctions and Events</h2>
+                        <p class="card-description">
+                            Hit your fundraising goals with software that streamlines the guest experience start to finish. From before the fundraising begins to the final bid, we’ll help you delight donors and raise more.
+                        </p>
+                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_items" target="_self">Learn More</a>
+                    </div>
+                </div>
 
-      </div>
-      
-      <img src="homeimage7.jpg" alt="logo image.jpg" width="500" height="600" class="image-container-3">
-    
-    </div>
-    <img src="donationBanner.jpg" class="bannerImage">
-    <div class="header-4">
-      
-        <img src="eventimage2.jpg" alt="logo image.jpg" width="500" height="600" class="image-container-4">
-      
-      
-      <div class="text-container-4">
-        <h2 class="head-5">
-          Donation Management
-        </h2>
-        <p class="p-class-5">
-          Streamline the donation process with our efficient management system, allowing donors to contribute money or items effortlessly, and track their impact in real-time.
-        </p> 
-        <a class="solutions-learn-more-1" href="https://dev203498.service-now.com/cb?id=upload_item" target="_self">Learn More</a>
+                <div class="card">
+                    <img src="homeimage7.jpg" alt="Online Fundraising" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Online Fundraising</h2>
+                        <p class="card-description">
+                            Engage donors online and fuel your mission year-round. Quickly launch giving campaigns that drive impact and convert online donations.
+                        </p>
+                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_events" target="_self">Learn More</a>
+                    </div>
+                </div>
 
-      </div>   
+                <div class="card">
+                    <img src="eventimage2.jpg" alt="Donation Management" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">Donation Management</h2>
+                        <p class="card-description">
+                            Streamline the donation process with our efficient management system, allowing donors to contribute money or items effortlessly, and track their impact in real-time.
+                        </p>
+                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=upload_item" target="_self">Learn More</a>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
-  </div>
-</div>
+</body>
+</html>
 ]]></template>
     </sp_widget>
 </record_update>

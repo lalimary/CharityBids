@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_view_config_element">
+    <sys_sg_view_config_element action="INSERT_OR_UPDATE">
+        <name>Background_container_02_element</name>
+        <sys_class_name>sys_sg_view_config_element</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-15 07:27:20</sys_created_on>
+        <sys_id>f89a5adf931bca1094e3f15a7bba1019</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Background_container_02_element</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_view_config_element_f89a5adf931bca1094e3f15a7bba1019</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-15 07:27:20</sys_updated_on>
+        <view_config display_value="Item Scheduled Card">abb3029393d7ca1094e3f15a7bba1035</view_config>
+        <view_template_slot display_value="Background_container_02">909c4adf93d7ca1094e3f15a7bba102e</view_template_slot>
+    </sys_sg_view_config_element>
+</record_update>
