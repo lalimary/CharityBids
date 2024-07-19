@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="b920bb18932b821094e3f15a7bba1023" label="Badges" max_length="40" name="x_1383184_charityb_badges" type="collection">
+        <element display="true" label="Badge name" max_length="20" name="badge_name" type="string"/>
+        <element label="Date awarded" max_length="40" name="date_awarded" type="glide_date"/>
+        <element label="Images" max_length="40" name="images" type="user_image"/>
+        <element label="User" max_length="32" name="user" reference="x_1383184_charityb_user_profile" type="reference"/>
+        <index name="index">
+            <element name="user"/>
+        </index>
+    </element>
+</database>

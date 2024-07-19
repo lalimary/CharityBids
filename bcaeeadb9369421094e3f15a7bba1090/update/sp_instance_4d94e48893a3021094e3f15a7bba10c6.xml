@@ -10,23 +10,23 @@
         <roles/>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">402376b49336821094e3f15a7bba1031</sp_column>
-        <sp_widget display_value="cb event list justgiving">dfd77bab93534e1094e3f15a7bba1064</sp_widget>
+        <sp_column display_value="1">be84608c93a3021094e3f15a7bba10e4</sp_column>
+        <sp_widget display_value="cb cloned event list">b3b1baec938b061094e3f15a7bba10dc</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>christy</sys_created_by>
-        <sys_created_on>2024-07-16 10:22:40</sys_created_on>
-        <sys_id>ba4cc4f793d34e1094e3f15a7bba1034</sys_id>
+        <sys_created_on>2024-07-17 06:47:15</sys_created_on>
+        <sys_id>4d94e48893a3021094e3f15a7bba10c6</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
-        <sys_update_name>sp_instance_ba4cc4f793d34e1094e3f15a7bba1034</sys_update_name>
+        <sys_update_name>sp_instance_4d94e48893a3021094e3f15a7bba10c6</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-16 10:22:40</sys_updated_on>
+        <sys_updated_on>2024-07-17 06:47:15</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters/>
     </sp_instance>
-    <sys_translated_text action="delete_multiple" query="documentkey=ba4cc4f793d34e1094e3f15a7bba1034"/>
+    <sys_translated_text action="delete_multiple" query="documentkey=4d94e48893a3021094e3f15a7bba10c6"/>
 </record_update>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_auth_profile_basic">
+    <sys_auth_profile_basic action="DELETE">
+        <name>Charitybidsconnect</name>
+        <password>﷞﷟﷒a36469c493e5021094e3f15a7bba10cf﷬﷔1﷬﷭ofMFtPwqlXrem0djyWDKcw==KT3rOPvoXQQHpvTW2co0FBSv9scxlAQtGXg=﷮﷯</password>
+        <sys_class_name>sys_auth_profile_basic</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 07:36:39</sys_created_on>
+        <sys_id>3ecf280c93e3021094e3f15a7bba1071</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Charitybidsconnect</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_auth_profile_basic_3ecf280c93e3021094e3f15a7bba1071</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 07:36:39</sys_updated_on>
+        <username>charitybids</username>
+    </sys_auth_profile_basic>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_auth_profile_basic_3ecf280c93e3021094e3f15a7bba1071</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_auth_profile_basic"><sys_auth_profile_basic action="INSERT_OR_UPDATE"><name>Charitybidsconnect</name><password>﷞﷟﷒a36469c493e5021094e3f15a7bba10cf﷬﷔1﷬﷭ofMFtPwqlXrem0djyWDKcw==KT3rOPvoXQQHpvTW2co0FBSv9scxlAQtGXg=﷮﷯</password><sys_class_name>sys_auth_profile_basic</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-17 07:36:39</sys_created_on><sys_id>3ecf280c93e3021094e3f15a7bba1071</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Charitybidsconnect</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_auth_profile_basic_3ecf280c93e3021094e3f15a7bba1071</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-17 07:36:39</sys_updated_on><username>charitybids</username></sys_auth_profile_basic></record_update>]]></payload>
+        <payload_hash>467970813</payload_hash>
+        <record_name>Charitybidsconnect</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 07:36:39</sys_created_on>
+        <sys_id>a0efe40c93e3021094e3f15a7bba10c4</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190bf9f30dc0000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 07:36:39</sys_updated_on>
+        <type>Basic Auth Configuration</type>
+        <update_guid>e4efe40ccae302104d0b694a3ee3b8c3</update_guid>
+        <update_guid_history>e4efe40ccae302104d0b694a3ee3b8c3:467970813</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 08:23:24</sys_created_on>
+        <sys_db_object display_value="" name="sys_auth_profile_basic">sys_auth_profile_basic</sys_db_object>
+        <sys_id>731a2e96e798410bb72ed68af488cdf9</sys_id>
+        <sys_metadata>3ecf280c93e3021094e3f15a7bba1071</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Charitybidsconnect</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_auth_profile_basic_3ecf280c93e3021094e3f15a7bba1071</sys_update_name>
+        <sys_update_version display_value="sys_auth_profile_basic_3ecf280c93e3021094e3f15a7bba1071">a0efe40c93e3021094e3f15a7bba10c4</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 08:23:24</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

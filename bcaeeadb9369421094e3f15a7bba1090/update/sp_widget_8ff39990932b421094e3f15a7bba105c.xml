@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($http, $location, spUtil, $scope) {
+    var c = this;
+
+    // Initialize data object
+    c.data = {
+        sys_id: $location.search().sys_id,
+        bidAmount: ''
+    };
+
+    // Fetch event details
+    var itemUrl = 'https://dev203498.service-now.com/api/now/table/x_1383184_charityb_events/' + c.data.sys_id;
+    $http.get(itemUrl).then(function(response) {
+        c.data.event_name = response.data.result.event_name;
+        c.data.description = response.data.result.description;
+        c.data.start_date = response.data.result.start_date;
+        c.data.end_date = response.data.result.end_date;
+        c.data.justgiving_url = response.data.result.justgiving_url;
+        // Add more fields as needed
+    }, function(error) {
+        console.error('Failed to fetch event details:', error);
+        c.errorMessage = 'Failed to fetch event details.';
+    });
+
+    // Function to submit/update the event
+    c.createEvent = function() {
+        var eventData = {
+            event_name: c.data.event_name,
+            description: c.data.description,
+            start_date: c.data.start_date,
+            end_date: c.data.end_date,
+            justgiving_url: c.data.justgiving_url
+            // Add more fields as needed
+        };
+
+        if (c.data.sys_id) {
+            // If sys_id exists, update the existing record
+            $http.put('/api/now/table/x_1383184_charityb_events/' + c.data.sys_id, eventData).then(function(response) {
+                if (response.data.result) {
+                    c.successMessage = 'Event updated successfully!';
+                } else {
+                    c.errorMessage = 'Failed to update event.';
+                }
+            }, function(error) {
+                console.error('Error during event update:', error);
+                c.errorMessage = 'An error occurred during event update.';
+            });
+        } else {
+            c.errorMessage = 'Missing sys_id to update event.';
+        }
+    };
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.countdown-timer {
+  font-family: Arial, sans-serif;
+  font-size: 2em;
+  text-align: center;
+  color: #333;
+}
+.time {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+img {
+  width: 50%;
+}
+.imgC {
+  display: flex;
+  justify-content: center;
+}
+
+.col-md-6 {
+    /* margin-right: 10px; */
+    width: 50%;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_justgiving_details</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb justgiving details</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    var eventSysId = $sp.getParameter('sys_id');
+    var data = {};
+	
+	if (!eventSysId) {
+        data.errorMessage = 'EventSysId parameter is missing';
+        return data;
+    }
+	
+    // Create a new GlideRecord object for the event
+    var grEvent = new GlideRecord('x_1383184_charityb_events');
+    grEvent.addQuery('sys_id', eventSysId);
+    grEvent.query();
+	
+    if (grEvent.next()) {
+        // Populate data object with event details
+        data.sys_id = eventSysId;
+        data.event_name = grEvent.getValue('event_name');
+        data.description = grEvent.getValue('description');
+        data.start_date = grEvent.getValue('start_date'); // Add more fields as needed
+
+        // Clear any previous error message
+        data.errorMessage = '';
+    } else {
+        data.errorMessage = 'Event not found with sys_id: ' + eventSysId;
+    }
+
+    return data;
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-18 04:52:51</sys_created_on>
+        <sys_id>8ff39990932b421094e3f15a7bba105c</sys_id>
+        <sys_mod_count>29</sys_mod_count>
+        <sys_name>cb justgiving details</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_8ff39990932b421094e3f15a7bba105c</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-19 04:13:25</sys_updated_on>
+        <template><![CDATA[<div class="item-details" ng-if="c.data">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Create Event</h4>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form name="eventForm" ng-submit="c.submitEvent()">
+                    <div class="modal-body">
+                      
+                       <!-- Input field for Event Name -->
+                        <div class="form-group">
+                            <label for="eventName">Event Name:</label>
+                            <input type="text" value="{{c.data.event_name}}" class="form-control" id="eventName"  placeholder="Enter event name" required>
+                        </div>
+
+                        <!-- Input field for Start Date -->
+                        <div class="form-group">
+                            <label for="startDate">Start Date:</label>
+                            <input type="date" class="form-control" id="startDate" ng-model="c.data.start_date" required>
+                        </div>
+
+                        <!-- Input field for End Date -->
+                        <div class="form-group">
+                            <label for="endDate">End Date:</label>
+                            <input type="date" class="form-control" id="endDate" ng-model="c.data.end_date" required>
+                        </div>
+                      
+                       <!-- Input field for JustGiving URL -->
+                        <div class="form-group">
+                            <label for="justgivingUrl">JustGiving URL:</label>
+                            <input type="text" class="form-control" id="justgivingUrl" ng-model="c.data.justgiving_url" placeholder="Enter JustGiving URL">
+                        </div>
+
+
+                        <!-- Textarea for Description -->
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" ng-model="c.data.description" placeholder="Enter event description" rows="5" required></textarea>
+                        </div>
+                      
+                       <!-- Upload Image -->
+                       <div class="form-group">
+                       <label for="imageUpload">Upload Image:</label>
+                       <input type="file" id="imageUpload" accept="image/*" onchange="angular.element(this).scope().c.uploadImage(this.files)" required>
+                       <p class="help-block">Select an image file (JPEG, PNG, etc.)</p>
+                       </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary" ng-click="c.createEvent()">Create Event</button>
+
+                        <!-- Error and Success Messages -->
+                        <p ng-if="c.errorMessage" class="text-danger">{{c.errorMessage}}</p>
+                        <p ng-if="c.successMessage" class="text-success">{{c.successMessage}}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>

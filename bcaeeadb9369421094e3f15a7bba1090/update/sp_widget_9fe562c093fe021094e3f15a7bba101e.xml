@@ -158,20 +158,20 @@ img{
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-10 09:25:17</sys_created_on>
         <sys_id>9fe562c093fe021094e3f15a7bba101e</sys_id>
-        <sys_mod_count>93</sys_mod_count>
+        <sys_mod_count>95</sys_mod_count>
         <sys_name>cb homepage main</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_9fe562c093fe021094e3f15a7bba101e</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-12 06:04:58</sys_updated_on>
+        <sys_updated_on>2024-07-18 18:13:55</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-Up Page</title>
+    <title>Homepage</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -179,11 +179,10 @@ img{
         <div class="hero--content">
             <div class="hero--text">
               <h1>
-                Your generosity today transforms hope into action and dreams into reality for those in need
+                ${Your generosity today transforms hope into action and dreams into reality for those in need}
               </h1>
                
-                <p>Hope begins with your generosity. Join us by Signing Up</p>
-              
+               
             </div>
             <div class="home-img">
                 <img width="1024" height="903" src="Image5.png" class="attachment-large size-large" alt="Helping Image">

@@ -84,6 +84,34 @@
             <sys_user/>
             <type/>
         </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>badges</element>
+            <position>6</position>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-18 16:36:10</sys_created_on>
+            <sys_id>e9f4bbdc932b821094e3f15a7bba10b0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_user_profile" sys_domain="global" view="Default view">1d1d25519352c21094e3f15a7bba104d</sys_ui_section>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-18 16:36:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>count</element>
+            <position>7</position>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-18 17:25:25</sys_created_on>
+            <sys_id>3230406c936b821094e3f15a7bba1021</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_user_profile" sys_domain="global" view="Default view">1d1d25519352c21094e3f15a7bba104d</sys_ui_section>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-18 17:25:25</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>
             <header>false</header>

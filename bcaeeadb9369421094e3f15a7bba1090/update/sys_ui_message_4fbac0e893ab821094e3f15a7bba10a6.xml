@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_message">
+    <sys_ui_message action="INSERT_OR_UPDATE">
+        <application/>
+        <code/>
+        <commented_message/>
+        <key>Your generosity today transforms hope into action and dreams into reality for those in need</key>
+        <language>fr</language>
+        <message>Votre générosité aujourd'hui transforme l'espoir en action et les rêves en réalité pour ceux dans le besoin.</message>
+        <sys_class_name>sys_ui_message</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-18 18:11:32</sys_created_on>
+        <sys_id>4fbac0e893ab821094e3f15a7bba10a6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Your generosity today transforms hope into action and dreams into reality for those in need</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_ui_message_4fbac0e893ab821094e3f15a7bba10a6</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-18 18:11:32</sys_updated_on>
+    </sys_ui_message>
+</record_update>

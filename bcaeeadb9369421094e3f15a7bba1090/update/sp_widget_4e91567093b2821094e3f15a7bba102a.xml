@@ -128,14 +128,14 @@ body {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-12 15:51:54</sys_created_on>
         <sys_id>4e91567093b2821094e3f15a7bba102a</sys_id>
-        <sys_mod_count>73</sys_mod_count>
+        <sys_mod_count>74</sys_mod_count>
         <sys_name>cb home widget 4</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_4e91567093b2821094e3f15a7bba102a</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-11 05:47:50</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-18 18:31:38</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,7 +147,7 @@ body {
 <body>
     <div class="container">
         <!-- Features Heading -->
-        <h1 class="features-heading">Features</h1>
+        <h1 class="features-heading">${Features}</h1>
         
         <!-- Card Section with Background -->
         <div class="card-background">
@@ -155,33 +155,33 @@ body {
                 <div class="card">
                     <img src="homeImage6.jpg" alt="Auction and Events" class="card-image">
                     <div class="card-content">
-                        <h2 class="card-title">Auctions and Events</h2>
+                        <h2 class="card-title">${Auctions and Events}</h2>
                         <p class="card-description">
-                            Hit your fundraising goals with software that streamlines the guest experience start to finish. From before the fundraising begins to the final bid, we’ll help you delight donors and raise more.
+                           ${Hit your fundraising goals with software that streamlines the guest experience start to finish. From before the fundraising begins to the final bid, we’ll help you delight donors and raise more.}
                         </p>
-                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_items" target="_self">Learn More</a>
+                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_items" target="_self">${Learn More}</a>
                     </div>
                 </div>
 
                 <div class="card">
                     <img src="homeimage7.jpg" alt="Online Fundraising" class="card-image">
                     <div class="card-content">
-                        <h2 class="card-title">Online Fundraising</h2>
+                        <h2 class="card-title">${Online Fundraising}</h2>
                         <p class="card-description">
-                            Engage donors online and fuel your mission year-round. Quickly launch giving campaigns that drive impact and convert online donations.
+                            ${Engage donors online and fuel your mission year-round. Quickly launch giving campaigns that drive impact and convert online donations.}
                         </p>
-                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_events" target="_self">Learn More</a>
+                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_events" target="_self">${Learn More}</a>
                     </div>
                 </div>
 
                 <div class="card">
                     <img src="eventimage2.jpg" alt="Donation Management" class="card-image">
                     <div class="card-content">
-                        <h2 class="card-title">Donation Management</h2>
+                        <h2 class="card-title">${Donation Management}</h2>
                         <p class="card-description">
-                            Streamline the donation process with our efficient management system, allowing donors to contribute money or items effortlessly, and track their impact in real-time.
+                           ${Streamline the donation process with our efficient management system, allowing donors to contribute money or items effortlessly, and track their impact in real-time.}
                         </p>
-                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=upload_item" target="_self">Learn More</a>
+                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=upload_item" target="_self">${Learn More}</a>
                     </div>
                 </div>
             </section>

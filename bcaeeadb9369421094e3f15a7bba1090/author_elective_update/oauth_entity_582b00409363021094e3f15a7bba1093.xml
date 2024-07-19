@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity">
+    <oauth_entity action="DELETE">
+        <access>public</access>
+        <access_token_lifespan>1800</access_token_lifespan>
+        <active>true</active>
+        <auth_code_lifespan>60</auth_code_lifespan>
+        <auth_url/>
+        <certificate_url/>
+        <client_id>182b0040ef6302107acdb18e96be3593</client_id>
+        <client_secret>﷞﷟﷒9f6469c493e5021094e3f15a7bba10af﷬﷔1﷬﷭o0S8BMTpSeJbz6ptSgyEvw==pQvEgOnhNDQBVWGGJDE78H0opQo39Ev2eJw=﷮﷯</client_secret>
+        <client_uuid>d42b00409363021094e3f15a7bba1093</client_uuid>
+        <code_challenge_method>S256</code_challenge_method>
+        <comments/>
+        <default_grant_type>password</default_grant_type>
+        <id_token_lifespan>86400</id_token_lifespan>
+        <login_url/>
+        <logo_url/>
+        <message_signature_lifespan>60</message_signature_lifespan>
+        <mobile_client>false</mobile_client>
+        <name>Google calender</name>
+        <oauth_api_script/>
+        <protocol_name/>
+        <public_client>false</public_client>
+        <redirect_url/>
+        <refresh_token_lifespan>8640000</refresh_token_lifespan>
+        <refresh_token_url/>
+        <restricted_binding>false</restricted_binding>
+        <revoke_token_url/>
+        <salt/>
+        <send_client_credentials_as>request_body_parameter</send_client_credentials_as>
+        <skip_authorize>false</skip_authorize>
+        <sys_class_name>oauth_entity</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 05:01:35</sys_created_on>
+        <sys_id>582b00409363021094e3f15a7bba1093</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Google calender</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>oauth_entity_582b00409363021094e3f15a7bba1093</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 05:01:35</sys_updated_on>
+        <token_url/>
+        <type>client</type>
+        <use_mutual_auth>false</use_mutual_auth>
+        <user/>
+    </oauth_entity>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>oauth_entity_582b00409363021094e3f15a7bba1093</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="oauth_entity"><oauth_entity action="INSERT_OR_UPDATE"><access>public</access><access_token_lifespan>1800</access_token_lifespan><active>true</active><auth_code_lifespan>60</auth_code_lifespan><auth_url/><certificate_url/><client_id>182b0040ef6302107acdb18e96be3593</client_id><client_secret>﷞﷟﷒9f6469c493e5021094e3f15a7bba10af﷬﷔1﷬﷭o0S8BMTpSeJbz6ptSgyEvw==pQvEgOnhNDQBVWGGJDE78H0opQo39Ev2eJw=﷮﷯</client_secret><client_uuid>d42b00409363021094e3f15a7bba1093</client_uuid><code_challenge_method>S256</code_challenge_method><comments/><default_grant_type>password</default_grant_type><id_token_lifespan>86400</id_token_lifespan><login_url/><logo_url/><message_signature_lifespan>60</message_signature_lifespan><mobile_client>false</mobile_client><name>Google calender</name><oauth_api_script/><protocol_name/><public_client>false</public_client><redirect_url/><refresh_token_lifespan>8640000</refresh_token_lifespan><refresh_token_url/><restricted_binding>false</restricted_binding><revoke_token_url/><salt/><send_client_credentials_as>request_body_parameter</send_client_credentials_as><skip_authorize>false</skip_authorize><sys_class_name>oauth_entity</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-17 05:01:35</sys_created_on><sys_id>582b00409363021094e3f15a7bba1093</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Google calender</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>oauth_entity_582b00409363021094e3f15a7bba1093</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-17 05:01:35</sys_updated_on><token_url/><type>client</type><use_mutual_auth>false</use_mutual_auth><user/></oauth_entity></record_update>]]></payload>
+        <payload_hash>-1686718541</payload_hash>
+        <record_name>Google calender</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 05:01:35</sys_created_on>
+        <sys_id>196c00409363021094e3f15a7bba10b9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190bf113af90000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 05:01:35</sys_updated_on>
+        <type>Application Registries</type>
+        <update_guid>5d6c00403f63021053b4989265f353b8</update_guid>
+        <update_guid_history>5d6c00403f63021053b4989265f353b8:-1686718541</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Google calender">96df940893a3021094e3f15a7bba10b8</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 06:26:35</sys_created_on>
+        <sys_db_object display_value="" name="oauth_entity">oauth_entity</sys_db_object>
+        <sys_id>0282f986f6f44f588037c303f2f17440</sys_id>
+        <sys_metadata>582b00409363021094e3f15a7bba1093</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Google calender</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>oauth_entity_582b00409363021094e3f15a7bba1093</sys_update_name>
+        <sys_update_version display_value="oauth_entity_582b00409363021094e3f15a7bba1093">196c00409363021094e3f15a7bba10b9</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 06:26:35</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

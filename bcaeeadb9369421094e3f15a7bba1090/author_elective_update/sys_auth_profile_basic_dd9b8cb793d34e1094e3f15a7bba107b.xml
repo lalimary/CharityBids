@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_auth_profile_basic">
+    <sys_auth_profile_basic action="DELETE">
+        <name>ConnectNow</name>
+        <password>﷞﷟﷒a36469c493e5021094e3f15a7bba10cf﷬﷔1﷬﷭DarHSMFTzpgGfXpKgq-rHQ==pl75IwXeatLYqu066-OqnKqxmODTxAktbWs=﷮﷯</password>
+        <sys_class_name>sys_auth_profile_basic</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-16 10:20:14</sys_created_on>
+        <sys_id>dd9b8cb793d34e1094e3f15a7bba107b</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>ConnectNow</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_auth_profile_basic_dd9b8cb793d34e1094e3f15a7bba107b</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-16 10:24:29</sys_updated_on>
+        <username>charitybids</username>
+    </sys_auth_profile_basic>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_auth_profile_basic_dd9b8cb793d34e1094e3f15a7bba107b</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_auth_profile_basic"><sys_auth_profile_basic action="INSERT_OR_UPDATE"><name>ConnectNow</name><password>﷞﷟﷒a36469c493e5021094e3f15a7bba10cf﷬﷔1﷬﷭DarHSMFTzpgGfXpKgq-rHQ==pl75IwXeatLYqu066-OqnKqxmODTxAktbWs=﷮﷯</password><sys_class_name>sys_auth_profile_basic</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-16 10:20:14</sys_created_on><sys_id>dd9b8cb793d34e1094e3f15a7bba107b</sys_id><sys_mod_count>2</sys_mod_count><sys_name>ConnectNow</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_auth_profile_basic_dd9b8cb793d34e1094e3f15a7bba107b</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-16 10:24:29</sys_updated_on><username>charitybids</username></sys_auth_profile_basic></record_update>]]></payload>
+        <payload_hash>-2128381071</payload_hash>
+        <record_name>ConnectNow</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-16 10:24:29</sys_created_on>
+        <sys_id>51bc043b93d34e1094e3f15a7bba10d8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190bb127ba40000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-16 10:24:29</sys_updated_on>
+        <type>Basic Auth Configuration</type>
+        <update_guid>95bc88f741d34e106dbbe81c4b07b60e</update_guid>
+        <update_guid_history>95bc88f741d34e106dbbe81c4b07b60e:-2128381071,4f3c80f7eed34e10ea0cccd3f2147982:-395798671,1fbb8cb7f9d34e10659109365191f29b:-2128381071</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 08:23:24</sys_created_on>
+        <sys_db_object display_value="" name="sys_auth_profile_basic">sys_auth_profile_basic</sys_db_object>
+        <sys_id>019abc0b37dd490080167f4a58a549d9</sys_id>
+        <sys_metadata>dd9b8cb793d34e1094e3f15a7bba107b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ConnectNow</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_auth_profile_basic_dd9b8cb793d34e1094e3f15a7bba107b</sys_update_name>
+        <sys_update_version display_value="sys_auth_profile_basic_dd9b8cb793d34e1094e3f15a7bba107b">51bc043b93d34e1094e3f15a7bba10d8</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 08:23:24</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

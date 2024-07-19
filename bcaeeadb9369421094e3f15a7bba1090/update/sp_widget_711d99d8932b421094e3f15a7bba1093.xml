@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope) {
+    var c = this;
+
+    // Initialize data.items
+    c.data.events = c.data.events || [];
+
+    // Initialize search query
+    $scope.searchQuery = '';
+
+    // Function to open event details
+    c.openEventDetails = function(sysId) {
+        var eventDetailUrl = "?id=event_details&sys_id=" + sysId;
+        window.open(eventDetailUrl, '_blank');
+    };
+
+    // Watch the items array for changes
+    $scope.$watch(function() {
+        return c.data.events;
+    }, function(newVal, oldVal) {
+        if (newVal && newVal.length === 0) {
+            $scope.noEventsMessage = "No events available";
+        } else {
+            $scope.noEventsMessage = "";
+        }
+        // Update filtered events based on search query
+        updateFilteredEvents();
+    }, true);
+
+    // Watch the searchQuery for changes and filter events accordingly
+    $scope.$watch('searchQuery', function(newVal, oldVal) {
+        if (newVal !== oldVal) {
+            updateFilteredEvents();
+        }
+    });
+
+    // Function to filter events based on search query
+    function updateFilteredEvents() {
+        if (!$scope.searchQuery) {
+            $scope.filteredEvents = c.data.events;
+        } else {
+            $scope.filteredEvents = c.data.events.filter(function(event) {
+                // Match event name and description against search query
+                return event.event_name.toLowerCase().includes($scope.searchQuery.toLowerCase()) ||
+                       event.description.toLowerCase().includes($scope.searchQuery.toLowerCase());
+            });
+        }
+    }
+
+    // Display filtered events initially
+    $scope.filteredEvents = c.data.events;
+
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.search-input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.event-card {
+    position: relative;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    /* Removed transition for hover effects */
+}
+
+.event-image {
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px);
+    z-index: 0;
+}
+
+.event-date {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-month {
+    font-size: 14px;
+    color: #888;
+    font-weight: bold;
+}
+
+.event-day {
+    font-size: 20px;
+    color: #333;
+}
+
+.end-date-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.event-content {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: -50px;
+    text-align: center;
+}
+
+.event-title {
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.event-description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    display: block; /* Ensure event manager is always visible */
+}
+
+.event-status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.event-status-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.event-status-icon i {
+    font-size: 18px; /* Adjust icon size */
+}
+
+.event-status-text {
+    font-size: 14px;
+    color: #888;
+}
+
+.event-status-icon.in-progress {
+    background-color: #5cb85c; /* Green for 'In Progress' */
+    color: #fff;
+}
+
+.event-status-icon.schedule {
+    background-color: #428bca; /* Blue for 'Scheduled' */
+    color: #fff;
+}
+
+.event-status-icon.completed {
+    background-color: #d9534f; /* Red for 'Completed' */
+    color: #fff;
+}
+
+.event-closed-msg {
+    font-size: 16px;
+    color: #999;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.donation-options {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.donation-options .donateButton {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    border: 2px solid #007bff; /* Blue outline */
+    color: #007bff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.donation-options a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.event-closed.ng-scope {
+    padding-top: 24px;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_my_events</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>Cb my events</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+    data.events = [];
+    var userID = gs.getUserID();
+    var userProfileID = '';
+
+    // Fetch the user profile record associated with the logged-in user
+    var userProfileGR = new GlideRecord('x_1383184_charityb_user_profile');
+    userProfileGR.addQuery('name', userID);
+    userProfileGR.query();
+    if (userProfileGR.next()) {
+        userProfileID = userProfileGR.getUniqueValue();
+    } else {
+        gs.info('No user profile found for user: ' + userID);
+        data.noEventsMessage = "No Events Available";
+        return;
+    }
+
+    // Fetch all events based on event manager (user profile)
+    var eventGR = new GlideRecord('x_1383184_charityb_events');
+    eventGR.addQuery('event_manager', userProfileID);
+    eventGR.query();
+
+    while (eventGR.next()) {
+        var event = {
+            sys_id: eventGR.getUniqueValue(),
+            event_name: eventGR.getValue('event_name'),
+            description: eventGR.getValue('description'),
+            start_date: eventGR.getValue('start_date'),
+            end_date: eventGR.getValue('end_date'),
+            status: eventGR.getValue('event_status'),
+            image: eventGR.getDisplayValue('image'),
+            justgiving_url: eventGR.getValue('justgiving_url'),
+        };
+
+        data.events.push(event);
+    }
+
+    // Function to share event details
+    data.shareEventDetails = function(eventSysId) {
+        try {
+            var eventGR = new GlideRecord('x_1383184_charityb_events');
+            if (eventGR.get(eventSysId)) {
+                var requestBody = {
+                    "image": eventGR.getDisplayValue('image'),
+                    "event_name": eventGR.getValue('event_name')
+                };
+
+                // Implement your sharing logic here, such as calling an integration or performing an action
+                gs.info('Sharing event details for event: ' + eventGR.getDisplayValue('event_name'));
+
+                // Return success message or handle response as needed
+                return {
+                    status: 'success',
+                    message: 'Event details shared successfully!'
+                };
+            } else {
+                gs.warn('Event not found with sys_id: ' + eventSysId);
+                return {
+                    status: 'error',
+                    message: 'Event not found!'
+                };
+            }
+        } catch (ex) {
+            gs.error('Error sharing event details: ' + ex.message);
+            return {
+                status: 'error',
+                message: 'Error sharing event details: ' + ex.message
+            };
+        }
+    };
+
+    // Check if no events are found
+    if (data.events.length === 0) {
+        gs.info('No events found for event manager profile: ' + userProfileID);
+        data.noEventsMessage = "No Events Available";
+    } else {
+        data.noEventsMessage = "";
+    }
+
+})($sp, input, data, options, gs);
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-18 05:32:39</sys_created_on>
+        <sys_id>711d99d8932b421094e3f15a7bba1093</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>Cb my events</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_711d99d8932b421094e3f15a7bba1093</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-18 06:19:28</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope and Healing Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hope and Healing Events</h1>
+        <input type="text" ng-model="searchQuery" placeholder="Search events..." class="search-input">
+        <div id="events-grid" class="events-grid">
+            <div ng-repeat="event in c.data.events | filter:searchQuery" class="event-card" ng-click="openEventDetails(event.sys_id)">
+                <a ng-href="?id=event_details&sys_id={{event.sys_id}}" target="_blank" class="event-card-link">
+                    <div class="event-image" ng-style="{'background-image': 'url(' + (event.image || 'https://dev203498.service-now.com/issues.png') + ')'}"></div>
+                    <div class="event-date">
+                        <span class="event-month">
+                            {{event.status === 'completed' ? (event.end_date | date:'MMM') : (event.start_date | date:'MMM')}}
+                        </span>
+                        <span class="event-day">
+                            {{event.status === 'completed' ? (event.end_date | date:'dd') : (event.start_date | date:'dd')}}
+                        </span>
+                        <div class="end-date-label">{{event.status === 'completed' ? 'End Date' : 'Start Date'}}</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-title">{{event.event_name}}</div>
+                        <div class="event-description">{{event.event_manager}}</div> <!-- Removed charity company -->
+                        <div class="event-status">
+                            <div class="event-status-icon {{event.status === 'in progress' ? 'in-progress' : event.status === 'schedule' ? 'schedule' : 'completed'}}">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="event-status-text">
+                                {{event.status}}
+                            </div>
+                        </div>
+                        <div class="donation-options" ng-if="event.status === 'in progress' || event.status === 'schedule'">
+                            <a ng-href="cb?id=upload_item" target="_blank" class="donateButton" ng-if="event.status === 'schedule'">Donate Item</a>
+                            <a ng-href="{{event.justgiving_url}}" target="_blank" class="donateButton">Donate Money</a>
+                        </div>
+                        <div class="event-closed" ng-if="event.status === 'completed'">
+                            This event is closed for donations.
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div ng-if="noEventsMessage" class="alert alert-warning">{{noEventsMessage}}</div>
+        </div>
+    </div>
+</body>
+</html>
+]]></template>
+    </sp_widget>
+</record_update>

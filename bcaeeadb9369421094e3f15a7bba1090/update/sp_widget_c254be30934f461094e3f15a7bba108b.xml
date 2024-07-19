@@ -2,20 +2,21 @@
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
         <client_script><![CDATA[api.controller = function($rootScope, $location, $window) {
-      var c = this;
+    var c = this;
 
-      // Function to open JustGiving page
-      c.openJustGivingPage = function(url) {
+    // Function to open JustGiving page
+    c.openJustGivingPage = function(url) {
         $window.open(url, '_blank');
-      };
+    };
 
-      // Function to open donation form
-      c.openDonationForm = function() {
+    // Function to open donation form
+    c.openDonationForm = function() {
         // Redirect to the donation form page
         $window.location.href = '/cb?id=upload_item';
-      };
+    };
 
-    };]]></client_script>
+};
+]]></client_script>
         <controller_as>c</controller_as>
         <css>/* styles.css */
 
@@ -161,30 +162,30 @@
     grEvent.query();
 
     if (grEvent.next()) {
-        data.event_name = grEvent.getValue('event_name');
+        data.event_name = grEvent.getDisplayValue('event_name'); // Ensure proper localization
         data.start_date = grEvent.getValue('start_date');
         data.end_date = grEvent.getValue('end_date');
         data.justgiving_url = grEvent.getValue('justgiving_url');
         data.event_status = grEvent.getValue('event_status');
-        data.image = grEvent.getDisplayValue('image');
-        data.description = grEvent.getValue('description');
+        data.image = grEvent.getDisplayValue('image'); // Ensure proper localization
+        data.description = grEvent.getValue('description'); // Ensure proper localization
 
         // Fetch event manager's name from x_1383184_charityb_user_profile table
         var eventManager = grEvent.getValue('event_manager');
         var grProfile = new GlideRecord('x_1383184_charityb_user_profile');
         if (grProfile.get(eventManager)) {
-            data.event_manager = grProfile.getValue('name');
+            data.event_manager = grProfile.getValue('name'); // Ensure proper localization
         } else {
-            data.event_manager = 'Unknown'; // Handle if event manager not found
+            data.event_manager = gs.getMessage('Unknown'); // Handle if event manager not found
         }
 
         // Fetch charity company's name from core_company table
         var charityCompany = grEvent.getValue('charity_company');
         var grCompany = new GlideRecord('core_company');
         if (grCompany.get(charityCompany)) {
-            data.charity_company = grCompany.getValue('name');
+            data.charity_company = grCompany.getValue('name'); // Ensure proper localization
         } else {
-            data.charity_company = 'Unknown'; // Handle if charity company not found
+            data.charity_company = gs.getMessage('Unknown'); // Handle if charity company not found
         }
     }
 })();
@@ -194,14 +195,14 @@
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-25 04:39:25</sys_created_on>
         <sys_id>c254be30934f461094e3f15a7bba108b</sys_id>
-        <sys_mod_count>72</sys_mod_count>
+        <sys_mod_count>77</sys_mod_count>
         <sys_name>cb cloned event details</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_c254be30934f461094e3f15a7bba108b</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-10 18:41:52</sys_updated_on>
+        <sys_updated_on>2024-07-18 18:01:29</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html lang="en">
 <head>

@@ -266,6 +266,20 @@
             <sys_user/>
             <type/>
         </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>count</element>
+            <position>19</position>
+            <sys_created_by>lalitha</sys_created_by>
+            <sys_created_on>2024-07-18 17:19:24</sys_created_on>
+            <sys_id>f6de73d8936b821094e3f15a7bba1043</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_1383184_charityb_item" sys_domain="global" view="Default view">82d57a5b93a9421094e3f15a7bba10bd</sys_ui_section>
+            <sys_updated_by>lalitha</sys_updated_by>
+            <sys_updated_on>2024-07-18 17:19:24</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
         <sys_ui_section action="INSERT_OR_UPDATE">
             <caption/>
             <header>false</header>

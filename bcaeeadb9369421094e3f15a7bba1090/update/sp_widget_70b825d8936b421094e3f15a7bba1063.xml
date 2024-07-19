@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($scope, $http, $window) {
+    var c = this;
+
+    // Initialize data.events
+    c.data.events = c.data.events || [];
+
+    // Modal setup
+    $scope.modalEvent = {}; // Store event details for modal
+    $scope.showModal = false;
+
+    // Function to open modal and set event details
+    $scope.openModal = function(event) {
+        $scope.modalEvent = event;
+        $scope.showModal = true;
+    };
+
+    // Function to close modal
+    $scope.closeModal = function() {
+        $scope.showModal = false;
+    };
+
+    // Function to share event details and open modal
+    $scope.shareEvent = function(sysId) {
+        // Find event by sys_id in c.data.events
+        var event = c.data.events.find(function(event) {
+            return event.sys_id === sysId;
+        });
+
+        if (event) {
+            $scope.openModal(event); // Open modal with event details
+        } else {
+            console.error('Event not found with sys_id:', sysId);
+        }
+    };
+
+    // Function to post event details to API
+    $scope.postToAPI = function() {
+        var requestBody = {
+            action: 'postEvent',
+            event: {
+                event_name: $scope.modalEvent.event_name,
+                description: $scope.modalEvent.description,
+                image: $scope.modalEvent.image
+            }
+        };
+
+        // HTTP POST request to server script
+        $http.post('https://dev203498.service-now.com/api/now/sp/widget/70b825d8936b421094e3f15a7bba1063', requestBody) // Replace 'YOUR_WIDGET_ID' with your actual widget ID
+            .then(function(response) {
+                console.log('API Response:', response.data);
+                if (response.data.result === 'success') {
+                    $window.alert('Event details posted successfully!');
+                } else {
+                    console.error('Error posting event details:', response.data.errorMessage);
+                    $window.alert('Failed to post event details. Please try again.');
+                }
+                $scope.closeModal(); // Close modal after successful post
+            })
+            .catch(function(error) {
+                console.error('Error posting event details:', error);
+                $window.alert('Failed to post event details. Please try again.');
+            });
+    };
+
+    // Initialize or watch data as needed
+    // ...
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* Add your custom styles here */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.event-card {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.event-image {
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+}
+
+.event-date {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.event-content {
+    padding: 10px;
+}
+
+.event-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.event-description {
+    margin-bottom: 10px;
+}
+
+.shareButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.shareButton:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.modal-header h2 {
+    margin-top: 0;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.modal-footer {
+    text-align: right;
+}
+
+.modal-footer button {
+    margin-left: 10px;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_myevents2cloned</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb_myevents2cloned</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+    data.events = [];
+    var userID = gs.getUserID();
+    var userProfileID = '';
+
+    // Fetch the user profile record associated with the logged-in user
+    var userProfileGR = new GlideRecord('x_1383184_charityb_user_profile');
+    userProfileGR.addQuery('name', userID);
+    userProfileGR.query();
+    if (userProfileGR.next()) {
+        userProfileID = userProfileGR.getUniqueValue();
+    } else {
+        gs.info('No user profile found for user: ' + userID);
+        data.noEventsMessage = "No Events Available";
+        return;
+    }
+
+    // Fetch all events based on event manager (user profile)
+    var eventGR = new GlideRecord('x_1383184_charityb_events');
+    eventGR.addQuery('event_manager', userProfileID);
+    eventGR.query();
+
+    while (eventGR.next()) {
+        var event = {
+            sys_id: eventGR.getUniqueValue(),
+            event_name: eventGR.getValue('event_name'),
+            description: eventGR.getValue('description'),
+            start_date: eventGR.getValue('start_date'),
+            end_date: eventGR.getValue('end_date'),
+            status: eventGR.getValue('event_status'),
+            image: eventGR.getDisplayValue('image'),
+            justgiving_url: eventGR.getValue('justgiving_url'),
+        };
+
+        data.events.push(event);
+    }
+
+    // Check if no events are found
+    if (data.events.length === 0) {
+        gs.info('No events found for event manager profile: ' + userProfileID);
+        data.noEventsMessage = "No Events Available";
+    } else {
+        data.noEventsMessage = "";
+    }
+
+    // Handle POST request from the client script
+    if (input && input.action === 'postEvent') {
+        var requestBody = {
+            content: `<h1>${input.event.event_name}</h1><p>${input.event.description}</p><img src="${input.event.image}" alt="${input.event.event_name}"/>`
+        };
+
+        try {
+            var r = new sn_ws.RESTMessageV2('x_1383184_charityb.Connect Now', 'POST connectnow');
+            // Optionally override authentication profile
+            // r.setAuthenticationProfile('basic', 'YOUR_PROFILE_NAME');
+
+            // Optionally set a MID server
+            // r.setMIDServer('YOUR_MID_SERVER');
+
+            // Optionally set ECC parameters
+            // r.setEccParameter('skip_sensor', true);
+
+            r.setRequestBody(JSON.stringify(requestBody));
+            var response = r.execute();
+            var responseBody = response.getBody();
+            var httpStatus = response.getStatusCode();
+
+            data.response = {
+                status: httpStatus,
+                body: responseBody
+            };
+
+            if (httpStatus === 200) {
+                data.result = 'success';
+            } else {
+                data.result = 'error';
+                data.errorMessage = responseBody;
+            }
+        } catch (ex) {
+            data.result = 'error';
+            data.errorMessage = ex.message;
+        }
+    }
+})($sp, input, data, options, gs);
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-18 06:23:22</sys_created_on>
+        <sys_id>70b825d8936b421094e3f15a7bba1063</sys_id>
+        <sys_mod_count>33</sys_mod_count>
+        <sys_name>cb_myevents2cloned</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_70b825d8936b421094e3f15a7bba1063</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-19 06:10:29</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope and Healing Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hope and Healing Events</h1>
+        <input type="text" ng-model="searchQuery" placeholder="Search events..." class="search-input">
+        <div id="events-grid" class="events-grid">
+            <div ng-repeat="event in c.data.events | filter:searchQuery" class="event-card">
+                <a ng-href="?id=event_details&sys_id={{event.sys_id}}" target="_blank" class="event-card-link">
+                    <div class="event-image" ng-style="{'background-image': 'url(' + (event.image || 'https://dev203498.service-now.com/issues.png') + ')'}"></div>
+                    <div class="event-date">
+                        <span class="event-month">
+                            {{event.status === 'completed' ? (event.end_date | date:'MMM') : (event.start_date | date:'MMM')}}
+                        </span>
+                        <span class="event-day">
+                            {{event.status === 'completed' ? (event.end_date | date:'dd') : (event.start_date | date:'dd')}}
+                        </span>
+                        <div class="end-date-label">{{event.status === 'completed' ? 'End Date' : 'Start Date'}}</div>
+                    </div>
+                    <div class="event-content">
+                        <div class="event-title">{{event.event_name}}</div>
+                        <div class="event-description">{{event.event_manager}}</div>
+                        <div class="event-status">
+                            <div class="event-status-icon {{event.status === 'in progress' ? 'in-progress' : event.status === 'schedule' ? 'schedule' : 'completed'}}">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="event-status-text">
+                                {{event.status}}
+                            </div>
+                        </div>
+                        <div class="donation-options" ng-if="event.status === 'in progress' || event.status === 'schedule'">
+                            <a ng-href="cb?id=upload_item" target="_blank" class="donateButton" ng-if="event.status === 'schedule'">Donate Item</a>
+                            <a ng-href="{{event.justgiving_url}}" target="_blank" class="donateButton">Donate Money</a>
+                        </div>
+                        <div class="event-closed" ng-if="event.status === 'completed'">
+                            This event is closed for donations.
+                        </div>
+                    </div>
+                </a>
+                <button ng-click="shareEvent(event.sys_id)" class="share-button">Share</button>
+            </div>
+            <div ng-if="noEventsMessage" class="alert alert-warning">{{noEventsMessage}}</div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div ng-if="showModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" ng-click="closeModal()">&times;</span>
+            <h2>Share Event</h2>
+            <p>Event Name: {{modalEvent.event_name}}</p>
+            <p>Description: {{modalEvent.description}}</p>
+            <button ng-click="postToAPI()">Post</button>
+        </div>
+    </div>
+</body>
+</html>
+]]></template>
+    </sp_widget>
+</record_update>

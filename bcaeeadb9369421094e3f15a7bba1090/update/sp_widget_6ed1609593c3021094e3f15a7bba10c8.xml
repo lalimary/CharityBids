@@ -1,26 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[(function() {
-  /* Client-side script */
-})();
+        <client_script><![CDATA[api.controller = function($scope, spUtil) {
+    var c = this;
+
+    // Initialize data.items
+    c.data.items = c.data.items || [];
+
+    // Function to show item details
+    c.showDetails = function(item) {
+        c.selectedItem = item;
+    };
+
+    // Watch the items array for changes
+    $scope.$watch(function() {
+        return c.data.items;
+    }, function(newVal) {
+        if (newVal && newVal.length === 0) {
+            $scope.noItemsMessage = "No items available";
+        } else {
+            $scope.noItemsMessage = "";
+        }
+    }, true);
+
+    // Initial data fetch
+    spUtil.get('my_bid_history').then(function(response) {
+        c.data.items = response.data.items;
+        console.log('Items fetched successfully:', response);
+    }).catch(function(error) {
+        console.error('Error fetching items:', error);
+    });
+};
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>.item-card {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
+        <css>.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.item-card h3 {
-  margin: 0;
-  color: #333;
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    color: #333;
 }
 
-.item-card p {
-  margin: 5px 0;
-  color: #666;
+#items-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.item-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+    width: 300px;
+    cursor: pointer;
+}
+
+.item-card:hover {
+    transform: scale(1.05);
+}
+
+.item-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.item-details {
+    padding: 15px;
+}
+
+.item-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.item-bid-amount {
+    font-size: 1.2em;
+    color: #555;
+    display: flex;
+    align-items: center;
+}
+
+.item-bid-amount i {
+    margin-right: 5px;
+    color: #e67e22;
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -36,58 +109,77 @@
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function() {
-  data.bids = [];
-  var userSysId = gs.getUserID(); // Get the Sys ID of the logged-in user
+        <script><![CDATA[(function($sp, input, data, options, gs) {
+    data.items = [];
+    var userID = gs.getUserID();
+    var userProfileID = '';
 
-  // Query the user_profile table to get the profile name
-  var userProfileGR = new GlideRecord('x_1383184_charityb_user_profile');
-  userProfileGR.addQuery('name', userSysId);
-  userProfileGR.query();
+    // Fetch the user profile record associated with the logged-in user
+    var userProfileGR = new GlideRecord('x_1383184_charityb_user_profile');
+    userProfileGR.addQuery('name', userID);
+    userProfileGR.query();
+    if (userProfileGR.next()) {
+        userProfileID = userProfileGR.getUniqueValue();
+    } else {
+        gs.info('No user profile found for user: ' + userID);
+        data.noItemsMessage = "No Items Available";
+        return;
+    }
 
-  if (userProfileGR.next()) {
-    var userProfileName = userProfileGR.getValue('name');
-
-    // Query the Bid table for bids placed by the logged-in user (referenced through user profile name)
+    // Fetch all bids based on user profile
     var bidGR = new GlideRecord('x_1383184_charityb_bid');
-    bidGR.addQuery('bidder', userProfileName);
+    bidGR.addQuery('x_1383184_charityb_bidder', userProfileID);
     bidGR.query();
 
     while (bidGR.next()) {
-      // Get the item details from the referenced Item table
-      var itemGR = new GlideRecord('x_1383184_charityb_item');
-      if (itemGR.get(bidGR.getValue('item_name'))) {
-        // Add bid and item details to the data array
-        data.bids.push({
-          bid_amount: bidGR.getValue('bid_amount'),
-          item_name: {
-            display_value: itemGR.getDisplayValue('item_name')
-          }
-        });
-      }
+        var itemGR = new GlideRecord('x_1383184_charityb_item');
+        if (itemGR.get(bidGR.getValue('item_name'))) {
+            data.items.push({
+                item_name: itemGR.getValue('item_name'),
+                bid_amount: bidGR.getValue('bid_amount'),
+                image: itemGR.getDisplayValue('image')
+            });
+        } else {
+            gs.info('Item not found for bid: ' + bidGR.getValue('sys_id'));
+        }
     }
-  }
-})();
+
+    // Check if no items are found
+    if (data.items.length === 0) {
+        gs.info('No items found for user profile: ' + userProfileID);
+        data.noItemsMessage = "No Items Available";
+    } else {
+        data.noItemsMessage = "";
+    }
+
+})($sp, input, data, options, gs);
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-26 07:16:21</sys_created_on>
         <sys_id>6ed1609593c3021094e3f15a7bba10c8</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>36</sys_mod_count>
         <sys_name>My bid history</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_6ed1609593c3021094e3f15a7bba10c8</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-09 16:00:09</sys_updated_on>
-        <template><![CDATA[<div>
-  <h2>My Bid History</h2>
-  <div ng-repeat="bid in c.data.bids">
-    <div class="item-card">
-      <h3>{{ bid.item_name.display_value }}</h3>
-      <p>Bid Amount: {{ bid.bid_amount }}</p>
+        <sys_updated_on>2024-07-18 16:43:50</sys_updated_on>
+        <template><![CDATA[<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="container">
+  <h1>My Bids</h1>
+  <div id="items-grid" class="items-grid">
+    <div ng-repeat="item in c.data.items" class="item-card">
+      <img ng-src="{{item.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{item.item_name}}">
+      <div class="item-details">
+        <div class="item-title">{{item.item_name}}</div>
+        <div class="item-bid-amount">
+          <i class="fa-solid fa-tag"></i> 
+          Bid Amount: {{item.bid_amount}}</div>
+      </div>
     </div>
   </div>
 </div>

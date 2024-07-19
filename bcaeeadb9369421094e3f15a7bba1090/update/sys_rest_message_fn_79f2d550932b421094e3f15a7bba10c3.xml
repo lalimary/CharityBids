@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn">
     <sys_rest_message_fn action="INSERT_OR_UPDATE">
-        <authentication_type>inherit_from_parent</authentication_type>
+        <authentication_type>basic</authentication_type>
         <basic_auth_password/>
-        <basic_auth_profile/>
+        <basic_auth_profile display_value="Charity User ">89725150932b421094e3f15a7bba1046</basic_auth_profile>
         <basic_auth_user/>
-        <content/>
-        <function_name>Default GET</function_name>
-        <http_method>get</http_method>
+        <content>{&#13;
+"content":"Welcome to charitybids"&#13;
+}</content>
+        <function_name>POST connectnow</function_name>
+        <http_method>post</http_method>
         <lock>false</lock>
         <oauth2_profile/>
         <protocol_name/>
-        <qualified_name>ConnectNow [ Default GET ]</qualified_name>
+        <qualified_name>Connect Now [ POST connectnow ]</qualified_name>
         <rest_endpoint>https://dev186167.service-now.com/api/now/table/x_1383309_social_m_post</rest_endpoint>
-        <rest_message display_value="ConnectNow">246b44b393d34e1094e3f15a7bba10e7</rest_message>
+        <rest_message display_value="Connect Now">8a12d510932b421094e3f15a7bba10a0</rest_message>
         <sys_class_name>sys_rest_message_fn</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
-        <sys_created_on>2024-07-16 10:19:16</sys_created_on>
-        <sys_id>348b80b393d34e1094e3f15a7bba10bd</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>Default GET</sys_name>
+        <sys_created_on>2024-07-18 04:49:32</sys_created_on>
+        <sys_id>79f2d550932b421094e3f15a7bba10c3</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>POST connectnow</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
-        <sys_update_name>sys_rest_message_fn_348b80b393d34e1094e3f15a7bba10bd</sys_update_name>
+        <sys_update_name>sys_rest_message_fn_79f2d550932b421094e3f15a7bba10c3</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-16 10:19:16</sys_updated_on>
+        <sys_updated_on>2024-07-18 04:51:02</sys_updated_on>
         <use_basic_auth>false</use_basic_auth>
         <use_mid_server/>
         <use_mutual_auth>false</use_mutual_auth>

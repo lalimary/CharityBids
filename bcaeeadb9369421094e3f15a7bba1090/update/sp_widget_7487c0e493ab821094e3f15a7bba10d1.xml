@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($rootScope, $location, $window) {
+      var c = this;
+
+      // Function to open JustGiving page
+      c.openJustGivingPage = function(url) {
+        $window.open(url, '_blank');
+      };
+
+      // Function to open donation form
+      c.openDonationForm = function() {
+        // Redirect to the donation form page
+        $window.location.href = '/cb?id=upload_item';
+      };
+
+    };]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* styles.css */
+
+.event-details {
+  max-width: 800px; /* Increased max-width for a wider card */
+  margin: 0 auto;
+  padding: 40px; /* Increased padding for better spacing */
+  border: 1px solid #ccc;
+  border-radius: 12px; /* Increased border radius for rounded corners */
+  background-color: #f9f9f9;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.event-header {
+  text-align: center;
+  margin-bottom: 30px; /* Increased margin for spacing */
+}
+
+.event-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px; /* Match border radius of card */
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-dates {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  margin-left: 45px;
+}
+
+.event-date {
+  margin-left: 43px;
+  padding: 1.5rem;
+  border: 0.2rem solid #f0ad4e;
+  border-radius: 0.8rem;
+  background-color: #f0ad4e;
+  flex: 3;
+  text-align: center;
+}
+
+.date-label {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: black; /* Font color set to black */
+}
+
+.date-label i {
+  margin-right: 10px; /* Margin between icon and text */
+  font-size: 24px; /* Increased font size for calendar icon */
+}
+
+.date-value {
+  margin-left: 28px;
+  margin-top: -2.5rem;
+  font-size: 1.6rem; /* Font size increased */
+  color: black; /* Font color set to black */
+}
+
+.event-title {
+  margin-top: 20px; /* Increased margin for spacing */
+  font-size: 28px; /* Increased font size for title */
+  color: black; /* Font color set to black */
+}
+
+.event-info {
+  margin-bottom: 20px; /* Increased margin for spacing */
+}
+
+.event-icon {
+  margin-right: 10px;
+  font-size: 20px; /* Increased font size for event icon */
+}
+
+.event-company {
+  margin-bottom: 20px; /* Increased margin for spacing */
+}
+
+.event-description {
+  line-height: 1.6;
+  margin-bottom: 20px; /* Increased margin for spacing */
+  color: black; /* Font color set to black */
+}
+
+.event-buttons {
+  text-align: center;
+}
+
+.event-btn {
+  padding: 12px 24px; /* Increased padding for larger buttons */
+  margin: 0 10px; /* Increased margin for spacing */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px; /* Increased font size for buttons */
+  transition: background-color 0.3s ease;
+  color: black; /* Font color set to black */
+}
+
+.donate-money-btn {
+  background-color: #28a745; /* Green color for donate money button */
+  color: white;
+}
+
+.donate-money-btn:hover {
+  background-color: #218838; /* Darker shade of green on hover */
+}
+
+.donate-item-btn {
+  background-color: #ffc107; /* Yellow color for donate item button */
+  color: white;
+}
+
+.donate-item-btn:hover {
+  background-color: #e0a800; /* Darker shade of yellow on hover */
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_cloned_event_details_2</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb cloned event details 2</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    data.EventSysId = $sp.getParameter('sys_id');
+
+    // Create a new GlideRecord object for the event
+    var grEvent = new GlideRecord('x_1383184_charityb_events');
+    grEvent.addQuery('sys_id', data.EventSysId);
+    grEvent.query();
+
+    if (grEvent.next()) {
+        data.event_name = grEvent.getValue('event_name');
+        data.start_date = grEvent.getValue('start_date');
+        data.end_date = grEvent.getValue('end_date');
+        data.justgiving_url = grEvent.getValue('justgiving_url');
+        data.event_status = grEvent.getValue('event_status');
+        data.image = grEvent.getDisplayValue('image');
+        data.description = grEvent.getValue('description');
+
+        // Fetch event manager's name from x_1383184_charityb_user_profile table
+        var eventManager = grEvent.getValue('event_manager');
+        var grProfile = new GlideRecord('x_1383184_charityb_user_profile');
+        if (grProfile.get(eventManager)) {
+            data.event_manager = grProfile.getValue('name');
+        } else {
+            data.event_manager = 'Unknown'; // Handle if event manager not found
+        }
+
+        // Fetch charity company's name from core_company table
+        var charityCompany = grEvent.getValue('charity_company');
+        var grCompany = new GlideRecord('core_company');
+        if (grCompany.get(charityCompany)) {
+            data.charity_company = grCompany.getValue('name');
+        } else {
+            data.charity_company = 'Unknown'; // Handle if charity company not found
+        }
+    }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-18 17:57:14</sys_created_on>
+        <sys_id>7487c0e493ab821094e3f15a7bba10d1</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>cb cloned event details 2</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_7487c0e493ab821094e3f15a7bba10d1</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-18 17:57:14</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="event-details" ng-if="c.data">
+    <div class="event-header">
+      <img class="event-image" ng-src="{{c.data.image || 'https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg'}}" alt="{{c.data.event_name}}">
+    </div>
+    <div class="event-content">
+      <div class="event-dates">
+        <div class="event-date">
+          <div class="date-label">
+            <i class="fas fa-solid fa-calendar-days"></i> Start Date:
+          </div>
+          <div class="date-value">{{c.data.start_date}}</div>
+        </div>
+        <div class="event-date">
+          <div class="date-label">
+            <i class="fas fa-solid fa-calendar-days"></i> End Date:
+          </div>
+          <div class="date-value">{{c.data.end_date}}</div>
+        </div>
+      </div>
+      <h2 class="event-title">{{c.data.event_name}}</h2>
+      <div class="event-info">
+        
+        <div class="event-company">
+          <strong>Organized by:</strong> {{c.data.charity_company}}
+        </div>
+      </div>
+      <p class="event-description">{{c.data.description}}</p>
+      <div class="event-buttons">
+        <button class="event-btn donate-money-btn" ng-click="c.openJustGivingPage(c.data.justgiving_url)">Donate Money</button>
+        <button class="event-btn donate-item-btn" ng-click="c.openDonationForm()">Donate Item</button>
+      </div>
+    </div>
+  </div>]]></template>
+    </sp_widget>
+</record_update>

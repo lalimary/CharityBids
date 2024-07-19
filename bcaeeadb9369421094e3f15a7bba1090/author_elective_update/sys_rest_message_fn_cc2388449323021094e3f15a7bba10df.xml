@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn">
+    <sys_rest_message_fn action="DELETE">
+        <authentication_type>inherit_from_parent</authentication_type>
+        <basic_auth_password/>
+        <basic_auth_profile/>
+        <basic_auth_user/>
+        <content/>
+        <function_name>Default GET</function_name>
+        <http_method>get</http_method>
+        <lock>false</lock>
+        <oauth2_profile/>
+        <protocol_name/>
+        <qualified_name>ConnectNow [ Default GET ]</qualified_name>
+        <rest_endpoint>https://dev186167.service-now.com/api/now/table/x_1383309_social_m_post</rest_endpoint>
+        <rest_message display_value="ConnectNow">36d2c0049323021094e3f15a7bba10aa</rest_message>
+        <sys_class_name>sys_rest_message_fn</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 04:21:06</sys_created_on>
+        <sys_id>cc2388449323021094e3f15a7bba10df</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Default GET</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_rest_message_fn_cc2388449323021094e3f15a7bba10df</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 04:21:06</sys_updated_on>
+        <use_basic_auth>false</use_basic_auth>
+        <use_mid_server/>
+        <use_mutual_auth>false</use_mutual_auth>
+    </sys_rest_message_fn>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_rest_message_fn_cc2388449323021094e3f15a7bba10df</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn"><sys_rest_message_fn action="INSERT_OR_UPDATE"><authentication_type>inherit_from_parent</authentication_type><basic_auth_password/><basic_auth_profile/><basic_auth_user/><content/><function_name>Default GET</function_name><http_method>get</http_method><lock>false</lock><oauth2_profile/><protocol_name/><qualified_name>ConnectNow [ Default GET ]</qualified_name><rest_endpoint>https://dev186167.service-now.com/api/now/table/x_1383309_social_m_post</rest_endpoint><rest_message display_value="ConnectNow">36d2c0049323021094e3f15a7bba10aa</rest_message><sys_class_name>sys_rest_message_fn</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-17 04:21:06</sys_created_on><sys_id>cc2388449323021094e3f15a7bba10df</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Default GET</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_rest_message_fn_cc2388449323021094e3f15a7bba10df</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-17 04:21:06</sys_updated_on><use_basic_auth>false</use_basic_auth><use_mid_server/><use_mutual_auth>false</use_mutual_auth></sys_rest_message_fn></record_update>]]></payload>
+        <payload_hash>960861757</payload_hash>
+        <record_name>Default GET</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 04:21:06</sys_created_on>
+        <sys_id>482388449323021094e3f15a7bba10e2</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190beec29340000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 04:21:06</sys_updated_on>
+        <type>HTTP Method</type>
+        <update_guid>8c238844b22302109bc40ac4b37cb3e1</update_guid>
+        <update_guid_history>8c238844b22302109bc40ac4b37cb3e1:960861757</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-17 04:24:52</sys_created_on>
+        <sys_db_object display_value="" name="sys_rest_message_fn">sys_rest_message_fn</sys_db_object>
+        <sys_id>042aab82a54c42da853089f8bc4f2944</sys_id>
+        <sys_metadata>cc2388449323021094e3f15a7bba10df</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Default GET</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_rest_message_fn_cc2388449323021094e3f15a7bba10df</sys_update_name>
+        <sys_update_version display_value="sys_rest_message_fn_cc2388449323021094e3f15a7bba10df">482388449323021094e3f15a7bba10e2</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-17 04:24:52</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
