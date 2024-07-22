@@ -39,4 +39,30 @@
         <url_target/>
     </sp_rectangle_menu_item>
     <sys_translated_text action="delete_multiple" query="documentkey=8b3bdcb49383461094e3f15a7bba10e7"/>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>8b3bdcb49383461094e3f15a7bba10e7</documentkey>
+        <fieldname>hint</fieldname>
+        <language>fr</language>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-22 09:42:43</sys_created_on>
+        <sys_id>a09c7e6d83af4210304f5c65eeaad365</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-22 09:42:55</sys_updated_on>
+        <tablename>sp_rectangle_menu_item</tablename>
+        <value/>
+    </sys_translated_text>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>8b3bdcb49383461094e3f15a7bba10e7</documentkey>
+        <fieldname>label</fieldname>
+        <language>fr</language>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-22 09:39:29</sys_created_on>
+        <sys_id>aeab3e2d83af4210304f5c65eeaad368</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-22 09:40:37</sys_updated_on>
+        <tablename>sp_rectangle_menu_item</tablename>
+        <value>articles</value>
+    </sys_translated_text>
 </record_update>

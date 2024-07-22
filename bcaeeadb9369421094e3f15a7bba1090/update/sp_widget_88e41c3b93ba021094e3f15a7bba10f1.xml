@@ -1,108 +1,166 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script/>
+        <client_script><![CDATA[api.controller = function($scope) {
+  var c = this;
+  c.currentIndex = 0;
+
+  c.next = function() {
+    var items = document.querySelectorAll('.carousel-item');
+    if (c.currentIndex < items.length - 1) {
+      c.currentIndex++;
+    } else {
+      c.currentIndex = 0;
+    }
+    updateCarousel();
+  };
+
+  c.prev = function() {
+    var items = document.querySelectorAll('.carousel-item');
+    if (c.currentIndex > 0) {
+      c.currentIndex--;
+    } else {
+      c.currentIndex = items.length - 1;
+    }
+    updateCarousel();
+  };
+
+  function updateCarousel() {
+    var carousel = document.querySelector('.carousel');
+    var itemWidth = document.querySelector('.carousel-item').offsetWidth;
+    var offset = -c.currentIndex * (itemWidth + 30); // Adjust the 30 based on the margin
+    carousel.style.transform = 'translateX(' + offset + 'px)';
+  }
+
+  c.hover = function(index) {
+    var carouselItems = document.querySelectorAll('.carousel-item');
+    carouselItems.forEach(function(item, idx) {
+      if (idx === index) {
+        item.style.transform = 'scale(1.2)';
+        item.style.opacity = '1';
+        item.style.zIndex = '10';
+      } else {
+        item.style.transform = 'scale(1)';
+        item.style.opacity = '0.8';
+        item.style.zIndex = '1';
+      }
+    });
+  };
+
+  c.resetHover = function() {
+    var carouselItems = document.querySelectorAll('.carousel-item');
+    carouselItems.forEach(function(item) {
+      item.style.transform = 'scale(1)';
+      item.style.opacity = '0.8';
+      item.style.zIndex = '1';
+    });
+  };
+};
+]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* Reset some default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+        <css>.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
+.carousel-wrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
 }
 
-/* Container and Heading */
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease;
 }
 
-.features-heading {
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #333;
+.carousel-item {
+  flex: 0 0 auto;
+  width: 250px;
+  height: 350px;
+  margin: 0 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0.8;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Card Background */
-.card-background {
-    background-color: #f9f9f9; /* Solid color background for the card section */
-    padding: 20px;
-    border-radius: 8px;
+.carousel-image img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  border-bottom: 2px solid #ddd;
 }
 
-/* Card Section */
-.card-section {
-    display: flex;
-    flex-wrap: wrap; /* Allows cards to wrap to the next line if necessary */
-    gap: 20px;
-    justify-content: space-between; /* Distributes space between cards */
+.carousel-content {
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
 }
 
-/* Card */
-.card {
-    background: #368a9f; /* Solid background color for cards */
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(33.333% - 20px); /* Adjusts to 1/3 of the container width minus the gap */
-    max-width: calc(33.333% - 20px); /* Ensures cards don't exceed one-third of the container width */
-    margin-bottom: 20px; /* Space between rows of cards */
-    transition: transform 0.3s ease;
-    color: #fff; /* White text color */
-    display: flex;
-    flex-direction: column; /* Allows flexible alignment of content */
+.carousel-content h3 {
+  color: #333;
+  font-size: 1.2em;
+  margin: 0;
 }
 
-.card:hover {
-    transform: scale(1.05);
+.event-date {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.9em;
 }
 
-/* Ensures images are the same size and fit inside the card */
-.card-image {
-    width: 100%;
-    height: 200px; /* Fixed height for consistency */
-    object-fit: cover; /* Ensures image covers the area without distortion */
-    display: block;
+.date-icon {
+  font-size: 1.2em;
+  margin-right: 5px;
 }
 
-.card-content {
-    padding: 15px;
-    flex: 1; /* Allows the content area to grow and fill available space */
+.formatted-date {
+  font-size: 0.9em;
 }
 
-.card-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+.carousel-item:hover {
+  transform: scale(1.2);
+  opacity: 1;
+  z-index: 10;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.card-description {
-    font-size: 1em;
-    margin-bottom: 15px;
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  left: 109rem;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  z-index: 10; /* Adjust z-index to ensure controls are on top */
+  transform: translateY(-50%);
 }
 
-.card-link {
-    text-decoration: none;
-    color: #fff; /* White font color for the link */
-    font-weight: bold;
-    background-color: #28a745; /* Green background color for the button */
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    display: block; /* Makes the link a block element */
-    transition: background-color 0.3s ease;
+.carousel-control.prev {
+  left: 10px;
 }
 
-.card-link:hover {
-    background-color: #218838; /* Darker green shade for the hover effect */
+.carousel-control.next {
+  right: 10px;
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -118,73 +176,54 @@ body {
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script/>
+        <script><![CDATA[(function() {
+  var gr = new GlideRecord('x_1383184_charityb_events'); // Assuming your table for events is named 'x_1383184_charityb_event'
+  gr.addQuery('event_status', 'schedule'); // Assuming 'event_status' is the field that indicates the event is scheduled
+  gr.query();
+  data.events = [];
+  while (gr.next()) {
+    data.events.push({
+      event_name: gr.getValue('event_name'),
+      start_date: gr.getValue('start_date'),
+      image: gr.getDisplayValue('image') // Adjust based on your field for event images
+    });
+  }
+  data.currentIndex = 0;
+})();
+]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-21 14:28:46</sys_created_on>
         <sys_id>88e41c3b93ba021094e3f15a7bba10f1</sys_id>
-        <sys_mod_count>155</sys_mod_count>
+        <sys_mod_count>201</sys_mod_count>
         <sys_name>test</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_88e41c3b93ba021094e3f15a7bba10f1</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-11 05:20:34</sys_updated_on>
-        <template><![CDATA[<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Layout Example</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Features Heading -->
-        <h1 class="features-heading">Features</h1>
-        
-        <!-- Card Section with Background -->
-        <div class="card-background">
-            <section class="card-section">
-                <div class="card">
-                    <img src="homeImage6.jpg" alt="Auction and Events" class="card-image">
-                    <div class="card-content">
-                        <h2 class="card-title">Auctions and Events</h2>
-                        <p class="card-description">
-                            Hit your fundraising goals with software that streamlines the guest experience start to finish. From before the fundraising begins to the final bid, we’ll help you delight donors and raise more.
-                        </p>
-                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_items" target="_self">Learn More</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="homeimage7.jpg" alt="Online Fundraising" class="card-image">
-                    <div class="card-content">
-                        <h2 class="card-title">Online Fundraising</h2>
-                        <p class="card-description">
-                            Engage donors online and fuel your mission year-round. Quickly launch giving campaigns that drive impact and convert online donations.
-                        </p>
-                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=list_of_events" target="_self">Learn More</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="eventimage2.jpg" alt="Donation Management" class="card-image">
-                    <div class="card-content">
-                        <h2 class="card-title">Donation Management</h2>
-                        <p class="card-description">
-                            Streamline the donation process with our efficient management system, allowing donors to contribute money or items effortlessly, and track their impact in real-time.
-                        </p>
-                        <a class="card-link" href="https://dev203498.service-now.com/cb?id=upload_item" target="_self">Learn More</a>
-                    </div>
-                </div>
-            </section>
+        <sys_updated_on>2024-07-22 07:54:37</sys_updated_on>
+        <template><![CDATA[<div class="carousel-container">
+  <div class="carousel-wrapper">
+    <div class="carousel" ng-mouseleave="c.resetHover()">
+      <div class="carousel-item" ng-repeat="event in c.data.events" ng-mouseover="c.hover($index)">
+        <div class="carousel-image">
+          <img ng-src="{{event.image}}" alt="{{event.event_name}}">
         </div>
+        <div class="carousel-content">
+          <h3>{{event.event_name}}</h3>
+          <div class="event-date">
+            <span class="date-icon">&#128197;</span> <!-- Calendar icon -->
+            <span class="formatted-date">{{event.start_date | date:'d MMMM'}}</span>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-</html>
+  </div>
+  <button class="carousel-control prev" ng-click="c.prev()">&#10094;</button>
+  <button class="carousel-control next" ng-click="c.next()">&#10095;</button>
+</div>
 ]]></template>
     </sp_widget>
 </record_update>

@@ -210,13 +210,13 @@ h1 {
         <script><![CDATA[(function() {
   // Define the endpoint URL
   var url = 'https://api.staging.justgiving.com/c89bbb1c/v1/event/types';
-
+ 
   // Create a REST message
   var request = new sn_ws.RESTMessageV2();
   request.setEndpoint(url);
   request.setHttpMethod('GET');
   request.setRequestHeader('Accept', 'application/json');
-
+ 
   // Execute the request and get the response
   var response = request.execute();
   var responseBody = response.getBody();
@@ -227,32 +227,32 @@ h1 {
     try {
       // Parse the JSON response
       var responseObj = JSON.parse(responseBody);
-
+ 
       if (responseObj.eventTypes && Array.isArray(responseObj.eventTypes)) {
         var eventNames = []; // Array to store names of events already inserted
-
+ 
         // Initialize GlideRecord for x_1383184_charityb_events table
         var eventRecord = new GlideRecord('x_1383184_charityb_events');
-
+ 
         responseObj.eventTypes.forEach(function(eventType) {
           // Check if the event name already exists in the table
-          eventRecord.addQuery('event_name', eventType.name);
+          eventRecord.addQuery('event_type', eventType.name);
           eventRecord.query();
-
+ 
          if (!eventRecord.hasNext()) { // If event does not already exist
             // Insert the event into the ServiceNow table
             eventRecord.initialize(); // Initialize a new record for insertion
-            eventRecord.event_name = eventType.name; // Corrected assignment
-            eventRecord.description = eventType.description;
+            eventRecord.event_type = eventType.name; // Corrected assignment
+            //eventRecord.description = eventType.description;
             var eventId = eventRecord.insert();
 					  data.events.push({eventsys:eventRecord.getUniqueValue()});
             gs.info('Inserted event with ID: ' + eventId);
           }
-
+ 
           // Store the event name in the array to avoid duplicate inserts
           eventNames.push(eventType.name);
         });
-
+ 
         // Now populate data.activities with all events (including existing ones)
         data.activities = responseObj.eventTypes.map(function(eventType) {
           return {
@@ -279,43 +279,43 @@ h1 {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-07-17 05:23:47</sys_created_on>
         <sys_id>5a71dc449363021094e3f15a7bba1078</sys_id>
-        <sys_mod_count>54</sys_mod_count>
+        <sys_mod_count>59</sys_mod_count>
         <sys_name>Justgiving test</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_5a71dc449363021094e3f15a7bba1078</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-18 08:55:30</sys_updated_on>
+        <sys_updated_on>2024-07-20 04:33:11</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Justgiving Events</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Justgiving Events</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body ng-controller="EventController as c">
-    <div class="container">
-        <h1>Justgiving Events</h1>
-        <input type="text" ng-model="searchQuery" placeholder="Search events..." class="search-input">
-        <div class="events-grid">
-            <div class="event-card" ng-repeat="activity in c.data.activities | filter:searchQuery" ng-click="openEventDetails(activity.sys_id)">
-                <a ng-href="?id=justgiving_event_details&sys_id={{c.data.events[activity.id-1].eventsys}}" target="_blank" class="event-card-link">>
-                <!--<h2>ID: {{ c.data.events[activity.id].eventsys }}</h2>-->
-                <h2>{{ activity.name }}</h2>
-                <p>Description: {{ activity.description }}</p>
-                <!--<p>Location: {{ activity.location }}</p>-->
-                  <button ng-click="redirectToDetailsPage(activity.id)">Create Fundraising Events</button></a>
-                <hr/>
-            </div>
-            <div ng-if="!c.data.activities.length" class="alert alert-warning">No events available</div>
-        </div>
-    </div>
-
+<div class="container">
+<h1>Justgiving Events</h1>
+<input type="text" ng-model="searchQuery" placeholder="Search events..." class="search-input">
+<div class="events-grid">
+<div class="event-card" ng-repeat="activity in c.data.activities | filter:searchQuery" ng-click="openEventDetails(activity.sys_id)">
+<a ng-href="?id=justgiving_event_details&sys_id={{c.data.events[activity.id-1].eventsys}}" target="_blank" class="event-card-link">>
+<!--<h2>ID: {{ c.data.events[activity.id].eventsys }}</h2>-->
+<h2>{{ activity.name }}</h2>
+<p>Description: {{ activity.description }}</p>
+<!--<p>Location: {{ activity.location }}</p>-->
+<button ng-click="redirectToDetailsPage(activity.id)">Create Fundraising Events</button></a>
+<hr/>
+</div>
+<div ng-if="!c.data.activities.length" class="alert alert-warning">No events available</div>
+</div>
+</div>
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
-    <script src="client.js"></script>
+<script src="client.js"></script>
 </body>
 </html>]]></template>
     </sp_widget>

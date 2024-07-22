@@ -13,20 +13,42 @@
     // Fetch event details
     var itemUrl = 'https://dev203498.service-now.com/api/now/table/x_1383184_charityb_events/' + c.data.sys_id;
     $http.get(itemUrl).then(function(response) {
-        c.data.event_name = response.data.result.event_name;
-        c.data.description = response.data.result.description;
-        c.data.start_date = response.data.result.start_date;
-        c.data.end_date = response.data.result.end_date;
-        c.data.justgiving_url = response.data.result.justgiving_url;
-        // Add more fields as needed
-    }, function(error) {
-        console.error('Failed to fetch event details:', error);
-        c.errorMessage = 'Failed to fetch event details.';
-    });
+    c.data.event_type = response.data.result.event_type;
+    c.data.event_name = response.data.result.event_name; 
+    c.data.description = response.data.result.description;
+    c.data.start_date = response.data.result.start_date;
+    c.data.end_date = response.data.result.end_date;
+    c.data.justgiving_url = response.data.result.justgiving_url;
+    // Add more fields as needed
+}, function(error) {
+    console.error('Failed to fetch event details:', error);
+    c.errorMessage = 'Failed to fetch event details.';
+});
+
+	
+	// Function to calculate minimum start date (today's date)
+    c.minStartDate = function() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; // January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        return yyyy + '-' + mm + '-' + dd;
+    };
+
 
     // Function to submit/update the event
     c.createEvent = function() {
         var eventData = {
+					  event_type: c.data.event_type,
             event_name: c.data.event_name,
             description: c.data.description,
             start_date: c.data.start_date,
@@ -37,7 +59,7 @@
 
         if (c.data.sys_id) {
             // If sys_id exists, update the existing record
-            $http.put('/api/now/table/x_1383184_charityb_events/' + c.data.sys_id, eventData).then(function(response) {
+            $http.put('https://dev203498.service-now.com/api/now/table/x_1383184_charityb_events/' + c.data.sys_id, eventData).then(function(response) {
                 if (response.data.result) {
                     c.successMessage = 'Event updated successfully!';
                 } else {
@@ -108,9 +130,10 @@ img {
     if (grEvent.next()) {
         // Populate data object with event details
         data.sys_id = eventSysId;
-        data.event_name = grEvent.getValue('event_name');
-        data.description = grEvent.getValue('description');
-        data.start_date = grEvent.getValue('start_date'); // Add more fields as needed
+        data.event_type = grEvent.getValue('event_type');
+			data.event_name = grEvent.getValue('event_name');
+        //data.description = grEvent.getValue('description');
+        //data.start_date = grEvent.getValue('start_date'); // Add more fields as needed
 
         // Clear any previous error message
         data.errorMessage = '';
@@ -126,14 +149,14 @@ img {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-07-18 04:52:51</sys_created_on>
         <sys_id>8ff39990932b421094e3f15a7bba105c</sys_id>
-        <sys_mod_count>29</sys_mod_count>
+        <sys_mod_count>45</sys_mod_count>
         <sys_name>cb justgiving details</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_8ff39990932b421094e3f15a7bba105c</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-19 04:13:25</sys_updated_on>
+        <sys_updated_on>2024-07-22 07:08:26</sys_updated_on>
         <template><![CDATA[<div class="item-details" ng-if="c.data">
     <div class="modal-content">
         <div class="modal-header">
@@ -145,16 +168,22 @@ img {
                 <form name="eventForm" ng-submit="c.submitEvent()">
                     <div class="modal-body">
                       
+                       <!-- Input field for Event Type -->
+                        <div class="form-group">
+                            <label for="eventType">Event Type:</label>
+                            <input type="text" value="{{c.data.event_type}}" class="form-control" id="eventType"  placeholder="Enter event type" required>
+                        </div>
+                      
                        <!-- Input field for Event Name -->
                         <div class="form-group">
                             <label for="eventName">Event Name:</label>
-                            <input type="text" value="{{c.data.event_name}}" class="form-control" id="eventName"  placeholder="Enter event name" required>
+                            <input type="text" class="form-control" id="eventName"  placeholder="Enter event name" required>
                         </div>
 
                         <!-- Input field for Start Date -->
                         <div class="form-group">
                             <label for="startDate">Start Date:</label>
-                            <input type="date" class="form-control" id="startDate" ng-model="c.data.start_date" required>
+                            <input type="date" class="form-control" id="startDate" ng-model="c.data.start_date" min="{{ c.minStartDate() }}" required>
                         </div>
 
                         <!-- Input field for End Date -->
@@ -165,7 +194,7 @@ img {
                       
                        <!-- Input field for JustGiving URL -->
                         <div class="form-group">
-                            <label for="justgivingUrl">JustGiving URL:</label>
+                            <label for="justgivingUrl">Page URL:</label>
                             <input type="text" class="form-control" id="justgivingUrl" ng-model="c.data.justgiving_url" placeholder="Enter JustGiving URL">
                         </div>
 

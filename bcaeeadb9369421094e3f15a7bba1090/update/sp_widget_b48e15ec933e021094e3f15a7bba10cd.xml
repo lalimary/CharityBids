@@ -2,36 +2,32 @@
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
         <client_script><![CDATA[api.controller=function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
-    // Fields to exclude from the profile display
+
     var fieldExcludes = {
-        sys_user: ['name', 'introduction', 'title', 'department', 'location', 'photo', 'manager', 'company'],
-        live_profile: ['short_description', 'photo']
+        x_1383184_charityb_user_profile: ['profile', 'bio', 'location']
     };
 
-    // Open Connect conversation
     $scope.openConnectConversation = function() {
         $window.open('/$c.do#?user=' + $scope.data.liveProfileID, '_blank');
-    };
+    }
 
-    // Watch for date/time format changes
     $scope.$watch('data.dateTimeFormat', function() {
-        if ($scope.data.dateTimeFormat != g_user_date_time_format) {
+        if ($scope.data.dateTimeFormat != g_user_date_time_format)
             $scope.data.dateTimeFormatChanged = true;
-        }
     });
 
-    // Upload new profile picture
     $scope.uploadNewProfilePicture = function($event) {
         $event.stopPropagation();
         var $el = $element.find('input[type=file]');
         $el.click();
-    };
+    }
 
-    // Attach files handler
     $scope.attachFiles = function(files) {
-        if (!files.files.length) return;
+        if (!files.files.length)
+            return;
 
         var file = files.files[0];
+
         var validImage = false;
 
         switch(file.type) {
@@ -48,12 +44,12 @@
                 break;
         }
 
-        if (!validImage) {
+        if(!validImage) {
             alert(file.name + " " + i18n.getMessage("isn't a recognized image file format"));
             return;
         }
 
-        snAttachmentHandler.create("live_profile", $scope.data.liveProfileID).uploadAttachment(file, {
+        snAttachmentHandler.create("x_1383184_charityb_user_profile", $scope.data.sysUserID).uploadAttachment(file, {
             sysparm_fieldname: "photo"
         }).then(function(response) {
             var obj = {};
@@ -63,19 +59,16 @@
                 'color': 'transparent'
             };
             $rootScope.$broadcast("sp.avatar_changed", obj);
-            // Timeout required for screen reader to pick up the message once file upload prompt is dismissed
             $timeout(function() {
-                spAriaUtil.sendLiveMessage(i18n.getMessage('Profile picture updated successfully'));
+               spAriaUtil.sendLiveMessage(i18n.getMessage('Profile picture updated successfully'));
             }, 500);
         });
-    };
+    }
 
-    // Initialize avatar picture
     $scope.avatarPicture = "";
 
-    // Fetch profile data
-    $http.get('/api/now/live/profiles/sys_user.' + $scope.data.sysUserID).then(function (response) {
-        if (response.data.result && response.data.result.avatar) {
+    $http.get('/api/now/live/profiles/x_1383184_charityb_user_profile.' + $scope.data.sysUserID).then(function (response) {
+        if (response.data.result && response.data.result.avatar){
             var avatarPicture = response.data.result.avatar.replace("?t=small", "");
             $scope.avatarPicture = {
                 'background-image': "url('" + avatarPicture + "')",
@@ -84,51 +77,36 @@
         }
     });
 
-    // Record watchers
-    spUtil.recordWatch($scope, "sys_user", "sys_id=" + $scope.data.sysUserID);
-    spUtil.recordWatch($scope, "live_profile", "sys_id=" + $scope.data.liveProfileID);
+    spUtil.recordWatch($scope, "x_1383184_charityb_user_profile", "sys_id=" + $scope.data.sysUserID);
 
-    // Connect enabled check
     $scope.connectEnabled = function() {
         return $scope.data.connectEnabled && !$scope.data.isLoggedInUsersProfile;
-    };
+    }
 
-    // Open user profile
     $scope.openUserProfile = function($event, userID) {
         $event.stopPropagation();
         $event.preventDefault();
         $location.search("id=user_profile&sys_id=" + userID);
-    };
+    }
 
-    // Get fields for sys_user model
     $scope.getSysUserModelFields = function() {
         if ($scope.data.userExists) {
-            return $scope.data.sysUserModelList.filter(function(field) {
-                return $scope.displayField("sys_user", field.name);
-            });
+            return $scope.data.userProfileModelList
+                            .filter(function(field) {
+                                return $scope.displayField("x_1383184_charityb_user_profile", field.name);
+                            });
         }
         return [];
-    };
+    }
 
-    // Reload page
     $scope.reloadPage = function() {
         $window.location.reload(true);
     };
 
-    // Check if team exists
-    $scope.teamExists = function() {
-        return $scope.data.teamData.direct_reports.length > 0 ||
-               $scope.data.teamData.members.length > 0 ||
-               $scope.data.teamData.manager;
-    };
-
-    // Model references
     var models = {
-        sys_user: $scope.data.sysUserModel,
-        live_profile: $scope.data.liveProfileModel
-    };
+        x_1383184_charityb_user_profile: $scope.data.userProfileModel
+    }
 
-    // Display field check
     $scope.displayField = function(tableName, field, isHeader) {
         if (!isHeader && fieldExcludes[tableName].indexOf(field) > -1) return false;
 
@@ -142,15 +120,14 @@
         } else {
             return models[tableName][field] && models[tableName][field].displayValue;
         }
-    };
+    }
 
-    // Broadcast profile data change
-    $timeout(function() {
+    $timeout(function(){
         $rootScope.$broadcast('finishedChanged', {profile: $scope.data.teamData});
     });
 
-    // Initialize sysUserModelFields
     $scope.sysUserModelFields = $scope.getSysUserModelFields();
+
 }
 ]]></client_script>
         <controller_as>c</controller_as>
@@ -270,20 +247,49 @@ body {
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <script><![CDATA[(function() {
+    if (input && input.action === "update_session_tracking_info") {
+        gs.getSession().putProperty("usage_tracking_allowed_for_session", input.user_tracking);
+        return;
+    }
+
+    // populate the 'data' object
+    data.sysUserID = $sp.getParameter("sys_id");
+    if (!data.sysUserID)
+        data.sysUserID = gs.getUser().getID();
+    var userProfileGR = new GlideRecord("x_1383184_charityb_user_profile");
+    data.userExists = userProfileGR.get(data.sysUserID);
+
+    if (data.userExists) {
+        userProfileGR = GlideScriptRecordUtil.get(userProfileGR).getRealRecord();
+        data.name = userProfileGR.getValue("name");
+        data.bio = userProfileGR.getValue("bio");
+        data.profile = userProfileGR.getValue("profile");
+        data.location = userProfileGR.getValue("location");
+
+        data.avatar = userProfileGR.getValue("avatar");
+        data.userProfileModel = {
+            name: data.name,
+            bio: data.bio,
+            profile: data.profile,
+            location: data.location
+        };
+    }
+})();
+]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-11 17:30:15</sys_created_on>
         <sys_id>b48e15ec933e021094e3f15a7bba10cd</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>cb My Profile</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_b48e15ec933e021094e3f15a7bba10cd</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-11 17:37:14</sys_updated_on>
+        <sys_updated_on>2024-07-22 09:49:59</sys_updated_on>
         <template><![CDATA[<div class="default-focus-outline user-profile-container">
   <div ng-if="!data.userExists" class="panel panel-default">
     <div class="panel-body wrapper-lg text-center">
@@ -316,58 +322,11 @@ body {
           </div>
           <div class="col-xs-12 col-sm-8 user-details">
             <h2>{{data.name}}</h2>
-            <button type="button" class="btn btn-primary" ng-click="toggleEditMode()">${Edit Profile}</button>
-            <div ng-if="!isEditMode">
-              <p><strong>${Name}:</strong> {{data.sysUserModel.name}}</p>
-              <p><strong>${Location}:</strong> {{data.sysUserModel.location.display_value}}</p>
-            </div>
-            <div ng-if="isEditMode">
-              <form ng-submit="updateProfile()">
-                <div class="form-group">
-                  <label for="userName">${Name}:</label>
-                  <input type="text" id="userName" ng-model="data.sysUserModel.name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="userLocation">${Location}:</label>
-                  <select id="userLocation" ng-model="data.sysUserModel.location" class="form-control" required>
-                    <option ng-repeat="location in data.locations" value="{{location.sys_id}}">{{location.name}}</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn btn-primary">${Update Profile}</button>
-                <button type="button" class="btn btn-secondary" ng-click="toggleEditMode()">${Cancel}</button>
-              </form>
-            </div>
+            <p ng-if="::displayField('x_1383184_charityb_user_profile', 'location', true)"><strong class="pad-right">${Location}</strong><sp-editable-field editable-by-user="data.isLoggedInUsersProfile" table="x_1383184_charityb_user_profile" table-id="data.sysUserID" field-model="data.userProfileModel.location"></sp-editable-field></p>
+            <p ng-if="::displayField('x_1383184_charityb_user_profile', 'bio', true)"><strong class="pad-right">${Bio}</strong><sp-editable-field editable-by-user="data.isLoggedInUsersProfile" table="x_1383184_charityb_user_profile" table-id="data.sysUserID" field-model="data.userProfileModel.bio"></sp-editable-field></p>
+            <p ng-if="::displayField('x_1383184_charityb_user_profile', 'profile', true)"><strong class="pad-right">${Profile}</strong><sp-editable-field editable-by-user="data.isLoggedInUsersProfile" table="x_1383184_charityb_user_profile" table-id="data.sysUserID" field-model="data.userProfileModel.profile"></sp-editable-field></p>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div ng-class="{'col-md-6': teamExists(), 'col-md-12': !teamExists()}" class="col-sm-12 col-xs-12">
-        <div class="panel panel-default b" ng-if="getSysUserModelFields().length > 0">
-          <div class="panel-heading">
-            <h2 class="panel-title">
-              <i class="fa fa-info-circle m-r-sm"></i>${About}
-            </h2>
-          </div>
-          <div class="body padder-xs">
-            <div class="list-group">
-              <div ng-repeat="fieldModel in sysUserModelFields">
-                <div class="list-group-item">
-                  <div>
-                    <sp-editable-field block="true" table="{{data.table}}" editable-by-user="data.isLoggedInUsersProfile" table-id="data.sysUserID" field-model="fieldModel"></sp-editable-field>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-footer clearfix" ng-if="data.dateTimeFormatChanged">
-            <a id="refresh-to-complete-date-format-change" href="javascript:void(0)"
-               ng-click="reloadPage()" class="pull-right btn btn-primary"><i class="fa fa-refresh m-r-sm" aria-hidden="true"></i>${Refresh page to complete date/time format change}</a>
-          </div>
-        </div>
-      </div>
-      <div ng-if="teamExists()" class="col-md-6 col-sm-12 col-xs-12">
-        <sp-widget widget="data.teamWidget"></sp-widget>
       </div>
     </div>
     <sp-widget widget="data.userPreferencesWidget"></sp-widget>

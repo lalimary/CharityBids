@@ -249,8 +249,6 @@ margin: 0px;&#13;
     overflow-x: hidden;&#13;
     height: 120%;&#13;
 }&#13;
-&#13;
-&#13;
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -439,14 +437,14 @@ data.loginWidget = $sp.getWidgetFromInstance('login-modal');]]></script>
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-05 11:18:02</sys_created_on>
         <sys_id>cecf05a69366c21094e3f15a7bba10f4</sys_id>
-        <sys_mod_count>14</sys_mod_count>
+        <sys_mod_count>23</sys_mod_count>
         <sys_name>Copy of Stock Header</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_header_footer_cecf05a69366c21094e3f15a7bba10f4</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-27 19:23:05</sys_updated_on>
+        <sys_updated_on>2024-07-21 13:40:11</sys_updated_on>
         <template><![CDATA[<div>
   <nav class="navbar-inverse" ng-class="::{'navbar':!isViewNative, 'is-native': isViewNative}"
        role="navigation" aria-label="${Primary}">
@@ -482,6 +480,8 @@ data.loginWidget = $sp.getWidgetFromInstance('login-modal');]]></script>
           <ul class="dropdown-menu" role="menu" aria-label="{{::data.profileBtnMsg}}">
            
             <li role="presentation"><a tabindex="-1" ng-href="cb?id=my_donations&sys_id={{::user.sys_id}}" role="menuitem">${My donations}</a></li>
+            
+            <li role="presentation"><a tabindex="-1" ng-href="cb?id=cb_my_bids&sys_id={{::user.sys_id}}" role="menuitem">${My bids}</a></li>
             <li ng-if="::!(isViewNative || isViewNativeTablet)" role="presentation"><a tabindex="-1" href="{{::portal.logoutUrl}}" role="menuitem">${Logout}</a></li>
           </ul>
         </li>
@@ -492,6 +492,7 @@ data.loginWidget = $sp.getWidgetFromInstance('login-modal');]]></script>
       </ul>
     </div>
   </nav>
-</div>]]></template>
+</div>
+]]></template>
     </sp_header_footer>
 </record_update>

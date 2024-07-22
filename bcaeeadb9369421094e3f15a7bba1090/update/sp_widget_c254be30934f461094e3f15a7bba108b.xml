@@ -139,7 +139,19 @@
 .donate-item-btn:hover {
   background-color: #e0a800; /* Darker shade of yellow on hover */
 }
-</css>
+
+.raise-issue-icon {
+  position: absolute;
+  top: 10px; /* Adjust this value as needed */
+  left: 10px; /* Adjust this value as needed */
+  color: orange;
+  font-size: 24px;
+}
+
+.event-header {
+  position: relative; /* Ensure relative positioning for absolute child */
+  margin-bottom: 20px; /* Example margin for spacing */
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -162,11 +174,13 @@
     grEvent.query();
 
     if (grEvent.next()) {
+		  	data.event_type = grEvent.getDisplayValue('event_type');
         data.event_name = grEvent.getDisplayValue('event_name'); // Ensure proper localization
         data.start_date = grEvent.getValue('start_date');
         data.end_date = grEvent.getValue('end_date');
         data.justgiving_url = grEvent.getValue('justgiving_url');
         data.event_status = grEvent.getValue('event_status');
+				data.eventsys_id=grEvent.getUniqueValue();
         data.image = grEvent.getDisplayValue('image'); // Ensure proper localization
         data.description = grEvent.getValue('description'); // Ensure proper localization
 
@@ -195,56 +209,66 @@
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-25 04:39:25</sys_created_on>
         <sys_id>c254be30934f461094e3f15a7bba108b</sys_id>
-        <sys_mod_count>77</sys_mod_count>
+        <sys_mod_count>112</sys_mod_count>
         <sys_name>cb cloned event details</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_c254be30934f461094e3f15a7bba108b</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-18 18:01:29</sys_updated_on>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-22 07:34:22</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Event Details</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-  <div class="event-details" ng-if="c.data">
-    <div class="event-header">
-      <img class="event-image" ng-src="{{c.data.image || 'https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg'}}" alt="{{c.data.event_name}}">
-    </div>
-    <div class="event-content">
-      <div class="event-dates">
-        <div class="event-date">
-          <div class="date-label">
-            <i class="fas fa-solid fa-calendar-days"></i> Start Date:
+<html ng-app="charityApp">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Charity Bids Event Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+
+    <div class="event-details" ng-if="c.data">
+      <div class="event-header">
+        <a href="?id=issue_form" class="raise-issue-icon">
+          <i class="fas fa-exclamation-triangle"></i> <!-- Font Awesome triangle exclamation icon -->
+        </a>
+        <img class="event-image" ng-src="{{c.data.image || 'https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg'}}" alt="{{c.data.event_name}}">
+      </div>
+      <div class="event-content">
+        <div class="event-dates">
+          <div class="event-date">
+            <div class="date-label">
+              <i class="fas fa-calendar-days"></i> Start Date:
+            </div>
+            <div class="date-value">{{c.data.start_date}}</div>
           </div>
-          <div class="date-value">{{c.data.start_date}}</div>
-        </div>
-        <div class="event-date">
-          <div class="date-label">
-            <i class="fas fa-solid fa-calendar-days"></i> End Date:
+          <div class="event-date">
+            <div class="date-label">
+              <i class="fas fa-calendar-days"></i> End Date:
+            </div>
+            <div class="date-value">{{c.data.end_date}}</div>
           </div>
-          <div class="date-value">{{c.data.end_date}}</div>
         </div>
-      </div>
-      <h2 class="event-title">{{c.data.event_name}}</h2>
-      <div class="event-info">
-        
-        <div class="event-company">
-          <strong>Organized by:</strong> {{c.data.charity_company}}
+        <h2 class="event-title">Event Type: {{c.data.event_type}}</h2>
+        <div class="event-info">
+          <div class="event-company">
+            <h3>
+              <strong>Event Name: </strong> {{c.data.event_name}}
+            </h3>
+          </div>
         </div>
-      </div>
-      <p class="event-description">{{c.data.description}}</p>
-      <div class="event-buttons">
-        <button class="event-btn donate-money-btn" ng-click="c.openJustGivingPage(c.data.justgiving_url)">Donate Money</button>
-        <button class="event-btn donate-item-btn" ng-click="c.openDonationForm()">Donate Item</button>
+        <p class="event-description">{{c.data.description}}</p>
+        <div class="event-buttons" ng-click="openDonationForm(event.sys_id)">
+          <a ng-href="{{c.data.justgiving_url}}" target="_blank" class="event-btn donate-money-btn">Donate Money</a>
+          <a ng-href="?id=upload_item&sys_id={{c.data.eventsys_id}}" target="_blank" class="event-btn donate-item-btn">Donate Item</a>
+        </div>
       </div>
     </div>
-  </div>]]></template>
+
+  </body>
+</html>
+]]></template>
     </sp_widget>
 </record_update>

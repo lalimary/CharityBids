@@ -15,6 +15,7 @@
                 <element inactive_on_update="false" label="Canceled" sequence="5" value="canceled"/>
             </choice>
         </element>
+        <element label="Event type" max_length="150" name="event_type" type="string"/>
         <element label="Image" max_length="40" name="image" type="user_image"/>
         <element label="Justgiving url" max_length="1024" name="justgiving_url" type="url"/>
         <element label="Start date" mandatory="true" max_length="40" name="start_date" type="glide_date"/>

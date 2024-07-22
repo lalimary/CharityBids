@@ -4,8 +4,18 @@
         <client_script><![CDATA[api.controller = function($scope, spUtil) {
     var c = this;
 
-    // Initialize data.items
+    // Initialize data.items and currency array
     c.data.items = c.data.items || [];
+    c.data.currencyArray = [
+        { currency_type: 'USD', selected: false },
+        { currency_type: 'EUR', selected: false },
+        { currency_type: 'GBP', selected: false },
+        { currency_type: 'JPY', selected: false }
+    ];
+
+    // Initialize price range
+    c.minPrice = 0;
+    c.maxPrice = 10000;
 
     // Function to calculate days left
     c.calculateDaysLeft = function(endDate) {
@@ -30,7 +40,7 @@
     // Function to handle placing a bid
     c.placeBid = function(item) {
         alert('Placing bid for: ' + item.item_name);
-       
+        
         spUtil.get('cb_bid_form', { itemSysId: item.sys_id }).then(function(response) {
             spUtil.addInfoMessage('Opening bid form...');
             spUtil.openWidget(response.data);
@@ -54,12 +64,16 @@
         }
     }, true);
 
-    // Function to filter items based on the selected categories and search query
+    // Function to filter items based on the selected categories, search query, and price range
     c.filterItems = function() {
         var selectedCategories = c.data.categoryArray.filter(category => category.selected).map(category => category.sys_id);
+        var selectedCurrencies = c.data.currencyArray.filter(currency => currency.selected).map(currency => currency.currency_type);
         var params = {
             selectedCategories: selectedCategories.join(','),
-            searchQuery: c.searchQuery || ""
+            selectedCurrencies: selectedCurrencies.join(','),
+            searchQuery: c.searchQuery || "",
+            minPrice: c.minPrice,
+            maxPrice: c.maxPrice
         };
 
         spUtil.get('cb_item_categories', params).then(function(response) {
@@ -75,234 +89,58 @@
 };
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    color: black; /* Set default font color to black */
+        <css>.price-range {
+    margin-top: 20px;
 }
 
-.container {
-    width: 90%;
-    margin: 0 auto;
-    padding-top: 20px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2.5em;
-}
-
-.container1 {
-    display: flex;
-    width: 75%;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 3rem;
-}
-
-.category {
-    width: 22%;
-}
-
-.cont {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-h2 {
-    font-size: 1.5em; /* Increase font size for category heading */
-    margin-bottom: 10px; /* Add margin below heading for spacing */
-    color: #333; /* Darken color for heading */
-}
-
-.multiselect {
-    width: 100%; /* Full width for multiselect container */
-    position: relative;
-}
-
-.select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.3s ease;
-    position: relative;
-}
-
-.select:focus {
-    border-color: #007bff;
-}
-
-.options-container {
-    background-color: #fff;
-    border: .1rem solid #ccc;
-    border-radius: .4rem;
-    box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .1);
-    padding: 1rem;
-    max-height: 20rem;
-    overflow-y: auto;
-    z-index: 10;
-}
-
-.option {
+.price-range label {
     display: block;
-    padding: 8px 12px;
-    font-size: 14px; /* Adjust font size for options */
-    cursor: pointer;
-}
-
-.option:hover {
-    background-color: #f0f0f0; /* Highlight option on hover */
-}
-
-/* Search Bar Styles */
-.search-bar {
-    width: 100%; /* Full width */
-    margin-bottom: 20px;
-}
-
-.search-bar input {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.6rem;
-    border: .1rem solid #ccc;
-    border-radius: 2.4rem;
-    box-shadow: 0 .2rem .5rem rgba(0, 0, 0, .1);
-}
-
-/* Items Grid and Item Card Styles */
-.items-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-    margin-top: 2rem;
-    width: 100%; /* Full width */
-}
-
-.item-card {
-    flex: 0 0 calc(33.333% - 2rem); /* Three items per row */
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    opacity: 0;
-    animation: fadeIn 0.5s forwards, slideInBottom 0.5s forwards;
-    height: 400px; /* Increased height for larger cards */
-    position: relative; /* Ensure positioning context for absolute positioning */
-}
-
-.item-card:hover {
-    transform: none;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideInBottom {
-    from {
-        transform: translateY(20px);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
-.item-card img {
-    width: 100%;
-    height: 200px; /* Adjust height to fit within the card */
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-    transition: transform 0.3s ease;
-}
-
-.item-card:hover img {
-    transform: none;
-}
-
-.item-details {
-    padding: 15px;
-}
-
-.item-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #33A5DF;
-}
-
-.item-value,
-.item-start-bid,
-.item-highest-bid {
-    font-size: 16px;
     margin-bottom: 5px;
 }
 
-.btn-primary,
-.btn-secondary {
-    display: block;
+.price-range input[type="range"] {
     width: 100%;
-    padding: 10px;
-    text-align: center;
-    border: none;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin-top: 10px;
+    -webkit-appearance: none;
+    background: #ddd;
+    height: 5px;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .15s ease-in-out;
+}
+
+.price-range input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #007bff;
     cursor: pointer;
 }
 
-.btn-primary {
-    background-color: #33A5DF;
-    color: #fff;
+.price-range input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #007bff;
+    cursor: pointer;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
+.multiselect .options-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
 }
 
-.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
+.multiselect .option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
 }
 
-.btn-secondary:hover {
-    background-color: #5a6268;
+.multiselect .option input {
+    margin-right: 10px;
 }
-
-/* Days Left Indicator */
-.days-left-indicator {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 6px 12px;
-    border-radius: 4px;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.days-left-orange {
-    background-color: #FFA500; /* Orange color */
-}
-
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -335,9 +173,12 @@ h2 {
     }
 
     input = input || {};
-    if (input.selectedCategories || input.searchQuery) {
+    if (input.selectedCategories || input.selectedCurrencies || input.searchQuery || input.minPrice || input.maxPrice) {
         var selectedCategories = input.selectedCategories ? input.selectedCategories.split(',') : [];
+        var selectedCurrencies = input.selectedCurrencies ? input.selectedCurrencies.split(',') : [];
         var searchQuery = input.searchQuery ? input.searchQuery : "";
+        var minPrice = input.minPrice ? parseFloat(input.minPrice) : 0;
+        var maxPrice = input.maxPrice ? parseFloat(input.maxPrice) : Number.MAX_SAFE_INTEGER;
 
         var itemGR = new GlideRecord('x_1383184_charityb_item');
         
@@ -345,41 +186,35 @@ h2 {
             itemGR.addQuery('category', 'IN', selectedCategories);
         }
         
+        if (selectedCurrencies.length > 0) {
+            itemGR.addQuery('currency_type', 'IN', selectedCurrencies);
+        }
+        
         if (searchQuery) {
             itemGR.addQuery('item_name', 'CONTAINS', searchQuery);
         }
-
+        
+        itemGR.addQuery('highest_bid_amount', '>=', minPrice);
+        itemGR.addQuery('highest_bid_amount', '<=', maxPrice);
+        
         itemGR.query();
+
         while (itemGR.next()) {
             var itemObj = {
-                sys_id: itemGR.getUniqueValue(),
                 item_name: itemGR.getValue('item_name'),
-                value: itemGR.getValue('value'),
+                sys_id: itemGR.getUniqueValue(),
                 highest_bid_amount: itemGR.getValue('highest_bid_amount'),
+                value: itemGR.getValue('value'),
+                currency: itemGR.getValue('currency_type'),
                 auction_status: itemGR.getValue('auction_status'),
                 start_bid_amount: itemGR.getValue('start_bid_amount'),
-                end_date: itemGR.getValue('end_date'), // Ensure end_date is being fetched
+                end_date: itemGR.getValue('end_date'),
                 image: itemGR.getDisplayValue('image')
             };
             data.items.push(itemObj);
         }
-    } else {
-        var allItemsGR = new GlideRecord('x_1383184_charityb_item');
-        allItemsGR.query();
-        while (allItemsGR.next()) {
-            var itemObj = {
-                sys_id: allItemsGR.getUniqueValue(),
-                item_name: allItemsGR.getValue('item_name'),
-                value: allItemsGR.getValue('value'),
-                highest_bid_amount: allItemsGR.getValue('highest_bid_amount'),
-                auction_status: allItemsGR.getValue('auction_status'),
-                start_bid_amount: allItemsGR.getValue('start_bid_amount'),
-                end_date: allItemsGR.getValue('end_date'), // Ensure end_date is being fetched
-                image: allItemsGR.getDisplayValue('image')
-            };
-            data.items.push(itemObj);
-        }
     }
+
 })(input, data, options, gs);
 ]]></script>
         <servicenow>false</servicenow>
@@ -387,14 +222,14 @@ h2 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-26 04:36:43</sys_created_on>
         <sys_id>185dff099303021094e3f15a7bba105c</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>68</sys_mod_count>
         <sys_name>testing item multiselect</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_185dff099303021094e3f15a7bba105c</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-15 07:14:00</sys_updated_on>
+        <sys_updated_on>2024-07-22 10:52:04</sys_updated_on>
         <template><![CDATA[<div class="container">
     <h1>Exclusive Auctions</h1>
     <div class="cont">
@@ -408,6 +243,22 @@ h2 {
                     </label>
                 </div>
             </div>
+            <h2>Select Currency</h2>
+            <div class="multiselect">
+                <div class="options-container">
+                    <label ng-repeat="currency in c.data.currencyArray" class="option">
+                        <input type="checkbox" ng-model="currency.selected" ng-change="c.filterItems()">
+                        <span>{{ currency.currency_type }}</span>
+                    </label>
+                </div>
+            </div>
+            <h2>Select Price Range</h2>
+            <div class="price-range">
+                <label for="minPrice">Min Price: {{c.minCurrency}}{{c.minPrice}}</label>
+                <input type="range" id="minPrice" ng-model="c.minPrice" ng-change="c.filterItems()" min="0" max="10000" step="100">
+                <label for="maxPrice">Max Price: {{c.maxCurrency}}{{c.maxPrice}}</label>
+                <input type="range" id="maxPrice" ng-model="c.maxPrice" ng-change="c.filterItems()" min="0" max="10000" step="100">
+            </div>
         </div>
         <div class="container1">
             <div class="search-bar">
@@ -418,8 +269,8 @@ h2 {
                     <img ng-src="{{item.image || 'https://dev203498.service-now.com/issues.png'}}" alt="{{item.item_name}}">
                     <div class="item-details">
                         <div class="item-title">{{item.item_name}}</div>
-                        <div class="item-value">Value: $ {{item.value}}</div>
-                        <div class="item-value">Highest Bid: $ {{item.highest_bid_amount}}</div>
+                        <div class="item-value">Value: {{item.currency}}{{item.value}}</div>
+                        <div class="item-value">Highest Bid: {{item.currency}}{{item.highest_bid_amount}}</div>
                         <div ng-if="item.auction_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
                         <div class="item-days-left">
                             <span class="days-left-indicator"

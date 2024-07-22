@@ -4,24 +4,37 @@
         <client_script><![CDATA[api.controller = function($scope, spUtil) {
     var c = this;
 
-    // Initialize data.items
-    c.data.items = c.data.items || [];
+    // Initialize data.items and selectedItem
+    c.data = {};
+    c.data.items = [];
+    c.selectedItem = null;
 
-    // Function to show item details
+    // Function to show item details and fetch previous bids
     c.showDetails = function(item) {
         c.selectedItem = item;
+        c.fetchPreviousBids(item);
+        // Optionally, toggle a flag to control the display of item details
+        item.showDetails = true; // Show the details for this item
     };
 
-    // Watch the items array for changes
-    $scope.$watch(function() {
-        return c.data.items;
-    }, function(newVal) {
-        if (newVal && newVal.length === 0) {
-            $scope.noItemsMessage = "No items available";
-        } else {
-            $scope.noItemsMessage = "";
-        }
-    }, true);
+    // Function to close the details
+    c.closeModal = function() {
+        c.selectedItem = null;
+        // Optionally hide details on mouse leave
+        // For now, it's handled by the CSS transition and hover states
+    };
+
+    // Function to fetch previous bids for the selected item
+    c.fetchPreviousBids = function(item) {
+        // Replace with your actual API call or logic to fetch previous bids
+        // Example using spUtil.get as placeholder
+        spUtil.get('previous_bids', { item_id: item.id }).then(function(response) {
+            item.previousBids = response.data.previousBids;
+            console.log('Previous bids fetched successfully:', response);
+        }).catch(function(error) {
+            console.error('Error fetching previous bids:', error);
+        });
+    };
 
     // Initial data fetch
     spUtil.get('my_bid_history').then(function(response) {
@@ -54,29 +67,68 @@ h1 {
 }
 
 .item-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.2s;
-    width: 300px;
-    cursor: pointer;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  height: 250px; /* Increased height to accommodate slide effect */
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .item-card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .item-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
-.item-details {
-    padding: 15px;
+.item-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: bottom 0.3s ease;
+  z-index: 1; /* Ensure content is above the sliding section */
 }
+
+.item-details-slide {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* Transparent white background */
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: bottom 0.3s ease, opacity 0.3s ease; /* Add opacity transition */
+  opacity: 0; /* Initially transparent */
+}
+
+.item-card:hover .item-details-slide {
+  bottom: 0;
+  z-index: 10;
+  opacity: 1; /* Slide up and become opaque on hover */
+}
+
+.item-details-slide ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.item-details-slide li {
+  margin-bottom: 5px;
+  color: #333;
+}
+
 
 .item-title {
     font-size: 1.5em;
@@ -129,18 +181,46 @@ h1 {
     // Fetch all bids based on user profile
     var bidGR = new GlideRecord('x_1383184_charityb_bid');
     bidGR.addQuery('x_1383184_charityb_bidder', userProfileID);
+    bidGR.orderBy('bid_amount', 'DESC'); // Order bids by bid_amount descending
+
     bidGR.query();
+
+    var highestBidMap = {}; // Map to store highest bids for each item
 
     while (bidGR.next()) {
         var itemGR = new GlideRecord('x_1383184_charityb_item');
         if (itemGR.get(bidGR.getValue('item_name'))) {
-            data.items.push({
-                item_name: itemGR.getValue('item_name'),
-                bid_amount: bidGR.getValue('bid_amount'),
-                image: itemGR.getDisplayValue('image')
-            });
+            var itemName = itemGR.getValue('item_name');
+            if (!highestBidMap[itemName]) {
+                highestBidMap[itemName] = {
+                    item_name: itemName,
+                    bid_amount: bidGR.getValue('bid_amount'),
+                    image: itemGR.getDisplayValue('image'),
+                    previousBids: [] // Initialize array to store previous bids
+                };
+            }
+
+            // Check if the current bid is made by the current user
+            if (bidGR.getValue('x_1383184_charityb_bidder') === userProfileID) {
+                // Add previous bid to the array
+                highestBidMap[itemName].previousBids.push({
+                    bid_amount: bidGR.getValue('bid_amount')
+                });
+            }
+
+            // Update highest bid amount if necessary
+            if (bidGR.getValue('bid_amount') > highestBidMap[itemName].bid_amount) {
+                highestBidMap[itemName].bid_amount = bidGR.getValue('bid_amount');
+            }
         } else {
             gs.info('Item not found for bid: ' + bidGR.getValue('sys_id'));
+        }
+    }
+
+    // Populate data.items with highest bids including previous bids by the current user
+    for (var itemName in highestBidMap) {
+        if (highestBidMap.hasOwnProperty(itemName)) {
+            data.items.push(highestBidMap[itemName]);
         }
     }
 
@@ -159,30 +239,54 @@ h1 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-26 07:16:21</sys_created_on>
         <sys_id>6ed1609593c3021094e3f15a7bba10c8</sys_id>
-        <sys_mod_count>36</sys_mod_count>
+        <sys_mod_count>84</sys_mod_count>
         <sys_name>My bid history</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_6ed1609593c3021094e3f15a7bba10c8</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-18 16:43:50</sys_updated_on>
-        <template><![CDATA[<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-22 10:44:06</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html ng-app="charityApp">
 
-<div class="container">
-  <h1>My Bids</h1>
-  <div id="items-grid" class="items-grid">
-    <div ng-repeat="item in c.data.items" class="item-card">
-      <img ng-src="{{item.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{item.item_name}}">
-      <div class="item-details">
-        <div class="item-title">{{item.item_name}}</div>
-        <div class="item-bid-amount">
-          <i class="fa-solid fa-tag"></i> 
-          Bid Amount: {{item.bid_amount}}</div>
+<head>
+    <meta charset="UTF-8">
+    <title>My Bids</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+
+
+<h1>
+  My Bids </h1>
+    <div id="items-grid" class="items-grid">
+  <div ng-repeat="item in c.data.items" class="item-card">
+    <img ng-src="{{item.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{item.item_name}}">
+    
+    <div class="item-content">
+      <div class="item-title">{{item.item_name}}</div>
+      <div class="item-bid-amount">
+        <i class="fas fa-tag"></i> Latest Bid Amount: {{item.bid_amount}}
       </div>
+    </div>
+    
+    <div class="item-details-slide">
+      <h3>Previous Bids</h3>
+      <ul>
+        <li ng-repeat="bid in item.previousBids">
+          Bid Amount: {{bid.bid_amount}}
+        </li>
+      </ul>
     </div>
   </div>
 </div>
+
+</body>
+
+</html>
 ]]></template>
     </sp_widget>
 </record_update>

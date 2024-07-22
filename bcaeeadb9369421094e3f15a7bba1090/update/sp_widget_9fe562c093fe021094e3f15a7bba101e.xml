@@ -7,133 +7,65 @@
 }
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>
-img{
-   vertical-align: middle;
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    width: 95%;
-    height: 46rem;
-    padding-right: 1.3rem;
-    justify-content: space-around;
-    border-radius: 100px;
-}
+        <css>body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-/* Responsive styles for larger screens */
-@media (min-width: 992px) {
-    body.home .hero--content {
-        padding-top: 100px;
-        padding-bottom: 100px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .col-xl-6 {
-        -ms-flex: 0 0 50%;
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-
-/* Hero section styles */
-.hero--content, .hero--image, .hero--form, .hero--form__image, .hero--listen-on {
-    z-index: 1042;
-}
-
-.hero--content h1 {
-    line-height: 1;
-    color: white;
-    font-size: 5.6rem;
-    padding-right: .5rem;
-    padding-top: 6.5rem;
-}
-
-.hero--content p {
-    color: white;
-   font-size: 3rem;
-    padding-top: 7px;
-}
-
-.hero--content {
-    color: var(--white);
-    background-color: var(--black);
+.container {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* padding-top: 7rem; */
-    padding-bottom: 7rem;
+    max-width: 800px;
+    margin: auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-
-.hero--text {
-    flex: 1;                   /* Allow text to take up available space */
-    padding-right: 20px;       /* Add some padding to the right */
+.image-container {
+    position: relative;
+    text-align: center;
     color: white;
 }
 
-.hero--image {
-    flex: 1;                   /* Allow image to take up available space */
-    max-width: 50%;
+.image-container img {
+    width: 100%;
     height: auto;
-    float: right;
+    display: block;
 }
 
-/* Responsive adjustments */
-@media (max-width: 991px) {
-    .hero--content {
-        flex-direction: column;  /* Stack items vertically on smaller screens */
-    }
-
-    .hero--image {
-        float: none;
-        max-width: 100%;
-    }
-
-    .hero--text {
-        padding-right: 0;
-        margin-bottom: 20px;    /* Add margin to separate text and image */
-    }
-}
-.partner-logos {
-    padding: 35px 0;
+.text-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
 }
 
-.bg-off-white {
-    background-color: var(--off-white);
+.text-large {
+    font-size: 64px;
+    font-weight: bold;
+    line-height: 1;
 }
 
-.home-img {
-    display: flex;
-    width: 54%;
-    justify-content: flex-end;
+.text-small {
+    font-size: 24px;
+    margin-top: -10px;
 }
-.button{
-  display: inline-block;
-    padding: 1.5rem 3rem;
-    background-color: #f9f9f9;
-    color: #337f9f;
-    font-size: 2.0rem;
+
+.start-fundraising {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #b2ff59;
+    color: black;
     border: none;
-    
-    border-radius: 5.8rem;
-    /* text-decoration: dotted; */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color .3s;
+    transition: background-color 0.3s ease;
 }
 
-.button:hover {
-    background-color: #fff;
-}
-
-.home-img img {
-    margin-top: 20px;
-    border-radius: 10px;
-    max-width: 100%;
-    height: auto;
+.start-fundraising:hover {
+    background-color: #76ff03;
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -158,35 +90,31 @@ img{
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-10 09:25:17</sys_created_on>
         <sys_id>9fe562c093fe021094e3f15a7bba101e</sys_id>
-        <sys_mod_count>95</sys_mod_count>
+        <sys_mod_count>101</sys_mod_count>
         <sys_name>cb homepage main</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_9fe562c093fe021094e3f15a7bba101e</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-18 18:13:55</sys_updated_on>
+        <sys_updated_on>2024-07-22 10:22:43</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Fund Help Others</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="hero--content">
-            <div class="hero--text">
-              <h1>
-                ${Your generosity today transforms hope into action and dreams into reality for those in need}
-              </h1>
-               
-               
+        <div class="image-container">
+            <img src="Image5.png" alt="Hands reaching out">
+            <div class="text-overlay">
+                <div class="text-large">Fund</div>
+                <div class="text-small">Help Others</div>
             </div>
-            <div class="home-img">
-                <img width="1024" height="903" src="Image5.png" class="attachment-large size-large" alt="Helping Image">
-            </div>
+            <button class="start-fundraising">Start Fundraising</button>
         </div>
     </div>
 </body>

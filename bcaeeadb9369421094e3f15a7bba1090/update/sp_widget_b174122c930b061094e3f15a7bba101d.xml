@@ -303,6 +303,20 @@ h2 {
     background-color: #FFA500; /* Orange color */
 }
 
+.raise-issue-icon {
+    //position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    color: #007bff;
+    text-decoration: none;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.raise-issue-icon:hover {
+    color: #0056b3;
+}
 </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -387,14 +401,14 @@ h2 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-24 07:41:39</sys_created_on>
         <sys_id>b174122c930b061094e3f15a7bba101d</sys_id>
-        <sys_mod_count>287</sys_mod_count>
+        <sys_mod_count>297</sys_mod_count>
         <sys_name>Cb item categories</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_b174122c930b061094e3f15a7bba101d</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-15 07:22:08</sys_updated_on>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-20 16:50:20</sys_updated_on>
         <template><![CDATA[<div class="container">
     <h1>Exclusive Auctions</h1>
     <div class="cont">
@@ -415,6 +429,9 @@ h2 {
             </div>
             <div id="items-grid" class="items-grid">
                 <div ng-repeat="item in c.data.items" class="item-card" ng-click="c.showDetails(item)">
+                  <!-- Icon for raising issue -->
+                    
+                    <!-- End of icon -->
                     <img ng-src="{{item.image || 'https://dev203498.service-now.com/issues.png'}}" alt="{{item.item_name}}">
                     <div class="item-details">
                         <div class="item-title">{{item.item_name}}</div>

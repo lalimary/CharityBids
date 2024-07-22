@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($http, $location, spUtil, $scope) {
+    var c = this;
+
+    // Initialize data object for donation form
+    c.data = {
+        sys_id: $location.search().sys_id,
+        itemName: '',
+        eventName: '', // Ensure this is correctly fetched from the server
+        category: '',
+        startDate: '',
+        endDate: '',
+        value: '',
+        startBidAmount: '',
+        description: '',
+        image: null, // Placeholder for image upload
+        errorMessage: '',
+        successMessage: ''
+    };
+
+    // Fetch event details
+    var itemUrl = 'https://dev203498.service-now.com/api/now/table/x_1383184_charityb_events/' + c.data.sys_id;
+    $http.get(itemUrl).then(function(response) {
+        // Assuming the response.data.result contains the necessary fields
+        c.data.eventName = response.data.result.event_name;
+        c.data.startDate = response.data.result.start_date;
+        c.data.endDate = response.data.result.end_date;
+        // Populate other fields as needed
+
+    }, function(error) {
+        console.error('Failed to fetch event details:', error);
+        c.errorMessage = 'Failed to fetch event details.';
+    });
+
+    // Function to calculate minimum start date (today's date)
+    c.minStartDate = function() {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; // January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        return yyyy + '-' + mm + '-' + dd;
+    };
+
+    // Function to submit the donation item
+    c.submitDonationItem = function() {
+        // Client-side validation
+        if (!c.data.itemName || !c.data.eventName || !c.data.category || !c.data.startDate || !c.data.endDate || !c.data.value || !c.data.startBidAmount || !c.data.description) {
+            c.errorMessage = 'Please fill in all required fields.';
+            return;
+        }
+
+        // Validate end date is not before start date
+        if (new Date(c.data.endDate) < new Date(c.data.startDate)) {
+            c.errorMessage = 'End date cannot be before start date.';
+            return;
+        }
+
+        // Prepare donation item data object
+        var donationItemData = {
+            item_name: c.data.itemName,
+            event_name: c.data.eventName,
+            category: c.data.category, // Assuming category object has 'id' field
+            start_date: c.data.startDate,
+            end_date: c.data.endDate,
+            value: c.data.value,
+            start_bid_amount: c.data.startBidAmount,
+            description: c.data.description,
+            // Handle image upload separately if required
+        };
+
+        // Example: Making a POST request to submit donation item data
+        $http.post('/api/now/table/x_1383184_charityb_item', donationItemData).then(function(response) {
+            if (response.data.result) {
+                c.successMessage = 'Donation item submitted successfully!';
+                // Clear form data after successful submission
+                c.data = {
+                    sys_id: c.data.sys_id, // Retain sys_id for potential reuse
+                    itemName: '',
+                    eventName: '', // Ensure to reset other fields as needed
+                    category: '',
+                    startDate: '',
+                    endDate: '',
+                    value: '',
+                    startBidAmount: '',
+                    description: '',
+                    image: null,
+                    errorMessage: '',
+                    successMessage: ''
+                };
+                c.server.refresh(); // Refresh the widget after submission
+            } else {
+                c.errorMessage = 'Failed to submit donation item.';
+            }
+        }, function(error) {
+            console.error('Error during donation item submission:', error);
+            c.errorMessage = 'An error occurred during donation item submission.';
+        });
+    };
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.countdown-timer {
+  font-family: Arial, sans-serif;
+  font-size: 2em;
+  text-align: center;
+  color: #333;
+}
+.time {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+img {
+  width: 50%;
+}
+.imgC {
+  display: flex;
+  justify-content: center;
+}
+
+.col-md-6 {
+    /* margin-right: 10px; */
+    width: 50%;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_donation_form</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb donation form</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    var ItemSysId = $sp.getParameter('sys_id');
+    var data = {};
+
+    // Fetch item details
+    var itemGr = new GlideRecord('x_1383184_charityb_item');
+    if (itemGr.get(ItemSysId)) {
+        data.itemName = itemGr.getValue('item_name');
+        data.startDate = itemGr.getValue('start_date');
+        data.endDate = itemGr.getValue('end_date');
+        data.value = itemGr.getValue('value');
+        data.startBidAmount = itemGr.getValue('start_bid_amount');
+        data.description = itemGr.getValue('description');
+        
+        // Fetch related event details
+        var eventId = itemGr.getValue('event_id'); // Assuming there's a field 'event_id' in itemGr that links to the event record
+        if (eventId) {
+            var eventGr = new GlideRecord('x_1383184_charityb_events');
+            if (eventGr.get(eventId)) {
+                data.eventName = eventGr.getValue('event_name');
+            }
+        }
+        
+        data.sys_id = itemGr.getUniqueValue();
+    } else {
+        data.errorMessage = 'Item not found';
+    }
+
+    return data;
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-20 05:00:01</sys_created_on>
+        <sys_id>2bc8af74932f061094e3f15a7bba10f5</sys_id>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>cb donation form</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_2bc8af74932f061094e3f15a7bba10f5</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-22 06:54:42</sys_updated_on>
+        <template><![CDATA[<!-- Assuming the form is within a container -->
+<div class="item-details" ng-if="c.data">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Donate Today</h4>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form name="donationForm" ng-submit="c.submitDonationItem()" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <!-- Input field for Item Name -->
+                        <div class="form-group">
+                            <label for="itemName">Item Name:</label>
+                            <input type="text" class="form-control" id="itemName" ng-model="c.data.itemName" placeholder="Enter item name" required>
+                        </div>
+
+                        <!-- Input field for Event Name -->
+                        <div class="form-group">
+                            <label for="eventName">Event Name:</label>
+                            <input type="text" class="form-control" id="eventName" ng-model="c.data.eventName" placeholder="Enter event name" required>
+                        </div>
+
+                        <!-- Dropdown for Category -->
+                       <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" ng-model="c.data.category" class="form-control">
+                <option value="">Select a category...</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Books & media">Books & media</option>
+                <option value="Toys">Toys</option>
+                <option value="Accessories & Clothing">Accessories & Clothing</option>
+                <option value="Others">Others</option>
+                <option value="Musical instruments">Musical instruments</option>
+                <option value="Art & Craft">Art & Craft</option>
+                <option value="Home & decor">Home & decor</option>
+            </select>
+        </div>
+
+
+                        <!-- Input field for Start Date -->
+                        <div class="form-group">
+                            <label for="startDate">Start Date:</label>
+                            <input type="date" class="form-control" id="startDate" ng-model="c.data.startDate" min="{{ c.minStartDate() }}" required>
+                        </div>
+
+                        <!-- Input field for End Date -->
+                        <div class="form-group">
+                            <label for="endDate">End Date:</label>
+                            <input type="date" class="form-control" id="endDate" ng-model="c.data.endDate" required>
+                        </div>
+
+                        <!-- Input field for Value -->
+                        <div class="form-group">
+                            <label for="value">Value:</label>
+                           <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <select class="custom-select" ng-model="c.data.currencyPrefix">
+                                        <option value="$">USD ($)</option>
+                                        <option value="₹">INR (₹)</option>
+                                        <option value="€">EUR (€)</option>
+                                        <option value="£">GBP (£)</option>
+                                    </select>
+                                </div>
+                            <input type="number" class="form-control" id="value" ng-model="c.data.value" placeholder="Enter value" required>
+                        </div>
+                      </div>
+
+                        <!-- Input field for Start Bid Amount -->
+                        <div class="form-group">
+                            <label for="startBidAmount">Start Bid Amount:</label> <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <select class="custom-select" ng-model="c.data.currencyPrefix">
+                                        <option value="$">USD ($)</option>
+                                        <option value="₹">INR (₹)</option>
+                                        <option value="€">EUR (€)</option>
+                                        <option value="£">GBP (£)</option>
+                                    </select>
+                                </div>
+                            <input type="number" class="form-control" id="startBidAmount" ng-model="c.data.startBidAmount" placeholder="Enter start bid amount" required>
+                        </div>
+                      </div>
+
+                        <!-- Textarea for Description -->
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" ng-model="c.data.description" placeholder="Enter description" rows="5" required></textarea>
+                        </div>
+
+                        <!-- Input field for Image Upload -->
+                        <div class="form-group">
+                            <label for="image">Image:</label>
+                            <input type="file" id="image" accept="image/*" ng-model="c.data.image" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Donate Now</button>
+                        <p ng-if="c.errorMessage" class="text-danger">{{c.errorMessage}}</p>
+                        <p ng-if="c.successMessage" class="text-success">{{c.successMessage}}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
