@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="pa_m2m_dashboard_tabs">
+    <pa_m2m_dashboard_tabs action="INSERT_OR_UPDATE">
+        <dashboard display_value="Charity bids calendar">579fa94283afc210304f5c65eeaad30b</dashboard>
+        <home>false</home>
+        <homepage/>
+        <order>3</order>
+        <sys_class_name>pa_m2m_dashboard_tabs</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-23 17:24:24</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>8dffa18283afc210304f5c65eeaad3da</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>579fa94283afc210304f5c65eeaad30b</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>pa_m2m_dashboard_tabs_8dffa18283afc210304f5c65eeaad3da</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-23 17:24:24</sys_updated_on>
+        <tab display_value="Auctions">bcff6d4283afc210304f5c65eeaad30b</tab>
+    </pa_m2m_dashboard_tabs>
+</record_update>

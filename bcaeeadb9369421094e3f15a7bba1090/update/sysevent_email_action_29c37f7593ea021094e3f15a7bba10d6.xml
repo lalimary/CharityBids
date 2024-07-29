@@ -40,17 +40,12 @@
         <mandatory>false</mandatory>
         <message/>
         <message_html><![CDATA[<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt; color: #3598db;"><strong>Dear ${item_name.donator},<br /></strong></span></p>
-<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">We are thrilled to inform you that you have won the auction for the following item.</span></p>
-<p style="text-align: left;">&nbsp;</p>
-<p style="text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong>Item ID:</strong> ${item_name.number}<br /></span></p>
-<p style="text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong>Item Name:</strong> ${item_name.item_name}<br /></span></p>
-<p style="text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong> Description:</strong> ${item_name.description}</span></p>
-<p style="text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong> Value:</strong> ${item_name.value} </span></p>
-<p style="text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong>Highest Bid Amount:</strong> ${item_name.highest_bid_amount}</span></p>
+<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">We are thrilled to inform you that you have won the auction for the following item. </span><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong>${item_name.item_name}</strong> worth ${item_name.value}.&nbsp;</span></p>
+<p style="text-align: center;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;"><strong>Your bid amount:</strong> ${item_name.highest_bid_amount}</span></p>
 <p style="text-align: left;">&nbsp;</p>
 <p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">Thank you for your generous contribution! Your bid will make a significant impact.</span></p>
 <p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">To proceed with payment and claim your item, please visit the link below: <a href="https://www.justgiving.com/how-to-help/cost-of-living-crisis/donate-to-charity-during-the-cost-of-living-crisis" target="_new" rel="noreferrer">https://www.justgiving.com/how-to-help/cost-of-living-crisis/donate-to-charity-during-the-cost-of-living-crisis</a></span></p>
-<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">If you have any questions, feel free to contact us at <a href="mailto:support@charitybids.com" rel="noreferrer">support@charitybids.com</a>.</span></p>
+<p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">If you have any questions, feel free to contact us at contact<a href="mailto:support@charitybids.com" rel="noreferrer">@charitybids.org</a>.</span></p>
 <p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">Best regards,</span></p>
 <p style="text-align: left;"><span style="font-family: arial, helvetica, sans-serif; font-size: 10pt;">Charity Bids team</span></p>]]></message_html>
         <message_list/>
@@ -74,7 +69,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>29c37f7593ea021094e3f15a7bba10d6</sys_id>
-        <sys_mod_count>30</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>Auction Win Notification</sys_name>
         <sys_overrides/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
@@ -82,7 +77,7 @@
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sysevent_email_action_29c37f7593ea021094e3f15a7bba10d6</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-21 06:23:55</sys_updated_on>
+        <sys_updated_on>2024-07-24 10:40:48</sys_updated_on>
         <sys_version>2</sys_version>
         <template display_value="Auction win template">7a7c830693aa421094e3f15a7bba10c9</template>
         <type>email</type>

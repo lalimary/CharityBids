@@ -77,29 +77,62 @@
 ]]></client_script>
         <controller_as>c</controller_as>
         <css>.countdown-timer {
-  font-family: Arial, sans-serif;
-  font-size: 2em;
-  text-align: center;
-  color: #333;
+    font-family: Arial, sans-serif;
+    font-size: 2em;
+    text-align: center;
+    color: #333;
 }
 .time {
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-radius: 5px;
-  display: inline-block;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
 }
+h1, .h1 {
+    font-size: 3.6rem;
+    color: #428bca;
+}
+
+input#eventType,
+input#eventName,
+input#startDate,
+input#endDate,
+input#justgivingUrl,
+textarea#description,
+input#imageUpload {
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+    color: #000;  /* Font color set to black */
+}
+
+.modal-content {
+    margin-bottom: 3rem;
+}
+
+.modal-header {
+    height: 9rem;
+    text-align: center;
+}
+
 img {
-  width: 50%;
+    width: 50%;
 }
 .imgC {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .col-md-6 {
-    /* margin-right: 10px; */
     width: 50%;
-}</css>
+}
+.btn-primary {
+    width: 123px;
+    height: 40px;
+    color: #fff;
+    background-color: #36879f;
+    border-color: #357ebd;
+}
+</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -149,18 +182,28 @@ img {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-07-18 04:52:51</sys_created_on>
         <sys_id>8ff39990932b421094e3f15a7bba105c</sys_id>
-        <sys_mod_count>45</sys_mod_count>
+        <sys_mod_count>64</sys_mod_count>
         <sys_name>cb justgiving details</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_8ff39990932b421094e3f15a7bba105c</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-22 07:08:26</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-26 05:13:53</sys_updated_on>
         <template><![CDATA[<div class="item-details" ng-if="c.data">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Create Event</h4>
+            <h1>Event Creation Wizard</h1>
+            <p class="quote" style="
+                position: relative;
+                bottom: 1rem;
+                color: #000;  /* Font color set to black */
+                width: 40rem;
+                left: 64rem;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+                font-size: 22px;
+                background: #3c98a04a;
+                padding: 10px;">"Fundraising is the gentle art of teaching the joy of giving." - Hank Rosso</p>
         </div>
 
         <div class="panel panel-default">
@@ -168,16 +211,16 @@ img {
                 <form name="eventForm" ng-submit="c.submitEvent()">
                     <div class="modal-body">
                       
-                       <!-- Input field for Event Type -->
+                        <!-- Input field for Event Type -->
                         <div class="form-group">
                             <label for="eventType">Event Type:</label>
-                            <input type="text" value="{{c.data.event_type}}" class="form-control" id="eventType"  placeholder="Enter event type" required>
+                            <input type="text" value="{{c.data.event_type}}" class="form-control" id="eventType" placeholder="Enter event type" required>
                         </div>
                       
-                       <!-- Input field for Event Name -->
+                        <!-- Input field for Event Name -->
                         <div class="form-group">
                             <label for="eventName">Event Name:</label>
-                            <input type="text" class="form-control" id="eventName"  placeholder="Enter event name" required>
+                            <input type="text" class="form-control" id="eventName" placeholder="Enter event name" required>
                         </div>
 
                         <!-- Input field for Start Date -->
@@ -192,12 +235,11 @@ img {
                             <input type="date" class="form-control" id="endDate" ng-model="c.data.end_date" required>
                         </div>
                       
-                       <!-- Input field for JustGiving URL -->
+                        <!-- Input field for JustGiving URL -->
                         <div class="form-group">
                             <label for="justgivingUrl">Page URL:</label>
                             <input type="text" class="form-control" id="justgivingUrl" ng-model="c.data.justgiving_url" placeholder="Enter JustGiving URL">
                         </div>
-
 
                         <!-- Textarea for Description -->
                         <div class="form-group">
@@ -205,12 +247,12 @@ img {
                             <textarea class="form-control" id="description" ng-model="c.data.description" placeholder="Enter event description" rows="5" required></textarea>
                         </div>
                       
-                       <!-- Upload Image -->
-                       <div class="form-group">
-                       <label for="imageUpload">Upload Image:</label>
-                       <input type="file" id="imageUpload" accept="image/*" onchange="angular.element(this).scope().c.uploadImage(this.files)" required>
-                       <p class="help-block">Select an image file (JPEG, PNG, etc.)</p>
-                       </div>
+                        <!-- Upload Image -->
+                        <div class="form-group">
+                            <label for="imageUpload">Upload Image:</label>
+                            <input type="file" id="imageUpload" accept="image/*" onchange="angular.element(this).scope().c.uploadImage(this.files)" required>
+                            <p class="help-block">Select an image file (JPEG, PNG, etc.)</p>
+                        </div>
 
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-primary" ng-click="c.createEvent()">Create Event</button>

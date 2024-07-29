@@ -39,4 +39,17 @@
         <url_target/>
     </sp_rectangle_menu_item>
     <sys_translated_text action="delete_multiple" query="documentkey=f50cd0389383461094e3f15a7bba10fb"/>
+    <sys_translated_text action="INSERT_OR_UPDATE">
+        <documentkey>f50cd0389383461094e3f15a7bba10fb</documentkey>
+        <fieldname>label</fieldname>
+        <language>fr</language>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-25 12:34:25</sys_created_on>
+        <sys_id>a480832e832b8610304f5c65eeaad3dc</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-25 12:34:34</sys_updated_on>
+        <tablename>sp_rectangle_menu_item</tablename>
+        <value>les enchères</value>
+    </sys_translated_text>
 </record_update>

@@ -6,24 +6,33 @@
 
     // Initialize data.items
     c.data.items = c.data.items || [];
+    
+    // Initialize noItemsMessage
+    c.data.noItemsMessage = '';
 
-    // Function to calculate days left
+    // Function to calculate if the auction is ending today
     c.calculateDaysLeft = function(endDate) {
         if (!endDate) {
-            return 'N/A';
+            return ''; // Return an empty string if there's no end date
         }
 
-        var endDateTime = new Date(endDate);
-        var currentDateTime = new Date();
-        var timeDiff = endDateTime.getTime() - currentDateTime.getTime();
-        var daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+        // Get current date in Indian timezone
+        var currentDateTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+        currentDateTime = new Date(currentDateTime);
 
-        if (daysLeft === 0) {
+        // Get end date in Indian timezone
+        var endDateTime = new Date(endDate).toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+        endDateTime = new Date(endDateTime);
+
+        // Get only date part for comparison
+        var currentDate = currentDateTime.toISOString().split('T')[0];
+        var endAuctionDate = endDateTime.toISOString().split('T')[0];
+
+        // Compare dates
+        if (currentDate === endAuctionDate) {
             return 'Ending today';
-        } else if (daysLeft === 1) {
-            return 'Ending tomorrow';
         } else {
-            return 'Ending in ' + daysLeft + ' days';
+            return ''; // Do not display anything if not ending today
         }
     };
 
@@ -83,6 +92,16 @@ body {
     padding: 0;
     line-height: 1.6;
     color: black; /* Set default font color to black */
+}
+
+img.alternateImg {
+    width: 45%;
+}
+
+.alternate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
@@ -199,7 +218,7 @@ h2 {
     cursor: pointer;
     opacity: 0;
     animation: fadeIn 0.5s forwards, slideInBottom 0.5s forwards;
-    height: 400px; /* Increased height for larger cards */
+    height: 32rem; /* Increased height for larger cards */
     position: relative; /* Ensure positioning context for absolute positioning */
 }
 
@@ -294,17 +313,14 @@ h2 {
     right: 10px;
     padding: 6px 12px;
     border-radius: 4px;
-    color: white;
+    color: black;
     font-size: 14px;
     font-weight: bold;
-}
-
-.days-left-orange {
-    background-color: #FFA500; /* Orange color */
+    background-color: #FFFFE0; /* Light yellow background */
+    border: 1px solid #FFD700; /* Darker yellow border */
 }
 
 .raise-issue-icon {
-    //position: absolute;
     top: 10px;
     right: 10px;
     font-size: 1.5em;
@@ -317,7 +333,42 @@ h2 {
 .raise-issue-icon:hover {
     color: #0056b3;
 }
-</css>
+
+p {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+}
+
+.load-more {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.load-more:hover {
+    background-color: #0056b3;
+}
+
+/* No Items Message */
+.no-items-message {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
+
+p {
+    margin: 0 0 1rem;
+    font-size: 2rem;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -401,58 +452,62 @@ h2 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-24 07:41:39</sys_created_on>
         <sys_id>b174122c930b061094e3f15a7bba101d</sys_id>
-        <sys_mod_count>297</sys_mod_count>
+        <sys_mod_count>325</sys_mod_count>
         <sys_name>Cb item categories</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_b174122c930b061094e3f15a7bba101d</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-20 16:50:20</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-26 05:21:00</sys_updated_on>
         <template><![CDATA[<div class="container">
-    <h1>Exclusive Auctions</h1>
-    <div class="cont">
-        <div class="category">
-            <h2>Select Category</h2>
-            <div class="multiselect">
-                <div class="options-container">
-                    <label ng-repeat="category in c.data.categoryArray" class="option">
-                        <input type="checkbox" ng-model="category.selected" ng-change="c.filterItems()">
-                        <span>{{ category.category }}</span>
-                    </label>
-                </div>
-            </div>
+  <h1>Exclusive Auctions</h1>
+  <div class="cont">
+    <div class="category">
+      <h2>Select Category</h2>
+      <div class="multiselect">
+        <div class="options-container">
+          <label ng-repeat="category in c.data.categoryArray" class="option">
+            <input type="checkbox" ng-model="category.selected" ng-change="c.filterItems()">
+            <span>{{ category.category }}</span>
+          </label>
         </div>
-        <div class="container1">
-            <div class="search-bar">
-                <input type="text" ng-model="c.searchQuery" placeholder="Search by item name" ng-change="c.filterItems()">
-            </div>
-            <div id="items-grid" class="items-grid">
-                <div ng-repeat="item in c.data.items" class="item-card" ng-click="c.showDetails(item)">
-                  <!-- Icon for raising issue -->
-                    
-                    <!-- End of icon -->
-                    <img ng-src="{{item.image || 'https://dev203498.service-now.com/issues.png'}}" alt="{{item.item_name}}">
-                    <div class="item-details">
-                        <div class="item-title">{{item.item_name}}</div>
-                        <div class="item-value">Value: $ {{item.value}}</div>
-                        <div class="item-value">Highest Bid: $ {{item.highest_bid_amount}}</div>
-                        <div ng-if="item.auction_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
-                        <div class="item-days-left">
-                            <span class="days-left-indicator"
-                                  ng-class="{'days-left-orange': c.calculateDaysLeft(item.end_date) !== 'Ended'}">
-                                {{ c.calculateDaysLeft(item.end_date) === '2' ? '2 days left' : c.calculateDaysLeft(item.end_date) }}
-                            </span>
-                        </div>
-                        <button ng-if="item.auction_status === 'Auction In Progress'" class="btn btn-secondary" ng-click="c.placeBid(item)">Place Bid</button>
-                    </div>
-                </div>
-            </div>
-            <div ng-if="c.data.noItemsMessage">
-                {{ c.data.noItemsMessage }}
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="container1">
+      <div class="search-bar">
+        <input type="text" ng-model="c.searchQuery" placeholder="Search by item name" ng-change="c.filterItems()">
+      </div>
+      <div id="items-grid" class="items-grid">
+        <div ng-if="c.data.items.length === 0">
+          <div class="alternate">
+            <img src="https://dev203498.service-now.com/issues.png" alt="No items found" class="alternateImg">
+            <p>Sorry, No items match your search.</p>
+          </div>
+        </div>
+        <div ng-repeat="item in c.data.items | limitTo: c.itemsToShow" class="item-card" ng-click="c.showDetails(item)">
+          <img ng-src="{{item.image || 'https://dev203498.service-now.com/issues.png'}}" alt="{{item.item_name}}">
+          <div class="item-details">
+            <div class="item-title">{{item.item_name}}</div>
+            <div class="item-value">Value: $ {{item.value}}</div>
+            <div class="item-value">Highest Bid: $ {{item.highest_bid_amount}}</div>
+            <div ng-if="item.auction_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
+            <div class="item-days-left">
+              <span class="days-left-indicator"
+                    ng-if="c.calculateDaysLeft(item.end_date)">
+                {{ c.calculateDaysLeft(item.end_date) }}
+              </span>
+            </div>
+            <button ng-if="item.auction_status === 'Auction In Progress'" class="btn btn-secondary" ng-click="c.placeBid(item)">Place Bid</button>
+          </div>
+        </div>
+      </div>
+      <button ng-if="c.data.items.length > c.itemsToShow" class="btn btn-primary load-more" ng-click="c.loadMore()">Load More</button>
+      <div ng-if="c.data.noItemsMessage" class="no-items-message">
+        {{ c.data.noItemsMessage }}
+      </div>
+    </div>
+  </div>
 </div>
 ]]></template>
     </sp_widget>

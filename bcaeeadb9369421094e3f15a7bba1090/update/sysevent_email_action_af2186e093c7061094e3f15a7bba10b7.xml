@@ -38,24 +38,13 @@
         <item_table/>
         <mandatory>false</mandatory>
         <message/>
-        <message_html><![CDATA[<p>Dear ${donator},</p>
-<p>We are writing to confirm that your item has been successfully submitted for auction. Thank you for your generous donation!</p>
+        <message_html><![CDATA[<p><span style="font-size: 12pt;"><strong>Dear ${donator},</strong></span></p>
+<p><span style="font-size: 12pt;">We are pleased to inform you that your item has been successfully submitted for auction. We sincerely appreciate your generous donation for the item<strong> ${item_name}&nbsp;</strong>worth <strong>${value}&nbsp;</strong>with a start bid amount of <strong>${start_bid_amount}</strong>.<br /><br /></span><span style="font-size: 12pt;">Your contribution will greatly support our cause, ${event_name}.</span></p>
+<p><span style="font-size: 12pt;"><em>"Generosity is the act that speaks the loudest."</em> &ndash; Unknown</span></p>
+<p><span style="font-size: 12pt;">If you have any questions or require further assistance, please do not hesitate to contact us through our <a href="#" rel="noreferrer">website</a>. Thank you once again for your invaluable support.</span></p>
 <p>&nbsp;</p>
-<p>Item Details:</p>
-<p style="text-align: center;">&nbsp;</p>
-<ul style="list-style-position: inside;">
-<li><strong>Item name: ${item_name}</strong></li>
-<li><strong>Description: ${description}</strong></li>
-<li><strong>Start bid amount: ${start_bid_amount}</strong></li>
-</ul>
-<p>Your contribution will support our cause ${event_name}.</p>
-<p>"Generosity is the act that speaks the loudest." &ndash; Unknown</p>
-<p>If you have any questions or need further assistance, please feel free to contact us at our website.</p>
-<p>Thank you once again for your support.</p>
-<p>Best regards,</p>
-<p>Event manager</p>
-<p>CharityBids</p>
-<p><br />.</p>]]></message_html>
+<p><span style="font-size: 12pt;"><strong>Best regards,</strong></span></p>
+<p><span style="font-size: 12pt;">${event_name.event_manager}</span><br /><span style="font-size: 12pt;">Event Manager</span><br /><span style="font-size: 12pt;">CharityBids</span></p>]]></message_html>
         <message_list/>
         <message_text/>
         <name>Item submission</name>
@@ -69,7 +58,7 @@
         <send_self>true</send_self>
         <sms_alternate/>
         <style/>
-        <subject>Confirmation of Item Submission for Auction</subject>
+        <subject> Confirmation of Your Auction Item Submission</subject>
         <subscribable>false</subscribable>
         <sys_class_name>sysevent_email_action</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
@@ -77,7 +66,7 @@
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
         <sys_id>af2186e093c7061094e3f15a7bba10b7</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>4</sys_mod_count>
         <sys_name>Item submission</sys_name>
         <sys_overrides/>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
@@ -85,7 +74,7 @@
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sysevent_email_action_af2186e093c7061094e3f15a7bba10b7</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-06-24 06:25:56</sys_updated_on>
+        <sys_updated_on>2024-07-25 18:08:13</sys_updated_on>
         <sys_version>2</sys_version>
         <template display_value="Item submission">51300e6093c7061094e3f15a7bba103c</template>
         <type>email</type>

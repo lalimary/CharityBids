@@ -9,22 +9,22 @@
     padding: 0;
     background-color: #f7f9fc;
 }
-
+ 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
-
-h1 {
+ 
+h2 {
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 36px;
+    margin-bottom: -1rem;
+    font-size: 2.2rem;
     color: #333;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: .15rem;
 }
-
+ 
 .search-input {
     display: block;
     width: 100%;
@@ -34,25 +34,30 @@ h1 {
     border: 1px solid #ccc;
     border-radius: 8px;
 }
-
+ 
 .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 20px;
 }
 
+a.event-card-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ 
 .event-card {
-    position: relative;
+    /* position: relative; */
     border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 1.2rem;
+    box-shadow: 0 .4rem .8rem rgba(0, 0, 0, .1);
     overflow: hidden;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
-    /* Removed transition for hover effects */
+    height: 109%;
 }
-
+ 
 .event-image {
     position: relative;
     height: 200px;
@@ -61,7 +66,7 @@ h1 {
     filter: blur(8px);
     z-index: 0;
 }
-
+ 
 .event-date {
     position: absolute;
     top: 10px;
@@ -76,18 +81,18 @@ h1 {
     align-items: center;
     justify-content: center;
 }
-
+ 
 .event-month {
     font-size: 14px;
     color: #888;
     font-weight: bold;
 }
-
+ 
 .event-day {
     font-size: 20px;
     color: #333;
 }
-
+ 
 .end-date-label {
     font-size: 12px;
     color: #888;
@@ -95,7 +100,7 @@ h1 {
     text-align: center;
     font-weight: bold;
 }
-
+ 
 .event-content {
     position: relative;
     z-index: 1;
@@ -105,14 +110,15 @@ h1 {
     margin-top: -50px;
     text-align: center;
 }
-
+ 
 .event-title {
     font-size: 22px;
     margin-bottom: 5px;
     color: #333;
     font-weight: bold;
+    text-align: center;
 }
-
+ 
 .event-description {
     font-size: 16px;
     color: #555;
@@ -120,14 +126,14 @@ h1 {
     word-wrap: break-word;
     display: block; /* Ensure event manager is always visible */
 }
-
+ 
 .event-status {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     margin-top: 10px;
 }
-
+ 
 .event-status-icon {
     width: 24px;
     height: 24px;
@@ -137,63 +143,84 @@ h1 {
     justify-content: center;
     margin-right: 10px;
 }
-
+ 
 .event-status-icon i {
     font-size: 18px; /* Adjust icon size */
 }
-
+ 
 .event-status-text {
     font-size: 14px;
     color: #888;
 }
-
+ 
 .event-status-icon.in-progress {
     background-color: #5cb85c; /* Green for 'In Progress' */
     color: #fff;
 }
-
+ 
 .event-status-icon.schedule {
     background-color: #428bca; /* Blue for 'Scheduled' */
     color: #fff;
 }
-
+ 
 .event-status-icon.completed {
     background-color: #d9534f; /* Red for 'Completed' */
     color: #fff;
 }
-
+ 
 .event-closed-msg {
     font-size: 16px;
     color: #999;
     margin-top: 10px;
     text-align: center;
 }
-
+ 
 .donation-options {
     margin-top: 20px;
     text-align: center;
 }
-
+ 
 .donation-options .donateButton {
     display: inline-block;
     margin: 5px;
     padding: 10px 20px;
     border: 2px solid #007bff; /* Blue outline */
-    color: #007bff;
+    color: black;
     text-decoration: none;
     border-radius: 8px;
     transition: background-color 0.3s, color 0.3s;
 }
-
+ 
 .donation-options a:hover {
     background-color: #007bff;
     color: #fff;
 }
-
+ 
 .event-closed.ng-scope {
     padding-top: 24px;
 }
-</css>
+.h2 {
+    text-align: center;
+    font-size: 3rem;
+}
+
+p {
+    line-height: 1.4;
+    color: black;
+    margin: 2rem;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3.6rem;
+}
+
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: black;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -235,6 +262,7 @@ h1 {
         var eventRecord = new GlideRecord('x_1383184_charityb_events');
  
         responseObj.eventTypes.forEach(function(eventType) {
+					if (eventType.description) { // Check if description exists
           // Check if the event name already exists in the table
           eventRecord.addQuery('event_type', eventType.name);
           eventRecord.query();
@@ -251,6 +279,7 @@ h1 {
  
           // Store the event name in the array to avoid duplicate inserts
           eventNames.push(eventType.name);
+					}
         });
  
         // Now populate data.activities with all events (including existing ones)
@@ -279,44 +308,45 @@ h1 {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-07-17 05:23:47</sys_created_on>
         <sys_id>5a71dc449363021094e3f15a7bba1078</sys_id>
-        <sys_mod_count>59</sys_mod_count>
+        <sys_mod_count>92</sys_mod_count>
         <sys_name>Justgiving test</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_5a71dc449363021094e3f15a7bba1078</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-20 04:33:11</sys_updated_on>
+        <sys_updated_on>2024-07-25 06:07:28</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Justgiving Events</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<link rel="stylesheet" href="styles.css">
-</head>
-<body ng-controller="EventController as c">
-<div class="container">
-<h1>Justgiving Events</h1>
-<input type="text" ng-model="searchQuery" placeholder="Search events..." class="search-input">
-<div class="events-grid">
-<div class="event-card" ng-repeat="activity in c.data.activities | filter:searchQuery" ng-click="openEventDetails(activity.sys_id)">
-<a ng-href="?id=justgiving_event_details&sys_id={{c.data.events[activity.id-1].eventsys}}" target="_blank" class="event-card-link">>
-<!--<h2>ID: {{ c.data.events[activity.id].eventsys }}</h2>-->
-<h2>{{ activity.name }}</h2>
-<p>Description: {{ activity.description }}</p>
-<!--<p>Location: {{ activity.location }}</p>-->
-<button ng-click="redirectToDetailsPage(activity.id)">Create Fundraising Events</button></a>
-<hr/>
-</div>
-<div ng-if="!c.data.activities.length" class="alert alert-warning">No events available</div>
-</div>
-</div>
- 
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justgiving Event Types</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body ng-controller="EventController as c">
+    <div class="container">
+      <h1>Justgiving Event Types</h1>
+      <input type="text" ng-model="searchQuery" placeholder="Search event types..." class="search-input">
+      <div class="events-grid">
+        <div class="event-card" ng-repeat="activity in c.data.activities | filter:{ description: '!!' } | filter:searchQuery" ng-click="openEventDetails(activity.sys_id)">
+
+          <a ng-href="?id=justgiving_event_details&sys_id={{c.data.events[activity.id-1].eventsys}}" target="_blank" class="event-card-link">
+            <!--<h2>ID: {{ c.data.events[activity.id].eventsys }}</h2>-->
+            <h2>{{ activity.name }}</h2>
+            <p>Description: {{ activity.description }}</p>
+            <!--<p>Location: {{ activity.location }}</p>-->
+            <button ng-click="redirectToDetailsPage(activity.id)" class="buttonEvents">Create Fundraising Events</button></a>
+          <hr/>
+        </div>
+        <div ng-if="!c.data.activities.length" class="alert alert-warning">No events available</div>
+      </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
-<script src="client.js"></script>
-</body>
+    <script src="client.js"></script>
+  </body>
 </html>]]></template>
     </sp_widget>
 </record_update>

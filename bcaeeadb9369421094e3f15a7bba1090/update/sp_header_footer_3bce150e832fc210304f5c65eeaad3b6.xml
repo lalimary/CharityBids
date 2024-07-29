@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_header_footer">
+    <sp_header_footer action="INSERT_OR_UPDATE">
+        <category>sample</category>
+        <client_script><![CDATA[api.controller=function() {
+  // widget controller
+  var c = this;
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.sample-footer {&#13;
+    background-color: black;&#13;
+    color: white;&#13;
+    display: flex;&#13;
+    padding: 0.5rem 4rem;&#13;
+    flex-direction: row-reverse;&#13;
+    justify-content: space-between;&#13;
+}&#13;
+&#13;
+a.footLinks:hover {&#13;
+    text-decoration: none;&#13;
+  	color:#fff;&#13;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id/>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb footer</name>
+        <option_schema/>
+        <public>true</public>
+        <roles/>
+        <script><![CDATA[(function() {
+ data.time = new GlideDateTime().getDisplayValue();
+})();]]></script>
+        <servicenow>false</servicenow>
+        <static>false</static>
+        <sys_class_name>sp_header_footer</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-23 16:09:31</sys_created_on>
+        <sys_id>3bce150e832fc210304f5c65eeaad3b6</sys_id>
+        <sys_mod_count>24</sys_mod_count>
+        <sys_name>cb footer</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_header_footer_3bce150e832fc210304f5c65eeaad3b6</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-24 15:10:20</sys_updated_on>
+        <template><![CDATA[ <div class="sample-footer" role="contentinfo">
+    <div style="display: flex; align-items: center;">
+        <!-- Left side with image -->
+       <!-- <img ng-src="{{::portal.logo}}" style="max-width: 100px; margin-right: 20px;" alt="Logo">-->
+
+        <!-- Right side with links -->
+        <div style="margin-left: auto;">
+          <a href="?id=about_us" style="margin-right: 20px;" class="footLinks">About Us</a>
+          <a href="?id=features" style="margin-right: 20px;" class="footLinks">Features</a>
+            <a href="?id=list_of_events" class="footLinks">Donate Now</a>
+          
+        </div>
+    </div>
+
+    <!-- Footer information -->
+    <p>CharityBids
+  <br> Small acts, Big impacts</p>
+</div>
+]]></template>
+    </sp_header_footer>
+</record_update>

@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_rel_widget_clone">
+    <sp_rel_widget_clone action="INSERT_OR_UPDATE">
+        <child display_value="Cb user preferences">6348121a83e34610304f5c65eeaad3b2</child>
+        <cloned>2024-07-24 14:59:12</cloned>
+        <last_validated>2024-07-24 14:59:12</last_validated>
+        <parent display_value="User Preferences">b3261ba253710110880bddeeff7b121d</parent>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;sp_widget&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[function ($scope, $element, $window, $location, $rootScope, $timeout, snAttachmentHandler, $http, spUtil, userPreferences, $filter, i18n, $uibModal, spAriaUtil) {
+  // Many of these fields are more configuration-type fields than profile fields. We still want to display
+  // these to a user who is configuring their 'settings', but we shouldn't show them on a user profile page.
+  // We need to handle this better.
+  var fieldExcludes = {
+    sys_user: ['name', 'introduction', 'title', 'department', 'location', 'photo',
+                'manager', 'company']
+  }
+
+  $scope.$watch('data.dateTimeFormat', function() {
+    if ($scope.data.dateTimeFormat != g_user_date_time_format)
+      $scope.data.dateTimeFormatChanged = true;
+  });
+
+
+  $scope.connectEnabled = function() {
+    return $scope.data.connectEnabled &amp;&amp; !$scope.data.isLoggedInUsersProfile;
+  }
+
+
+  $scope.getSysUserModelFields = function() {
+    if ($scope.data.userExists) {
+      return $scope.data.sysUserModelList
+              .filter(function(field) {
+                return $scope.displayField("sys_user", field.name);
+              });
+    }
+    return [];
+  }
+
+  $scope.data.showAnalytics = $scope.data.analytics_enabled &amp;&amp; $scope.data.sp_analytics_plugin_active &amp;&amp; !NOW.user_impersonating &amp;&amp; NOW.sp_analytics_portal_override != true;
+  $scope.data.userPreferencesChanged = false;
+  $scope.data.dateTimeFormatChanged = false;
+
+  // get the list of values for a property using the concourse picker api (timezone, language)
+  var getListValuesForProperty = function(endpoint, listProperty) {
+    $http.get('/api/now/ui/concoursepicker/' + endpoint).then(function(response) {
+      if (response &amp;&amp; response.data &amp;&amp; response.data.result &amp;&amp; response.data.result.list) {
+        if (!listProperty.list)
+          listProperty.list = [];
+
+        listProperty.list = response.data.result.list;
+        if (response.data.result.current) {
+          if (!listProperty.current)
+            listProperty.current = {};
+          listProperty.current = $filter('filter')(listProperty.list, {value: response.data.result.current}, true)[0];
+        }
+      }
+    });
+  };
+
+  // list of user properties that are not user preferences
+  $scope.data.listProperties = {
+    timezone: {},
+    encryption: {},
+    language: {}
+  }
+
+  // initialize dropbox data
+  getListValuesForProperty('timezone', $scope.data.listProperties.timezone);
+  getListValuesForProperty('language', $scope.data.listProperties.language);
+  getListValuesForProperty('encryption', $scope.data.listProperties.encryption);
+
+  //set the user property
+  $scope.setPreferenceValue = function(endpoint, value) {
+    $http.put('/api/now/ui/concoursepicker/' + endpoint, {current : value, id: value}).then(function(response) {
+      if (response &amp;&amp; response.data &amp;&amp; response.data.result) {
+        $scope.data.userPreferencesChanged = true;
+      }
+    });
+  }
+
+  //set the user preference value
+  $scope.setUserPreferenceValue = function(userProperty) {
+    userPreferences.setPreference(userProperty.key, userProperty.value).then(function() {
+          $scope.data.userPreferencesChanged = true;
+    });
+  };
+
+  $scope.updateUserTracking = function(userProperty) {
+    $scope.setUserPreferenceValue(userProperty);
+    $scope.server.get({
+      action: "update_session_tracking_info",
+      user_tracking : userProperty.value
+    }).then(function() {
+      NOW.usage_tracking.usage_tracking_allowed_for_session = userProperty.value;
+    });
+  };
+
+  $scope.toggle = function(e, userProperty) {
+    if (e.type === 'keypress' &amp;&amp; e.keyCode === 32) {
+      userProperty.value = !userProperty.value;
+      $scope.setUserPreferenceValue(userProperty);
+    }
+  }
+
+  $scope.reloadPage = function() {
+      $window.location.reload(true);
+  };
+
+  $scope.displayField = function(tableName, field, isHeader) {
+    if (!isHeader &amp;&amp; fieldExcludes[tableName].indexOf(field) &gt; -1) return false;
+
+    if (models[tableName][field] &amp;&amp; models[tableName][field].type === "boolean") return false;
+
+    if ($scope.data.isLoggedInUsersProfile) {
+      if (models[tableName][field] &amp;&amp; models[tableName][field].readonly)
+        return models[tableName][field].displayValue;
+      else
+        return models[tableName][field];
+    } else {
+      return models[tableName][field] &amp;&amp; models[tableName][field].displayValue;
+    }
+  }
+
+  $scope.triggerMFAConfigurationModal = function() {
+    $window.location = "?id=multi_factor_authentication";
+  }
+
+  $scope.triggerManageCertificatesModal = function() {
+    $window.location = '?id=client_certificate_list&amp;table=sys_user_certificate&amp;filter=user=' + $scope.data.sysUserID;
+  }
+
+  $scope.triggerRegisterTrustedDevice = function() {
+		$window.location = '?id=register_trusted_device';
+	}
+  $scope.openIdentityCenter = function() {
+		$window.location = '/now/identity-center/home/' + encodeURIComponent($window.location.pathname + $window.location.search + $window.location.hash);
+	}
+
+  $scope.triggerCertificateConfigurationModal = function() {
+        $scope.data.action = 'certRegister';
+        $scope.server.update().then(function(response) {
+            if (response.certHeader == 'false')
+                spUtil.addErrorMessage($scope.data.certErrorMsg);
+            else {
+                var pageRoot = angular.element('.sp-page-root');
+                $scope.certAuthModalModalInstance = $uibModal.open({
+                    templateUrl: 'certAuthModalTemplate',
+                    scope: $scope,
+                    size: 'lg'
+                });
+                $scope.certAuthModalModalInstance.rendered.then(function() {
+                    var h1 = angular.element('#certAuthModal');
+                    var modal = h1.closest('div.modal');
+                    modal.attr('aria-labelledby', 'certAuthModal');
+                    pageRoot.attr('aria-hidden', 'true');
+                });
+                $scope.certAuthModalModalInstance.closed.then(function() {
+                    pageRoot.attr('aria-hidden', 'false');
+                });
+            }
+        });
+        createCloseCertAuthModalHandler();
+        }
+
+  $scope.dismissCertAuthConfigurationModal = function() {
+        $scope.certAuthModalModalInstance.close();
+    }
+
+  $scope.sysUserModelFields = $scope.getSysUserModelFields();
+
+  function createCloseCertAuthModalHandler() {
+        // This is a hack. Wait for the inner iframe to load, then mock
+        // the GlideDialogWindow close function to do the right thing. If it's not ready
+        // after a second, try again 9 more times. 
+        var retryCount = 0;
+        var maxRetries = 10;
+        tryOverrideGlideDialogWindowClose();
+
+        function tryOverrideGlideDialogWindowClose() {
+            $timeout(function() {
+                var frameGlideDialogWindow = document.getElementById('cert-auth-config-window').contentWindow['GlideDialogWindow'];
+                if (!frameGlideDialogWindow) {
+                    retryCount++;
+                    if (retryCount &gt;= maxRetries)
+                        return;
+
+                    tryOverrideGlideDialogWindowClose();
+                    return;
+                }
+
+                frameGlideDialogWindow.get = function() {
+                    return {
+                        destroy: function() {
+                            $scope.dismissCertAuthConfigurationModal();
+                        }
+                    }
+                };
+            }, 1000);
+        }
+    }
+}]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.list-group-item {
+  border: none;
+  padding: 5px 15px;
+
+  .btn-link {
+  	padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.user-name {
+  word-break: break-word;
+}
+
+.select2-container.select2-allowclear .select2-choice .select2-chosen {
+  margin-right: 60px;
+}
+
+.mia i {
+  font-size: 6rem;
+}
+
+.mia {
+  color: #808080;
+}
+
+.popover {
+  z-index: 1049;
+}
+
+.user-profile-container {
+  width: 100%;
+  max-width: 755px;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+.input-switch input[type=checkbox]:checked ~ .switch {
+	background-color: $brand-primary;
+}
+
+// accessible accessibility toggle
+@media screen and (-ms-high-contrast: active) {
+  .input-switch input.ng-not-empty+label.switch[for="accessibility-enabled"] {
+    background-color: highlight;
+    border: none;
+
+    &amp;amp;:before {
+      background-color: highlightText;
+    }
+  }
+
+  .input-switch input.ng-empty+label[for="accessibility-enabled"] {
+    background-color: window;
+    border: 1px solid windowText;
+
+    &amp;amp;:before {
+      background-color: windowText;
+    }
+  }
+}&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;false&lt;/has_preview&gt;&lt;id&gt;user-preferences&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;User Preferences&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;true&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {
+    if (input &amp;&amp; input.action === "update_session_tracking_info") {
+    gs.getSession().putProperty("usage_tracking_allowed_for_session", input.user_tracking);
+    return;
+    
+  }
+  data.analytics_enabled = GlideProperties.getBoolean("glide.analytics.enabled");
+  data.sp_analytics_plugin_active = GlidePluginManager.isActive('com.glide.service-portal.analytics');
+
+  // populate the 'data' object
+  // e.g., data.table = $sp.getValue('table');
+  data.sysUserID = $sp.getParameter("sys_id");
+  if (!data.sysUserID)
+      data.sysUserID = gs.getUser().getID();
+  var sysUserGR = new GlideRecord("sys_user");
+  data.userExists = sysUserGR.get(data.sysUserID) &amp;&amp; sysUserGR.canRead();
+
+  if (data.userExists) {
+    sysUserGR = GlideScriptRecordUtil.get(sysUserGR).getRealRecord();
+    data.table = sysUserGR.getRecordClassName();
+    data.name = sysUserGR.getValue("name");
+    var loggedInSysUserID = gs.getUser().getID();
+    data.connectEnabled = GlidePluginManager().isActive('com.glide.connect');
+    data.liveProfileID = "";
+    data.dateTimeFormat = gs.getDateTimeFormat();
+
+    //get live profile id for sending connect messages
+    if (GlidePluginManager().isActive('com.glideapp.live_common')) {
+      var liveProfileGR = new GlideRecord("live_profile");
+      liveProfileGR.addQuery("document", data.sysUserID);
+      liveProfileGR.query();
+      if (liveProfileGR.next()) {
+        data.liveProfileID = liveProfileGR.getValue("sys_id");
+        data.liveProfileModel = $sp.getForm("live_profile", data.liveProfileID)._fields;
+        // live_profile short_description is shown here as "Bio", so popup label/hint must reflect that
+        if (data.liveProfileModel.short_description) {
+          data.liveProfileModel.short_description.label = gs.getMessage("Bio");
+          data.liveProfileModel.short_description.hint = gs.getMessage("Biography");
+        }
+      } else
+        data.connectEnabled = false; //can't find a live profile for this user, so lets not integrate Connect
+    }
+
+    data.isLoggedInUsersProfile = loggedInSysUserID.equals(data.sysUserID);
+    var sysUserForm = $sp.getForm(data.table, data.sysUserID);
+    data.sysUserView = sysUserForm._view;
+    data.sysUserModel = sysUserForm._fields;
+    data.sysUserModelList = [];
+
+
+
+    //get state preferences
+    data.preferencesEnabled = getPreferencesEnabled();
+
+    //get the user Preferences of the user
+    data.userPreferences = getUserPreferences(data.sysUserID);
+  }
+
+    //get the certificate header
+    if (input.action == "certRegister") {
+      var request = GlideTransaction.get().getRequest();
+      var certHeader = request.getHeader("X-Client-Cert");
+      if (!certHeader) {
+        data.certHeader = "false";
+        data.certErrorMsg = gs.getMessage("Failed to register PIV/CAC certificate to the user account. Please close your browser, ensure your card is inserted and try again");
+      }	
+    }
+
+
+  // returns the user preferences from the platform
+  function getUserPreferences(userID){
+    var user = GlideUser.getUserByID(userID);
+    return {
+      accessibility: {
+        key: 'glide.ui.accessibility',
+        value: user.getPreference('glide.ui.accessibility') == 'true'
+      },
+      analytics: {
+        key: 'enable_analytics',
+        value: user.getPreference('enable_analytics') == 'true'
+      }
+    }
+  }
+
+  // read the proper state so we can show/hide preferences in the preferences table
+  function getPreferencesEnabled() {
+    var showEncryption = pm.isActive('com.glide.encryption') &amp;&amp; 
+        gs.getProperty('glide_encryption.cle_replatforming_with_kmf') !== 'opt_in' &amp;&amp; 
+        new SNC.ConcoursePickerGenerator().hasMultipleEncryptionChoices();
+        
+    //Enabling certificate based authentication per portal
+    var portalRecord = $sp.getPortalRecord();
+    if (portalRecord &amp;&amp; (portalRecord.getValue('enable_certificate_based_authentication') == 1))
+      var cert_based_auth = gs.getProperty('glide.authenticate.mutual.enabled', 'false') == 'true';
+
+    return {
+      // show preferences only if the sys_id of the url is the same user that is logged on
+    preferencesPanelEnabled : GlideStringUtil.nil($sp.getParameter('sys_id')) || $sp.getParameter('sys_id') == gs.getUserID(),
+
+      //certain properties are visible in some cases
+      languageEnabled : pm.isActive('com.glide.i18n') &amp;&amp; gs.getProperty('glide.ui.language_picker.enabled', 'true') == 'true',
+      timezoneEnabled: gs.hasRole(gs.getProperty('glide.timezone_changer.roles')),
+      encryptionEnabled: showEncryption,
+      mfaEnabled: gs.getProperty('glide.authenticate.multifactor', "false") == "true",
+      certAuthEnabled: cert_based_auth,
+      trustedDeviceEnabled: gs.getProperty('glide.authenticate.preauth.allow.trusted.device', "false") == "true" &amp;&amp; gs.getProperty('glide.authenticate.auth.policy.enabled', "false") == "true" &amp;&amp; new GlideImpersonate().isImpersonating() == false,
+      identityCenterEnabled : pm.isActive('com.snc.identity_center')
+    }
+  }
+})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2022-02-24 05:33:32&lt;/sys_created_on&gt;&lt;sys_id&gt;b3261ba253710110880bddeeff7b121d&lt;/sys_id&gt;&lt;sys_mod_count&gt;13&lt;/sys_mod_count&gt;&lt;sys_name&gt;User Preferences&lt;/sys_name&gt;&lt;sys_package display_value="Service Portal - Core" source="com.glide.service-portal"&gt;b8af8824d9f13110cedf7dffddb48f4b&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_b3261ba253710110880bddeeff7b121d&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2023-01-23 20:03:14&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="default-focus-outline"&gt;
+  &lt;div ng-if="!data.userExists" class="panel panel-default"&gt;
+      &lt;div class="panel-body wrapper-lg text-center"&gt;
+        &lt;p&gt;${Requested user not found}&lt;/p&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div ng-if="data.userExists"&gt;
+    &lt;div class="row" ng-if="data.preferencesEnabled.preferencesPanelEnabled"&gt;
+      &lt;div class="col-sm-12 col-xs-12"&gt;
+        &lt;div class="panel panel-default b"&gt;
+          &lt;div class="panel-heading"&gt;
+            &lt;h2 class="panel-title"&gt;
+              &lt;i class="fa fa-cog m-r-sm"&gt;&lt;/i&gt;${User preferences}
+            &lt;/h2&gt;
+          &lt;/div&gt;
+          &lt;div class="body padder-xs"&gt;
+            &lt;div class="list-group"&gt;
+              &lt;div class="list-group-item"&gt;
+                &lt;label&gt;${Accessibility enabled} &lt;/label&gt;
+                &lt;div class="input-switch"&gt;
+                  &lt;input type="checkbox"
+                         ng-change="setUserPreferenceValue(data.userPreferences.accessibility)"
+                         ng-model="data.userPreferences.accessibility.value"
+                         name="accessibility-enabled" id="accessibility-enabled" aria-label="${Accessibility enabled}" role="switch" ng-attr-aria-checked="{{ data.userPreferences.accessibility.value }}"/&gt;
+                  &lt;label class="switch" for="accessibility-enabled" ng-click="toggle($event, data.userPreferences.accessibility)" role="presentation" aria-hidden="true"&gt;
+                    &lt;span class="sr-only"&gt;${Accessibility enabled}&lt;/span&gt;
+                  &lt;/label&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.showAnalytics"&gt;
+                &lt;label&gt;${Enable Analytics} &lt;/label&gt;
+                &lt;div class="input-switch"&gt;
+                  &lt;input type="checkbox"
+                         ng-change="updateUserTracking(data.userPreferences.analytics)"
+                         ng-model="data.userPreferences.analytics.value"
+                         name="analytics-enabled" id="analytics-enabled" aria-label="${Enable Analytics}" role="switch" ng-attr-aria-checked="{{ data.userPreferences.analytics.value }}"/&gt;
+                  &lt;label class="switch" for="analytics-enabled" ng-click="toggle($event, data.userPreferences.analytics)" role="presentation" aria-hidden="true"&gt;
+                    &lt;span class="sr-only"&gt;${Enable Analytics}&lt;/span&gt;
+                  &lt;/label&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.timezoneEnabled"&gt;
+                &lt;label for="time_zone_picker_select"&gt;${Time zone}&lt;/label&gt;
+                &lt;select id="time_zone_picker_select" class="form-control "
+                        name="time_zone_picker_select" ng-model="data.listProperties.timezone.current"
+                        ng-change="setPreferenceValue('timezone', data.listProperties.timezone.current.value)"
+                        ng-options="item as item.label for item in data.listProperties.timezone.list track by item.value"&gt;&lt;/select&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.languageEnabled"&gt;
+                &lt;label for="language_picker_select"&gt;${Language}&lt;/label&gt;
+                &lt;select id="language_picker_select" class="form-control"
+                        name="language_picker_select" ng-model="data.listProperties.language.current"
+                        ng-change="setPreferenceValue('language', data.listProperties.language.current.value)"
+                        ng-options="item as item.label for item in data.listProperties.language.list track by item.value"&gt;&lt;/select&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.encryptionEnabled"&gt;
+                &lt;label for="encryption_picker_select"&gt;${Encryption}&lt;/label&gt;
+                &lt;span class="fa fa-lock"&gt;&lt;/span&gt;
+                &lt;select id="encryption_picker_select" class="form-control"
+                        name="encryption_picker_select" ng-model="data.listProperties.encryption.current"
+                        ng-change="setPreferenceValue('encryption', data.listProperties.encryption.current.value)"
+                        ng-options="item as item.label for item in data.listProperties.encryption.list "&gt;&lt;/select&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.mfaEnabled"&gt;
+                &lt;button class="btn btn-link" ng-click="triggerMFAConfigurationModal()" aria-haspopup="dialog"&gt;${Configure Multi-Factor Authentication}&lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.certAuthEnabled"&gt;
+                &lt;button class="btn btn-link" ng-click="triggerCertificateConfigurationModal()" aria-haspopup="dialog"&gt;${Register your client certificate}&lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.certAuthEnabled"&gt;
+                &lt;button class="btn btn-link" ng-click="triggerManageCertificatesModal()" aria-haspopup="dialog"&gt;${Manage your client certificates}&lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class="list-group-item" ng-if="data.preferencesEnabled.trustedDeviceEnabled"&gt;
+                &lt;button class="btn btn-link" ng-click="triggerRegisterTrustedDevice()" aria-haspopup="dialog"&gt;${Register Trusted Device}&lt;/button&gt;
+              &lt;/div&gt;
+             &lt;div class="list-group-item" ng-if="data.preferencesEnabled.identityCenterEnabled"&gt;
+                &lt;button class="btn btn-link" ng-click="openIdentityCenter()" aria-role="link"&gt;${View Identity Center}&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class="panel-footer clearfix" ng-if="data.userPreferencesChanged"&gt;
+            &lt;a id="refresh-to-see-changes" href="javascript:void(0)"
+               ng-click="reloadPage()" class="pull-right btn btn-primary"&gt;&lt;i class="fa fa-refresh m-r-sm" aria-hidden="true"&gt;&lt;/i&gt;${Refresh to see changes}&lt;/a&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;script type="text/ng-template" id="certAuthModalTemplate"&gt;
+        &lt;div&gt;
+          &lt;div class="modal-header"&gt;
+            &lt;h1 class="h4 modal-title" id="certAuthModal" style="display: inline-block"&gt;${PIV/CAC Certificate Found}&lt;/h1&gt;
+            &lt;i class="fa fa-close pull-right text-base" tabindex="0" ng-click="dismissCertAuthConfigurationModal()" aria-label="${Close dialog}" role="button"&gt;&lt;/i&gt;
+          &lt;/div&gt;
+          &lt;div class="modal-body"&gt;
+          	&lt;iframe id="cert-auth-config-window" src="/cert_confirm_page.do" width="100%" height="240px" frameBorder="0"&gt;&lt;/iframe&gt;
+          &lt;/div&gt;
+          
+        &lt;/div&gt;
+      &lt;/script&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;</payload>
+        <sys_class_name>sp_rel_widget_clone</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-24 14:59:12</sys_created_on>
+        <sys_id>a748121a83e34610304f5c65eeaad3b5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>6348121a83e34610304f5c65eeaad3b2</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_rel_widget_clone_a748121a83e34610304f5c65eeaad3b5</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-24 14:59:12</sys_updated_on>
+    </sp_rel_widget_clone>
+</record_update>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_translated">
+    <sys_translated action="INSERT_OR_UPDATE">
+        <element>name</element>
+        <id/>
+        <label>Admin dashboard - New Tab</label>
+        <language>en</language>
+        <name>pa_tabs</name>
+        <sys_class_name>sys_translated</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-23 17:07:51</sys_created_on>
+        <sys_id>162ca54e836fc210304f5c65eeaad33a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Admin dashboard - New Tab</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_translated_162ca54e836fc210304f5c65eeaad33a</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-23 17:07:51</sys_updated_on>
+        <value>d62ca14e836fc210304f5c65eeaad313Admin dashboard - New Tab</value>
+    </sys_translated>
+</record_update>

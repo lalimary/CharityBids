@@ -47,7 +47,7 @@
 ]]></client_script>
         <controller_as>c</controller_as>
         <css>.container {
-    max-width: 1200px;
+    max-width: 1000px; /* Adjusted container width */
     margin: 0 auto;
     padding: 20px;
 }
@@ -55,89 +55,89 @@
 h1 {
     text-align: center;
     margin-bottom: 20px;
-    font-size: 2.5em;
+    font-size: 2em; /* Reduced font size */
     color: #333;
 }
 
 #items-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 1.5rem;
     justify-content: center;
+    margin-bottom: 16rem;
 }
-
 .item-card {
-  position: relative;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 300px;
-  height: 250px; /* Increased height to accommodate slide effect */
-  cursor: pointer;
-  transition: transform 0.2s;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 250px; /* Reduced width */
+    height: 200px; /* Reduced height */
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
 .item-card:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 .item-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+    width: 100%;
+    height: 150px; /* Reduced height of the image */
+    object-fit: cover;
 }
 
 .item-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  transition: bottom 0.3s ease;
-  z-index: 1; /* Ensure content is above the sliding section */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Reduced padding */
+    transition: bottom 0.3s ease;
+    z-index: 1; /* Ensure content is above the sliding section */
 }
 
 .item-details-slide {
-  position: absolute;
-  bottom: -100%;
-  left: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.9); /* Transparent white background */
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  transition: bottom 0.3s ease, opacity 0.3s ease; /* Add opacity transition */
-  opacity: 0; /* Initially transparent */
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Transparent white background */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Reduced padding */
+    transition: bottom 0.3s ease, opacity 0.3s ease; /* Add opacity transition */
+    opacity: 0; /* Initially transparent */
 }
 
 .item-card:hover .item-details-slide {
-  bottom: 0;
-  z-index: 10;
-  opacity: 1; /* Slide up and become opaque on hover */
+    bottom: 0;
+    z-index: 10;
+    opacity: 1; /* Slide up and become opaque on hover */
 }
 
 .item-details-slide ul {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
+    margin: 0; /* Remove margin */
 }
 
 .item-details-slide li {
-  margin-bottom: 5px;
-  color: #333;
+    margin-bottom: 3px; /* Reduced margin */
+    color: #333;
 }
 
-
 .item-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+    font-size: 1.2em; /* Reduced font size */
+    margin-bottom: 5px; /* Reduced margin */
     color: #333;
 }
 
 .item-bid-amount {
-    font-size: 1.2em;
+    font-size: 1em; /* Reduced font size */
     color: #555;
     display: flex;
     align-items: center;
@@ -239,14 +239,14 @@ h1 {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-26 07:16:21</sys_created_on>
         <sys_id>6ed1609593c3021094e3f15a7bba10c8</sys_id>
-        <sys_mod_count>84</sys_mod_count>
+        <sys_mod_count>88</sys_mod_count>
         <sys_name>My bid history</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_6ed1609593c3021094e3f15a7bba10c8</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-22 10:44:06</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-24 19:42:55</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html ng-app="charityApp">
 
@@ -269,7 +269,7 @@ h1 {
     <div class="item-content">
       <div class="item-title">{{item.item_name}}</div>
       <div class="item-bid-amount">
-        <i class="fas fa-tag"></i> Latest Bid Amount: {{item.bid_amount}}
+        <i class="fas fa-tag"></i> Latest Bid Amount: ${{item.bid_amount}}
       </div>
     </div>
     
@@ -277,7 +277,7 @@ h1 {
       <h3>Previous Bids</h3>
       <ul>
         <li ng-repeat="bid in item.previousBids">
-          Bid Amount: {{bid.bid_amount}}
+          Bid Amount: ${{bid.bid_amount}}
         </li>
       </ul>
     </div>

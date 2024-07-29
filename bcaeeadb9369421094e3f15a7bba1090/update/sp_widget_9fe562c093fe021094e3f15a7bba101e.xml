@@ -13,30 +13,40 @@
 }
 
 .container {
-    position: relative;
-    max-width: 800px;
+    /* position: relative; */
+    display: flex;
+    max-width: 80rem;
     margin: auto;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 36rem;
+    border-radius: 1.5rem;
 }
 
 .image-container {
-    position: relative;
-    text-align: center;
-    color: white;
-}
-
-.image-container img {
     width: 100%;
-    height: auto;
-    display: block;
+    text-align: center;
+    display: flex;
+    color: white;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-bottom: 2.6rem;
+    align-items: flex-start;
+  
 }
 
 .text-overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+    display: flex;
+    height: 100%;
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    color: #ffffff;
+    position: relative;
+    right: 18rem;
+    padding: 10px;
+    /* background: rgb(255 255 255 / 78%); */
+    border-radius: 20px;
+    justify-content: center;
 }
 
 .text-large {
@@ -51,21 +61,23 @@
 }
 
 .start-fundraising {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color: #b2ff59;
-    color: black;
+    background-color: #ffffff;
+    color: #327e9e;
+    right: 17rem;
+    position: relative;
+    bottom: 5rem;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
+    padding: 1rem 2rem;
+    border-radius: .5rem;
+    font-size: 2.2rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color .3s ease;
 }
 
 .start-fundraising:hover {
-    background-color: #76ff03;
+    background-color: #327e9e;
+  	color: #fff;
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -90,31 +102,30 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-10 09:25:17</sys_created_on>
         <sys_id>9fe562c093fe021094e3f15a7bba101e</sys_id>
-        <sys_mod_count>101</sys_mod_count>
+        <sys_mod_count>125</sys_mod_count>
         <sys_name>cb homepage main</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_9fe562c093fe021094e3f15a7bba101e</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-22 10:22:43</sys_updated_on>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-25 18:34:04</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fund Help Others</title>
+    <title>${Fund Help Others}</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <div class="image-container">
-            <img src="Image5.png" alt="Hands reaching out">
             <div class="text-overlay">
-                <div class="text-large">Fund</div>
-                <div class="text-small">Help Others</div>
+                <div class="text-large">${Making a Difference Starts Here}</div>
+                <div class="text-small">${Find and support charities that align with your passions}</div>
             </div>
-            <button class="start-fundraising">Start Fundraising</button>
+            <a href="?id=list_of_events" class="start-fundraising">Start Fundraising</a>
         </div>
     </div>
 </body>

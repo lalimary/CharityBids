@@ -1,145 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function($scope, spUtil) {
-    var c = this;
+        <client_script><![CDATA[api.controller = function($scope) {
+  var c = this;
+  c.currentIndex = 0;
 
-    // Initialize data.items and currency array
-    c.data.items = c.data.items || [];
-    c.data.currencyArray = [
-        { currency_type: 'USD', selected: false },
-        { currency_type: 'EUR', selected: false },
-        { currency_type: 'GBP', selected: false },
-        { currency_type: 'JPY', selected: false }
-    ];
+  c.next = function() {
+    var items = document.querySelectorAll('.carousel-item');
+    if (c.currentIndex < items.length - 1) {
+      c.currentIndex++;
+    } else {
+      c.currentIndex = 0;
+    }
+    updateCarousel();
+  };
 
-    // Initialize price range
-    c.minPrice = 0;
-    c.maxPrice = 10000;
+  c.prev = function() {
+    var items = document.querySelectorAll('.carousel-item');
+    if (c.currentIndex > 0) {
+      c.currentIndex--;
+    } else {
+      c.currentIndex = items.length - 1;
+    }
+    updateCarousel();
+  };
 
-    // Function to calculate days left
-    c.calculateDaysLeft = function(endDate) {
-        if (!endDate) {
-            return 'N/A';
-        }
+  function updateCarousel() {
+    var carousel = document.querySelector('.carousel');
+    var itemWidth = document.querySelector('.carousel-item').offsetWidth;
+    var offset = -c.currentIndex * (itemWidth + 20); // Adjust the 20 based on the margin
+    carousel.style.transform = 'translateX(' + offset + 'px)';
+  }
 
-        var endDateTime = new Date(endDate);
-        var currentDateTime = new Date();
-        var timeDiff = endDateTime.getTime() - currentDateTime.getTime();
-        var daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  c.hover = function(index) {
+    var carouselItems = document.querySelectorAll('.carousel-item');
+    carouselItems.forEach(function(item, idx) {
+      if (idx === index) {
+        item.style.transform = 'scale(1.1)';
+        item.style.opacity = '1';
+        item.style.zIndex = '10';
+      } else {
+        item.style.transform = 'scale(1)';
+        item.style.opacity = '0.8';
+        item.style.zIndex = '1';
+      }
+    });
+  };
 
-        if (daysLeft === 0) {
-            return 'Ending today';
-        } else if (daysLeft === 1) {
-            return 'Ending tomorrow';
-        } else {
-            return 'Ending in ' + daysLeft + ' days';
-        }
-    };
-
-    // Function to handle placing a bid
-    c.placeBid = function(item) {
-        alert('Placing bid for: ' + item.item_name);
-        
-        spUtil.get('cb_bid_form', { itemSysId: item.sys_id }).then(function(response) {
-            spUtil.addInfoMessage('Opening bid form...');
-            spUtil.openWidget(response.data);
-        });
-    };
-
-    // Function to show item details
-    c.showDetails = function(item) {
-        var itemDetailUrl = "?id=item_details&sys_id=" + item.sys_id;
-        window.location.href = itemDetailUrl;
-    };
-
-    // Watch the items array for changes
-    $scope.$watch(function() {
-        return c.data.items;
-    }, function(newVal) {
-        if (newVal && newVal.length === 0) {
-            $scope.noItemsMessage = "No items available";
-        } else {
-            $scope.noItemsMessage = "";
-        }
-    }, true);
-
-    // Function to filter items based on the selected categories, search query, and price range
-    c.filterItems = function() {
-        var selectedCategories = c.data.categoryArray.filter(category => category.selected).map(category => category.sys_id);
-        var selectedCurrencies = c.data.currencyArray.filter(currency => currency.selected).map(currency => currency.currency_type);
-        var params = {
-            selectedCategories: selectedCategories.join(','),
-            selectedCurrencies: selectedCurrencies.join(','),
-            searchQuery: c.searchQuery || "",
-            minPrice: c.minPrice,
-            maxPrice: c.maxPrice
-        };
-
-        spUtil.get('cb_item_categories', params).then(function(response) {
-            c.data.items = response.data.items;
-            console.log('Items updated successfully:', response);
-        }).catch(function(error) {
-            console.error('Error updating items:', error);
-        });
-    };
-
-    // Initial data fetch
-    // c.filterItems();
-};
-]]></client_script>
+  c.resetHover = function() {
+    var carouselItems = document.querySelectorAll('.carousel-item');
+    carouselItems.forEach(function(item) {
+      item.style.transform = 'scale(1)';
+      item.style.opacity = '0.8';
+      item.style.zIndex = '1';
+    });
+  };
+};]]></client_script>
         <controller_as>c</controller_as>
-        <css>.price-range {
-    margin-top: 20px;
+        <css>.carousel-container {
+    position: relative;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    max-width: 112rem;
+    margin: 3rem 0rem;
+    overflow: hidden;
+    display: flex;
+    height: 36rem;
+    background: linear-gradient(90deg, #e7ecf1 0%, #30789e 0%, #42aaa1 100%);
+    border-radius: 1.9rem;
+    align-items: center;
+    padding: 0rem 1.6rem;
+    flex-direction: column;
 }
 
-.price-range label {
-    display: block;
-    margin-bottom: 5px;
+.carousel-wrapper {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
 }
 
-.price-range input[type="range"] {
-    width: 100%;
-    -webkit-appearance: none;
-    background: #ddd;
-    height: 5px;
-    outline: none;
-    opacity: 0.7;
-    transition: opacity .15s ease-in-out;
+h2.title {
+    color: #fff;
 }
 
-.price-range input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    background: #007bff;
-    cursor: pointer;
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease;
 }
 
-.price-range input[type="range"]::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: #007bff;
-    cursor: pointer;
-}
-
-.multiselect .options-container {
-    max-height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    padding: 10px;
+.carousel-item {
+    flex: 0 0 auto;
+    width: 20rem;
+    height: 24rem;
+  opacity: 1px !important;
+    margin: 0 1rem;
+    /* border: .1rem solid #ddd; */
+    border-radius: 20px;
+    transition: transform .5s ease, opacity .5s ease;
     background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 .4rem .8rem rgba(0, 0, 0, .1);
 }
 
-.multiselect .option {
+.carousel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* border-bottom: .1rem solid #ddd; */
+}
+
+.carousel-content {
+  padding: 10px;
+  text-align: center;
+}
+
+.carousel-content h3 {
+    color: #000;
+    font-size: 17px;
+    margin: .5rem 0;
+}
+
+.start-bid-amount {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    justify-content: center;
+    color: #000;
+    font-size: 17px;
 }
 
-.multiselect .option input {
-    margin-right: 10px;
+.carousel-image {
+    height: 17rem;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.carousel-item2:hover {
+  transform: scale(1.1);
+  z-index: 10;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  left: 109rem;
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 10;
+  transform: translateY(-50%);
+}
+
+.carousel-control.prev {
+  left: 10px;
+}
+
+.carousel-control.next {
+  right: 10px;
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -155,138 +179,53 @@
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function(input, data, options, gs) {
-
-    data.items = [];
-    data.categoryArray = [];
-
-    // Fetch all categories
-    var categoryList = new GlideRecord('x_1383184_charityb_category');
-    categoryList.query();
-    while (categoryList.next()) {
-        var catObj = {
-            category: categoryList.getValue('category'),
-            sys_id: categoryList.getUniqueValue(),
-            selected: false
-        };
-        data.categoryArray.push(catObj);
-    }
-
-    input = input || {};
-    if (input.selectedCategories || input.selectedCurrencies || input.searchQuery || input.minPrice || input.maxPrice) {
-        var selectedCategories = input.selectedCategories ? input.selectedCategories.split(',') : [];
-        var selectedCurrencies = input.selectedCurrencies ? input.selectedCurrencies.split(',') : [];
-        var searchQuery = input.searchQuery ? input.searchQuery : "";
-        var minPrice = input.minPrice ? parseFloat(input.minPrice) : 0;
-        var maxPrice = input.maxPrice ? parseFloat(input.maxPrice) : Number.MAX_SAFE_INTEGER;
-
-        var itemGR = new GlideRecord('x_1383184_charityb_item');
-        
-        if (selectedCategories.length > 0) {
-            itemGR.addQuery('category', 'IN', selectedCategories);
-        }
-        
-        if (selectedCurrencies.length > 0) {
-            itemGR.addQuery('currency_type', 'IN', selectedCurrencies);
-        }
-        
-        if (searchQuery) {
-            itemGR.addQuery('item_name', 'CONTAINS', searchQuery);
-        }
-        
-        itemGR.addQuery('highest_bid_amount', '>=', minPrice);
-        itemGR.addQuery('highest_bid_amount', '<=', maxPrice);
-        
-        itemGR.query();
-
-        while (itemGR.next()) {
-            var itemObj = {
-                item_name: itemGR.getValue('item_name'),
-                sys_id: itemGR.getUniqueValue(),
-                highest_bid_amount: itemGR.getValue('highest_bid_amount'),
-                value: itemGR.getValue('value'),
-                currency: itemGR.getValue('currency_type'),
-                auction_status: itemGR.getValue('auction_status'),
-                start_bid_amount: itemGR.getValue('start_bid_amount'),
-                end_date: itemGR.getValue('end_date'),
-                image: itemGR.getDisplayValue('image')
-            };
-            data.items.push(itemObj);
-        }
-    }
-
-})(input, data, options, gs);
+        <script><![CDATA[(function() {
+  var gr = new GlideRecord('x_1383184_charityb_item');
+	gr.addQuery('auction_status','auction_scheduled');// Adjust this if your items table has a different name
+  gr.query();
+  data.items = [];
+  while (gr.next()) {
+    data.items.push({
+      item_name: gr.getValue('item_name'),
+      image: gr.getDisplayValue('image'), // Adjust based on your field for item images
+      start_bid_amount: gr.getValue('start_bid_amount') // Assuming 'start_bid_amount' is the field for start bid amount
+    });
+  }
+})();
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-26 04:36:43</sys_created_on>
         <sys_id>185dff099303021094e3f15a7bba105c</sys_id>
-        <sys_mod_count>68</sys_mod_count>
+        <sys_mod_count>110</sys_mod_count>
         <sys_name>testing item multiselect</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_185dff099303021094e3f15a7bba105c</sys_update_name>
         <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-22 10:52:04</sys_updated_on>
-        <template><![CDATA[<div class="container">
-    <h1>Exclusive Auctions</h1>
-    <div class="cont">
-        <div class="category">
-            <h2>Select Category</h2>
-            <div class="multiselect">
-                <div class="options-container">
-                    <label ng-repeat="category in c.data.categoryArray" class="option">
-                        <input type="checkbox" ng-model="category.selected" ng-change="c.filterItems()">
-                        <span>{{ category.category }}</span>
-                    </label>
-                </div>
-            </div>
-            <h2>Select Currency</h2>
-            <div class="multiselect">
-                <div class="options-container">
-                    <label ng-repeat="currency in c.data.currencyArray" class="option">
-                        <input type="checkbox" ng-model="currency.selected" ng-change="c.filterItems()">
-                        <span>{{ currency.currency_type }}</span>
-                    </label>
-                </div>
-            </div>
-            <h2>Select Price Range</h2>
-            <div class="price-range">
-                <label for="minPrice">Min Price: {{c.minCurrency}}{{c.minPrice}}</label>
-                <input type="range" id="minPrice" ng-model="c.minPrice" ng-change="c.filterItems()" min="0" max="10000" step="100">
-                <label for="maxPrice">Max Price: {{c.maxCurrency}}{{c.maxPrice}}</label>
-                <input type="range" id="maxPrice" ng-model="c.maxPrice" ng-change="c.filterItems()" min="0" max="10000" step="100">
-            </div>
+        <sys_updated_on>2024-07-25 17:25:45</sys_updated_on>
+        <template><![CDATA[<div class="carousel-container">
+  <h2 class="title">${Upcoming Auctions}</h2>
+  <div class="carousel-wrapper">
+    <div class="carousel" ng-mouseleave="c.resetHover()">
+      <div class="carousel-item" ng-repeat="item in c.data.items" ng-mouseover="c.hover($index)">
+        <div class="carousel-image">
+          <img ng-src="{{item.image || 'x_1383184_charityb.item default image.jpg'}}" alt="{{item.item_name}}">
         </div>
-        <div class="container1">
-            <div class="search-bar">
-                <input type="text" ng-model="c.searchQuery" placeholder="Search by item name" ng-change="c.filterItems()">
-            </div>
-            <div id="items-grid" class="items-grid">
-                <div ng-repeat="item in c.data.items" class="item-card" ng-click="c.showDetails(item)">
-                    <img ng-src="{{item.image || 'https://dev203498.service-now.com/issues.png'}}" alt="{{item.item_name}}">
-                    <div class="item-details">
-                        <div class="item-title">{{item.item_name}}</div>
-                        <div class="item-value">Value: {{item.currency}}{{item.value}}</div>
-                        <div class="item-value">Highest Bid: {{item.currency}}{{item.highest_bid_amount}}</div>
-                        <div ng-if="item.auction_status === 'Auction Scheduled'" class="item-start-bid">Start Bid: {{item.start_bid_amount}}</div>
-                        <div class="item-days-left">
-                            <span class="days-left-indicator"
-                                  ng-class="{'days-left-orange': c.calculateDaysLeft(item.end_date) !== 'Ended'}">
-                                {{ c.calculateDaysLeft(item.end_date) === '2' ? '2 days left' : c.calculateDaysLeft(item.end_date) }}
-                            </span>
-                        </div>
-                        <button ng-if="item.auction_status === 'Auction In Progress'" class="btn btn-secondary" ng-click="c.placeBid(item)">Place Bid</button>
-                    </div>
-                </div>
-            </div>
-            <div ng-if="c.data.noItemsMessage">
-                {{ c.data.noItemsMessage }}
-            </div>
+        <div class="carousel-content">
+          <h3>{{item.item_name}}</h3>
+          <div class="start-bid-amount">
+            <!--<span class="material-symbols-outlined">attach_money</span>-->
+            <span>{{item.start_bid_amount | currency}}</span>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+  <button class="carousel-control prev" ng-click="c.prev()">&#10094;</button>
+  <button class="carousel-control next" ng-click="c.next()">&#10095;</button>
 </div>
 ]]></template>
     </sp_widget>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="DELETE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>.footer {
+    background-color: #f2f2f2;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer .footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer .footer-section {
+    flex: 1;
+}
+
+.footer h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+.footer h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #666;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 8px;
+}
+
+.footer ul li a {
+    text-decoration: none;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.footer ul li a:hover {
+    color: #333;
+}
+</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>footer_charitybids</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>footer charitybids</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-23 10:33:10</sys_created_on>
+        <sys_id>b8d1544683e7c210304f5c65eeaad3bb</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>footer charitybids</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_b8d1544683e7c210304f5c65eeaad3bb</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-23 10:46:13</sys_updated_on>
+        <template><![CDATA[<div class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Charity Bids</h3>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/about-us">About Us</a></li>
+                    <li><a href="/features">Features</a></li>
+                    <li><a href="/donate-now">Donate Now</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+]]></template>
+    </sp_widget>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sp_widget_b8d1544683e7c210304f5c65eeaad3bb</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sp_widget"&gt;&lt;sp_widget action="INSERT_OR_UPDATE"&gt;&lt;category&gt;custom&lt;/category&gt;&lt;client_script&gt;&lt;![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]&gt;&lt;/client_script&gt;&lt;controller_as&gt;c&lt;/controller_as&gt;&lt;css&gt;.footer {
+    background-color: #f2f2f2;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer .footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer .footer-section {
+    flex: 1;
+}
+
+.footer h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+}
+
+.footer h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #666;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 8px;
+}
+
+.footer ul li a {
+    text-decoration: none;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.footer ul li a:hover {
+    color: #333;
+}
+&lt;/css&gt;&lt;data_table&gt;sp_instance&lt;/data_table&gt;&lt;demo_data/&gt;&lt;description/&gt;&lt;docs/&gt;&lt;field_list/&gt;&lt;has_preview&gt;true&lt;/has_preview&gt;&lt;id&gt;footer_charitybids&lt;/id&gt;&lt;internal&gt;false&lt;/internal&gt;&lt;link&gt;&lt;![CDATA[function link(scope, element, attrs, controller) {  }]]&gt;&lt;/link&gt;&lt;name&gt;footer charitybids&lt;/name&gt;&lt;option_schema/&gt;&lt;public&gt;false&lt;/public&gt;&lt;roles/&gt;&lt;script&gt;&lt;![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]&gt;&lt;/script&gt;&lt;servicenow&gt;false&lt;/servicenow&gt;&lt;sys_class_name&gt;sp_widget&lt;/sys_class_name&gt;&lt;sys_created_by&gt;christy&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2024-07-23 10:33:10&lt;/sys_created_on&gt;&lt;sys_id&gt;b8d1544683e7c210304f5c65eeaad3bb&lt;/sys_id&gt;&lt;sys_mod_count&gt;4&lt;/sys_mod_count&gt;&lt;sys_name&gt;footer charitybids&lt;/sys_name&gt;&lt;sys_package display_value="CharityBids" source="x_1383184_charityb"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="CharityBids"&gt;bcaeeadb9369421094e3f15a7bba1090&lt;/sys_scope&gt;&lt;sys_update_name&gt;sp_widget_b8d1544683e7c210304f5c65eeaad3bb&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;christy&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2024-07-23 10:46:13&lt;/sys_updated_on&gt;&lt;template&gt;&lt;![CDATA[&lt;div class="footer"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="footer-content"&gt;
+            &lt;div class="footer-section"&gt;
+                &lt;h3&gt;Charity Bids&lt;/h3&gt;
+            &lt;/div&gt;
+            &lt;div class="footer-section"&gt;
+                &lt;h4&gt;Quick Links&lt;/h4&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="/about-us"&gt;About Us&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/features"&gt;Features&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="/donate-now"&gt;Donate Now&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+]]&gt;&lt;/template&gt;&lt;/sp_widget&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-424907026</payload_hash>
+        <record_name>footer charitybids</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-23 10:46:13</sys_created_on>
+        <sys_id>0cd41cc683e7c210304f5c65eeaad3ea</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190df32e8b90000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-23 10:46:13</sys_updated_on>
+        <type>Widget</type>
+        <update_guid>c0d41cc629e7c210f56f457696eff6ea</update_guid>
+        <update_guid_history>c0d41cc629e7c210f56f457696eff6ea:-424907026,6594940a13e7c2100a2b46550235860c:716377771,f774540ad4e7c210e979010b3b8bc880:447251204,0274540a9ae7c210a222a99a419b451d:-281517291,74d15446cce7c210ff30af312d0612bd:1504791306</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="footer charitybids">3f7b990a832fc210304f5c65eeaad3eb</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-23 15:55:02</sys_created_on>
+        <sys_db_object display_value="" name="sp_widget">sp_widget</sys_db_object>
+        <sys_id>16fc0749320742f0960d2a60e570a440</sys_id>
+        <sys_metadata>b8d1544683e7c210304f5c65eeaad3bb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>footer charitybids</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sp_widget_b8d1544683e7c210304f5c65eeaad3bb</sys_update_name>
+        <sys_update_version display_value="sp_widget_b8d1544683e7c210304f5c65eeaad3bb">0cd41cc683e7c210304f5c65eeaad3ea</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-23 15:55:02</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

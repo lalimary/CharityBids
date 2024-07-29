@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function($http, $location, spUtil, $scope) {
+        <client_script><![CDATA[api.controller = function($http, $location, spUtil, $scope, $window, $interval) {
     var c = this;
 
     // Initialize data object
@@ -10,19 +10,29 @@
         bidAmount: ''
     };
 
+    // Initialize confirmation object
+    c.confirmation = {
+        visible: false,
+        message: '',
+        callback: null
+    };
+
     // Fetch item details
     var itemUrl = '/api/now/table/x_1383184_charityb_item/' + c.data.sys_id;
     $http.get(itemUrl).then(function(response) {
         c.data.item_name = response.data.result.item_name;
         c.data.highest_bid_amount = response.data.result.highest_bid_amount;
         c.data.start_bid_amount = response.data.result.start_bid_amount;
+
+        // Start periodic refresh
+        c.startPeriodicRefresh();
     }, function(error) {
         console.error('Failed to fetch item details:', error);
         c.errorMessage = 'Failed to fetch item details.';
     });
 
-    // Function to submit the bid
-    c.submitBid = function() {
+    // Function to confirm bid submission
+    c.confirmSubmit = function() {
         var bidAmount = parseFloat(c.data.bidAmount);
         if (isNaN(bidAmount) || bidAmount <= 0) {
             c.errorMessage = 'Please enter a valid bid amount greater than zero.';
@@ -39,6 +49,24 @@
             c.errorMessage = ''; // Clear error message if bid amount is valid
         }
 
+        // Prepare confirmation message and callback
+        c.confirmation.message = 'Are you sure you want to submit the bid of ' + bidAmount + '?';
+        c.confirmation.callback = function(confirmed) {
+            if (confirmed) {
+                c.submitBid(); // Proceed with bid submission
+            }
+            c.confirmation.visible = false; // Hide confirmation dialog
+        };
+
+        // Show confirmation dialog
+        c.confirmation.visible = true;
+    };
+
+    // Function to submit the bid
+    c.submitBid = function() {
+        var bidAmount = parseFloat(c.data.bidAmount);
+
+        // Submit bid
         var bidData = {
             item_name: c.data.item_name,
             bid_amount: bidAmount,
@@ -48,12 +76,11 @@
         $http.post('/api/now/table/x_1383184_charityb_bid', bidData).then(function(response) {
             if (response.data.result) {
                 c.successMessage = 'Bid submitted successfully!';
-                // Update highest_bid_amount if the bid is successfully submitted and is higher
-                if (bidAmount > c.data.highest_bid_amount) {
-                    c.data.highest_bid_amount = bidAmount;
-                }
-                c.data.bidAmount = ''; // Clear input field after successful submission
-                c.server.refresh(); // Refresh the widget after submission
+                // Clear input field after successful submission
+                c.data.bidAmount = ''; 
+
+                // Update highest_bid_amount immediately
+                c.data.highest_bid_amount = bidAmount;
             } else {
                 c.errorMessage = 'Failed to submit bid.';
             }
@@ -61,6 +88,19 @@
             console.error('Error during bid submission:', error);
             c.errorMessage = 'An error occurred during bid submission.';
         });
+    };
+
+    // Function to periodically refresh item details
+    c.startPeriodicRefresh = function() {
+        // Refresh every 5 seconds
+        $interval(function() {
+            $http.get(itemUrl).then(function(response) {
+                c.data.highest_bid_amount = response.data.result.highest_bid_amount;
+            }, function(error) {
+                console.error('Failed to fetch updated item details:', error);
+                c.errorMessage = 'Failed to fetch updated item details.';
+            });
+        }, 5000); // Adjust the interval as needed
     };
 };
 ]]></client_script>
@@ -88,6 +128,77 @@ img {
 .col-md-6 {
     /* margin-right: 10px; */
     width: 50%;
+}
+
+.modal-header2 {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-body {
+    position: relative;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input#bidAmount {
+    border-radius: 16px;
+    border: 1px solid #337f9f;
+}
+
+h4.modal-title2 {
+    color: #327d9e;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.modal-content2 {
+    margin-bottom: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+    position: relative;
+}
+
+button.btn.btn-success {
+    width: 63px;
+    margin-bottom: 0rem;
+}
+
+.confirmation-box {
+    position: relative;
+    bottom: 20rem;
+    left: 42rem;
+    box-shadow: rgba(0, 0, 0, .2) 0px 12px 28px 0px, rgba(0, 0, 0, .1) 0px 2px 4px 0px, rgba(255, 255, 255, .05) 0px 0px 0px 1px inset;
+    background: #fff;
+    width: 32rem;
+    height: 12rem;
+    padding: 1rem;
+    /* border: .1rem solid #35869f; */
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.panel.panel-default {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-radius: 25px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.panel-body {
+    width: auto;
+    display: flex;
+    justify-content: center;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -126,41 +237,49 @@ img {
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-07-09 17:14:31</sys_created_on>
         <sys_id>13676da193d7c21094e3f15a7bba10f3</sys_id>
-        <sys_mod_count>42</sys_mod_count>
+        <sys_mod_count>87</sys_mod_count>
         <sys_name>Bid (test)</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_13676da193d7c21094e3f15a7bba10f3</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-12 06:44:07</sys_updated_on>
+        <sys_updated_on>2024-07-26 04:28:27</sys_updated_on>
         <template><![CDATA[<div class="item-details" ng-if="c.data">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Place Your Bid</h4>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <form name="bidForm" ng-submit="c.submitBid()">
-                    <div class="modal-body">
-                       
-
-                        <!-- Input field for Bid Amount -->
-                        <div class="form-group">
-                            <label for="bidAmount">Bid Amount:</label>
-                            <input type="number" class="form-control" id="bidAmount" ng-model="c.data.bidAmount" placeholder= "Enter your bid" required>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary">Place Bid</button>
-                        <p ng-if="c.errorMessage" class="text-danger">{{c.errorMessage}}</p>
-                        <p ng-if="c.successMessage" class="text-success">{{c.successMessage}}</p>
-                    </div>
-                </form>
+  <div class="modal-content2">
+    <div class="center3">
+      <div class="modal-header2">
+        <h4 class="modal-title2">Place Your Bid</h4>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form name="bidForm" ng-submit="c.submitBid()">
+            <div class="modal-body">
+              <!-- Input field for Bid Amount -->
+              <div class="form-group">
+                <input type="number" class="form-control" id="bidAmount" ng-model="c.data.bidAmount" placeholder="Enter your bid amount" required>
+              </div>
+              <!-- Submit Button -->
+              <button type="button" class="btn btn-primary" ng-click="c.confirmSubmit()">Place Bid</button>
+              <p ng-if="c.errorMessage" class="text-danger">{{c.errorMessage}}</p>
+              <p ng-if="c.successMessage" class="text-success">{{c.successMessage}}</p>
             </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- Custom Confirmation Directive -->
+<div class="custom-confirmation" ng-show="c.confirmation.visible">
+  <div class="confirmation-box">
+    <p>{{ c.confirmation.message }}</p>
+    <div class="buttonConfirm">
+      <button class="btn btn-success" ng-click="c.confirmation.callback(true)">OK</button>
+      <button class="btn btn-danger" ng-click="c.confirmation.callback(false)">Cancel</button>
+    </div>
+  </div>
 </div>
 ]]></template>
     </sp_widget>

@@ -33,190 +33,105 @@
 };
 ]]></client_script>
         <controller_as>c</controller_as>
-        <css>.item-submitted::before {
-  content: "\f15b";
-  font-family: 'FontAwesome';
-  background-color: #007bff;
-}
-
-.auction-scheduled::before {
-  content: "\f073";
-  font-family: 'FontAwesome';
-  background-color: #ffc107;
-}
-
-.auction-in-progress::before {
-  content: "\f013";
-  font-family: 'FontAwesome';
-  background-color: #17a2b8;
-}
-
-.auction-completed::before {
-  content: "\f058";
-  font-family: 'FontAwesome';
-  background-color: #28a745;
-}
+        <css>/* Container and layout */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+    padding: 20px;
+    max-width: 1000px; /* Adjusted to be a bit narrower */
+    margin: auto;
 }
 
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Grid layout for items */
 #items-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.item-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s;
-  cursor: pointer;
-  width: calc(33.333% - 20px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.item-card:hover {
- // transform: translateY(-5px);
-  transform: none;
-}
-
-.item-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.item-details {
-     padding: 10px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-
+    flex-wrap: wrap;
+    gap: 15px; /* Reduced gap */
 }
 
-.item-title {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #333;
+.event-card {
+    flex: 1 1 calc(25% - 15px); /* Reduced width of each card */
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 300px; /* Set a maximum width for the card */
+    min-height: 200px; /* Set a minimum height */
 }
 
-.item-value,.item-highest-bid, .item-status {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #555;
+.event-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.item-start-bid{
-  color: #42aaa1;
+.event-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
 }
 
-.item-value::before {
-  content: "\f3a1";
-  font-family: 'FontAwesome';
-  color: #17a2b8;
+.event-image {
+    width: 100%;
+    height: 150px; /* Reduced height of the image */
+    background-size: cover;
+    background-position: center;
 }
 
-.item-start-bid::before, .item-highest-bid::before {
-  content: "\f0d6";
-  font-family: 'FontAwesome';
-  color: #28a745;
+.event-content {
+    padding: 10px; /* Reduced padding */
 }
 
-.item-status {
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #fff;
-  font-weight: bold;
+.event-title {
+    font-size: 16px; /* Reduced font size */
+    font-weight: bold;
+    margin-bottom: 5px; /* Reduced margin */
 }
 
-.item-submitted::before {
-  content: "\f15b";
-  font-family: 'FontAwesome';
-  background-color: #007bff;
+.event-status {
+    display: flex;
+    align-items: center;
+    font-size: 14px; /* Reduced font size */
 }
 
-.auction-scheduled::before {
-  content: "\f073";
-  font-family: 'FontAwesome';
-  background-color: #ffc107;
+.event-status-icon {
+    margin-right: 5px; /* Reduced margin */
+    font-size: 20px; /* Reduced icon size */
 }
 
-.auction-in-progress::before {
-  content: "\f013";
-  font-family: 'FontAwesome';
-  background-color: #17a2b8;
+.event-status-text {
+    font-size: 14px; /* Reduced font size */
 }
 
-.auction-completed::before {
-  content: "\f058";
-  font-family: 'FontAwesome';
-  background-color: #28a745;
+/* Status colors */
+.item-submitted {
+    color: #eb952d; /* Orange color */
 }
 
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 5px;
-  font-size: 0.9em;
-  text-align: center;
-  text-decoration: none;
-  transition: background-color 0.2s, transform 0.2s;
+.auction-scheduled {
+    color: #0cabd9; /* Blue color */
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+.auction-in-progress {
+    color: #0da636; /* Green color */
 }
 
-.modal-content {
-  border-radius: 10px;
-}
-
-.modal-header {
-  border-bottom: none;
-}
-
-.modal-name {
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #333;
-}
-
-.modal-body {
-  padding: 20px;
-  color: #555;
-}
-
-.modal-body p {
-  margin: 10px 0;
-}
-
-.add-to-options button {
-  margin-top: 15px;
-}
-
-.imgFix {
-  width: 100%;
-  border-radius: 10px;
-}
-.item-status {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #d9534f;
-  font-weight: bold;
+.auction-completed {
+    color: #ff0000; /* Red color */
 }
 </css>
         <data_table>sp_instance</data_table>
@@ -244,6 +159,14 @@
     var userID = gs.getUserID();
     var userProfileID = '';
 
+    // Status mapping with colors
+    var statusMapping = {
+        'item_submitted': { text: 'Item Submitted', color: '#4CAF50' }, // Green
+        'auction_scheduled': { text: 'Auction Scheduled', color: '#FFC107' }, // Amber
+        'auction_in_progress': { text: 'Auction In Progress', color: '#2196F3' }, // Blue
+        'auction_completed': { text: 'Auction Completed', color: '#F44336' } // Red
+    };
+
     // Fetch the user profile record associated with the logged-in user
     var userProfileGR = new GlideRecord('x_1383184_charityb_user_profile');
     userProfileGR.addQuery('name', userID);
@@ -270,6 +193,9 @@
             }
         }
 
+        var status = itemGR.getValue('auction_status');
+        var statusDetails = statusMapping[status] || { text: status, color: '#000000' }; // Default to black if not mapped
+
         data.items.push({
             sys_id: itemGR.getUniqueValue(),
             item_name: itemGR.getValue('item_name'),
@@ -280,7 +206,8 @@
             value: itemGR.getValue('value'),
             start_bid_amount: itemGR.getValue('start_bid_amount'),
             highest_bid_amount: itemGR.getValue('highest_bid_amount'),
-            auction_status: itemGR.getValue('auction_status'),
+            auction_status: statusDetails.text,
+            status_color: statusDetails.color, // Added color
             image: itemGR.getDisplayValue('image'),
             description: itemGR.getValue('description')
         });
@@ -301,69 +228,47 @@
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-18 07:15:17</sys_created_on>
         <sys_id>30e49f6293f2021094e3f15a7bba104a</sys_id>
-        <sys_mod_count>24</sys_mod_count>
+        <sys_mod_count>42</sys_mod_count>
         <sys_name>cb my donations</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_30e49f6293f2021094e3f15a7bba104a</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-27 19:11:16</sys_updated_on>
-        <template><![CDATA[<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-24 16:08:00</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Donations</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
 <div class="container">
-  <h1>My Donations</h1>
-  <div id="items-grid" class="items-grid">
-    <div ng-repeat="item in c.data.items" class="item-card" ng-click="c.showDetails(item)">
-      <img ng-src="{{item.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{item.item_name}}">
-      <div class="item-details">
-        <div class="item-title">{{item.item_name}}</div>
-        <div class="item-value">
-          <i class="fa-solid fa-tag"></i> 
-          Value: {{item.value}}</div>
-        
-        <div ng-if="item.auction_status === 'Auction Scheduled'" class="item-start-bid">
-        <i class="fa-solid fa-circle-check"></i>  
-        Start Bid: {{item.start_bid_amount}}</div>
-        <div ng-if="item.auction_status === 'Auction In Progress' || item.auction_status === 'Auction Completed'" class="item-highest-bid">Highest Bid: {{item.highest_bid_amount}}</div>
-        <div class="item-status" ng-class="{'item-submitted': item.auction_status === 'Item Submitted', 'auction-scheduled': item.auction_status === 'Auction Scheduled', 'auction-in-progress': item.auction_status === 'Auction In Progress', 'auction-completed': item.auction_status === 'Auction Completed'}">
-           <!-- Default status icon -->
-          Status: {{item.auction_status}}
-        </div>
-        <button class="btn btn-primary" ng-click="c.showDetails(item)" data-toggle="modal" data-target="#itemDetailsModal">Details</button>
-      </div>
-    </div>
-  </div>
+<h1>My Donations</h1>
+<input type="text" ng-model="searchQuery" placeholder="Search items..." class="search-input">
+<div id="items-grid" class="events-grid">
+<div ng-repeat="item in c.data.items | filter:searchQuery" class="event-card">
+<a ng-href="?id=item_details&sys_id={{item.sys_id}}" class="event-card-link">
+<div class="event-image" ng-style="{'background-image': 'url(' + (item.image || 'https://dev203498.service-now.com/logo%20image.jpg') + ')'}"></div>
+<div class="event-content">
+<div class="event-title">{{item.item_name}}</div>
+<div class="event-status">
+<div class="event-status-icon {{item.auction_status === 'Item Submitted' ? 'item-submitted' : item.auction_status === 'Auction Scheduled' ? 'auction-scheduled' : item.auction_status === 'Auction In Progress' ? 'auction-in-progress' : 'auction-completed'}}">
+<span class="material-symbols-outlined">{{item.auction_status === 'Item Submitted' ? 'pending' : item.auction_status === 'Auction Scheduled' ? 'schedule' : item.auction_status === 'Auction In Progress' ? 'hourglass_bottom' : 'check_circle'}}</span>
 </div>
-
-<!-- The Modal -->
-<div id="itemDetailsModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-name">{{c.selectedItem.item_name}}</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button> <!-- Proper close button -->
-      </div>
-      <div class="imgC">
-        <img ng-src="{{c.selectedItem.image || 'https://dev203498.service-now.com/logo%20image.jpg'}}" alt="{{c.selectedItem.item_name}}" class="imgFix">
-      </div>
-      <div class="modal-body">
-        <!--<p><strong>Donator:</strong> {{c.selectedItem.donator}}</p>-->
-        <p><strong>Description:</strong> {{c.selectedItem.description}}</p>
-        <p><strong>Start Date:</strong> {{c.selectedItem.start_date}}</p>
-        <p><strong>End Date:</strong> {{c.selectedItem.end_date}}</p>
-        <p><strong>Value:</strong> {{c.selectedItem.value}}</p>
-        <p><strong>Start Bid:</strong> {{c.selectedItem.start_bid_amount}}</p>
-        <p><strong>Highest Bid:</strong> {{c.selectedItem.highest_bid_amount}}</p>
-        <p><strong>Status:</strong> {{c.selectedItem.auction_status}}</p>
-        <div class="add-to-options">
-          <!--<button class="btn btn-secondary" ng-click="c.addTo('Bid For Item')">Bid</button>-->
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="event-status-text">{{item.auction_status}}</div>
 </div>
+</div>
+</a>
+</div>
+</div>
+</div>
+</body>
+</html>
 ]]></template>
     </sp_widget>
 </record_update>

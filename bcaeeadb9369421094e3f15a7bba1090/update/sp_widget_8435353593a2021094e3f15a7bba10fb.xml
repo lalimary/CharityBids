@@ -306,51 +306,112 @@
         <controller_as>c</controller_as>
         <css>/* General styling */
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 /* Panel styling */
 .panel {
-    width: 400px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-bottom: 20px;
+  width: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .panel-default {
-    border: none;
+  border: none;
 }
 
 .panel-body {
-    padding: 20px 40px;
-    text-align: left;
+  padding: 20px 40px;
+  text-align: left;
 }
-    .col-md-6 {
-        font-size: large;
-        padding-right: 35px;
-        width: 50%;
-        padding-top: 117px;
-        color: #428bca;
-        font-weight: normal;
-    }
+.col-md-6 {
+    font-size: 14px;
+    padding-right: 3.5rem;
+    width: 78%;
+    padding-top: 0.7rem;
+    color: #428bca;
+    font-weight: normal;
+}
+
+.select2-container.select2-container-disabled .select2-choice .select2-arrow {
+    background-color: #e6e8ea;
+    background-image: none;
+    border-left: 0;
+    display: none;
+}
+
+.mandatory.fa {
+    font-size: .8rem;
+    vertical-align: top;
+    display: none;
+    margin-top: .2rem;
+}
+
+.field-has-reference .reference .select2-container a.select2-choice {
+    height: 3.2rem;
+    min-height: 3.2rem;
+    margin-left: 1rem;
+}
+
+.select2-container.select2-container-disabled .select2-choice {
+    background-color: #fff;
+    background-image: none;
+    border: none;
+    cursor: not-allowed;
+}
+
+.field-has-reference {
+    border: .1rem solid #939393;
+    border-radius: 15px;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.field-has-reference .add-on {
+    vertical-align: middle;
+    display: none;
+    width: 3.6rem;
+}
+
+.select2-container .select2-choice .select2-arrow b {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: url(/styles/thirdparty/select2/select2.png) no-repeat 6px 4px;
+}
+
+
 .sp-row-content.row {
-    display: flex;
-    flex-wrap: nowrap;
-    align-content: flex-end;
-    justify-content: space-between;
-    margin: 58px;
-    margin-top: 79px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: flex-end;
+  justify-content: space-between;
+  margin: 58px;
+  margin-top: 79px;
 }
-</css>
+
+.panel-shift.ng-scope {
+  display: flex;
+  justify-content: center;
+}
+
+.panel-footer {
+  padding: 1rem 1.5rem;
+  background-color: transparent;
+  border-top: .1rem solid #ddd;
+  /* border-bottom-right-radius: .3rem; */
+  /* border-bottom-left-radius: .3rem; */
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
@@ -472,14 +533,14 @@ body {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-03 06:06:01</sys_created_on>
         <sys_id>8435353593a2021094e3f15a7bba10fb</sys_id>
-        <sys_mod_count>33</sys_mod_count>
+        <sys_mod_count>47</sys_mod_count>
         <sys_name>cb charity profile</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_8435353593a2021094e3f15a7bba10fb</sys_update_name>
-        <sys_updated_by>lalitha</sys_updated_by>
-        <sys_updated_on>2024-07-11 04:55:33</sys_updated_on>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-25 06:36:41</sys_updated_on>
         <template><![CDATA[<div ng-if="::!data.isValid && !data.emptyStateTemplate" class="panel panel-default">
   <div class="panel-body wrapper-lg text-center">
     <span ng-if="!data.tableUnsupported">${User profile not found}</span>

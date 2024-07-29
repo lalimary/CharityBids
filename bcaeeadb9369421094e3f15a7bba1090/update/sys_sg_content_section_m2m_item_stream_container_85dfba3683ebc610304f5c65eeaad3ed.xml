@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_content_section_m2m_item_stream_container">
+    <sys_sg_content_section_m2m_item_stream_container action="INSERT_OR_UPDATE">
+        <content_section display_value="Events Scheduled">85dfba3683ebc610304f5c65eeaad38e</content_section>
+        <item_stream_container display_value="Events Scheduled">8ddfba3683ebc610304f5c65eeaad393</item_stream_container>
+        <order/>
+        <sys_class_name>sys_sg_content_section_m2m_item_stream_container</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-26 07:08:51</sys_created_on>
+        <sys_id>85dfba3683ebc610304f5c65eeaad3ed</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_content_section_m2m_item_stream_container_85dfba3683ebc610304f5c65eeaad3ed</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-26 07:08:51</sys_updated_on>
+    </sys_sg_content_section_m2m_item_stream_container>
+</record_update>

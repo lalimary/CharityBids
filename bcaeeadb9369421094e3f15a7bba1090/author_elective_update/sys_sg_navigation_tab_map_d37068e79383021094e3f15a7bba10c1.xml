@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_navigation_tab_map">
+    <sys_sg_navigation_tab_map action="DELETE">
+        <navigation display_value="Charity Bids">966484e79303021094e3f15a7bba104d</navigation>
+        <navigation_tab display_value="Events">9b7068e79383021094e3f15a7bba10be</navigation_tab>
+        <order>50</order>
+        <sys_class_name>sys_sg_navigation_tab_map</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-03 06:56:44</sys_created_on>
+        <sys_id>d37068e79383021094e3f15a7bba10c1</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_sg_navigation_tab_map_d37068e79383021094e3f15a7bba10c1</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-25 16:59:10</sys_updated_on>
+    </sys_sg_navigation_tab_map>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_sg_navigation_tab_map_d37068e79383021094e3f15a7bba10c1</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_sg_navigation_tab_map"><sys_sg_navigation_tab_map action="INSERT_OR_UPDATE"><navigation display_value="Charity Bids">966484e79303021094e3f15a7bba104d</navigation><navigation_tab display_value="Events">9b7068e79383021094e3f15a7bba10be</navigation_tab><order>50</order><sys_class_name>sys_sg_navigation_tab_map</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-03 06:56:44</sys_created_on><sys_id>d37068e79383021094e3f15a7bba10c1</sys_id><sys_mod_count>3</sys_mod_count><sys_name/><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_sg_navigation_tab_map_d37068e79383021094e3f15a7bba10c1</sys_update_name><sys_updated_by>christy</sys_updated_by><sys_updated_on>2024-07-25 16:59:10</sys_updated_on></sys_sg_navigation_tab_map></record_update>]]></payload>
+        <payload_hash>-199295172</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-25 16:59:10</sys_created_on>
+        <sys_id>be5d37e2836f8610304f5c65eeaad330</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190ead511740000001</sys_recorded_at>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-25 16:59:10</sys_updated_on>
+        <type>Navigation Tab Map</type>
+        <update_guid>765d37e2c46f8610d4bee3ac096bac30</update_guid>
+        <update_guid_history>765d37e2c46f8610d4bee3ac096bac30:-199295172,da3a09ca429b46100501602f10bce333:440833273,2ba0a02bcb830210dbaba8d3cfa9b002:1659112890,1b7068e78a830210a5d97198eaaab9c2:636180189</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>christy</sys_created_by>
+        <sys_created_on>2024-07-26 07:15:05</sys_created_on>
+        <sys_db_object display_value="" name="sys_sg_navigation_tab_map">sys_sg_navigation_tab_map</sys_db_object>
+        <sys_id>8b33903684534a8f96b3ef0dbadd67c1</sys_id>
+        <sys_metadata>d37068e79383021094e3f15a7bba10c1</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_sg_navigation_tab_map_d37068e79383021094e3f15a7bba10c1</sys_update_name>
+        <sys_update_version display_value="sys_sg_navigation_tab_map_d37068e79383021094e3f15a7bba10c1">be5d37e2836f8610304f5c65eeaad330</sys_update_version>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-26 07:15:05</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

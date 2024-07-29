@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="pa_tabs">
+    <pa_tabs action="DELETE">
+        <canvas_page/>
+        <name>eaad0cd2836b0610304f5c65eeaad3e5Admin dashboard - New Tab 2</name>
+        <page/>
+        <sys_class_name>pa_tabs</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-24 04:53:28</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>eaad0cd2836b0610304f5c65eeaad3e5</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>eaad0cd2836b0610304f5c65eeaad3e5Admin dashboard - New Tab 2</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>pa_tabs_eaad0cd2836b0610304f5c65eeaad3e5</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-24 04:53:28</sys_updated_on>
+    </pa_tabs>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>pa_tabs_eaad0cd2836b0610304f5c65eeaad3e5</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="pa_tabs"><pa_tabs action="INSERT_OR_UPDATE"><canvas_page/><name>eaad0cd2836b0610304f5c65eeaad3e5Admin dashboard - New Tab 2</name><page/><sys_class_name>pa_tabs</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-24 04:53:28</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>eaad0cd2836b0610304f5c65eeaad3e5</sys_id><sys_mod_count>1</sys_mod_count><sys_name>eaad0cd2836b0610304f5c65eeaad3e5Admin dashboard - New Tab 2</sys_name><sys_overrides/><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>pa_tabs_eaad0cd2836b0610304f5c65eeaad3e5</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-24 04:53:28</sys_updated_on></pa_tabs></record_update>]]></payload>
+        <payload_hash>682054670</payload_hash>
+        <record_name>eaad0cd2836b0610304f5c65eeaad3e5Admin dashboard - New Tab 2</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-24 04:53:35</sys_created_on>
+        <sys_id>1cbd0016836b0610304f5c65eeaad3ed</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190e31669030000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-24 04:53:35</sys_updated_on>
+        <type>Tab</type>
+        <update_guid>eaad0016ab6b0610c545256ba2169350</update_guid>
+        <update_guid_history>eaad0016ab6b0610c545256ba2169350:1059870635,eaad0016ab6b0610c545256ba2169350:1059870635,eaad0016ab6b0610c545256ba2169350:1059870635,6ead0016b16b06106d0aed24edb1a64d:1312202497</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Admin dashboard - New Tab 2">18bd4016836b0610304f5c65eeaad30b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-24 04:53:35</sys_created_on>
+        <sys_db_object display_value="" name="pa_tabs">pa_tabs</sys_db_object>
+        <sys_id>2c149a99cd1943e88c654bafb0d17c40</sys_id>
+        <sys_metadata>eaad0cd2836b0610304f5c65eeaad3e5</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>eaad0cd2836b0610304f5c65eeaad3e5Admin dashboard - New Tab 2</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>pa_tabs_eaad0cd2836b0610304f5c65eeaad3e5</sys_update_name>
+        <sys_update_version display_value="pa_tabs_eaad0cd2836b0610304f5c65eeaad3e5">1cbd0016836b0610304f5c65eeaad3ed</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-24 04:53:35</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

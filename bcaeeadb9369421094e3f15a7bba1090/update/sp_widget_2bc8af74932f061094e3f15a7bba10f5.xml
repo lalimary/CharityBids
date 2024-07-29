@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller = function($http, $location, spUtil, $scope) {
+        <client_script><![CDATA[api.controller = function($http, $location, spUtil, $scope, $timeout) {
     var c = this;
 
     // Initialize data object for donation form
@@ -17,8 +17,66 @@
         description: '',
         image: null, // Placeholder for image upload
         errorMessage: '',
-        successMessage: ''
+        successMessage: '',
+        currencyPrefix: '$', // Default to USD ($)
+        bidCurrencyPrefix: '$', // Default to USD ($) for start bid amount
+        auctionStatus: 'item_submitted'
     };
+
+    // Function to open confirmation modal
+    c.openConfirmationModal = function() {
+        $('#confirmModal').modal('show'); // Show Bootstrap modal
+    };
+
+    // Function to schedule auction
+    c.scheduleAuction = function() {
+        // Update auction status to 'Auction scheduled'
+        var updateData = {
+            auction_status: 'auction_scheduled'
+        };
+
+        $http.patch('/api/now/table/x_1383184_charityb_item', updateData).then(function(response) {
+            if (response.data.result) {
+                c.successMessage = 'Auction scheduled successfully!';
+                c.data.auctionStatus = 'Auction scheduled'; // Update locally for immediate UI feedback if needed
+            } else {
+                c.errorMessage = 'Failed to schedule auction.';
+            }
+        }, function(error) {
+            console.error('Error scheduling auction:', error);
+            c.errorMessage = 'An error occurred while scheduling auction.';
+        });
+    };
+
+    // Example function to fetch user's currency preference
+    function getUserCurrencyPreference() {
+        var userCurrency = 'USD'; // Example: This could come from a service call
+        switch (userCurrency) {
+            case 'USD':
+                c.data.currencyPrefix = '$';
+                c.data.bidCurrencyPrefix = '$';
+                break;
+            case 'INR':
+                c.data.currencyPrefix = '₹';
+                c.data.bidCurrencyPrefix = '₹';
+                break;
+            case 'EUR':
+                c.data.currencyPrefix = '€';
+                c.data.bidCurrencyPrefix = '€';
+                break;
+            case 'GBP':
+                c.data.currencyPrefix = '£';
+                c.data.bidCurrencyPrefix = '£';
+                break;
+            default:
+                c.data.currencyPrefix = '$'; // Default to USD ($)
+                c.data.bidCurrencyPrefix = '$';
+                break;
+        }
+    }
+
+    // Call the function to set initial currency prefixes
+    getUserCurrencyPreference();
 
     // Fetch event details
     var itemUrl = 'https://dev203498.service-now.com/api/now/table/x_1383184_charityb_events/' + c.data.sys_id;
@@ -66,47 +124,64 @@
             return;
         }
 
-        // Prepare donation item data object
-        var donationItemData = {
-            item_name: c.data.itemName,
-            event_name: c.data.eventName,
-            category: c.data.category, // Assuming category object has 'id' field
-            start_date: c.data.startDate,
-            end_date: c.data.endDate,
-            value: c.data.value,
-            start_bid_amount: c.data.startBidAmount,
-            description: c.data.description,
-            // Handle image upload separately if required
-        };
-
-        // Example: Making a POST request to submit donation item data
-        $http.post('/api/now/table/x_1383184_charityb_item', donationItemData).then(function(response) {
-            if (response.data.result) {
-                c.successMessage = 'Donation item submitted successfully!';
-                // Clear form data after successful submission
-                c.data = {
-                    sys_id: c.data.sys_id, // Retain sys_id for potential reuse
-                    itemName: '',
-                    eventName: '', // Ensure to reset other fields as needed
-                    category: '',
-                    startDate: '',
-                    endDate: '',
-                    value: '',
-                    startBidAmount: '',
-                    description: '',
-                    image: null,
-                    errorMessage: '',
-                    successMessage: ''
-                };
-                c.server.refresh(); // Refresh the widget after submission
-            } else {
-                c.errorMessage = 'Failed to submit donation item.';
-            }
-        }, function(error) {
-            console.error('Error during donation item submission:', error);
-            c.errorMessage = 'An error occurred during donation item submission.';
-        });
+        // Open confirmation modal
+        c.openConfirmationModal();
     };
+
+    // Function to handle donation item submission after confirmation
+    // Function to handle donation item submission after confirmation
+c.donateItem = function() {
+    // Prepare donation item data object
+    var donationItemData = {
+        item_name: c.data.itemName,
+        event_name: c.data.eventName,
+        category: c.data.category,
+        start_date: c.data.startDate,
+        end_date: c.data.endDate,
+        value: c.data.value,
+        start_bid_amount: c.data.startBidAmount,
+        description: c.data.description,
+        // Handle image upload separately if required
+    };
+
+    // Example: Making a POST request to submit donation item data
+    $http.post('/api/now/table/x_1383184_charityb_item', donationItemData).then(function(response) {
+        if (response.data.result) {
+            c.successMessage = 'Donation item submitted successfully!'; // Set success message
+            // Clear form data after successful submission
+            c.data = {
+                sys_id: c.data.sys_id, // Retain sys_id for potential reuse
+                itemName: '',
+                eventName: '', // Ensure to reset other fields as needed
+                category: '',
+                startDate: '',
+                endDate: '',
+                value: '',
+                startBidAmount: '',
+                description: '',
+                image: null,
+                errorMessage: '',
+                successMessage: c.successMessage, // Set success message
+                currencyPrefix: c.data.currencyPrefix, // Retain currency prefix
+                bidCurrencyPrefix: c.data.bidCurrencyPrefix // Retain bid currency prefix
+            };
+            c.server.refresh(); // Refresh the widget after submission
+        } else {
+            c.errorMessage = 'Failed to submit donation item.';
+        }
+    }, function(error) {
+        console.error('Error during donation item submission:', error);
+        c.errorMessage = 'An error occurred during donation item submission.';
+    });
+
+    // Hide modal after submission
+    $('#confirmModal').modal('hide');
+};
+
+    // Handle the confirm button click within the AngularJS controller
+    $scope.$on('modal.confirm', function() {
+        c.donateItem();
+    });
 };
 ]]></client_script>
         <controller_as>c</controller_as>
@@ -116,12 +191,76 @@
   text-align: center;
   color: #333;
 }
+
+.modal-header {
+    border: none;
+}
+.modal-title {
+    margin: 0;
+    line-height: 1.42857;
+    font-size: 24px;
+    color: #ffc727;
+}
+
+input#itemName {
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+}
+
+
+input#eventName
+{
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+}
+
+select#category{
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+}
+
+input#value{
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+}
+input#endDate{
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+}
+input#startDate{
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+input#image{
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+}
+textarea#description{
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+}input#startBidAmount{
+    border-radius: 20px;
+    border: 1px solid #337f9f;
+}
+
 .time {
   background-color: #f0f0f0;
   padding: 10px;
   border-radius: 5px;
   display: inline-block;
 }
+
+.panel.panel-default {
+    border: none;
+}
+
 img {
   width: 50%;
 }
@@ -133,6 +272,24 @@ img {
 .col-md-6 {
     /* margin-right: 10px; */
     width: 50%;
+}
+
+.panel-body {
+    padding: 1.5rem;
+    border: .3rem solid #ffe7de;
+    background: #fff;
+    box-shadow: rgba(50, 50, 93, .25) 0px 13px 27px -5px, rgba(0, 0, 0, .3) 0px 8px 16px -8px;
+    border-radius: 2.2rem;
+    width: 83%;
+    position: relative;
+    left: 5rem !important;
+    top: 0rem !important;
+}
+
+.btn {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -183,23 +340,33 @@ img {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-07-20 05:00:01</sys_created_on>
         <sys_id>2bc8af74932f061094e3f15a7bba10f5</sys_id>
-        <sys_mod_count>18</sys_mod_count>
+        <sys_mod_count>63</sys_mod_count>
         <sys_name>cb donation form</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_2bc8af74932f061094e3f15a7bba10f5</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-22 06:54:42</sys_updated_on>
-        <template><![CDATA[<!-- Assuming the form is within a container -->
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-26 04:56:39</sys_updated_on>
+        <template><![CDATA[<!-- Donation Form HTML -->
 <div class="item-details" ng-if="c.data">
-    <div class="modal-content">
+    <!--<div class="modal-content">-->
         <div class="modal-header">
-            <h4 class="modal-title">Donate Today</h4>
+            <h4 class="modal-title">Make a Difference: Donate Your Item Today</h4>
         </div>
 
         <div class="panel panel-default">
             <div class="panel-body">
+                <!-- Success Message -->
+                <div class="alert alert-success" ng-if="c.successMessage">
+                    {{ c.successMessage }}
+                </div>
+
+                <!-- Error Message -->
+                <div class="alert alert-danger" ng-if="c.errorMessage">
+                    {{ c.errorMessage }}
+                </div>
+
                 <form name="donationForm" ng-submit="c.submitDonationItem()" enctype="multipart/form-data">
                     <div class="modal-body">
                         <!-- Input field for Item Name -->
@@ -215,21 +382,20 @@ img {
                         </div>
 
                         <!-- Dropdown for Category -->
-                       <div class="form-group">
-            <label for="category">Category</label>
-            <select id="category" ng-model="c.data.category" class="form-control">
-                <option value="">Select a category...</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Books & media">Books & media</option>
-                <option value="Toys">Toys</option>
-                <option value="Accessories & Clothing">Accessories & Clothing</option>
-                <option value="Others">Others</option>
-                <option value="Musical instruments">Musical instruments</option>
-                <option value="Art & Craft">Art & Craft</option>
-                <option value="Home & decor">Home & decor</option>
-            </select>
-        </div>
-
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" ng-model="c.data.category" class="form-control">
+                                <option value="">Select a category...</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Books & media">Books & media</option>
+                                <option value="Toys">Toys</option>
+                                <option value="Accessories & Clothing">Accessories & Clothing</option>
+                                <option value="Others">Others</option>
+                                <option value="Musical instruments">Musical instruments</option>
+                                <option value="Art & Craft">Art & Craft</option>
+                                <option value="Home & decor">Home & decor</option>
+                            </select>
+                        </div>
 
                         <!-- Input field for Start Date -->
                         <div class="form-group">
@@ -246,33 +412,34 @@ img {
                         <!-- Input field for Value -->
                         <div class="form-group">
                             <label for="value">Value:</label>
-                           <div class="input-group">
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <select class="custom-select" ng-model="c.data.currencyPrefix">
-                                        <option value="$">USD ($)</option>
-                                        <option value="₹">INR (₹)</option>
-                                        <option value="€">EUR (€)</option>
-                                        <option value="£">GBP (£)</option>
+                                        <option value="$" ng-selected="c.data.currencyPrefix === '$'">USD ($)</option>
+                                        <option value="₹" ng-selected="c.data.currencyPrefix === '₹'">INR (₹)</option>
+                                        <option value="€" ng-selected="c.data.currencyPrefix === '€'">EUR (€)</option>
+                                        <option value="£" ng-selected="c.data.currencyPrefix === '£'">GBP (£)</option>
                                     </select>
                                 </div>
-                            <input type="number" class="form-control" id="value" ng-model="c.data.value" placeholder="Enter value" required>
+                                <input type="number" class="form-control" id="value" ng-model="c.data.value" placeholder="Enter value" required>
+                            </div>
                         </div>
-                      </div>
 
                         <!-- Input field for Start Bid Amount -->
                         <div class="form-group">
-                            <label for="startBidAmount">Start Bid Amount:</label> <div class="input-group">
+                            <label for="startBidAmount">Start Bid Amount:</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <select class="custom-select" ng-model="c.data.currencyPrefix">
-                                        <option value="$">USD ($)</option>
-                                        <option value="₹">INR (₹)</option>
-                                        <option value="€">EUR (€)</option>
-                                        <option value="£">GBP (£)</option>
+                                    <select class="custom-select" ng-model="c.data.bidCurrencyPrefix">
+                                        <option value="$" ng-selected="c.data.bidCurrencyPrefix === '$'">USD ($)</option>
+                                        <option value="₹" ng-selected="c.data.bidCurrencyPrefix === '₹'">INR (₹)</option>
+                                        <option value="€" ng-selected="c.data.bidCurrencyPrefix === '€'">EUR (€)</option>
+                                        <option value="£" ng-selected="c.data.bidCurrencyPrefix === '£'">GBP (£)</option>
                                     </select>
                                 </div>
-                            <input type="number" class="form-control" id="startBidAmount" ng-model="c.data.startBidAmount" placeholder="Enter start bid amount" required>
+                                <input type="number" class="form-control" id="startBidAmount" ng-model="c.data.startBidAmount" placeholder="Enter start bid amount" required>
+                            </div>
                         </div>
-                      </div>
 
                         <!-- Textarea for Description -->
                         <div class="form-group">
@@ -287,15 +454,34 @@ img {
                         </div>
 
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary">Donate Now</button>
-                        <p ng-if="c.errorMessage" class="text-danger">{{c.errorMessage}}</p>
-                        <p ng-if="c.successMessage" class="text-success">{{c.successMessage}}</p>
+                        <button type="button" class="btn btn-primary" ng-click="c.openConfirmationModal()">Donate Now</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+    
+    <!-- Modal for confirmation -->
+    <div id="confirmModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Donation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to donate this item?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="c.donateItem()">Donate Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--</div>-->
 ]]></template>
     </sp_widget>
 </record_update>

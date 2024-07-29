@@ -83,21 +83,80 @@
         <controller_as>c</controller_as>
         <css>.det-space {
     display: flex;
+    gap: 4rem;
+    width: 39rem;
+    color: #000;
+    padding-top: 1.7rem;
     justify-content: flex-start;
-    padding-top: 17px;
 }
+
+.det-space2 {
+    display: flex;
+    gap: 4rem;
+    width: 39rem;
+    color: #000;
+    padding-top: 1.7rem;
+    justify-content: flex-start;
+}
+
+.det-space3 {
+    display: flex;
+    gap: 7rem;
+    width: 39rem;
+    color: #000;
+    padding-top: 1.7rem;
+    justify-content: flex-start;
+}
+
 span#field-x_1383184_charityb_user_profile-location-39a8eb2a9336021094e3f15a7bba10e1 {
     padding-left: 20px;
 }
 
+p.ng-scope {
+    border: 1px solid #327f9e;
+    padding: 3px 13px;
+    border-radius: 20px;
+}
 
 img {
     border: 0;
-    padding-left: 20px;
+    width: 34%;
+    border: .2rem solid #327e9e;
+    /* padding-left: 2rem; */
+    border-radius: 50%;
+}
+h2.userTitle.ng-binding {
+    text-align: center;
+    color: #33819f;
+    font-size: 4rem;
 }
 
 span#field-x_1383184_charityb_user_profile-bio-39a8eb2a9336021094e3f15a7bba10e1 {
     padding-left: 20px;
+}
+
+.panel.panel-default {
+    border: none;
+    margin-bottom: 12.8rem;
+}
+
+.panel-body {
+    padding: 1.5rem 4rem;
+    width: fit-content;
+    display: flex;
+    margin-top: 2rem;
+    /* border: 1px solid #378c9f; */
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 20px;
+}
+
+.profile-image-container {
+    width: 100%;
+    display: flex;
+    height: 28vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -169,14 +228,14 @@ span#field-x_1383184_charityb_user_profile-bio-39a8eb2a9336021094e3f15a7bba10e1 
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-06-19 05:39:15</sys_created_on>
         <sys_id>3f784c83933a421094e3f15a7bba1049</sys_id>
-        <sys_mod_count>44</sys_mod_count>
+        <sys_mod_count>70</sys_mod_count>
         <sys_name>cb edit user profile</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_3f784c83933a421094e3f15a7bba1049</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-27 04:31:49</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-25 21:40:39</sys_updated_on>
         <template><![CDATA[<div class="default-focus-outline user-profile-container">
 
   <div ng-if="!data.userExists" class="panel panel-default">
@@ -193,57 +252,56 @@ span#field-x_1383184_charityb_user_profile-bio-39a8eb2a9336021094e3f15a7bba10e1 
           <div class="userDetails">
             <h2 class="userTitle">{{data.name}}</h2>
 
-            
-
-                <!-- Display Location -->
-                <div class="det-space">
-                  <p class="p-head">Location</p>
-                  <p ng-if="::displayField('x_1383184_charityb_user_profile', 'location', true)">
-                    <sp-editable-field editable-by-user="data.isLoggedInUsersProfile"
-                                       table="x_1383184_charityb_user_profile"
-                                       table-id="data.sysUserID"
-                                       field-model="data.sysUserModel.location"></sp-editable-field>
-                  </p>
-                </div>
-              </div>
-
-              <!-- Display Bio -->
-              <div class="det-1">
-                <div class="det-space">
-                  <p class="p-head">Bio</p>
-                  <p ng-if="::displayField('x_1383184_charityb_user_profile', 'bio', true)">
-                    <sp-editable-field editable-by-user="data.isLoggedInUsersProfile"
-                                       table="x_1383184_charityb_user_profile"
-                                       table-id="data.sysUserID"
-                                       field-model="data.sysUserModel.bio"></sp-editable-field>
-                  </p>
-                </div>
-
-                <!-- Display Profile Image -->
-                <div class="det-space">
-                  <p class="p-head">Image</p>
-                  <div class="profile-image-container">
-                    <img ng-src="{{data.profileImage}}" alt="Profile Image" class="profile-image" />
-                    <div ng-if="data.isLoggedInUsersProfile">
-                      <!-- File Upload Button -->
-                      <label class="btn btn-primary btn-file">
-                        Update Image <input type="file" style="display: none;"
-                                                sp-model="input.file"
-                                                sp-attachment-upload="input.action = 'upload_profile_image';"
-                                                sp-attachment-attachment_sys_id="input.attachment_sys_id" />
-                      </label>
-                    </div>
-                  </div>
+            <!-- Display Profile Image -->
+            <div class="det-space">
+              <div class="profile-image-container">
+                <img ng-src="{{data.profileImage}}" alt="Profile Image" class="profile-image" />
+                <div ng-if="data.isLoggedInUsersProfile">
+                  <!-- File Upload Button -->
+                  <label class="btn btn-primary btn-file">
+                    ${Update Image}<input type="file" style="display: none;"
+                                        sp-model="input.file"
+                                        sp-attachment-upload="input.action = 'upload_profile_image';"
+                                        sp-attachment-attachment_sys_id="input.attachment_sys_id" />
+                  </label>
                 </div>
               </div>
             </div>
 
+
+            <!-- Display Location -->
+            <div class="det-space2">
+              <p class="p-head">${Location:} </p>
+              <p ng-if="::displayField('x_1383184_charityb_user_profile', 'location', true)">
+                <sp-editable-field editable-by-user="data.isLoggedInUsersProfile"
+                                   table="x_1383184_charityb_user_profile"
+                                   table-id="data.sysUserID"
+                                   field-model="data.sysUserModel.location"></sp-editable-field>
+              </p>
+            </div>
+          </div>
+
+          <!-- Display Bio -->
+          <div class="det-1">
+            <div class="det-space3">
+              <p class="p-head">${Bio:} </p>
+              <p ng-if="::displayField('x_1383184_charityb_user_profile', 'bio', true)">
+                <sp-editable-field editable-by-user="data.isLoggedInUsersProfile"
+                                   table="x_1383184_charityb_user_profile"
+                                   table-id="data.sysUserID"
+                                   field-model="data.sysUserModel.bio"></sp-editable-field>
+              </p>
+            </div>
+
+
           </div>
         </div>
+
       </div>
     </div>
   </div>
 </div>
+
 ]]></template>
     </sp_widget>
 </record_update>

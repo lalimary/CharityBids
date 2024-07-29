@@ -1,15 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <client_script><![CDATA[api.controller = function($http, $location, spUtil, $scope) {
+    var c = this;
+
+    // Initialize data object for issue form
+    c.data = {
+        sys_id: $location.search().sys_id,
+        caller: '', // Autopopulated with logged-in user's name
+        itemName: '', // Corrected property name based on HTML form
+        reason: '',
+        comments: '',
+        screenshot: null, // Placeholder for image upload
+        errorMessage: '',
+        successMessage: ''
+    };
+
+    // Fetch logged-in user's name and populate caller field
+    //spUtil.getCurrentUser().then(function(response) {
+       // c.data.caller = response.name;
+   // });
+
+    // Fetch item details based on sys_id provided in URL
+    var itemUrl = 'https://dev203498.service-now.com/api/now/table/x_1383184_charityb_item/' + c.data.sys_id;
+    $http.get(itemUrl).then(function(response) {
+        // Assuming response.data.result contains the necessary fields
+        c.data.itemName = response.data.result.item_name;
+    }, function(error) {
+        console.error('Failed to fetch item details:', error);
+        c.errorMessage = 'Failed to fetch item details.';
+    });
+
+    // Function to submit the issue
+    c.submitIssue = function() {
+        // Client-side validation
+        if (!c.data.itemName || !c.data.reason || !c.data.comments) {
+            c.errorMessage = 'Please fill in all required fields.';
+            return;
+        }
+
+        // Prepare issue data object
+        var issueData = {
+            caller: c.data.caller,
+            item_name: c.data.itemName,
+            reason: c.data.reason,
+            comments: c.data.comments,
+            // Handle image upload separately if required
+        };
+
+        // Example: Making a POST request to submit issue data
+        $http.post('/api/now/table/x_1383184_charityb_issues', issueData).then(function(response) {
+            if (response.data.result) {
+                c.successMessage = 'Issue raised successfully!';
+                // Clear form data after successful submission
+                c.data = {
+                    sys_id: c.data.sys_id,
+                    caller: '', // Retain caller for potential reuse
+                    itemName: '', // Corrected property name based on HTML form
+                    reason: '',
+                    comments: '',
+                    screenshot: null,
+                    errorMessage: '',
+                    successMessage: ''
+                };
+                c.server.refresh();
+                // Optionally refresh the widget or perform any necessary actions
+            } else {
+                c.errorMessage = 'Failed to raise issue.';
+            }
+        }, function(error) {
+            console.error('Error during issue submission:', error);
+            c.errorMessage = 'An error occurred during issue submission.';
+        });
+    };
+};
+]]></client_script>
         <controller_as>c</controller_as>
-        <css/>
+        <css>.countdown-timer {
+  font-family: Arial, sans-serif;
+  font-size: 2em;
+  text-align: center;
+  color: #333;
+}
+.time {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+img {
+  width: 50%;
+}
+.imgC {
+  display: flex;
+  justify-content: center;
+}
+
+.col-md-6 {
+    /* margin-right: 10px; */
+    width: 50%;
+}</css>
         <data_table>sp_instance</data_table>
         <demo_data/>
         <description/>
         <docs/>
         <field_list/>
-        <has_preview>false</has_preview>
+        <has_preview>true</has_preview>
         <id>cb_item_issue</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
@@ -17,20 +113,101 @@
         <option_schema/>
         <public>false</public>
         <roles/>
-        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <script><![CDATA[(function() {
+    var IssueSysId = $sp.getParameter('sys_id');
+    var data = {};
+	
+	// Fetch current logged-in user
+    
+    // Fetch issue details
+    var itemGr = new GlideRecord('x_1383184_charityb_issues');
+    if (itemGr.get(IssueSysId)) {
+        data.caller = itemGr.getValue('caller');
+			  data.reason = itemGr.getValue('reason');
+			  data.comments = itemGr.getValue('comments');
+        
+
+        // Fetch related event details
+        var itemId = itemGr.getValue('item_id'); // Assuming there's a field 'event_id' in itemGr that links to the event record
+        if (itemId) {
+            var eventGr = new GlideRecord('x_1383184_charityb_item');
+            if (eventGr.get(itemId)) {
+                data.itemName = eventGr.getValue('item_name');
+            }
+        }
+			data.sys_id = itemGr.getUniqueValue();
+    } else {
+        data.errorMessage = 'Item not found';
+    }
+
+    return data;
+})();
+]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-07-22 10:45:29</sys_created_on>
         <sys_id>270b07ed83ef4210304f5c65eeaad3ed</sys_id>
-        <sys_mod_count>0</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>cb item issue</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_270b07ed83ef4210304f5c65eeaad3ed</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-22 10:45:29</sys_updated_on>
-        <template><![CDATA[<div><!-- your widget template --></div>]]></template>
+        <sys_updated_on>2024-07-23 07:23:04</sys_updated_on>
+        <template><![CDATA[<div class="item-details" ng-if="c.data">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Raise Issue</h4>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form name="issueForm" ng-submit="c.submitIssue()" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <!--<div class="form-group">
+                            <label for="caller">Caller:</label>
+                            <!-- Autopopulate caller field with logged-in user's name 
+                            <input type="text" class="form-control" id="caller" ng-model="c.data.caller" value="{{ loggedInUser.name }}">
+                        </div>-->
+
+                        <div class="form-group">
+                            <label for="event_name">Item Name:</label>
+                            <input type="text" class="form-control" id="item_name" ng-model="c.data.itemName" placeholder="Enter item name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reason">Reason:</label>
+                            <select id="reason" class="form-control" ng-model="c.data.reason" >
+                                <option value="">Select a reason...</option>
+                                <option value="Inappropriate Content">Inappropriate Content</option>
+                                <option value="Low Image Quality">Low Image Quality</option>
+                                <option value="Missing Content">Missing Content</option>
+                                <option value="Other Reason">Other Reason</option>
+                                <option value="Suspicious Activity">Suspicious Activity</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Comments:</label>
+                            <textarea class="form-control" id="comments" ng-model="c.data.comments" placeholder="Enter comments" rows="5"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="screenshot">Screenshot:</label>
+                            <input type="file" id="screenshot" accept="image/*" ng-model="c.data.screenshot">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Submit Issue</button>
+                        <p ng-if="c.errorMessage" class="text-danger">{{c.errorMessage}}</p>
+                        <p ng-if="c.successMessage" class="text-success">{{c.successMessage}}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+]]></template>
     </sp_widget>
 </record_update>

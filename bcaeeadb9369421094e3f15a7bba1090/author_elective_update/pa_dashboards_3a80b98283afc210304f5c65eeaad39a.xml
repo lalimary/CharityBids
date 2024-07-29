@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="pa_dashboards">
+    <pa_dashboards action="DELETE">
+        <active>true</active>
+        <breakdown_source/>
+        <color/>
+        <disable_multiple_element>false</disable_multiple_element>
+        <group/>
+        <groups/>
+        <is_breakdown>false</is_breakdown>
+        <managed_breakdown/>
+        <managed_publisher/>
+        <name>Donator dashboard</name>
+        <no_tabs>false</no_tabs>
+        <notification_link_label/>
+        <notification_link_url/>
+        <notification_text/>
+        <order/>
+        <owner display_value="Lalitha ">08a3aa4c93e9021094e3f15a7bba10e6</owner>
+        <restrict_to_roles/>
+        <role_override>true</role_override>
+        <roles/>
+        <should_migrate_permissions>false</should_migrate_permissions>
+        <sys_class_name>pa_dashboards</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-23 17:27:12</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>3a80b98283afc210304f5c65eeaad39a</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Donator dashboard</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>pa_dashboards_3a80b98283afc210304f5c65eeaad39a</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-23 17:27:12</sys_updated_on>
+        <users/>
+        <visible_to>2</visible_to>
+    </pa_dashboards>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>pa_dashboards_3a80b98283afc210304f5c65eeaad39a</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="pa_dashboards"><pa_dashboards action="INSERT_OR_UPDATE"><active>true</active><breakdown_source/><color/><disable_multiple_element>false</disable_multiple_element><group/><groups/><is_breakdown>false</is_breakdown><managed_breakdown/><managed_publisher/><name>Donator dashboard</name><no_tabs>false</no_tabs><notification_link_label/><notification_link_url/><notification_text/><order/><owner display_value="Lalitha ">08a3aa4c93e9021094e3f15a7bba10e6</owner><restrict_to_roles/><role_override>true</role_override><roles/><should_migrate_permissions>false</should_migrate_permissions><sys_class_name>pa_dashboards</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-23 17:27:12</sys_created_on><sys_domain>global</sys_domain><sys_domain_path>/</sys_domain_path><sys_id>3a80b98283afc210304f5c65eeaad39a</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Donator dashboard</sys_name><sys_overrides/><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>pa_dashboards_3a80b98283afc210304f5c65eeaad39a</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-23 17:27:12</sys_updated_on><users/><visible_to>2</visible_to></pa_dashboards></record_update>]]></payload>
+        <payload_hash>-765092027</payload_hash>
+        <record_name>Donator dashboard</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-23 17:27:13</sys_created_on>
+        <sys_id>8a9031c283afc210304f5c65eeaad38d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190e0a207540000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-23 17:27:13</sys_updated_on>
+        <type>Dashboard</type>
+        <update_guid>ce9031c267afc210533b4769d7e25f8c</update_guid>
+        <update_guid_history>ce9031c267afc210533b4769d7e25f8c:-765092027</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="Donator dashboard">0ff3b1c683afc210304f5c65eeaad334</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-23 17:42:01</sys_created_on>
+        <sys_db_object display_value="" name="pa_dashboards">pa_dashboards</sys_db_object>
+        <sys_id>482390e8970b46549ad16ea9c2dd50e4</sys_id>
+        <sys_metadata>3a80b98283afc210304f5c65eeaad39a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Donator dashboard</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>pa_dashboards_3a80b98283afc210304f5c65eeaad39a</sys_update_name>
+        <sys_update_version display_value="pa_dashboards_3a80b98283afc210304f5c65eeaad39a">8a9031c283afc210304f5c65eeaad38d</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-23 17:42:01</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

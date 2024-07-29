@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_grid_canvas_pane">
+    <sys_grid_canvas_pane action="DELETE">
+        <grid_canvas display_value="Charity bids calenda - New Tab">7faf2d4283afc210304f5c65eeaad3dc</grid_canvas>
+        <height>18</height>
+        <portal_widget display_value="Created 2024-07-23 10:23:44">83cfe14283afc210304f5c65eeaad3db</portal_widget>
+        <posx>0</posx>
+        <posy>0</posy>
+        <sys_class_name>sys_grid_canvas_pane</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-23 17:23:44</sys_created_on>
+        <sys_id>4fcfe14283afc210304f5c65eeaad3dc</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>7faf2d4283afc210304f5c65eeaad3dc</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sys_grid_canvas_pane_4fcfe14283afc210304f5c65eeaad3dc</sys_update_name>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-23 17:23:53</sys_updated_on>
+        <width>6</width>
+    </sys_grid_canvas_pane>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</application>
+        <file_path/>
+        <instance_id>f0f392a5dbd2fd9cebdd2a59139619bb</instance_id>
+        <instance_name>dev203498</instance_name>
+        <name>sys_grid_canvas_pane_4fcfe14283afc210304f5c65eeaad3dc</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_grid_canvas_pane"><sys_grid_canvas_pane action="INSERT_OR_UPDATE"><grid_canvas display_value="Charity bids calenda - New Tab">7faf2d4283afc210304f5c65eeaad3dc</grid_canvas><height>18</height><portal_widget display_value="Created 2024-07-23 10:23:44">83cfe14283afc210304f5c65eeaad3db</portal_widget><posx>0</posx><posy>0</posy><sys_class_name>sys_grid_canvas_pane</sys_class_name><sys_created_by>lalitha</sys_created_by><sys_created_on>2024-07-23 17:23:44</sys_created_on><sys_id>4fcfe14283afc210304f5c65eeaad3dc</sys_id><sys_mod_count>1</sys_mod_count><sys_name>7faf2d4283afc210304f5c65eeaad3dc</sys_name><sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package><sys_policy/><sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope><sys_update_name>sys_grid_canvas_pane_4fcfe14283afc210304f5c65eeaad3dc</sys_update_name><sys_updated_by>lalitha</sys_updated_by><sys_updated_on>2024-07-23 17:23:53</sys_updated_on><width>6</width></sys_grid_canvas_pane></record_update>]]></payload>
+        <payload_hash>-1186108792</payload_hash>
+        <record_name>7faf2d4283afc210304f5c65eeaad3dc</record_name>
+        <reverted_from/>
+        <source>548ff41793fa821094e3f15a7bba1080</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-23 17:23:53</sys_created_on>
+        <sys_id>9ddfed4283afc210304f5c65eeaad353</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190e09efb950000001</sys_recorded_at>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-23 17:23:53</sys_updated_on>
+        <type>Grid Canvas Pane</type>
+        <update_guid>55dfed420fafc2101e47c842b3fd6453</update_guid>
+        <update_guid_history>55dfed420fafc2101e47c842b3fd6453:-1186108792,43cfe1427eafc21054e19d62c912c5de:-1791064611</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-23 17:25:22</sys_created_on>
+        <sys_db_object display_value="" name="sys_grid_canvas_pane">sys_grid_canvas_pane</sys_db_object>
+        <sys_id>51d45ab15c034a84a07a3a62a2c19890</sys_id>
+        <sys_metadata>4fcfe14283afc210304f5c65eeaad3dc</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>7faf2d4283afc210304f5c65eeaad3dc</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_scope_delete display_value="">29dae2f224af48ab9e59cb6ffa07ce11</sys_scope_delete>
+        <sys_update_name>sys_grid_canvas_pane_4fcfe14283afc210304f5c65eeaad3dc</sys_update_name>
+        <sys_update_version display_value="sys_grid_canvas_pane_4fcfe14283afc210304f5c65eeaad3dc">9ddfed4283afc210304f5c65eeaad353</sys_update_version>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-23 17:25:22</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

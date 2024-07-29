@@ -22,16 +22,16 @@
         <sys_created_by>lalitha</sys_created_by>
         <sys_created_on>2024-07-05 11:09:56</sys_created_on>
         <sys_id>00adeb80939f421094e3f15a7bba10b0</sys_id>
-        <sys_mod_count>7</sys_mod_count>
-        <sys_name>Noticeboard</sys_name>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>Events Noticeboard</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sys_sg_item_section_00adeb80939f421094e3f15a7bba10b0</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-10 05:58:42</sys_updated_on>
+        <sys_updated_on>2024-07-26 07:12:00</sys_updated_on>
         <table/>
-        <title>Noticeboard</title>
+        <title>Events Noticeboard</title>
         <visible_condition/>
         <wide_column_count/>
     </sys_sg_item_section>

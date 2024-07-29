@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller = function($rootScope, $location, $window) {
+    var c = this;
+
+    // Function to open JustGiving page
+    c.openJustGivingPage = function(url) {
+        $window.open(url, '_blank');
+    };
+
+    // Function to open donation form
+    c.openDonationForm = function() {
+        // Redirect to the donation form page
+        $window.location.href = '/cb?id=upload_item';
+    };
+
+};
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* styles.css */
+
+.event-details {
+    display: flex;
+    margin: 0 auto;
+    height: 78vh;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+
+.event-header {
+  text-align: center;
+  margin-bottom: 30px; /* Increased margin for spacing */
+}
+
+.event-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px; /* Match border radius of card */
+}
+
+.event-content {
+  display: flex;
+  margin-left: 2rem;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  justify-content: space-between;
+}
+
+.container2 {
+  width: 95%;
+}
+
+.mainCont {
+    display: flex;
+    flex-direction: row;
+    margin-top: 3rem;
+}
+
+.eventTitle {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    justify-content: space-between;
+}
+
+.cont3 {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.event-dates {
+  display: flex;
+  width: 43%;
+  margin-bottom: 2rem;
+  margin-left: 2.5rem;
+  justify-content: space-evenly;
+}
+.event-date {
+    width: 23rem;
+    padding: .9rem;
+    display: flex;
+    border: .2rem solid #f0ad4e;
+    border-radius: .8rem;
+    background-color: #f0ad4e;
+    text-align: center;
+    align-items: flex-end;
+    margin-right: 12px;
+}
+
+
+h3.eventName.ng-binding {
+  margin: 0px;
+  font-size: 3rem;
+  color: #000;
+}
+
+.date-label {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: black; /* Font color set to black */
+}
+
+.date-label i {
+  margin-right: 10px; /* Margin between icon and text */
+  font-size: 24px; /* Increased font size for calendar icon */
+}
+
+.date-value {
+  margin-left: 28px;
+  margin-top: -2.5rem;
+  font-size: 1.6rem; /* Font size increased */
+  color: black; /* Font color set to black */
+}
+
+.event-title {
+    font-size: 2.3rem;
+    color: #327e9f;
+    width: fit-content;
+    padding: 1rem 1rem;
+    height: 3rem;
+    margin-top: 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2rem;
+    border: .3rem solid #327e9f;
+}
+
+.event-info {
+  margin-bottom: 0px; /* Increased margin for spacing */
+}
+
+.event-icon {
+  margin-right: 10px;
+  font-size: 20px; /* Increased font size for event icon */
+}
+
+.event-company {
+  margin-bottom: 20px; /* Increased margin for spacing */
+}
+
+.event-description {
+    line-height: 1.6;
+    font-size: 16px;
+    margin-bottom: 2rem;
+    color: black;
+}
+
+.event-buttons {
+  text-align: center;
+}
+
+.event-btn {
+  padding: 12px 24px; /* Increased padding for larger buttons */
+  margin: 0 10px; /* Increased margin for spacing */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px; /* Increased font size for buttons */
+  transition: background-color 0.3s ease;
+  color: black; /* Font color set to black */
+}
+
+.donate-money-btn {
+  background-color: #28a745; /* Green color for donate money button */
+  color: white;
+}
+
+.donate-money-btn:hover {
+  background-color: #218838; /* Darker shade of green on hover */
+}
+
+.donate-item-btn {
+  background-color: #ffc107; /* Yellow color for donate item button */
+  color: white;
+}
+
+.donate-item-btn:hover {
+  background-color: #e0a800; /* Darker shade of yellow on hover */
+}
+
+.raise-issue-icon {
+  position: absolute;
+  top: 10px; /* Adjust this value as needed */
+  left: 10px; /* Adjust this value as needed */
+  color: orange;
+  font-size: 24px;
+}
+
+.event-header {
+  position: relative; /* Ensure relative positioning for absolute child */
+  margin-bottom: 20px; /* Example margin for spacing */
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>cb_event_details_2__test_</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>cb event details 2 (Test)</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+    data.EventSysId = $sp.getParameter('sys_id');
+
+    // Create a new GlideRecord object for the event
+    var grEvent = new GlideRecord('x_1383184_charityb_events');
+    grEvent.addQuery('sys_id', data.EventSysId);
+    grEvent.query();
+
+    if (grEvent.next()) {
+		  	data.event_type = grEvent.getDisplayValue('event_type');
+        data.event_name = grEvent.getDisplayValue('event_name'); // Ensure proper localization
+        data.start_date = grEvent.getValue('start_date');
+        data.end_date = grEvent.getValue('end_date');
+        data.justgiving_url = grEvent.getValue('justgiving_url');
+        data.event_status = grEvent.getValue('event_status');
+				data.eventsys_id=grEvent.getUniqueValue();
+        data.image = grEvent.getDisplayValue('image'); // Ensure proper localization
+        data.description = grEvent.getValue('description'); // Ensure proper localization
+
+        // Fetch event manager's name from x_1383184_charityb_user_profile table
+        var eventManager = grEvent.getValue('event_manager');
+        var grProfile = new GlideRecord('x_1383184_charityb_user_profile');
+        if (grProfile.get(eventManager)) {
+            data.event_manager = grProfile.getValue('name'); // Ensure proper localization
+        } else {
+            data.event_manager = gs.getMessage('Unknown'); // Handle if event manager not found
+        }
+
+        // Fetch charity company's name from core_company table
+        var charityCompany = grEvent.getValue('charity_company');
+        var grCompany = new GlideRecord('core_company');
+        if (grCompany.get(charityCompany)) {
+            data.charity_company = grCompany.getValue('name'); // Ensure proper localization
+        } else {
+            data.charity_company = gs.getMessage('Unknown'); // Handle if charity company not found
+        }
+    }
+})();
+]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>lalitha</sys_created_by>
+        <sys_created_on>2024-07-23 17:13:24</sys_created_on>
+        <sys_id>336ded8e836fc210304f5c65eeaad3ea</sys_id>
+        <sys_mod_count>79</sys_mod_count>
+        <sys_name>cb event details 2 (Test)</sys_name>
+        <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
+        <sys_update_name>sp_widget_336ded8e836fc210304f5c65eeaad3ea</sys_update_name>
+        <sys_updated_by>christy</sys_updated_by>
+        <sys_updated_on>2024-07-25 11:58:07</sys_updated_on>
+        <template><![CDATA[<!DOCTYPE html>
+<html ng-app="charityApp">
+
+  <head>
+    <title>Charity Bids Event Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
+
+    <div class="event-details" ng-if="c.data">
+      <div class="eventTitle">
+        <div class="cont3">
+         
+          <div class="event-info">
+            <div class="event-company">
+              <h3 class="eventName">
+                 {{c.data.event_name}}
+              </h3>
+            </div>
+          </div>
+           <h2 class="event-title">{{c.data.event_type}}</h2>
+        </div>
+
+        <div class="event-dates">
+          <div class="event-date">
+            <div class="date-label">
+              <i class="fas fa-calendar-days"></i> Start Date:
+            </div>
+            <div class="date-value">{{c.data.start_date}}</div>
+          </div>
+          <div class="event-date">
+            <div class="date-label">
+              <i class="fas fa-calendar-days"></i> End Date:
+            </div>
+            <div class="date-value">{{c.data.end_date}}</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="mainCont">
+
+
+        <div class="container2">
+
+          <div class="event-header">
+            <a href="?id=event_issue_form&sys_id={{c.data.eventsys_id}}" class="raise-issue-icon">
+              <i class="fas fa-exclamation-triangle"></i> <!-- Font Awesome triangle exclamation icon -->
+            </a>
+            <img class="event-image" ng-src="{{c.data.image || 'https://dev203498.service-now.com/x_1383184_charityb.item%20default%20image.jpg'}}" alt="{{c.data.event_name}}">
+          </div>
+        </div>
+
+
+        <div class="event-content">
+
+
+          <p class="event-description">{{c.data.description}}</p>
+          <div class="event-buttons" ng-click="openDonationForm(event.sys_id)">
+            <a ng-href="{{c.data.justgiving_url}}" target="_blank" class="event-btn donate-money-btn">Donate Money</a>
+            <a ng-href="?id=upload_item&sys_id={{c.data.eventsys_id}}" target="_blank" class="event-btn donate-item-btn">Donate Item</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
+]]></template>
+    </sp_widget>
+</record_update>

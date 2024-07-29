@@ -12,6 +12,10 @@
         <controller_as>c</controller_as>
         <css>button#optionsMenu {
     display: none;
+}
+
+.panel.panel-primary.b {
+    margin-bottom: 26rem;
 }</css>
         <data_table>sp_instance_table</data_table>
         <demo_data/>
@@ -86,14 +90,14 @@
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-21 04:24:32</sys_created_on>
         <sys_id>c19a42279332021094e3f15a7bba1097</sys_id>
-        <sys_mod_count>12</sys_mod_count>
+        <sys_mod_count>15</sys_mod_count>
         <sys_name>cb issue</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_c19a42279332021094e3f15a7bba1097</sys_update_name>
         <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-06-21 05:21:10</sys_updated_on>
+        <sys_updated_on>2024-07-26 04:18:46</sys_updated_on>
         <template><![CDATA[<div>
   <div class="alert alert-danger" ng-if="data.invalid_table">
     ${Table not defined} '{{data.table_label}}'

@@ -70,9 +70,10 @@ c.openRaiseIssueForm = function(sysId) {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 120rem;
+    min-height: 100vh;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2rem;
 }
 
 h1 {
@@ -158,11 +159,14 @@ h1 {
 .event-content {
     position: relative;
     z-index: 1;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: -50px;
+    background: rgba(255, 255, 255, .8);
+    padding: 2rem;
+    height: 19rem;
+    display: flex;
+    border-radius: 1.2rem;
+    margin-top: -5rem;
     text-align: center;
+    flex-direction: column;
 }
 
 .event-title {
@@ -269,6 +273,24 @@ h1 {
             text-decoration: none;
             color: inherit;
         }
+
+.no-events-found {
+    text-align: center;
+    position: relative;
+    padding: 2rem;
+    left: 37rem;
+}
+
+.no-events-found img {
+    max-width: 32rem; /* Adjust size as needed */
+    margin-bottom: 10px;
+}
+
+.no-events-found p {
+    font-size: 2rem;
+    color: #666;
+}
+
  </css>
         <data_table>sp_instance</data_table>
         <demo_data/>
@@ -329,22 +351,21 @@ h1 {
         <sys_created_by>christy</sys_created_by>
         <sys_created_on>2024-06-24 09:49:35</sys_created_on>
         <sys_id>b3b1baec938b061094e3f15a7bba10dc</sys_id>
-        <sys_mod_count>125</sys_mod_count>
+        <sys_mod_count>137</sys_mod_count>
         <sys_name>cb cloned event list</sys_name>
         <sys_package display_value="CharityBids" source="x_1383184_charityb">bcaeeadb9369421094e3f15a7bba1090</sys_package>
         <sys_policy/>
         <sys_scope display_value="CharityBids">bcaeeadb9369421094e3f15a7bba1090</sys_scope>
         <sys_update_name>sp_widget_b3b1baec938b061094e3f15a7bba10dc</sys_update_name>
-        <sys_updated_by>christy</sys_updated_by>
-        <sys_updated_on>2024-07-20 16:22:43</sys_updated_on>
+        <sys_updated_by>lalitha</sys_updated_by>
+        <sys_updated_on>2024-07-25 21:27:24</sys_updated_on>
         <template><![CDATA[<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hope and Healing Events</title>
-<link rel="stylesheet" href="
-https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -352,45 +373,53 @@ https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 <h1>Hope and Healing Events</h1>
 <input type="text" ng-model="searchQuery" placeholder="Search events..." class="search-input">
 <div id="events-grid" class="events-grid">
-<div ng-repeat="event in c.data.events | filter:searchQuery" class="event-card" ng-click="openEventDetails(event.sys_id)">
-<a ng-href="?id=event_details&sys_id={{event.sys_id}}" target="_blank" class="event-card-link">
-<div class="event-image" ng-style="{'background-image': 'url(' + (event.image || '
-https://dev203498.service-now.com/issues.png')
-+ ')'}"></div>
-<div class="event-date">
-<span class="event-month">
-                            {{event.status === 'completed' ? (event.end_date | date:'MMM') : (event.start_date | date:'MMM')}}
-</span>
-<span class="event-day">
-                            {{event.status === 'completed' ? (event.end_date | date:'dd') : (event.start_date | date:'dd')}}
-</span>
-<div class="end-date-label">{{event.status === 'completed' ? 'End Date' : 'Start Date'}}</div>
-</div>
-<div class="event-content">
-<div class="event-title">{{event.event_name}}</div>
-<div class="event-description">{{event.event_manager}}</div> <!-- Removed charity company -->
-<div class="event-status">
-<div class="event-status-icon {{event.status === 'in progress' ? 'in-progress' : event.status === 'schedule' ? 'schedule' : 'completed'}}">
-<i class="fas fa-clock"></i>
-</div>
-<div class="event-status-text">
-                                {{event.status}}
-</div>
-</div>
-<div class="donation-options" ng-if="event.status === 'in progress' || event.status === 'schedule'" ng-click="openDonationForm(event.sys_id)">
-<a ng-href="?id=upload_item&sys_id={{event.sys_id}}" target="_blank" class="donateButton" ng-if="event.status === 'schedule'">Donate Item</a>
-<a ng-href="{{event.justgiving_url}}" target="_blank" class="donateButton">Donate Money</a>
-</div>
-<div class="event-closed" ng-if="event.status === 'completed'">
-                            This event is closed for donations.
-</div>
-</div>
-</a>
-</div>
-<div ng-if="noEventsMessage" class="alert alert-warning">{{noEventsMessage}}</div>
+    <!-- Events list -->
+    <div ng-repeat="event in filteredEvents" class="event-card" ng-click="openEventDetails(event.sys_id)">
+        <a ng-href="?id=event_details&sys_id={{event.sys_id}}" target="_blank" class="event-card-link">
+            <div class="event-image" ng-style="{'background-image': 'url(' + (event.image || 'https://dev203498.service-now.com/issues.png') + ')'}"></div>
+            <div class="event-date">
+                <span class="event-month">
+                    {{event.status === 'completed' ? (event.end_date | date:'MMM') : (event.start_date | date:'MMM')}}
+                </span>
+                <span class="event-day">
+                    {{event.status === 'completed' ? (event.end_date | date:'dd') : (event.start_date | date:'dd')}}
+                </span>
+                <div class="end-date-label">{{event.status === 'completed' ? 'End Date' : 'Start Date'}}</div>
+            </div>
+            <div class="event-content">
+                <div class="event-title">{{event.event_name}}</div>
+                <div class="event-description">{{event.event_manager}}</div>
+                <div class="event-status">
+                    <div class="event-status-icon {{event.status === 'in progress' ? 'in-progress' : event.status === 'schedule' ? 'schedule' : 'completed'}}">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="event-status-text">
+                        {{event.status}}
+                    </div>
+                </div>
+                <div class="donation-options" ng-if="event.status === 'in progress' || event.status === 'schedule'" ng-click="openDonationForm(event.sys_id)">
+                    <a ng-href="?id=upload_item&sys_id={{event.sys_id}}" target="_blank" class="donateButton" ng-if="event.status === 'schedule'">Donate Item</a>
+                    <a ng-href="{{event.justgiving_url}}" target="_blank" class="donateButton">Donate Money</a>
+                </div>
+                <div class="event-closed" ng-if="event.status === 'completed'">
+                    This event is closed for donations.
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- No events found message -->
+    <div ng-if="filteredEvents.length === 0 && searchQuery.length > 0" class="no-events-found">
+        <img src="https://dev203498.service-now.com/issues.png" alt="No Events Found">
+        <p>Sorry, No events found matching your search.</p>
+    </div>
+
+    <!-- General no events message -->
+    <div ng-if="noEventsMessage" class="alert alert-warning">{{noEventsMessage}}</div>
 </div>
 </div>
 </body>
-</html>]]></template>
+</html>
+]]></template>
     </sp_widget>
 </record_update>
